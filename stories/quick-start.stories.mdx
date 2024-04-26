@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs/Getting Started/Quick Start" />
+
+# Getting Started
+
+## Installing
+
+You can install IOCore Web (isinolacak-web) with [NPM](https://www.npmjs.com/package/isinolacak-web) or Yarn.
+
+-   NPM: `npm install isinolacak-web --save`
+-   YARN: `yarn add isinolacak-web`
+
+## Configuration
+
+You must wrap with IOCoreProvider your outermost component. This is important for tools such as theme and localization to be active.
+IOCoreProvider allows with a prop named "configs" you to make changes to themes and language packs and select initial theme and initial language.
+
+```jsx
+<IOCoreProvider
+    configs={{
+        themes: [
+            // ... (theme schemes)
+        ],
+        designTokens: {
+            // ... (design token schemes)
+        },
+        localeS: [
+            // ... (locale schemes)
+        ],
+        initialThemeKey: string // initial theme key.
+        initialLanguage: string // initial language key.
+    }}
+>
+    <Button title="Button"/>
+</IOCoreProvider>
+```
+
+If you want to set config, please look at Configs and Schemes Pages.
