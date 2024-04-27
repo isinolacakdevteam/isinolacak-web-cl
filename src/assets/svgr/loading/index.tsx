@@ -1,12 +1,12 @@
 import {
-    IIOCoreIconProps
+    IIOCoreIconPropsType
 } from "../../../core/types";
 
 const SvgLoadingIcon = ({
     size = 22,
     color,
     ...props
-}: IIOCoreIconProps & {
+}: IIOCoreIconPropsType & {
     className?: string;
 }) => {
     const pathScale = 22 / size;

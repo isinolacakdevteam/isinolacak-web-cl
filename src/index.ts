@@ -1,23 +1,29 @@
-export {
-    useIOCoreLocalization,
-    useIOCoreTheme
-} from "./core/context";
-
 export type {
-    IIOCoreIconProps
-} from "./core/types";
+    IOCoreTypographyVariantType,
+    IOCoreDisabledTokensType,
+    IOCoreRadiusesTokensType,
+    IOCoreBordersTokensType,
+    IOCoreContextConfigType,
+    IOCoreSpacesTokensType,
+    IOCoreDesignTokesType,
+    IOCoreTranslationType,
+    IIOCoreIconPropsType,
+    IOCoreTypographyType,
+    IOCoreThemeKeyType,
+    LocaleContextType,
+    ModalContextType,
+    ThemeContextType,
+    IOCoreColorsType,
+    IOCoreThemeType,
+    IOCoreIconType,
+    ModalDataType,
+    LanguageType,
+    LocaleConfig,
+    ThemeType
+} from "./types";
 
 export {
-    Container,
-    TextInput,
-    StateCard,
-    Switcher,
-    Loading,
-    Button,
-    Dialog,
-    Chip,
-    Text,
-    Row
+    Dialog
 } from "./components";
 
 export {
@@ -25,5 +31,9 @@ export {
 } from "./packages/react-portalize/src/Portal";
 
 export {
-    default as IOCoreProvider 
+    default as IOCore,
+    IOCoreContext,
+    IOCoreLocale,
+    IOCoreTheme,
+    IOCoreModal
 } from "./core";
