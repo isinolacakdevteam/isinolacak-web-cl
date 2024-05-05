@@ -1,5 +1,5 @@
-import React, {
-    FC
+import {
+    ReactNode
 } from "react";
 import IOCoreContext, {
     ConfigType
@@ -10,7 +10,7 @@ import {
 } from "../../types";
 import {
     Dialog 
-} from "src/components";
+} from "../../components";
 
 const isDialog = (object: any): object is ModalDataType["type"] => {
     return 'dialog' in object;
@@ -60,8 +60,10 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         this.state.data.pop();
     };
 
-    Render: FC = ({
+    Render = ({
         children
+    }: {
+        children: ReactNode
     }) => {
         const Provider = this.Provider;
 

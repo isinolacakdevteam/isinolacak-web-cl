@@ -13,7 +13,7 @@ import {
 import {
     IOCoreLocale,
     IOCoreTheme 
-} from "src/core";
+} from "../../core";
 
 const Dialog: FC<IDialogProps> = ({
     contentContainerStyle,
