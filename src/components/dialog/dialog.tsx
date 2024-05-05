@@ -2,7 +2,7 @@ import {
     FC
 } from "react";
 import useStyles, {
-    dialogStyler 
+    dialogStyler
 } from "./dialog.style";
 import IDialogProps from "./dialog.props";/* 
 import Button from "../button/button";
@@ -12,7 +12,7 @@ import {
 } from "../../packages/react-portalize/src/index";
 import {
     IOCoreLocale,
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../core";
 
 const Dialog: FC<IDialogProps> = ({
