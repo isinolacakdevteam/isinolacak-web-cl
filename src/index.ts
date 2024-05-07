@@ -24,6 +24,7 @@ export type {
 
 export {
     Dialog,
+    Button,
     Text
 } from "./components";
 
