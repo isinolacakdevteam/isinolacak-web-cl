@@ -1,5 +1,5 @@
 import {
-    IOCoreProvider
+    IOCore
 } from "../src";
 
 export const parameters = {
@@ -25,9 +25,7 @@ export const parameters = {
                 ],
                 'Components',
                 [
-                    'Text',
-                    'Button',
-                    'TextInput',
+                    'Dialog',
                     '*'
                 ],
                 '*'
@@ -37,7 +35,7 @@ export const parameters = {
 };
 
 export const decorators = [
-    (Story) => <IOCoreProvider>
+    (Story) => <IOCore.Provider>
         <Story/>
-    </IOCoreProvider>
+    </IOCore.Provider>
 ];

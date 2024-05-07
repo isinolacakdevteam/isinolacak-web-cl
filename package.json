@@ -91,10 +91,12 @@
     "peerDependencies": {
         "react": ">=17.0.1",
         "react-dom": ">=17.0.1",
-        "react-jss": ">=10.9.0"
+        "react-jss": ">=10.9.0",
+        "ncore-context": ">=1.0.3"
     },
     "dependencies": {
         "@storybook/addon-docs": "6.5.9",
+        "ncore-context": "^1.0.3",
         "react-jss": "10.9.0"
     }
 }

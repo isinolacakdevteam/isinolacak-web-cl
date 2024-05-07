@@ -53,7 +53,7 @@ Default.args = {
     onOverlayPress: () => {
         alert("Overlay pressed.");
     },
-    primaryButtonProps: {
+/*     primaryButtonProps: {
         onClick: () => {
             alert("Primary button pressed.");
         }
@@ -62,5 +62,5 @@ Default.args = {
         onClick: () => {
             alert("Secondary button pressed.");
         }
-    }
+    } */
 };

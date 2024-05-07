@@ -2,25 +2,25 @@ import {
     FC
 } from "react";
 import useStyles, {
-    dialogStyler 
+    dialogStyler
 } from "./dialog.style";
-import {
-    useIOCoreLocalization,
-    useIOCoreTheme
-} from "../../core/context";
-import IDialogProps from "./dialog.props";
+import IDialogProps from "./dialog.props";/* 
 import Button from "../button/button";
-import Text from "../text/text";
+import Text from "../text/text" */;
 import {
     Portal
 } from "../../packages/react-portalize/src/index";
+import {
+    IOCoreLocale,
+    IOCoreTheme
+} from "../../core";
 
 const Dialog: FC<IDialogProps> = ({
     contentContainerStyle,
     bottomContainerStyle,
     headerContainerStyle,
-    secondaryButtonProps,
-    primaryButtonProps,
+    /* secondaryButtonProps,
+    primaryButtonProps, */
     isVisible = false,
     headerComponent,
     bottomComponent,
@@ -34,11 +34,11 @@ const Dialog: FC<IDialogProps> = ({
         radiuses,
         spaces,
         colors
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const {
         localize
-    } = useIOCoreLocalization();
+    } = IOCoreLocale.useContext();
 
     const styles = useStyles();
 
@@ -64,11 +64,11 @@ const Dialog: FC<IDialogProps> = ({
                 ...header
             }}
         >
-            {headerComponent || <Text
+            {/* {headerComponent || <Text
                 variant="header5"
             >
                 {title}
-            </Text>}
+            </Text>} */}
         </div>;
     };
 
@@ -86,19 +86,19 @@ const Dialog: FC<IDialogProps> = ({
             {bottomComponent || <div
                 className={styles.bottomContentContainer}
             >
-                {secondaryButton()}
-                {primaryButton()}
+                {/* {secondaryButton()}
+                {primaryButton()} */}
             </div>}
         </div>;
     };
 
-    const secondaryButton = () => {
+    /*     const secondaryButton = () => {
         if(variant !== "yes-no") {
             return null;
         }
 
         return <Button
-            title={secondaryButtonProps?.title || localize("ioCoreDefaultDialogSecondaryButtonTitle")}
+            title={secondaryButtonProps?.title || localize("IOCoreDefaultDialogSecondaryButtonTitle")}
             loading={secondaryButtonProps?.loading}
             color="layer2"
             textColor="body"
@@ -110,7 +110,7 @@ const Dialog: FC<IDialogProps> = ({
 
     const primaryButton = () => {
         return <Button
-            title={primaryButtonProps?.title || localize("ioCoreDefaultDialogPrimaryButtonTitle")}
+            title={primaryButtonProps?.title || localize("IOCoreDefaultDialogPrimaryButtonTitle")}
             loading={primaryButtonProps?.loading}
             onClick={() => {
                 if(primaryButtonProps?.onClick) primaryButtonProps?.onClick();
@@ -118,7 +118,7 @@ const Dialog: FC<IDialogProps> = ({
             displayBehaviourWhileLoading={primaryButtonProps?.displayBehaviourWhileLoading}
             style={primaryButtonStyle}
         />;
-    };
+    }; */
 
     if(!isVisible) {
         return null;
@@ -153,9 +153,9 @@ const Dialog: FC<IDialogProps> = ({
                         ...contentStyle
                     }}
                 >
-                    {children || <Text>
+                    {/* {children || <Text>
                         {content}
-                    </Text>}
+                    </Text>} */}
                 </div>
                 {renderBottom()}
             </div>
