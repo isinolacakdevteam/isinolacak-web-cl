@@ -23,7 +23,8 @@ export type {
 } from "./types";
 
 export {
-    Dialog
+    Dialog,
+    Text
 } from "./components";
 
 export {
