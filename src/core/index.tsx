@@ -6,6 +6,8 @@ import Context from "./context";
 import {
     Host 
 } from "../packages/react-portalize/src/Host";
+import useStyles from "./stylesheet";
+import "./stylesheet";
 
 class IOCoreInheritance {
     IOCoreContext;
@@ -31,11 +33,17 @@ class IOCoreInheritance {
         children: ReactNode;
     }) => {
         const IOCoreContext = this.IOCoreContext;
+
+        const classes = useStyles();
         
         //@ts-ignore
         return <IOCoreContext.Provider>
             {/* @ts-ignore */}
             <this.ContextApi>
+                <header>
+                    <link rel="stylesheet" href="https://cdn.isinolacak.com/assets/fonts/iocore.css"/>
+                </header>
+                <span className={classes.hide}></span>
                 {children}
             </this.ContextApi>
         </IOCoreContext.Provider>;
