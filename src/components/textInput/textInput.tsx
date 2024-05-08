@@ -6,9 +6,9 @@ import {
 import ITextInputProps from "./textInput.props";
 import Text from "../text/text";
 import {
+    EyeOpenedIcon,
     ClearIcon,
     EyeClosedIcon,
-    EyeOpenedIcon,
     InfoIcon
 } from "../../assets/svgr";
 import {
@@ -157,8 +157,8 @@ const TextInput: FC<ITextInputProps> = ({
                 onClick={togglePasswordVisibility}
             >
                 {showPassword ? 
-                    <EyeClosedIcon color={colors.hideBody} size={24} /> : 
-                    <EyeOpenedIcon color={colors.hideBody} size={24} />
+                    <EyeOpenedIcon color={colors.hideBody} size={24} /> :
+                    <EyeClosedIcon color={colors.hideBody} size={24} />
                 }
             </div>
         </div>;
