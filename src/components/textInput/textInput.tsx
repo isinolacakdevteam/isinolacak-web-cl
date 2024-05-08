@@ -37,6 +37,7 @@ const TextInput: FC<ITextInputProps> = ({
     inputClass,
     className,
     errorText,
+    ıconType,
     password,
     style,
     title,
@@ -139,9 +140,13 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <div
+            className={classes.ıconProps}
             onClick={iconOnClick}
         >
-            <IconComponentProp/>
+            <IconComponentProp 
+                color={colors.primary} 
+                size={24}
+            />
         </div>;
     };
 
@@ -171,18 +176,21 @@ const TextInput: FC<ITextInputProps> = ({
             return null;
         }
 
-        return <div>
-            {
-                ErrorIconProp
-                    ?
-                    <ErrorIconProp/> 
-                    :
-                    <InfoIcon
-                        color={isError ? colors.error : colors.greyBase}
-                        size={15}
-                    />
-            }
-            
+        return <div className={classes.errorText}>
+            {ErrorIconProp ? (
+                <ErrorIconProp 
+                    style={{
+                        marginRight: spaces.content
+                    }}/> 
+            ) : (
+                <InfoIcon
+                    color={colors.error}
+                    size={15}
+                    style={{
+                        marginRight: spaces.content
+                    }}
+                />
+            )}
             <Text
                 color={"error"}
                 variant="body3-regular"
@@ -243,8 +251,8 @@ const TextInput: FC<ITextInputProps> = ({
         </div>
         {renderIcon("right")}
         {renderPasswordIcon()}
-        {renderErrorText()}
         {renderClearButton()}
+        {renderErrorText()}
     </div>;
 };
 export default TextInput;

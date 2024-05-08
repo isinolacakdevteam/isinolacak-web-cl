@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
     IIOCoreIconPropsType
-} from "src/types";
+} from "../../../types";
 const InfoIcon = ({
     size = 16,
     color,

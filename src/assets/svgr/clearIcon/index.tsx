@@ -1,6 +1,6 @@
 import {
     IIOCoreIconPropsType
-} from "../../../core/types";
+} from "../../../types";
 
 const SvgClearIcon = ({
     size = 20,

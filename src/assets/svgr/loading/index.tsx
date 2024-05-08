@@ -1,6 +1,6 @@
 import {
     IIOCoreIconPropsType
-} from "../../../core/types";
+} from "../../../types";
 
 const SvgLoadingIcon = ({
     size = 22,

@@ -43,6 +43,18 @@ export const useStyles = createUseStyles({
         position: "absolute",
         top: 50,
         right: 0
+    },
+    ıconProps: {
+        justifyContent:"center",
+        alignContent:"center", 
+        alignItems: "center"
+    },
+    errorText: {
+        justifyContent: 'center', 
+        position: "absolute",
+        alignItems: 'center', 
+        display: 'flex', 
+        top: 85
     }
 }, {
     name: "NCore-TextInput"

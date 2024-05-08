@@ -1,6 +1,7 @@
 import {
-    IIOCoreIconPropsType
-} from "../../../core/types";
+    IIOCoreIconPropsType 
+} from "../../../types";
+
 
 const SvgChevronRight = ({
     size = 30,

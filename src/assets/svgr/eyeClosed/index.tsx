@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
     IIOCoreIconPropsType
-} from "src/types";
+} from "../../../types";
 const EyeClosedIcon = ({
     size = 24,
     color,
