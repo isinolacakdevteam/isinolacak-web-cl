@@ -7,6 +7,10 @@ import {
 } from "./switcher.props";
 
 const useStyles = createUseStyles({
+    switchComponentContainer: {
+        alignItems: "center",
+        display: "flex"
+    },
     container: {
         transition: "transform 0.5s !important",
         alignSelf: "baseline",

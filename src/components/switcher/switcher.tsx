@@ -69,12 +69,13 @@ const Switcher: FC<ISwitcherProps> = ({
         </Text>;
     };
 
-    return <div style={{
-        display: "flex", alignItems: "center", 
-    }}>
-        <div style={{
-            marginRight: "10px"
-        }}>
+    return <div 
+        className={classes.switchComponentContainer}
+    >
+        <div 
+            style={{
+                marginRight: spaces.inline
+            }}>
             {renderTitle()}
         </div>
         <div
