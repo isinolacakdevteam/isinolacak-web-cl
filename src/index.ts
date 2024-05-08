@@ -27,8 +27,9 @@ export {
     CheckBox,
     Switcher,
     Dialog,
-    Text,
-    Chip
+    Button,
+    Chip,
+    Text
 } from "./components";
 
 export {

@@ -21,3 +21,7 @@ export {
 export {
     default as TextInput
 } from "./textInput/textInput";
+
+export {
+    default as Button
+} from "./button/button";
