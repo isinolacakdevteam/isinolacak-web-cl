@@ -13,3 +13,7 @@ export {
 export {
     default as CheckBox
 } from "./checkBox/checkBox";
+
+export {
+    default as Switcher
+} from "./switcher/switcher";

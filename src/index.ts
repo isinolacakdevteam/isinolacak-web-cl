@@ -24,6 +24,7 @@ export type {
 
 export {
     CheckBox,
+    Switcher,
     Dialog,
     Text,
     Chip
