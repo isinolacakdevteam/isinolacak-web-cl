@@ -11,6 +11,7 @@ interface IButtonProps extends Partial<Omit<HTMLButtonElement, "children" | "sty
     spreadBehaviour?: ButtonSpreadBehaviour;
     iconColor?: keyof IOCore.ColorsType;
     textColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
     color?: keyof IOCore.ColorsType;
     titleStyle?: CSSProperties;
     icon?: IOCoreIconType;
@@ -25,8 +26,8 @@ interface IButtonProps extends Partial<Omit<HTMLButtonElement, "children" | "sty
 
 export type ButtonDisplayBehaviourWhileLoading = "none" | "disabled";
 export type ButtonSpreadBehaviour = "baseline" | "stretch" | "free";
+export type ButtonSize = "small" | "medium" | "large" | "xSmall";
 export type ButtonVariant = "filled" | "outline" | "ghost";
-export type ButtonSize = "small" | "medium" | "large";
 
 export type ButtonStylerParams = {
     displayBehaviourWhileLoading: ButtonDisplayBehaviourWhileLoading;
@@ -35,6 +36,7 @@ export type ButtonStylerParams = {
     textColor?: keyof IOCore.ColorsType;
     iconColor?: keyof IOCore.ColorsType;
     borders: IOCore.BordersTokensType;
+    iconDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
     color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
@@ -44,6 +46,7 @@ export type ButtonStylerParams = {
     disabled: boolean;
     loading?: boolean;
     size: ButtonSize;
+    title?: string;
 };
 
 export type TitleProps = {
@@ -57,4 +60,16 @@ export type ButtonStylerResult = {
     container: CSSProperties;
     titleProps: TitleProps;
 };
+
+export type ButtonStyle = {
+    container: CSSProperties;
+};
+
+export type ButtonStyleMappingType = {
+    xSmall: ButtonStyle;
+    small: ButtonStyle;
+    medium: ButtonStyle;
+    large: ButtonStyle;
+};
+
 export default IButtonProps;

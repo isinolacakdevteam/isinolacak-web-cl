@@ -1,4 +1,4 @@
-import {
+import React,{
     CSSProperties,
     FC
 } from 'react';
@@ -15,6 +15,7 @@ const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
     spreadBehaviour = "baseline",
     icon: IconComponentProp,
+    iconDirection= "left",
     variant = "filled",
     color = "primary",
     disabled = false,
@@ -47,6 +48,7 @@ const Button: FC<IButtonProps> = ({
         icon: IconComponentProp,
         spreadBehaviour,
         disabledStyle,
+        iconDirection,
         textColor,
         iconColor,
         radiuses,
@@ -57,10 +59,15 @@ const Button: FC<IButtonProps> = ({
         colors,
         spaces,
         color,
+        title,
         size
     });
 
-    const renderIcon = () => {
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+
         if(!IconComponentProp) {
             return null;
         }
@@ -102,8 +109,9 @@ const Button: FC<IButtonProps> = ({
             ...container
         }}
     >
-        {renderIcon()}
+        {renderIcon("left")}
         {renderTitle()}
+        {renderIcon("right")}
     </button>;
 };
 export default Button;

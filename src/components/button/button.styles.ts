@@ -12,6 +12,9 @@ import {
 import {
     IIOCoreIconPropsType
 } from "../../types";
+import {
+    SIZE_TO_STYLE_MAPPING 
+} from "./constants";
 
 const useStyles = createUseStyles({
     container: {
@@ -61,6 +64,7 @@ export const buttonStyler = ({
     displayBehaviourWhileLoading,
     spreadBehaviour,
     disabledStyle,
+    iconDirection,
     textColor,
     iconColor,
     disabled,
@@ -71,6 +75,7 @@ export const buttonStyler = ({
     spaces,
     colors,
     color,
+    title,
     icon,
     size
 }: ButtonStylerParams): ButtonStylerResult => {
@@ -86,7 +91,7 @@ export const buttonStyler = ({
 
     let titleProps: TitleProps = {
         color: titleColor,
-        variant: SIZE_TO_STYLE_MAPPING[size].title.size,
+        variant: size === "xSmall" ? "body3-medium" : "body2-medium",
         style: {
             margin: "0 auto"
         }
@@ -162,8 +167,22 @@ export const buttonStyler = ({
         };
     }
 
+    if(icon && title) {
+        if(iconDirection === "left") {
+            titleProps.style = {
+                ...titleProps.style,
+                marginLeft: spaces.inline
+            };
+        } else {
+            titleProps.style = {
+                ...titleProps.style,
+                marginRight: spaces.inline
+            };
+        }
+    }
+
     let iconProps: IIOCoreIconPropsType = {
-        size: SIZE_TO_STYLE_MAPPING[size].icon.size,
+        size: 18,
         color: iconColor ? colors[iconColor] : colors[titleColor]
     };
 
@@ -174,57 +193,4 @@ export const buttonStyler = ({
     };
 };
 
-export const SIZE_TO_STYLE_MAPPING: ButtonStyleMappingType = {
-    "small": {
-        container: {
-            paddingLeft: 20,
-            paddingRight: 20,
-            paddingTop: 8,
-            paddingBottom: 8
-        },
-        title: {
-            size: "body-regular"
-        },
-        loading: {
-            containerSize: "body-regular"
-        },
-        icon: {
-            size: 14
-        }
-    },
-    "medium": {
-        container: {
-            paddingLeft: 40,
-            paddingRight: 40,
-            paddingTop: 12,
-            paddingBottom: 12
-        },
-        title: {
-            size: "body-regular"
-        },
-        loading: {
-            containerSize: "body-regular"
-        },
-        icon: {
-            size: 18
-        }
-    },
-    "large": {
-        container: {
-            paddingLeft: 60,
-            paddingRight: 60,
-            paddingTop: 14,
-            paddingBottom: 14
-        },
-        title: {
-            size: "body-regular"
-        },
-        loading: {
-            containerSize: "body-regular"
-        },
-        icon: {
-            size: 22
-        }
-    }
-};
 export default useStyles;
