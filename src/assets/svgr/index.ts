@@ -9,3 +9,7 @@ export {
 export {
     default as ChevronRightIcon
 } from "./chrevronRight";
+
+export {
+    default as InfoIcon
+} from "./infoIcon";
