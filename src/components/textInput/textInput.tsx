@@ -1,4 +1,4 @@
-import {
+import React, {
     useState,
     useRef,
     FC
@@ -182,8 +182,7 @@ const TextInput: FC<ITextInputProps> = ({
                         marginRight: spaces.content
                     }}
                 >
-                    <ErrorIconProp
-                    /> 
+                    <ErrorIconProp/> 
                 </div>
                 : 
                 <div

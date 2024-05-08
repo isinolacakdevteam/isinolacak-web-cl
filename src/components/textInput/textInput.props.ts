@@ -3,7 +3,7 @@ import {
 } from "react";
 import {
     IOCoreIconType
-} from "src/types";
+} from "../../types";
 
 interface ITextInputProps {
     spreadBehaviour?: TextInputSpreadBehaviour;
