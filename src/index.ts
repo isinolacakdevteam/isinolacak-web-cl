@@ -24,7 +24,8 @@ export type {
 
 export {
     Dialog,
-    Text
+    Text,
+    Chip
 } from "./components";
 
 export {
