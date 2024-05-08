@@ -96,13 +96,13 @@ const TextArea: FC<ITextAreaProps> = ({
     onBlur: onBlurProp,
     isRequired = false,
     disabled = false,
+    isError = false,
     textLimit = 0,
     initialValue,
     onChangeText,
     placeholder,
     inputClass,
     className,
-    isError = false,
     style,
     title,
     id,
@@ -192,10 +192,10 @@ const TextArea: FC<ITextAreaProps> = ({
 
     const renderInput = () => {
         return <textarea
+            ref={inputTextAreaRef}
             disabled={disabled}
             onFocus={onFocus}
             onBlur={onBlur}
-            ref={inputTextAreaRef}
             onChange={(e) => {
                 if(onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);

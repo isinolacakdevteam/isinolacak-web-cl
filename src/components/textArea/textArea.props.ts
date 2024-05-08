@@ -29,8 +29,8 @@ export type TextAreaStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     typography: IOCore.TypographyType;
-    disabledStyle: CSSProperties;
     spaces: IOCore.SpacesTokensType;
+    disabledStyle: CSSProperties;
     colors: IOCore.ColorsType;
     isFocused: boolean;
     disabled?: boolean;
@@ -44,8 +44,8 @@ export type TitleProps = {
 };
 
 export type TextAreaStylerResult = {
-    titleProps: TitleProps;
     container: CSSProperties;
+    titleProps: TitleProps;
     input: CSSProperties;
     clear: CSSProperties;
 };
