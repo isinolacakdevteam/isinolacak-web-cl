@@ -1,13 +1,14 @@
-import * as React from "react";
 import {
     IIOCoreIconPropsType
 } from "../../../types";
+
 const InfoIcon = ({
     size = 16,
     color,
     ...props
 }: IIOCoreIconPropsType) => {
     const pathScale = 16 / size;
+
     return <svg
         xmlns="http://www.w3.org/2000/svg"
         height={size}

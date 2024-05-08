@@ -3,21 +3,21 @@ import {
     useRef,
     FC
 } from  "react";
-import ITextInputProps from "./textInput.props";
-import Text from "../text/text";
-import {
-    EyeOpenedIcon,
-    ClearIcon,
-    EyeClosedIcon,
-    InfoIcon
-} from "../../assets/svgr";
 import {
     textInputStyler,
     useStyles
 } from "./textInput.styles";
+import ITextInputProps from "./textInput.props";
+import Text from "../text/text";
 import {
     IOCoreTheme
 } from "../../../src/core";
+import {
+    EyeOpenedIcon,
+    EyeClosedIcon,
+    ClearIcon,
+    InfoIcon
+} from "../../assets/svgr";
 
 const TextInput: FC<ITextInputProps> = ({
     spreadBehaviour = "baseline",
@@ -37,7 +37,6 @@ const TextInput: FC<ITextInputProps> = ({
     inputClass,
     className,
     errorText,
-    ıconType,
     password,
     style,
     title,
@@ -177,20 +176,27 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return <div className={classes.errorText}>
-            {ErrorIconProp ? (
-                <ErrorIconProp 
-                    style={{
-                        marginRight: spaces.content
-                    }}/> 
-            ) : (
-                <InfoIcon
-                    color={colors.error}
-                    size={15}
+            {ErrorIconProp ? 
+                <div
                     style={{
                         marginRight: spaces.content
                     }}
-                />
-            )}
+                >
+                    <ErrorIconProp
+                    /> 
+                </div>
+                : 
+                <div
+                    style={{
+                        marginRight: spaces.content
+                    }} 
+                >
+                    <InfoIcon
+                        color={colors.error}
+                        size={15}
+                    />
+                </div>
+            }
             <Text
                 color={"error"}
                 variant="body3-regular"

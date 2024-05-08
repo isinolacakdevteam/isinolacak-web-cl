@@ -1,13 +1,14 @@
-import * as React from "react";
 import {
     IIOCoreIconPropsType
 } from "../../../types";
+
 const EyeOpenedIcon = ({
     size = 24,
     color,
     ...props
 }: IIOCoreIconPropsType) => {
     const pathScale = 24 / size;
+
     return <svg
         xmlns="http://www.w3.org/2000/svg"
         height={size}

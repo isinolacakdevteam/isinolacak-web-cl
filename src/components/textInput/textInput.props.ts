@@ -60,4 +60,5 @@ export type TextInputStylerResult = {
     input: CSSProperties;
     clear: CSSProperties;
 };
+
 export default ITextInputProps;

@@ -2,7 +2,6 @@ import {
     IIOCoreIconPropsType 
 } from "../../../types";
 
-
 const SvgChevronRight = ({
     size = 30,
     color,
