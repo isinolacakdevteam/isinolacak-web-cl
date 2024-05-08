@@ -13,3 +13,7 @@ export {
 export {
     default as InfoIcon
 } from "./infoIcon";
+
+export {
+    default as CheckIcon
+} from "./checkIcon";

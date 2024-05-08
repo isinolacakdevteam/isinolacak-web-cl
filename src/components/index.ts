@@ -9,3 +9,7 @@ export {
 export {
     default as Chip
 } from "./chip/chip";
+
+export {
+    default as CheckBox
+} from "./checkBox/checkBox";
