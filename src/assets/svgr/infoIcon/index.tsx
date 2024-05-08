@@ -1,6 +1,6 @@
 import {
     IIOCoreIconPropsType
-} from "../../../types/index";
+} from "../../../types";
 
 const Info = ({
     color = "#697488",

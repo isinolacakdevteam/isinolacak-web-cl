@@ -1,10 +1,10 @@
 import {
     FC
 } from  "react";
-import ISwitcherProps from "./switcher.props";
 import useStyles, {
-    switcherStyler 
+    switcherStyler
 } from "./switcher.style";
+import ISwitcherProps from "./switcher.props";
 import {
     IOCoreTheme 
 } from "../../../src/core";
@@ -19,7 +19,7 @@ const Switcher: FC<ISwitcherProps> = ({
     isActive,
     onChange,
     style,
-    title,
+    title
 }) => {
     const {
         disabled: disabledStyle,
