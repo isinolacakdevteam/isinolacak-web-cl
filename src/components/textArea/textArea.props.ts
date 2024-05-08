@@ -1,6 +1,9 @@
 import {
     CSSProperties
 } from "react";
+import {
+    variant 
+} from "styled-system";
 
 interface ITextAreaProps {
     spreadBehaviour?: TextAreaSpreadBehaviour;
@@ -39,6 +42,7 @@ export type TextAreaStylerParams = {
 };
 
 export type TitleProps = {
+    variant: keyof IOCore.TypographyType;
     color: keyof IOCore.ColorsType;
     style: CSSProperties;
 };

@@ -45,9 +45,10 @@ const textAreaStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: value?.length || isFocused ? "primary" : "gray50",
+        variant: value?.length || isFocused ? "body3-regular" : "body2-regular",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
-            marginBottom: spaces.inline
+            alignSelf: "flex-start"
         }
     };
 
@@ -78,6 +79,10 @@ const textAreaStyler = ({
             height: "auto",
             resize: "none"
         };
+    }
+
+    if(isFocused || (value && value.length)) {
+        titleProps.style.marginBottom = spaces.inline;
     }
 
     return {
