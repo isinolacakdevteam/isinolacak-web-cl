@@ -9,3 +9,7 @@ export {
 export {
     default as Chip
 } from "./chip/chip";
+
+export {
+    default as Switcher
+} from "./switcher/switcher";
