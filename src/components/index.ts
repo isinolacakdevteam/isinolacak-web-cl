@@ -25,3 +25,7 @@ export {
 export {
     default as Button
 } from "./button/button";
+
+export {
+    default as RadioButton
+} from "./radioButton/radioButton";
