@@ -26,6 +26,7 @@ export {
     TextInput,
     CheckBox,
     Switcher,
+    Sticker,
     Dialog,
     Button,
     Chip,
