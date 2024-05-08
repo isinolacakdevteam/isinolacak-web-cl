@@ -4,7 +4,7 @@ import {
 import {
     IIOCoreIconPropsType,
     IOCoreIconType
-} from "src/types";
+} from "../../types";
 
 interface IButtonProps extends Partial<Omit<HTMLButtonElement, "children" | "style">> {
     displayBehaviourWhileLoading?: ButtonDisplayBehaviourWhileLoading;

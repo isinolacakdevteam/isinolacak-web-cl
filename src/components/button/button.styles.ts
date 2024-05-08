@@ -11,7 +11,7 @@ import {
 } from "./button.props";
 import {
     IIOCoreIconPropsType
-} from "src/types";
+} from "../../types";
 
 const useStyles = createUseStyles({
     container: {

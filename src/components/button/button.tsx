@@ -9,7 +9,7 @@ import useStyles, {
 import Text from "../text/text";
 import {
     IOCoreTheme
-} from 'src/core';
+} from '../../core';
 
 const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
