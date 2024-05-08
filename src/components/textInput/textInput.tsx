@@ -1,20 +1,20 @@
-import {
+import React, {
     useState,
     useRef,
     FC
 } from  "react";
-import ITextInputProps from "./textInput.props";
-import Text from "../text/text";
-import {
-    EyeOpenedIcon,
-    ClearIcon,
-    EyeClosedIcon,
-    InfoIcon
-} from "../../assets/svgr";
 import {
     textInputStyler,
     useStyles
 } from "./textInput.styles";
+import ITextInputProps from "./textInput.props";
+import Text from "../text/text";
+import {
+    EyeOpenedIcon,
+    EyeClosedIcon,
+    ClearIcon,
+    InfoIcon
+} from "../../assets/svgr";
 import {
     IOCoreTheme
 } from "../../../src/core";
@@ -153,7 +153,7 @@ const TextInput: FC<ITextInputProps> = ({
         if (!password) {
             return null;
         }
-    
+
         return<div
             className={classes.passwordIconContainer}
         >
@@ -168,28 +168,30 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
-
-
     const renderErrorText = () => {
         if(!errorText) {
             return null;
         }
 
         return <div className={classes.errorText}>
-            {ErrorIconProp ? (
-                <ErrorIconProp 
+            {ErrorIconProp ? 
+                <div
                     style={{
                         marginRight: spaces.content
-                    }}/> 
-            ) : (
-                <InfoIcon
-                    color={isError ? colors.error : colors.textGrey}
-                    size={15}
+                    }} 
+                >
+                    <ErrorIconProp/>
+                </div>: <div
                     style={{
                         marginRight: spaces.content
                     }}
-                />
-            )}
+                >
+                    <InfoIcon
+                        color={isError ? colors.error : colors.textGrey}
+                        size={15}
+                    />
+                </div>
+            }
             <Text
                 color={isError ? "error" : "textGrey"}
                 variant="body3-regular"
