@@ -49,6 +49,7 @@ export type TextInputStylerParams = {
 };
 
 export type TitleProps = {
+    variant: keyof IOCore.TypographyType;
     color: keyof IOCore.ColorsType;
     style: CSSProperties;
 };

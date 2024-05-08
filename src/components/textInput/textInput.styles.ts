@@ -73,9 +73,10 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: value?.length || isFocused ? "primary" : "gray50",
+        variant: value?.length || isFocused ? "body3-regular" : "body2-regular",
+        color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
-            marginBottom: spaces.inline
+            alignSelf: "flex-start"
         }
     };
 
@@ -83,13 +84,15 @@ export const textInputStyler = ({
         backgroundColor: "transparent",
         opacity: value ? 1 : 0.5,
         color: colors.body,
-        ...typography["body-bold"],
+        ...typography["body-regular"],
         lineHeight: undefined,
         height: 18
     };
 
     let clear: CSSProperties = {
-        marginLeft: spaces.content
+        marginTop: spaces.content * 1.5,
+        marginLeft: spaces.content,
+        alignSelf: "flex-start"
     };
 
     if(disabled) {
@@ -101,8 +104,13 @@ export const textInputStyler = ({
         input = {
             backgroundColor: "transparent",
             cursor: "no-drop",
+            height: "auto",
             resize: "none"
         };
+    }
+
+    if(isFocused || (value && value.length)) {
+        titleProps.style.marginBottom = spaces.inline;
     }
 
     return {
