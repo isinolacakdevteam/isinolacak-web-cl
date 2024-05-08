@@ -11,7 +11,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N TextArea page."
+                component: "Welcome to IOCORE TextArea page."
             }
         }
     },
