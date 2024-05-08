@@ -9,3 +9,15 @@ export {
 export {
     default as ChevronRightIcon
 } from "./chrevronRight";
+
+export {
+    default as EyeClosedIcon
+} from "./eyeClosed";
+
+export {
+    default as EyeOpenedIcon
+} from "./eyeOpened";
+
+export {
+    default as InfoIcon
+} from "./info";

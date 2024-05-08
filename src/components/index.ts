@@ -5,3 +5,7 @@ export {
 export {
     default as Text
 } from "./text/text";
+
+export {
+    default as TextInput
+} from "./textInput/textInput";

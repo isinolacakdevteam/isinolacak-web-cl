@@ -23,8 +23,9 @@ export type {
 } from "./types";
 
 export {
+    TextInput,
     Dialog,
-    Text
+    Text,
 } from "./components";
 
 export {
