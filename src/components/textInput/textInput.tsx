@@ -22,6 +22,8 @@ import {
 const TextInput: FC<ITextInputProps> = ({
     spreadBehaviour = "baseline",
     errorIcon: ErrorIconProp,
+    icon: IconComponentProp,
+    iconDirection = "left",
     clearEnabled = false,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
@@ -31,6 +33,7 @@ const TextInput: FC<ITextInputProps> = ({
     onChangeText,
     initialValue,
     placeholder,
+    iconOnClick,
     inputClass,
     className,
     errorText,
@@ -74,6 +77,7 @@ const TextInput: FC<ITextInputProps> = ({
         disabled,
         radiuses,
         borders,
+        isError,
         colors,
         spaces,
         value
@@ -122,30 +126,42 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+
+        if(!IconComponentProp) {
+            return null;
+        }
+
+        return <div
+            onClick={iconOnClick}
+        >
+            <IconComponentProp/>
+        </div>;
+    };
+
     const renderPasswordIcon = () => {
         if (!password) {
             return null;
         }
-
-        const PasswordIcon = showPassword ? EyeOpenedIcon : EyeClosedIcon;
-
-        return (
+    
+        return<div
+            className={classes.passwordIconContainer}
+        >
             <div
                 onClick={togglePasswordVisibility}
             >
-                <PasswordIcon color={colors.hideBody} size={24} />
+                {showPassword ? 
+                    <EyeClosedIcon color={colors.hideBody} size={24} /> : 
+                    <EyeOpenedIcon color={colors.hideBody} size={24} />
+                }
             </div>
-        );
+        </div>;
     };
 
-    const renderTitle = () => {
-        return <Text
-            color={isError ? "error" : titleProps.color}
-            variant="body-bold"
-        >
-            {finalTitle}
-        </Text>;
-    };
+
 
     const renderErrorText = () => {
         if(!errorText) {
@@ -175,7 +191,8 @@ const TextInput: FC<ITextInputProps> = ({
 
     const renderInput = () => {
         return <input
-            type={showPassword ? "text" : "password"}
+            type={password && !showPassword ? "password" : "text"}
+            placeholder={placeholder}
             disabled={disabled}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -186,7 +203,6 @@ const TextInput: FC<ITextInputProps> = ({
                 if(onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);
             }}
-            placeholder={placeholder}
             className={[
                 classes.input,
                 inputClass
@@ -207,6 +223,7 @@ const TextInput: FC<ITextInputProps> = ({
             ...container
         }}
     >
+        {renderIcon("left")}
         <div
             className={[
                 classes.content
@@ -214,13 +231,15 @@ const TextInput: FC<ITextInputProps> = ({
         >
             <Text
                 {...titleProps}
+                color={isError ? "error" : titleProps.color}
+                variant="body-bold"
             >
                 {finalTitle}
             </Text>
-            {renderTitle()}
             {renderInput()}
-            {renderPasswordIcon()}
         </div>
+        {renderIcon("right")}
+        {renderPasswordIcon()}
         {renderErrorText()}
         {renderClearButton()}
     </div>;

@@ -37,6 +37,12 @@ export const useStyles = createUseStyles({
         alignItems: "center",
         alignSelf: "center",
         display: "flex"
+    },
+    passwordIconContainer: {
+        transform: "translateY(-50%)",
+        position: "absolute",
+        top: 50,
+        right: 0
     }
 }, {
     name: "NCore-TextInput"
@@ -49,19 +55,21 @@ export const textInputStyler = ({
     disabled,
     radiuses,
     borders,
-    colors,
+    isError,
     spaces,
+    colors,
     value
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
-        borderColor: isFocused ? colors.primary : colors.panel,
+        borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
         paddingLeft: spaces.container / 1.5,
         paddingBottom: spaces.content * 1.5,
         paddingTop: spaces.content * 1.5,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
-        borderWidth: borders.line
+        borderWidth: borders.line,
+        borderStyle: "solid"
     };
 
     let titleProps: TitleProps = {

@@ -8,11 +8,14 @@ import {
 interface ITextInputProps {
     spreadBehaviour?: TextInputSpreadBehaviour;
     onChangeText?: (value: string) => void;
-    errorIcon: IOCoreIconType;
+    iconDirection?: "left" | "right";
+    errorIcon?: IOCoreIconType;
+    iconOnClick?: () => void;
     secureTextEntry?: boolean;
     clearEnabled?: boolean;
     initialValue?: string;
     style?: CSSProperties;
+    icon: IOCoreIconType;
     isRequired?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;
@@ -41,6 +44,7 @@ export type TextInputStylerParams = {
     multiline?: boolean;
     isFocused: boolean;
     disabled?: boolean;
+    isError?: boolean;
     value: string;
 };
 
