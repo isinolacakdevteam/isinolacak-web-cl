@@ -2,11 +2,12 @@ import {
     CSSProperties,
     ReactNode
 } from "react";
-/* import {
-    ButtonDisplayBehaviourWhileLoading
-} from "../../components/button/button.props"; */
 import {
-    PortalizedComponentProps
+    ButtonDisplayBehaviourWhileLoading
+} from "../../components/button/button.props";
+import {
+    PortalizedComponentProps,
+    IIOCoreIconPropsType
 } from "../../types";
 
 export type DialogStylerParams = {
@@ -19,7 +20,9 @@ export type DialogStylerParams = {
 };
 
 export type DialogStylerResult = {
+    clearIcon: IIOCoreIconPropsType;
     primaryButton: CSSProperties;
+    clearButton: CSSProperties;
     container: CSSProperties;
     content: CSSProperties;
     bottom: CSSProperties;
@@ -28,19 +31,19 @@ export type DialogStylerResult = {
 
 export type DialogVariant = "yes-no" | "ok" | "info";
 
-/* type DialogButton = {
+type DialogButton = {
     displayBehaviourWhileLoading?: ButtonDisplayBehaviourWhileLoading;
     onClick?: () => void;
     loading?: boolean;
     title?: string;
-}; */
+};
 
 interface IDialogProps extends PortalizedComponentProps {
     contentContainerStyle?: CSSProperties;
     bottomContainerStyle?: CSSProperties;
     headerContainerStyle?: CSSProperties;
-/*     secondaryButtonProps?: DialogButton;
-    primaryButtonProps?: DialogButton; */
+    secondaryButtonProps?: DialogButton;
+    primaryButtonProps?: DialogButton;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
     bottomComponent?: ReactNode;

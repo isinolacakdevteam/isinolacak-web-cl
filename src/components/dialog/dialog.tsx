@@ -4,9 +4,9 @@ import {
 import useStyles, {
     dialogStyler
 } from "./dialog.style";
-import IDialogProps from "./dialog.props";/* 
+import IDialogProps from "./dialog.props";
 import Button from "../button/button";
-import Text from "../text/text" */;
+import Text from "../text/text";
 import {
     Portal
 } from "../../packages/react-portalize/src/index";
@@ -14,13 +14,19 @@ import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core";
+import {
+    ClearIcon
+} from "../../assets/svgr";
+import {
+    right 
+} from "styled-system";
 
 const Dialog: FC<IDialogProps> = ({
     contentContainerStyle,
     bottomContainerStyle,
     headerContainerStyle,
-    /* secondaryButtonProps,
-    primaryButtonProps, */
+    secondaryButtonProps,
+    primaryButtonProps,
     isVisible = false,
     headerComponent,
     bottomComponent,
@@ -45,6 +51,8 @@ const Dialog: FC<IDialogProps> = ({
     const {
         primaryButton: primaryButtonStyle,
         content: contentStyle,
+        clearButton,
+        clearIcon,
         container,
         bottom,
         header
@@ -64,11 +72,11 @@ const Dialog: FC<IDialogProps> = ({
                 ...header
             }}
         >
-            {/* {headerComponent || <Text
-                variant="header5"
+            {headerComponent || <Text
+                variant="header3-regular"
             >
                 {title}
-            </Text>} */}
+            </Text>}
         </div>;
     };
 
@@ -86,13 +94,13 @@ const Dialog: FC<IDialogProps> = ({
             {bottomComponent || <div
                 className={styles.bottomContentContainer}
             >
-                {/* {secondaryButton()}
-                {primaryButton()} */}
+                {secondaryButton()}
+                {primaryButton()}
             </div>}
         </div>;
     };
 
-    /*     const secondaryButton = () => {
+    const secondaryButton = () => {
         if(variant !== "yes-no") {
             return null;
         }
@@ -118,7 +126,26 @@ const Dialog: FC<IDialogProps> = ({
             displayBehaviourWhileLoading={primaryButtonProps?.displayBehaviourWhileLoading}
             style={primaryButtonStyle}
         />;
-    }; */
+    };
+
+    const renderCancelIcon = () => {
+        if(variant !== "info") {
+            return null;
+        }
+
+        return <Button
+            variant="ghost"
+            style={{
+                ...clearButton
+            }}
+            onClick={() => {
+                if(onOverlayPress) onOverlayPress();
+            }}
+            icon={() => <ClearIcon
+                {...clearIcon}
+            />}
+        />;
+    };
 
     if(!isVisible) {
         return null;
@@ -140,12 +167,14 @@ const Dialog: FC<IDialogProps> = ({
             >
                 <div className={styles.overlayTouchableArea}/>
             </div>
+            
             <div
                 className={styles.contentContainer}
                 style={{
                     ...container
                 }}
             >
+                {renderCancelIcon()}
                 {renderHeader()}
                 <div
                     className={styles.content}
@@ -153,9 +182,9 @@ const Dialog: FC<IDialogProps> = ({
                         ...contentStyle
                     }}
                 >
-                    {/* {children || <Text>
+                    {children || <Text>
                         {content}
-                    </Text>} */}
+                    </Text>}
                 </div>
                 {renderBottom()}
             </div>

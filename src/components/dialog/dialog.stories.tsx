@@ -50,10 +50,11 @@ Default.args = {
     title: "Alert!",
     content: "Hello world!.",
     isVisible: true,
+    variant: "info",
     onOverlayPress: () => {
         alert("Overlay pressed.");
     },
-/*     primaryButtonProps: {
+    primaryButtonProps: {
         onClick: () => {
             alert("Primary button pressed.");
         }
@@ -62,5 +63,5 @@ Default.args = {
         onClick: () => {
             alert("Secondary button pressed.");
         }
-    } */
+    } 
 };
