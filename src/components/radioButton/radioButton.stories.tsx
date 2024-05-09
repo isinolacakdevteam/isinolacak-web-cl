@@ -5,7 +5,7 @@ import {
 } from '@storybook/react';
 import RadioButton from './radioButton';
 import {
-    IRadioButtonProps 
+    IRadioButtonProps
 } from './radioButton.props';
 
 export default {

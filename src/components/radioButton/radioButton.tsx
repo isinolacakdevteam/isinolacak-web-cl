@@ -23,14 +23,14 @@ const RadioButton: FC<IRadioButtonProps> = ({
     title,
     style
 }) => {
-    const classes = useStyles();
-    
     const {
         disabled: designTokensDisabled,
         borders,
         spaces,
         colors
     } = IOCoreTheme.useContext();
+
+    const classes = useStyles();
 
     const {
         radioContainer,
