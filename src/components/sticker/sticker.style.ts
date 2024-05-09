@@ -13,8 +13,10 @@ import {
 export const useStyles = createUseStyles({
     container: {
         justifyContent: "center",
+        width: "min-content",
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        display: "flex",
     }
 }, {
     name: "NCore-Sticker"
@@ -35,18 +37,21 @@ export const stickerStyler = ({
         backgroundColor: type === "filled" ? colors[color] : "transparent",
         borderColor: type !== "ghost" ? colors[color] : "transparent",
         borderWidth: type === "outline" ? 1 : 0,
-        padding: spaces.inline * 1.5,
         borderRadius: radiuses.quarter,
+        padding: spaces.inline,
     };
 
     let titleProps: TitleProps = {
         color: "textWhite",
         style: {
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
         }
     };
 
     let iconContainerStyle = {
-        marginRight: spaces.inline
+        marginRight: spaces.inline,
     };
 
     let iconProps: IIOCoreIconPropsType = {

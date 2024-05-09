@@ -1,16 +1,16 @@
 import React, {
     FC
 } from "react";
+import stickerStyler, {
+    useStyles 
+} from "./sticker.style";
+import Text from "../text/text";
 import {
     IStickerProps 
 } from "./sticker.props";
 import {
     IOCoreTheme 
 } from "../../../src/core";
-import stickerStyler, {
-    useStyles 
-} from "./sticker.style";
-import Text from "../text/text";
 
 const Sticker: FC<IStickerProps> = ({
     spreadBehaviour = "baseline",
@@ -59,7 +59,7 @@ const Sticker: FC<IStickerProps> = ({
     };
 
     const renderIcon = () => {
-        if(!IconComponentProp) {
+        if (!IconComponentProp || disabled) {
             return null;
         }
 
@@ -76,16 +76,14 @@ const Sticker: FC<IStickerProps> = ({
 
     return <div
         className={classes.container}
+        style={{
+            ...container,
+            pointerEvents: disabled ? "none" : "auto"
+        }}
+        onClick={!disabled ? onClick : undefined}
     >
-        <div
-            style={{
-                ...container
-            }}
-            onClick={onClick ? onClick : undefined}
-        >
-            {renderIcon()}
-            {renderTitle()}
-        </div>
+        {renderIcon()}
+        {renderTitle()}
     </div>;
 };
 
