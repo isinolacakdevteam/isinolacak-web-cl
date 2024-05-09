@@ -20,7 +20,7 @@ export default {
                 type: "select",
                 options: [
                     "baseline",
-                    "center",
+                    "stretch",
                     "free"
                 ]
             }

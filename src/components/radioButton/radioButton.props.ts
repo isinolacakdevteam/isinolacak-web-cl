@@ -25,6 +25,7 @@ export type RadioButtonStylerParams = {
     isSelected?: boolean;
     disabled?: boolean;
     titleStyle?: any;
+    style?: any;
 };
 
 export type TitleProps = {

@@ -1,4 +1,7 @@
 import {
+    CSSProperties
+} from 'react';
+import {
     createUseStyles
 } from 'react-jss';
 import {
@@ -6,10 +9,6 @@ import {
     RadioButtonStylerResult,
     TitleProps
 } from './radioButton.props';
-import {
-    alignSelf 
-} from 'styled-system';
-
 
 export const useStyles = createUseStyles({
     container: {
@@ -39,25 +38,27 @@ export const useStyles = createUseStyles({
 
 
 export const radioButtonStyler = ({
+    spreadBehaviour,
     disabledStyle,
     titleStyle,
     disabled,
     borders,
     colors,
-    spaces
+    spaces,
+    style
 }: RadioButtonStylerParams): RadioButtonStylerResult => {
     let container = {
+        ...style,
         padding: spaces.container / 2
     };
 
-    let radioContainer = {
+    let radioContainer: CSSProperties = {
         backgroundColor: colors.backgroundLight,
         borderWidth: borders.line,
         borderColor: colors.stroke,
-        alignSelf
     };
 
-    let radioIndicator = {
+    let radioIndicator: CSSProperties = {
         backgroundColor: colors.primary
     };
 
@@ -75,6 +76,10 @@ export const radioButtonStyler = ({
             ...disabledStyle
         };
         radioIndicator.backgroundColor = colors.textGrey;
+    }
+
+    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
     }
 
     return {

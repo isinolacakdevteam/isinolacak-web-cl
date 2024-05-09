@@ -2,6 +2,9 @@ import React, {
     FC
 } from "react";
 import {
+    IOCoreTheme
+} from "../../core";
+import {
     radioButtonStyler,
     useStyles
 } from "./radioButton.styles";
@@ -9,9 +12,6 @@ import Text from "../text/text";
 import {
     IRadioButtonProps
 } from "./radioButton.props";
-import {
-    IOCoreTheme
-} from "../../core";
 
 const RadioButton: FC<IRadioButtonProps> = ({
     spreadBehaviour = "baseline",
@@ -59,13 +59,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         return <div
             className={classes.radioContainer}
             style={{
-                ...radioContainer,
-                ...(spreadBehaviour === "baseline" || spreadBehaviour === "stretch"
-                    ? {
-                        alignSelf: spreadBehaviour 
-                    }
-                    : {
-                    })
+                ...radioContainer
             }}
         >
             {renderIndicator()}
