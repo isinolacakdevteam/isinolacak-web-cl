@@ -29,3 +29,7 @@ export {
 export {
     default as Sticker
 } from "./sticker/sticker";
+
+export {
+    default as RadioButton
+} from "./radioButton/radioButton";
