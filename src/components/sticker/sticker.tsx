@@ -15,8 +15,8 @@ import {
 const Sticker: FC<IStickerProps> = ({
     spreadBehaviour = "baseline",
     icon: IconComponentProp,
-    color = "accent",
-    disabled = true,
+    color = "primary",
+    disabled = false,
     type = "filled",
     titleColor,
     onClick,
@@ -80,7 +80,7 @@ const Sticker: FC<IStickerProps> = ({
             ...container,
             pointerEvents: disabled ? "none" : "auto"
         }}
-        onClick={!disabled ? onClick : undefined}
+        onClick={disabled ? onClick : undefined}
     >
         {renderIcon()}
         {renderTitle()}

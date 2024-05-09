@@ -1,11 +1,12 @@
 import React from "react";
 import {
-    Story, Meta 
+    Story,
+    Meta
 } from "@storybook/react/types-6-0";
+import Sticker from "./sticker";
 import {
     IStickerProps 
 } from "./sticker.props";
-import Sticker from "./sticker";
 import {
     IIOCoreIconPropsType 
 } from "../../types";
@@ -21,7 +22,11 @@ export default {
         spreadBehaviour: {
             control: {
                 type: "select",
-                options: ["baseline", "center", "stretch"],
+                options: [
+                    "baseline",
+                    "stretch",
+                    "center"
+                ],
             },
         },
         icon: {
@@ -44,14 +49,32 @@ export default {
             },
             control: {
                 type: "select",
-                options: ["undefined", "EyeOpenedIcon", "clearIcon"]
+                options: [
+                    "EyeOpenedIcon",
+                    "undefined",
+                    "clearIcon"
+                ]
             }
         },
         color: {
             control: {
                 type: "select",
-                options: ["accent", "error", "success"],
+                options: [
+                    "success",
+                    "accent",
+                    "error"
+                ],
             },
+        },
+        type: {
+            control: {
+                type: "select",
+                options: [
+                    "outline",
+                    "filled",
+                    "ghost"
+                ],
+            }
         }
     },
 } as Meta;

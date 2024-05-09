@@ -34,8 +34,8 @@ export const stickerStyler = ({
 }: StickerStylerParams): StickerStylerResult => {
     let container = {
         ...style,
+        borderColor: type === "outline" ? colors[color] : (type === "ghost" ? colors[color] : "transparent"),
         backgroundColor: type === "filled" ? colors[color] : "transparent",
-        borderColor: type !== "ghost" ? colors[color] : "transparent",
         borderWidth: type === "outline" ? 1 : 0,
         borderRadius: radiuses.quarter,
         padding: spaces.inline,
