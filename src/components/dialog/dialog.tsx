@@ -77,7 +77,6 @@ const Dialog: FC<IDialogProps> = ({
             >
                 {title}
             </Text>}
-            {renderCancelIcon()}
         </div>;
     };
 
@@ -168,12 +167,14 @@ const Dialog: FC<IDialogProps> = ({
             >
                 <div className={styles.overlayTouchableArea}/>
             </div>
+            
             <div
                 className={styles.contentContainer}
                 style={{
                     ...container
                 }}
             >
+                {renderCancelIcon()}
                 {renderHeader()}
                 <div
                     className={styles.content}

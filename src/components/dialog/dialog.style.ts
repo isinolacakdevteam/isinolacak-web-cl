@@ -57,10 +57,9 @@ export const dialogStyler = ({
     };
 
     let clearButton: CSSProperties = {
-        left: spaces.container * 3.5,
-        marginLeft: spaces.container,
-        top: spaces.container / 2,
-        position: "absolute"
+        position: "absolute",
+        right: 0,
+        top: 0
     };
 
     return {
@@ -118,7 +117,6 @@ const useStyles = createUseStyles({
     },
     headerContainer: {
         userSelect: "none",
-        position: "relative",
         paddingBottom: 0,
         width: "100%"
     },
