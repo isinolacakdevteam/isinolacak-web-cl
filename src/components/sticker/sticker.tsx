@@ -77,16 +77,15 @@ const Sticker: FC<IStickerProps> = ({
     return <div
         className={classes.container}
     >
-        <button
+        <div
             style={{
                 ...container
             }}
-            disabled={!onClick || disabled}
             onClick={onClick ? onClick : undefined}
         >
             {renderIcon()}
             {renderTitle()}
-        </button>
+        </div>
     </div>;
 };
 
