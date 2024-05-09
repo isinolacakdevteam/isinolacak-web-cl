@@ -4,8 +4,11 @@ import {
 import {
     RadioButtonStylerParams,
     RadioButtonStylerResult,
-    TitleProps 
+    TitleProps
 } from './radioButton.props';
+import {
+    alignSelf 
+} from 'styled-system';
 
 
 export const useStyles = createUseStyles({
@@ -15,12 +18,13 @@ export const useStyles = createUseStyles({
         display: 'flex'
     },
     radioContainer: {
+        border: '1px solid #ccc',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 13,
         display: 'flex',
-        height: 26,
-        width: 26
+        height: 22,
+        width: 22
     },
     radioIndicator: {
         borderRadius: 8,
@@ -29,12 +33,12 @@ export const useStyles = createUseStyles({
     },
     title: {
         alignSelf: 'center',
-    },
+        marginLeft: 10
+    }
 });
 
 
 export const radioButtonStyler = ({
-    spreadBehaviour,
     disabledStyle,
     titleStyle,
     disabled,
@@ -49,7 +53,8 @@ export const radioButtonStyler = ({
     let radioContainer = {
         backgroundColor: colors.backgroundLight,
         borderWidth: borders.line,
-        borderColor: colors.stroke
+        borderColor: colors.stroke,
+        alignSelf
     };
 
     let radioIndicator = {
@@ -70,10 +75,6 @@ export const radioButtonStyler = ({
             ...disabledStyle
         };
         radioIndicator.backgroundColor = colors.textGrey;
-    }
-
-    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
-        container.alignSelf = spreadBehaviour;
     }
 
     return {

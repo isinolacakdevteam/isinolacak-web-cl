@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-    Meta, Story 
+    Meta,
+    Story
 } from '@storybook/react';
+import RadioButton from './radioButton';
 import {
     IRadioButtonProps 
 } from './radioButton.props';
-import RadioButton from './radioButton';
 
 export default {
     title: 'Components/RadioButton',
@@ -14,6 +15,16 @@ export default {
         onChange: {
             action: 'changed' 
         },
+        spreadBehaviour: {
+            control: {
+                type: "select",
+                options: [
+                    "baseline",
+                    "center",
+                    "free"
+                ]
+            }
+        }
     },
 } as Meta;
 
