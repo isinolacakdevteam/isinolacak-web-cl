@@ -49,6 +49,9 @@ const RadioButton: FC<IRadioButtonProps> = ({
     });
 
     const onChange = () => {
+        if(disabled) {
+            return;
+        }
         if(onChangeProp) onChangeProp(isSelected);
     };
 
@@ -93,18 +96,17 @@ const RadioButton: FC<IRadioButtonProps> = ({
         </Text>;
     };
 
-    return <button
+    return <div
         className={classes.container}
         style={{
             ...container,
             style
         }}
-        disabled={disabled}
         onClick={onChange}
     >
         {renderRadioContainer()}
         {renderTitle()}
-    </button>;
+    </div>;
 };
 
 export default RadioButton;
