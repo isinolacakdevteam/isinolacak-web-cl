@@ -46,6 +46,12 @@ export default {
                 type: "select",
                 options: ["undefined", "EyeOpenedIcon", "clearIcon"]
             }
+        },
+        color: {
+            control: {
+                type: "select",
+                options: ["accent", "error", "success"],
+            },
         }
     },
 } as Meta;
