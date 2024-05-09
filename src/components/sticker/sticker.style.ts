@@ -7,7 +7,7 @@ import {
     TitleProps 
 } from "./sticker.props";
 import {
-    IIOCoreIconPropsType 
+    IIOCoreIconPropsType
 } from "../../types";
 
 export const useStyles = createUseStyles({
@@ -15,11 +15,12 @@ export const useStyles = createUseStyles({
         justifyContent: "center",
         width: "min-content",
         flexDirection: "row",
+        borderStyle: "solid",
         alignItems: "center",
         display: "flex",
     }
 }, {
-    name: "NCore-Sticker"
+    name: "IOCore-Sticker"
 });
 
 export const stickerStyler = ({

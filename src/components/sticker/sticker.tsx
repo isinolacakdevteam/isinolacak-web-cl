@@ -2,14 +2,14 @@ import React, {
     FC
 } from "react";
 import stickerStyler, {
-    useStyles 
+    useStyles
 } from "./sticker.style";
 import Text from "../text/text";
 import {
-    IStickerProps 
+    IStickerProps
 } from "./sticker.props";
 import {
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../../src/core";
 
 const Sticker: FC<IStickerProps> = ({
@@ -23,13 +23,12 @@ const Sticker: FC<IStickerProps> = ({
     title,
     style
 }) => {
-    const classes = useStyles();
-    
     const {
         radiuses,
         spaces,
         colors
     } = IOCoreTheme.useContext();
+
     const {
         iconContainerStyle,
         titleProps,
@@ -45,7 +44,9 @@ const Sticker: FC<IStickerProps> = ({
         style,
         type
     });
-    
+
+    const classes = useStyles();
+
     const renderTitle = () => {
         return <Text
             color={titleProps.color}
