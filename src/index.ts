@@ -24,6 +24,7 @@ export type {
 
 export {
     RadioButton,
+    SelectBox,
     TextInput,
     CheckBox,
     Switcher,

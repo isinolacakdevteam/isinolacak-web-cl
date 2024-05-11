@@ -33,3 +33,7 @@ export {
 export {
     default as RadioButton
 } from "./radioButton/radioButton";
+
+export {
+    default as SelectBox
+} from "./selectBox/selectBox";

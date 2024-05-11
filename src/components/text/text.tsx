@@ -1,4 +1,4 @@
-import {
+import React, {
     FC
 } from  "react";
 import ITextProps from "./text.props";
