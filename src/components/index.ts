@@ -37,3 +37,7 @@ export {
 export {
     default as SelectBox
 } from "./selectBox/selectBox";
+
+export {
+    default as ToolTip
+} from "./toolTip/toolTip";

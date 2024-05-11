@@ -28,6 +28,7 @@ export {
     TextInput,
     CheckBox,
     Switcher,
+    ToolTip,
     Sticker,
     Dialog,
     Button,

@@ -10,13 +10,13 @@ import ITextAreaProps, {
     TitleProps
 } from "./textArea.props";
 import useStyles from "./textArea.styles";
+import Text from "../text/text";
 import {
     ClearIcon
 } from "../../assets/svgr";
 import {
     IOCoreTheme 
 } from "../../core";
-import Text from "../text/text";
 
 const textAreaStyler = ({
     disabledStyle,
@@ -30,8 +30,6 @@ const textAreaStyler = ({
     spaces,
     value
 }: TextAreaStylerParams): TextAreaStylerResult => {
-    console.log(isError ? colors.error : isFocused ? colors.primary : colors.stroke);
-    console.log(borders.line);
     let container: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
@@ -113,9 +111,7 @@ const TextArea: FC<ITextAreaProps> = ({
     id,
     ...props
 }) => {
-    const classes = useStyles({
-        // disabled
-    });
+    const classes = useStyles();
 
     const {
         disabled: designTokensDisabled,
