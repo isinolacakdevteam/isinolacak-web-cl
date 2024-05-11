@@ -27,6 +27,7 @@ export {
     SelectBox,
     StateCard,
     TextInput,
+    PageModal,
     CheckBox,
     Switcher,
     ToolTip,

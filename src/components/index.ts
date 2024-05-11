@@ -45,3 +45,7 @@ export {
 export {
     default as StateCard
 } from "./stateCard/stateCard";
+
+export {
+    default as PageModal
+} from "./pageModal/pageModal";
