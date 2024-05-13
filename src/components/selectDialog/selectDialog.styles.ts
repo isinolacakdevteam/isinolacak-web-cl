@@ -2,45 +2,17 @@ import {
     createUseStyles
 } from "react-jss";
 import {
-
-} from "./selectDialog.stories";
-import {
     CSSProperties
 } from "react";
 import {
     SelectSheetStylerParams,
     SelectSheetStylerResult 
 } from "./selectDialog.props";
-
+import {
+    IIOCoreIconPropsType
+} from "../../types";
 
 export const useStyles = createUseStyles({
-    modalStyle: {
-        borderTopRightRadius: 50,
-        borderTopLeftRadius: 50
-    },
-    rootStyle: {
-        borderTopRightRadius: 50,
-        borderTopLeftRadius: 50,
-        zIndex: 99
-    },
-    childrenStyle: {
-        borderTopRightRadius: 50,
-        borderTopLeftRadius: 50
-    },
-    contentContainerStyle: {
-        flex: 1
-    },
-    buttonContainerStyle: {
-        flexDirection: "row"
-    },
-    okButtonStyle: {
-        flex: 1
-    },
-    inputStyle: {
-    },
-    selectItemContainer: {
-        flex: 1
-    },
     container: {
         justifyContent: "center",
         alignItems: "center",
@@ -69,8 +41,10 @@ export const useStyles = createUseStyles({
         top: 0
     },
     contentContainer: {
-        flexDirection: "column",
-        overflow: "hidden",
+        justifyContent: "center",
+        alignContent: "center",
+        flexDirection:"row",
+        alignSelf: "center",
         position: "fixed",
         maxHeight: "80%",
         display: "flex",
@@ -83,8 +57,9 @@ export const useStyles = createUseStyles({
         flexWrap: "wrap"
     },
     headerContainer: {
-        userSelect: "none",
-        paddingBottom: 0,
+        flexDirection: "row",
+        alignItems:"center",
+        display: "flex",
         width: "100%"
     },
     bottomContainer: {
@@ -99,77 +74,57 @@ export const useStyles = createUseStyles({
 });
 
 export const selectSheetStyler = ({
-    childrenStyleProp,
-    fullScreen,
-    autoHeight,
+    bottomContainerStyle,
+    contentContainerStyle,
+    headerContainerStyle,
     radiuses,
     colors,
     spaces
 }: SelectSheetStylerParams): SelectSheetStylerResult => {
-    const contentContainerStyle: CSSProperties = {
+
+    let container = {
+        backgroundColor: colors.layer1,
+        borderRadius: radiuses.half,
+        padding: spaces.container
     };
 
-    const pageContainerStyle = {
-        borderTopRightRadius: radiuses.hard,
-        borderTopLeftRadius: radiuses.hard,
-        paddingVertical: spaces.container,
-        backgroundColor: colors.white,
-
+    let header: CSSProperties = {
+        paddingRight: spaces.content / 2,
+        paddingLeft: spaces.content / 2,
+        paddingTop: spaces.content,
+        ...headerContainerStyle
     };
 
-    const childrenStyle = {
-        ...childrenStyleProp
+    let content: CSSProperties = {
+        paddingRight: spaces.content / 2,
+        paddingLeft: spaces.content / 2,
+        paddingBottom: spaces.content,
+        paddingTop: spaces.content,
+        ...contentContainerStyle
     };
 
-    const modalStyle = {
-        backgroundColor: "transparent",
+    let bottom: CSSProperties = {
+        paddingRight: spaces.content / 2,
+        paddingLeft: spaces.content / 2,
+        paddingTop: spaces.content,
+        ...bottomContainerStyle
     };
 
-    const rootStyle = {
+    let primaryButton = {
+        marginLeft: spaces.content
     };
 
-    let searchContainerProps: CSSProperties = {
-        marginBottom: spaces.content,
+    let clearIcon: IIOCoreIconPropsType = {
+        color: colors.primary,
     };
-
-    let buttonsContainerProps: CSSProperties = {
-        marginBottom: spaces.content,    
-    };
-
-    let clearButtonProps: CSSProperties = {
-        marginRight: spaces.inline
-    };
-
-    let okButtonProps: CSSProperties = {
-    };
-
-    let inputIconProps: CSSProperties = {
-        marginRight: spaces.inline,
-    };
-
-    if(autoHeight) {
-        contentContainerStyle.flex = undefined;
-    }
-
-    if(fullScreen) {
-        childrenStyle.borderTopLeftRadius = 0;
-        childrenStyle.borderTopRightRadius = 0;
-
-        pageContainerStyle.borderTopLeftRadius = 0;
-        pageContainerStyle.borderTopRightRadius = 0;
-    }
 
     return {
-        contentContainerStyle,
-        buttonsContainerProps,
-        searchContainerProps,
-        pageContainerStyle,
-        clearButtonProps,
-        inputIconProps,
-        childrenStyle,
-        okButtonProps,
-        modalStyle,
-        rootStyle
+        primaryButton,
+        container,
+        clearIcon,
+        content,
+        bottom,
+        header
     };
 };
 

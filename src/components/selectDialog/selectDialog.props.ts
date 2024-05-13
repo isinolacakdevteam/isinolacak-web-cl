@@ -1,6 +1,7 @@
 import {
     CSSProperties,
-    Dispatch
+    Dispatch,
+    ReactNode
 } from "react";
 import {
     IIOCoreIconPropsType,
@@ -9,6 +10,9 @@ import {
 } from "../../types";
 
 export type SelectSheetStylerParams = {
+    contentContainerStyle?: CSSProperties;
+    bottomContainerStyle?: CSSProperties;
+    headerContainerStyle?: CSSProperties;
     radiuses: IOCore.RadiusesTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
@@ -22,9 +26,16 @@ export type SelectSheetStylerResult = {
     buttonsContainerProps: CSSProperties;
     searchContainerProps: CSSProperties;
     clearButtonProps: CSSProperties;
+    clearIcon: IIOCoreIconPropsType;
     inputIconProps: CSSProperties;
     okButtonProps: CSSProperties;
     childrenStyle: CSSProperties;
+    primaryButton: CSSProperties;
+    container: CSSProperties;
+    content: CSSProperties;
+    bottom: CSSProperties;
+    header: CSSProperties;
+    clearButton: any;
 };
 
 export type SelectedItem = {
@@ -75,8 +86,9 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> {
     }) => IOCoreIconType;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
-    isLoadingOKButton?: boolean;
     childrenStyle?: CSSProperties;
+    isLoadingOKButton?: boolean;
+    headerComponent?: ReactNode;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;

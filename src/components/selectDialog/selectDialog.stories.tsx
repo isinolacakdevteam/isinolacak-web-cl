@@ -19,7 +19,9 @@ export default {
         isVisible: {
             control: "boolean"
         },
-        
+        title: {
+            control: "text"
+        }
     }
 } as Meta;
 
@@ -28,5 +30,6 @@ const Template: Story<ISelectSheetProps> = (args) => <SelecetDialog {...args}/>;
 export const Default = Template.bind({
 });
 Default.args = {
-    isVisible: true,
+    title: 'SelectDialog',
+    isVisible: true
 };

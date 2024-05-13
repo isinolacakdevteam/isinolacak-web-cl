@@ -11,7 +11,8 @@ import {
 } from "../../types";
 import TextInput from "../textInput/textInput";
 import {
-    ChevronRightIcon 
+    ChevronRightIcon, 
+    ClearIcon
 } from "../../assets/svgr";
 import Button from "../button/button";
 import CheckBox from "../checkBox/checkBox";
@@ -35,6 +36,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         isVisible = false,
         isLoadingOKButton,
         setSelectedItems,
+        headerComponent,
         isNeedConfirm,
         selectedItems,
         isHeaderShown,
@@ -208,6 +210,25 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         />;
     };
 
+    const renderHeader = () => {
+        return <div
+            className={styles.headerContainer}
+        >
+            {headerComponent || <Text
+                variant="header5-regular"
+            >
+                {title}
+            </Text>}
+            <Button
+                variant="ghost"
+                onClick={() => {}}
+                icon={() => <ClearIcon
+                    color={colors.textGrey}
+                />}
+            />
+        </div>;
+    };
+
     const renderActions = () => {
         return <div
             style={buttonsContainerProps}
@@ -314,14 +335,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const {
         buttonsContainerProps,
+        content: contentStyle,
         searchContainerProps,
         clearButtonProps,
         okButtonProps,
+        clearIcon,
+        container
     } = selectSheetStyler({
         childrenStyleProp,
         radiuses,
-        colors,
-        spaces
+        spaces,
+        colors
     });
 
     if(!isVisible) {
@@ -341,15 +365,23 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             >
                 <div className={styles.overlayTouchableArea}/>
             </div>
-
+        
             <div
                 className={styles.contentContainer}
+                style={{
+                    ...container
+                }}
             >
-                {renderContent()}
+                {renderHeader()}
+                <div
+                    className={styles.content}
+                    style={{
+                        ...contentStyle
+                    }}
+                >
+                    {renderContent()}
+                </div>
                 {renderActions()}
-                <Text>
-                Merhaba
-                </Text>
             </div>
         </div>
     </Portal>;
