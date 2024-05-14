@@ -1,5 +1,5 @@
 import {
-    FC
+    ReactNode
 } from "react";
 import ThemeContextInheritance from "./theme";
 import LocaleContextInheritance from "./locale";
@@ -53,8 +53,10 @@ class Context {
         );
     }
 
-    Provider: FC = ({
+    Provider = ({
         children
+    }: {
+        children: ReactNode
     }) => {
         const ModalContext = this.ModalContext;
         const LocaleContext= this.LocaleContext;

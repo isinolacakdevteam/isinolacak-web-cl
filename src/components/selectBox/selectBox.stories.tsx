@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Meta,
     Story
@@ -40,7 +39,9 @@ export default {
     },
 } as Meta;
 
-const Template: Story<ISelectBoxProps> = (args) => <SelectBox {...args} />;
+const Template: Story<ISelectBoxProps<{
+    title: "Title"
+}>> = (args) => <SelectBox {...args} />;
 
 export const Default = Template.bind({
 });

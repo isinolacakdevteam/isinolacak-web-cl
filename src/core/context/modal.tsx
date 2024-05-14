@@ -60,6 +60,22 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         this.state.data.pop();
     };
 
+    renderDialogs = () => {
+        if(!this.state || !this.state.data) {
+            return null;
+        }
+
+        return this.state.data.map(modal => {
+            if(!isDialog(modal.type)) {
+                return null;
+            }
+
+            return <Dialog
+                {...modal}
+            />;
+        });
+    };
+
     Render = ({
         children
     }: {
@@ -69,15 +85,7 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
 
         return <Provider>
             {children}
-            {
-                this.state && this.state.data ? this.state.data.map((modal) => {
-                    if(isDialog(modal.type)) {
-                        return <Dialog
-                            {...modal}
-                        />;
-                    }
-                }) : null
-            }
+            {this.renderDialogs()}
         </Provider>;
     };
 };

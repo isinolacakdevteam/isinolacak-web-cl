@@ -1,7 +1,9 @@
 import {
+    ReactNode
+} from "react";
+import {
     IIOCoreIconPropsType,
-    SelectObjectType,
-    IOCoreIconType
+    SelectObjectType
 } from "../../types";
 
 export type SelectedItem = {
@@ -42,9 +44,9 @@ export interface ISelectBoxProps<T> {
         item?: T | SelectObjectType;
         isSelected?: boolean;
         index?: number;
-    }) => IOCoreIconType;
+    }) => ReactNode;
     titleExtractor: (item: T, index: number) => string;
-    keyExtractor?: (item: T, index: number) => string;
+    keyExtractor: (item: T, index: number) => string;
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;

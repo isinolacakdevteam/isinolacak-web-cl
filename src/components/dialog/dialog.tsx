@@ -17,9 +17,6 @@ import {
 import {
     ClearIcon
 } from "../../assets/svgr";
-import {
-    right 
-} from "styled-system";
 
 const Dialog: FC<IDialogProps> = ({
     contentContainerStyle,

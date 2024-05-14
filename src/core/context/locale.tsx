@@ -10,11 +10,13 @@ import {
     LanguageType
 } from "../../types";
 
+const languages = [
+    en,
+    tr
+];
+
 class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<LocaleContextType, ConfigType<LocaleContextType>> {
-    locales = [
-        en,
-        tr
-    ];
+    locales = languages;
 
     constructor(initialState: T, config: ConfigType<LocaleContextType>) {
         super({
@@ -89,7 +91,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     prepare = (initialState: LanguageType) => {
         if(initialState.locales) {
-            let newLangData: typeof this.locales = [];
+            let newLangData: typeof languages = [];
 
             initialState.locales.forEach((lang) => {
                 const alreadyExistsData = this.locales.find(_lang => _lang.code === lang.code);

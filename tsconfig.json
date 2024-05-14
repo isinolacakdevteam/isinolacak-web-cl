@@ -21,6 +21,7 @@
         "jsx": "react-jsx",
         "declaration": true,
         "outDir": "./lib",
+        "noImplicitAny": false,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "noImplicitReturns": true,
