@@ -21,21 +21,30 @@ import {
 import {
     ChevronRightIcon
 } from "../../assets/svgr";
+import SelecetDialog from "../selectDialog/selectDialog";
 
 const SelectBox = <T extends {}>({
     spreadBehaviour = "free",
     renderIcon: RenderIcon,
     initialSelectedItems,
     multiSelect = false,
+    isLoadingOKButton,
     data: initialData,
+    isVisible = false,
     disabled = false,
     isClick = false,
     titleExtractor,
     keyExtractor,
+    isNeedConfirm,
+    isSearchable,
+    inputTitle,
     renderItem,
+    onSearch,
+    onChange,
     onClick,
     style,
     title,
+    onOk
 }: ISelectBoxProps<T>) => {
     
     const classes = useStyles();
@@ -211,6 +220,26 @@ const SelectBox = <T extends {}>({
         />;
     };
 
+    <SelecetDialog 
+        isLoadingOKButton={isLoadingOKButton}
+        setSelectedItems={setSelectedItems}
+        selectedItems={selectedItems}
+        isNeedConfirm={isNeedConfirm}
+        isSearchable={isSearchable}
+        initialData={initialData}
+        multiSelect={multiSelect}
+        inputTitle={inputTitle}
+        renderIcon={renderIcon}
+        renderItem={renderItem}
+        isVisible={isVisible}
+        onChange={onChange}
+        onSearch={onSearch}
+        onPress={onClick}
+        title={title}
+        data={data}
+        onOk={onOk}
+    />;
+
     return <div
         className={classes.container}
         style={{
@@ -222,9 +251,10 @@ const SelectBox = <T extends {}>({
                 return;
             }
 
-            if (!onClick) {
-                return;
+            if(!onClick) {
+                return isVisible = true;
             }
+            
             onClick(selectedItems, cleanData());
         }}
     >

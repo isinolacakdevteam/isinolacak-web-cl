@@ -91,7 +91,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     useEffect(() => {
         if(!isNeedConfirm) {
-            // setSelectedItems(tempSelectedItems);
+            setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
 
@@ -199,12 +199,12 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                         selectedItems: tempSelectedItems,
                         closeSheet: () => {}, // TODO: MODAL OPEN CLOSE 
                         onSuccess: () => {
-                            // setSelectedItems(tempSelectedItems);
+                            setSelectedItems(tempSelectedItems);
                         },
                         data: data
                     });
                 } else {
-                    // setSelectedItems(tempSelectedItems);
+                    setSelectedItems(tempSelectedItems);
                 }
             }}
         />;
@@ -256,7 +256,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     selectedItems: tempSelectedItems,
                     closeSheet: () => {}, // TODO: MODAL OPEN CLOSE 
                     onSuccess: () => {
-                        // setSelectedItems(tempSelectedItems);
+                        setSelectedItems(tempSelectedItems);
                     },
                     data: data
                 }) : undefined,
@@ -339,7 +339,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         searchContainerProps,
         clearButtonProps,
         okButtonProps,
-        clearIcon,
         container
     } = selectSheetStyler({
         childrenStyleProp,

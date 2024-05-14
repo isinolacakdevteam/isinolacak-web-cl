@@ -30,7 +30,7 @@ export interface ISelectBoxProps<T> {
     }) => JSX.Element;
     renderIcon?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
-        onClick?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
+        onPress?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
         onOk?: (props: {
             selectedItems: Array<SelectedItem>;
             data: Array<T & SelectObjectType>;
@@ -43,15 +43,21 @@ export interface ISelectBoxProps<T> {
         isSelected?: boolean;
         index?: number;
     }) => IOCoreIconType;
+    onSearch?: (searchText: string) => void;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor?: (item: T, index: number) => string;
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;
-    isClick?: boolean;
     spreadBehaviour: SelectBoxSpreadBehaviour,
+    isLoadingOKButton?: boolean;
+    isNeedConfirm?: boolean;
+    isSearchable?: boolean;
     multiSelect?: boolean;
+    isVisible?: boolean,
+    inputTitle: string;
     disabled?: boolean;
+    isClick?: boolean;
     data: Array<T>;
     title: string;
     style?: any;
