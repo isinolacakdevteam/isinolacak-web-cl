@@ -49,3 +49,7 @@ export {
 export {
     default as BadgeHOC
 } from "./badgeHOC/badgeHOC";
+
+export {
+    default as PageModal
+} from "./pageModal/pageModal";

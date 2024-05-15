@@ -11,7 +11,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Dialog page."
+                component: "Welcome to IOCORE Dialog page."
             }
         }
     },
