@@ -44,11 +44,12 @@ export const useStyles = createUseStyles({
         justifyContent: "center",
         flexDirection: "column",
         alignContent: "center",
+        position: "relative",
         alignSelf: "center",
-        position: "fixed",
         maxHeight: "80%",
         display: "flex",
-        maxWidth: "85%",
+        maxWidth: "90%",
+        minWidth: 250,
         zIndex: 99999
     },
     content: {

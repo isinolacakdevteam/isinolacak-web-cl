@@ -171,6 +171,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <Button
             title={localize("iocore-select-sheet-clear-button")}
             spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
+            spreadBehaviour="stretch"
             variant="outline"
             style={{
                 ...clearButtonProps,
@@ -191,6 +192,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <Button
             title={localize("iocore-select-sheet-ok-button")}
             loading={isLoadingOKButton}
+            spreadBehaviour="stretch"
             style={okButtonProps}
             variant="filled"
             size="medium"
@@ -216,29 +218,26 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const renderHeader = () => {
         return <div
             className={styles.headerContainer}
+            style={{
+                marginBottom: spaces.content
+            }}
         >
             {headerComponent || <Text
                 variant="header5-regular"
             >
                 {title}
             </Text>}
-            <Button
-                variant="ghost"
-                onClick={() => {
-                    if(onOverlayPress) onOverlayPress();
-                }}
-                icon={() => <ClearIcon
-                    color={colors.textGrey}
-                />}
-            />
         </div>;
     };
+
+    
 
     const renderActions = () => {
         return <div
             style={{
                 display: 'flex',
                 flexDirection: 'row',
+                marginTop: spaces.content,
                 ...buttonsContainerProps
             }}
         >
@@ -403,6 +402,20 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     {renderContent()}
                 </div>
                 {renderActions()}
+                <Button
+                    style={{
+                        position: "absolute",
+                        top: spaces.container / 2,
+                        right: spaces.container / 2
+                    }}
+                    variant="ghost"
+                    onClick={() => {
+                        if(onOverlayPress) onOverlayPress();
+                    }}
+                    icon={() => <ClearIcon
+                        color={colors.textGrey}
+                    />}
+                />
             </div>
         </div>
     </Portal>;
