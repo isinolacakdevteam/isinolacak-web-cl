@@ -29,6 +29,7 @@ export {
     TextInput,
     CheckBox,
     Switcher,
+    BadgeHOC,
     ToolTip,
     Sticker,
     Dialog,
