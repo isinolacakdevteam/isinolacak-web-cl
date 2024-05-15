@@ -21,7 +21,7 @@ import {
 import {
     ChevronRightIcon
 } from "../../assets/svgr";
-import SelecetDialog from "../selectDialog/selectDialog";
+import SelectDialog from "../selectDialog/selectDialog";
 
 const SelectBox = <T extends {}>({
     spreadBehaviour = "free",
@@ -33,6 +33,7 @@ const SelectBox = <T extends {}>({
     isVisible = false,
     disabled = false,
     isClick = false,
+    onOverlayPress,
     titleExtractor,
     keyExtractor,
     isNeedConfirm,
@@ -40,11 +41,9 @@ const SelectBox = <T extends {}>({
     inputTitle,
     renderItem,
     onSearch,
-    onChange,
     onClick,
     style,
-    title,
-    onOk
+    title
 }: ISelectBoxProps<T>) => {
     
     const classes = useStyles();
@@ -220,25 +219,26 @@ const SelectBox = <T extends {}>({
         />;
     };
 
-    <SelecetDialog 
-        isLoadingOKButton={isLoadingOKButton}
-        setSelectedItems={setSelectedItems}
-        selectedItems={selectedItems}
-        isNeedConfirm={isNeedConfirm}
-        isSearchable={isSearchable}
-        initialData={initialData}
-        multiSelect={multiSelect}
-        inputTitle={inputTitle}
-        renderIcon={renderIcon}
-        renderItem={renderItem}
-        isVisible={isVisible}
-        onChange={onChange}
-        onSearch={onSearch}
-        onPress={onClick}
-        title={title}
-        data={data}
-        onOk={onOk}
-    />;
+    const renderDialog = () => {
+        return <SelectDialog
+            isLoadingOKButton={isLoadingOKButton}
+            setSelectedItems={setSelectedItems}
+            onOverlayPress={onOverlayPress}
+            selectedItems={selectedItems}
+            isNeedConfirm={isNeedConfirm}
+            isSearchable={isSearchable}
+            initialData={initialData}
+            multiSelect={multiSelect}
+            inputTitle={inputTitle}
+            renderIcon={renderIcon}
+            renderItem={renderItem}
+            isVisible={isVisible}
+            onSearch={onSearch}
+            onPress={onClick}
+            title={title}
+            data={data}
+        />;
+    };
 
     return <div
         className={classes.container}
@@ -250,19 +250,23 @@ const SelectBox = <T extends {}>({
             if (disabled) {
                 return;
             }
-
-            if(!onClick) {
-                return isVisible = true;
+        
+            if (!onClick) {
+                if (onOverlayPress) {
+                    return onOverlayPress();
+                }
+            } else {
+                onClick(selectedItems, cleanData());
             }
-            
-            onClick(selectedItems, cleanData());
         }}
+        
     >
         <div className={classes.content}>
             {renderTitle()}
             {renderContent()}
         </div>
         {renderIcon()}
+        {renderDialog()}
     </div>;
 };
 export default SelectBox;

@@ -1,4 +1,4 @@
-import React, {
+import {
     useEffect,
     useState,
 } from "react";
@@ -37,6 +37,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         isLoadingOKButton,
         setSelectedItems,
         headerComponent,
+        onOverlayPress,
         isNeedConfirm,
         selectedItems,
         isHeaderShown,
@@ -71,7 +72,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
     const [renderData, setRenderData] = useState(data);
     const [searchText, setSearchText] = useState("");
-
 
     useEffect(() => {
         if(searchText && searchText.length) {
@@ -174,7 +174,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             variant="outline"
             style={{
                 ...clearButtonProps,
-                flex: isNeedConfirm ? undefined : 1
+                flex: isNeedConfirm ? undefined : 1,
+                marginRight:10
             }}
             onClick={() => {
                 setTempSelectedItems([]);
@@ -197,7 +198,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 if(onOk) {
                     onOk({
                         selectedItems: tempSelectedItems,
-                        closeSheet: () => {}, // TODO: MODAL OPEN CLOSE 
+                        closeSheet: () => {
+                            if(onOverlayPress) onOverlayPress();
+                        },
                         onSuccess: () => {
                             setSelectedItems(tempSelectedItems);
                         },
@@ -221,7 +224,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </Text>}
             <Button
                 variant="ghost"
-                onClick={() => {}}
+                onClick={() => {
+                    if(onOverlayPress) onOverlayPress();
+                }}
                 icon={() => <ClearIcon
                     color={colors.textGrey}
                 />}
@@ -231,7 +236,11 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const renderActions = () => {
         return <div
-            style={buttonsContainerProps}
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                ...buttonsContainerProps
+            }}
         >
             {renderClear()}
             {renderConfirm()}
@@ -254,7 +263,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 onClick: _onChange,
                 onOk: onOk ? () => onOk({
                     selectedItems: tempSelectedItems,
-                    closeSheet: () => {}, // TODO: MODAL OPEN CLOSE 
+                    closeSheet: () => {
+                        if(onOverlayPress) onOverlayPress();
+                    },
                     onSuccess: () => {
                         setSelectedItems(tempSelectedItems);
                     },
@@ -322,16 +333,24 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderContent = () => {
+        if(!renderData || !renderData.length) {
+            return null;
+        }
+
         return <div>
             {renderSearch()}
             <div>
-                {/* {renderData.map((item) => (
-                    item// renderItem(item) 
-                ))} */}
+                {
+                    renderData.map((item, index) => {
+                        return renderItem({
+                            item,
+                            index
+                        });
+                    })
+                }
             </div>
         </div>;
     };
-
 
     const {
         buttonsContainerProps,
@@ -361,14 +380,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         >
             <div
                 className={styles.overlay}
+                onClick={() => {
+                    if(onOverlayPress) onOverlayPress();
+                }}
             >
                 <div className={styles.overlayTouchableArea}/>
             </div>
-        
             <div
                 className={styles.contentContainer}
                 style={{
-                    ...container
+                    ...container,
+                    flexDirection: 'column'
                 }}
             >
                 {renderHeader()}

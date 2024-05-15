@@ -88,6 +88,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> {
     selectedItems: Array<SelectedItem>;
     childrenStyle?: CSSProperties;
     isLoadingOKButton?: boolean;
+    onOverlayPress?: () => void;
     headerComponent?: ReactNode;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;

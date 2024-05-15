@@ -51,6 +51,7 @@ export interface ISelectBoxProps<T> {
     }>;
     spreadBehaviour: SelectBoxSpreadBehaviour,
     isLoadingOKButton?: boolean;
+    onOverlayPress: () => void;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;

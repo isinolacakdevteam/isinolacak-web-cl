@@ -42,8 +42,8 @@ export const useStyles = createUseStyles({
     },
     contentContainer: {
         justifyContent: "center",
+        flexDirection: "column",
         alignContent: "center",
-        flexDirection:"row",
         alignSelf: "center",
         position: "fixed",
         maxHeight: "80%",

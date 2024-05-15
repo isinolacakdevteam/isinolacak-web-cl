@@ -45,5 +45,8 @@ const Template: Story<ISelectBoxProps> = (args) => <SelectBox {...args} />;
 export const Default = Template.bind({
 });
 Default.args = {
+    onOverlayPress: () => {
+        alert("Overlay pressed.");
+    },
     title: 'Title',
 };
