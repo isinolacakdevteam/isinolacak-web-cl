@@ -38,8 +38,6 @@ export const Default = Template.bind({
 });
 Default.args = {
     title: "ToolTip title is visible!",
-    children: <div style={{
-        border: "1px solid #a5e5e7"
-    }}><Text>Hover me!</Text></div>,
+    children: <Text>Click me!</Text>,
     direction: "left"
 };

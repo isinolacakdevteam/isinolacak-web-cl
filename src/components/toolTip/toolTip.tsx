@@ -48,7 +48,7 @@ const ToolTip: FC<IToolTipProps> = ({
         tInfo
     });
 
-    const testRef = useRef<null | HTMLDivElement>(null);
+    const toolTipRef = useRef<null | HTMLDivElement>(null);
 
     useEffect(() => {
         onResize();
@@ -58,15 +58,15 @@ const ToolTip: FC<IToolTipProps> = ({
 
     const onResize = () => {
         if(
-            testRef && testRef.current &&
+            toolTipRef && toolTipRef.current &&
             (
-                testRef.current.offsetWidth !== tInfo.w ||
-                testRef.current.offsetHeight !== tInfo.h
+                toolTipRef.current.offsetWidth !== tInfo.w ||
+                toolTipRef.current.offsetHeight !== tInfo.h
             )
         ) {
             setTInfo({
-                w: testRef.current.offsetWidth,
-                h: testRef.current.offsetHeight
+                w: toolTipRef.current.offsetWidth,
+                h: toolTipRef.current.offsetHeight
             });
         }
     };
@@ -86,7 +86,7 @@ const ToolTip: FC<IToolTipProps> = ({
                 <div
                     className={classes.toolTipContainer}
                     ref={(e) => {
-                        testRef.current = e;
+                        toolTipRef.current = e;
                         onResize();
                     }}
                     style={{
