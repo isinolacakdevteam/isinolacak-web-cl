@@ -1,6 +1,6 @@
 import {
     useEffect,
-    useState,
+    useState
 } from "react";
 import {
     IOCoreLocale,
@@ -26,7 +26,7 @@ import {
     ClearIcon
 } from "../../assets/svgr";
 import {
-    Portal 
+    Portal
 } from "../../packages/react-portalize/src";
 
 const SelecetDialog = <T, K extends T & SelectObjectType>(
@@ -41,10 +41,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         onOverlayPress,
         isNeedConfirm,
         selectedItems,
-        isHeaderShown,
         isSearchable,
         multiSelect,
-        initialData,
         inputTitle,
         renderIcon,
         maxChoice,
@@ -56,8 +54,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         onPress,
         title,
         data,
-        onOk,
-        ...props
+        onOk
     } = properties;
 
     const styles = useStyles();
@@ -175,7 +172,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <Button
             title={localize("iocore-select-sheet-clear-button")}
             spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
-            spreadBehaviour="stretch"
             variant="outline"
             style={{
                 ...clearButtonProps,

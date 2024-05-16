@@ -48,7 +48,6 @@ const SelectBox = <T extends {}>({
     title,
     onOk
 }: ISelectBoxProps<T>) => {
-    
     const classes = useStyles();
 
     const [data, setData] = useState<Array<T & SelectObjectType>>([]);
