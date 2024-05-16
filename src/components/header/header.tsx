@@ -29,16 +29,14 @@ const Header: FC<IHeaderProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
-        contentProps,
-        titleProps,
-        container,
-        iconProps
+        bottomContainerStyle,
+        headerRightStyler,
+        customTitleStyle,
+        container
     } = headerStyler({
-        icon: IconComponentProp,
-        contentColor,
+        headerLocation,
+        renderBottom,
         titleColor,
-        iconColor,
-        isAction,
         colors,
         spaces
     });
@@ -49,87 +47,57 @@ const Header: FC<IHeaderProps> = ({
         }
 
         return <div
-            style={{
-                marginTop: spaces.content * 2
-            }}
+            style={bottomContainerStyle}
         >
             {renderBottom}
         </div>;
     };
 
-    return (
-        <div
-            className={
-                classes.container
-                /* {
-                    paddingBottom: renderBottom ? 0 : spaces.container,
-                    paddingHorizontal: spaces.container,
-                    borderBottomColor: colors.seperator,
-                    backgroundColor: colors.white,
-                    paddingTop: spaces.container
-                },
-                style */
+    return <div
+        className={
+            classes.container
+        }
+        style={{
+            ...container,
+            ...style
+        }}
+    >
+        <div className={classes.contentContainer}>
+            {
+                headerLeft ?
+                    headerLeft()
+                    :
+                    !headerLeft && !headerRight ?
+                        <div 
+                            className={classes.headerLeftToRightNull}
+                        />
+                        :
+                        null
             }
-            style={{
-
-                paddingBottom: renderBottom ? 0 : spaces.container,
-                paddingLeft: spaces.container,
-                paddingRight: spaces.container,
-                borderBottomColor: colors.seperator,
-                backgroundColor: colors.white,
-                paddingTop: spaces.container,
-                ...style
-            }}
-        >
-            <div className={classes.contentContainer}>
-                {
-                    headerLeft ?
-                        headerLeft()
-                        :
-                        !headerLeft && !headerRight ?
-                            <div 
-                                className={classes.headerLeftToRightNull}
-                            />
-                            :
-                            null
-                }
-                {
-                    customTitle ?
-                        customTitle
-                        :
-                        <Text
-                            variant={titleVariant}
-                            /* style={{
-                                headerLocation === "center" ? {
-                                    textAlign: "center",
-                                    color: titleColor,
-                                    flex: 1
-                                } : null
-                            }} */
-                        >
-                            {title}
-                        </Text>
-                }
-                <div
-                    /* style={[
-                        stylesheet.headerRight,
-                        headerLocation === "center" ? {
-                            position: "absolute",
-                            flex: undefined,
-                            right: -10
-                        } : null
-                    ]} */
-                >
-                    {headerRight ? headerRight() : null}
-                </div>
-            </div>
+            {
+                customTitle ?
+                    customTitle
+                    :
+                    <Text
+                        variant={titleVariant}
+                        style={customTitleStyle}
+                    >
+                        {title}
+                    </Text>
+            }
             <div
-                className={classes.container}
+                className={classes.headerRight}
+                style={headerRightStyler}
             >
-                {renderBottomContainer()}
-            </div> 
+                {headerRight ? headerRight() : null}
+            </div>
         </div>
-    );
+        <div
+            className={classes.container}
+        >
+            {renderBottomContainer()}
+        </div> 
+    </div>;
 
 };
 export default Header;

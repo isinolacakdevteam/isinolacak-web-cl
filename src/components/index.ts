@@ -53,3 +53,7 @@ export {
 export {
     default as PageModal
 } from "./pageModal/pageModal";
+
+export {
+    default as Header 
+} from "./header/header";

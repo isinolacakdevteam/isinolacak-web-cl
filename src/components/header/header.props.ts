@@ -2,10 +2,6 @@ import {
     CSSProperties,
     ReactNode
 } from "react";
-import {
-    IIOCoreIconPropsType,
-    IOCoreIconType 
-} from "src/types";
 
 interface IHeaderProps {
     titleVariant?: keyof IOCore.TypographyType;
@@ -20,36 +16,18 @@ interface IHeaderProps {
 };
 
 export type HeaderStylerParams = {
-    contentColor?: keyof IOCore.ColorsType;
-    titleColor?: keyof IOCore.ColorsType;
-    iconColor?: keyof IOCore.ColorsType;
+    headerLocation?: "left" | "center"; 
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
-    icon?: IOCoreIconType;
-    isAction?: boolean;
-};
-
-export type TitleProps = {
-    variant: keyof IOCore.TypographyType;
-    color: keyof IOCore.ColorsType;
-    style?: CSSProperties;
-};
-
-export type ContentProps = {
-    variant: keyof IOCore.TypographyType;
-    color: keyof IOCore.ColorsType;
-    style?: CSSProperties;
-};
-
-export type IconProps = IIOCoreIconPropsType & {
-    style: CSSProperties;
+    renderBottom?: ReactNode;
+    titleColor: string;
 };
 
 export type HeaderStylerResult = {
-    iconProps: IIOCoreIconPropsType;
-    contentProps: ContentProps;
+    bottomContainerStyle: CSSProperties;
+    customTitleStyle: CSSProperties;
+    headerRightStyler: CSSProperties;
     container: CSSProperties;
-    titleProps: TitleProps;
 };
 
 export default IHeaderProps;

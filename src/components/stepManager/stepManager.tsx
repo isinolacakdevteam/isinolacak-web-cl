@@ -3,9 +3,6 @@ import React, {
     useEffect,
     useState
 } from "react";
-import {
-    ChevronLeftIcon
-} from "../../assets/svg";
 import IStepManagerType from "./stepManager.props";
 import useStyles from "./stepManager.styles";
 import {
@@ -15,6 +12,7 @@ import {
 import Button from "../button/button";
 import StateCard from "../stateCard/stateCard";
 import Dialog from "../dialog/dialog";
+import Header from "../header/header";
 
 const StepManager = <T extends ReactNode, K extends Record<any, any>>({
     onUpdateStepData: onUpdateStepDataProp,

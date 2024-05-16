@@ -34,6 +34,7 @@ export {
     ToolTip,
     Sticker,
     Dialog,
+    Header,
     Button,
     Chip,
     Text

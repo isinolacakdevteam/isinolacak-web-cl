@@ -6,10 +6,7 @@ import {
 } from "react-jss";
 import {
     HeaderStylerResult,
-    HeaderStylerParams,
-    ContentProps,
-    TitleProps, 
-    IconProps
+    HeaderStylerParams
 } from "./header.props";
 
 const useStyles = createUseStyles({
@@ -24,8 +21,7 @@ const useStyles = createUseStyles({
     },
     headerRight: {
         justifyContent: "flex-end",
-        flexDirection: "row",
-        flex: 1
+        flexDirection: "row"
     },
     headerLeftToRightNull: {
         justifyContent: "center",
@@ -34,77 +30,46 @@ const useStyles = createUseStyles({
         width: 42
     }
 }, {
-    name: "NCore-StateCard"
+    name: "IOCore - Header"
 });
 
 export const headerStyler = ({
-    contentColor,
+    headerLocation,
+    renderBottom,
     titleColor,
-    iconColor,
-    isAction,
     spaces,
-    colors,
-    icon
+    colors
 }: HeaderStylerParams): HeaderStylerResult => {
     let container: CSSProperties = {
-        marginBottom: spaces.content * 2,
-        padding: spaces.container
+        paddingBottom: renderBottom ? 0 : spaces.container,
+        borderBottomColor: colors.seperator,
+        paddingRight: spaces.container,
+        paddingLeft: spaces.container,
+        backgroundColor: colors.white,
+        paddingTop: spaces.container
     };
 
-    let titleProps: TitleProps = {
-        variant: "header5-semiBold",
-        color: "body",
-        style: {
-            marginBottom: spaces.inline * 2
-        }
+    let bottomContainerStyle: CSSProperties = {
+        marginTop: spaces.content * 2
     };
 
-    let iconProps: IconProps = {
-        color: colors.body,
-        size: 65,
-        style: {
-            marginBottom: spaces.content * 2
-        }
+    let customTitleStyle : CSSProperties = {
     };
 
-    let contentProps: ContentProps = {
-        variant: "body2-regular",
-        color: "body"
+    let headerRightStyler: CSSProperties = {
     };
 
-    if(icon) {
-        titleProps = {
-            ...titleProps,
-            style: {
-                ...titleProps.style,
-                marginLeft: spaces.content
-            }
-        };
-    }
-
-    if(titleColor) {
-        titleProps.color = titleColor;
-        iconProps.color = titleColor;
-    }
-
-    if(iconColor) {
-        iconProps.color = iconColor;
-    }
-
-    if(contentColor) {
-        contentProps.color = contentColor;
-    }
-
-    if(isAction) {
-        contentProps.style = {
-            marginBottom: spaces.content * 2
-        };
+    if(headerLocation === "center") {
+        customTitleStyle.textAlign = "center";
+        customTitleStyle.color = titleColor;
+        headerRightStyler.position = "absolute";
+        headerRightStyler.right = -10;
     }
 
     return {
-        contentProps,
-        titleProps,
-        iconProps,
+        bottomContainerStyle,
+        headerRightStyler,
+        customTitleStyle,
         container
     };
 };
