@@ -9,7 +9,7 @@ import {
     IOCoreIconType
 } from "../../types";
 
-export type SelectSheetStylerParams = {
+export type SelectDialogStylerParams = {
     contentContainerStyle?: CSSProperties;
     bottomContainerStyle?: CSSProperties;
     headerContainerStyle?: CSSProperties;
@@ -21,7 +21,7 @@ export type SelectSheetStylerParams = {
     fullScreen?: boolean;
 };
 
-export type SelectSheetStylerResult = {
+export type SelectDialogStylerResult = {
     contentContainerStyle: CSSProperties;
     buttonsContainerProps: CSSProperties;
     searchContainerProps: CSSProperties;
@@ -43,7 +43,7 @@ export type SelectedItem = {
     key: string;
 };
 
-interface ISelectSheetProps<T, K extends T & SelectObjectType> {
+interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     onChange?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
     onPress?: (selectedItems: Array<SelectedItem>, data: Array<K>) => void;
     setSelectedItems: Dispatch<Array<SelectedItem>>;
@@ -98,6 +98,7 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> {
     autoHeight?: boolean;
     fullScreen?: boolean;
     inputTitle?: string;
+    onClose: () => void;
     maxChoice?: number;
     minChoice?: number;
     isVisible: boolean;
@@ -105,4 +106,4 @@ interface ISelectSheetProps<T, K extends T & SelectObjectType> {
     data: Array<K>;
     title: string;
 };
-export default ISelectSheetProps;
+export default ISelectDialogProps;

@@ -49,6 +49,13 @@ export interface ISelectBoxProps<T> {
     initialSelectedItems?: Array<T & {
         originalIndex: number;
     }>;
+    onChange?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
+    onOk?: (props: {
+        selectedItems: Array<SelectedItem>;
+        data: Array<T | SelectObjectType>;
+        closeSheet: () => void;
+        onSuccess: () => void;
+    }) => void;
     spreadBehaviour: SelectBoxSpreadBehaviour,
     isLoadingOKButton?: boolean;
     onOverlayPress: () => void;

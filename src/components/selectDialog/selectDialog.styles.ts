@@ -5,8 +5,8 @@ import {
     CSSProperties
 } from "react";
 import {
-    SelectSheetStylerParams,
-    SelectSheetStylerResult 
+    SelectDialogStylerParams,
+    SelectDialogStylerResult
 } from "./selectDialog.props";
 import {
     IIOCoreIconPropsType
@@ -42,7 +42,7 @@ export const useStyles = createUseStyles({
     },
     contentContainer: {
         justifyContent: "center",
-        flexDirection: "column",
+        flexDirection: 'column',
         alignContent: "center",
         position: "relative",
         alignSelf: "center",
@@ -56,6 +56,10 @@ export const useStyles = createUseStyles({
         userSelect: "none",
         overflowY: "auto",
         flexWrap: "wrap"
+    },
+    renderActions: {
+        flexDirection: 'row',
+        display: 'flex',
     },
     headerContainer: {
         flexDirection: "row",
@@ -71,17 +75,20 @@ export const useStyles = createUseStyles({
         justifyContent: "flex-end",
         flexDirection: "row",
         display: "flex"
+    },
+    cleanButton: {
+        position: "absolute",
     }
 });
 
-export const selectSheetStyler = ({
+export const selectDialogStyler = ({
     bottomContainerStyle,
     contentContainerStyle,
     headerContainerStyle,
     radiuses,
     colors,
     spaces
-}: SelectSheetStylerParams): SelectSheetStylerResult => {
+}: SelectDialogStylerParams): SelectDialogStylerResult => {
 
     let container = {
         backgroundColor: colors.layer1,

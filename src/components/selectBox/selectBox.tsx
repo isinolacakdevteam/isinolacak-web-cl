@@ -1,4 +1,4 @@
-import React, {
+import {
     useEffect,
     useState
 } from "react";
@@ -10,7 +10,10 @@ import {
     selectBoxStyler,
     useStyles
 } from "./selectBox.styles";
-import Text from "../text/text";
+import {
+    SelectDialog,
+    Text
+} from "../index";
 import {
     SelectObjectType
 } from "../../types";
@@ -21,7 +24,6 @@ import {
 import {
     ChevronRightIcon
 } from "../../assets/svgr";
-import SelectDialog from "../selectDialog/selectDialog";
 
 const SelectBox = <T extends {}>({
     spreadBehaviour = "free",
@@ -30,7 +32,6 @@ const SelectBox = <T extends {}>({
     multiSelect = false,
     isLoadingOKButton,
     data: initialData,
-    isVisible = false,
     disabled = false,
     isClick = false,
     onOverlayPress,
@@ -41,14 +42,17 @@ const SelectBox = <T extends {}>({
     inputTitle,
     renderItem,
     onSearch,
+    onChange,
     onClick,
     style,
-    title
+    title,
+    onOk
 }: ISelectBoxProps<T>) => {
     
     const classes = useStyles();
 
     const [data, setData] = useState<Array<T & SelectObjectType>>([]);
+    const [isVisible, setIsVisible] = useState(false);
 
     const {
         typography,
@@ -125,6 +129,10 @@ const SelectBox = <T extends {}>({
             setSelectedItems(newSelectedItems);
         }
     }, [initialData]);
+
+    const onClose = () => {
+        setIsVisible(false);
+    };
 
     const cleanData = () => {
         let _data = JSON.parse(JSON.stringify(data));
@@ -234,9 +242,12 @@ const SelectBox = <T extends {}>({
             renderItem={renderItem}
             isVisible={isVisible}
             onSearch={onSearch}
+            onChange={onChange}
+            onClose={onClose}
             onPress={onClick}
             title={title}
             data={data}
+            onOk={onOk}
         />;
     };
 
@@ -250,8 +261,9 @@ const SelectBox = <T extends {}>({
             if (disabled) {
                 return;
             }
-        
+
             if (!onClick) {
+                setIsVisible(true);
                 if (onOverlayPress) {
                     return onOverlayPress();
                 }
@@ -259,7 +271,6 @@ const SelectBox = <T extends {}>({
                 onClick(selectedItems, cleanData());
             }
         }}
-        
     >
         <div className={classes.content}>
             {renderTitle()}

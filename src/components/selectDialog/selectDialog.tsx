@@ -7,33 +7,34 @@ import {
     IOCoreTheme
 } from "../../core";
 import {
-    SelectObjectType
-} from "../../types";
-import TextInput from "../textInput/textInput";
-import {
-    ChevronRightIcon, 
-    ClearIcon
-} from "../../assets/svgr";
-import Button from "../button/button";
-import CheckBox from "../checkBox/checkBox";
-import RadioButton from "../radioButton/radioButton";
-import {
-    selectSheetStyler, 
+    selectDialogStyler,
     useStyles
 } from "./selectDialog.styles";
 import {
+    RadioButton,
+    TextInput,
+    CheckBox,
+    Button,
+    Text
+} from "../index";
+import {
+    SelectObjectType
+} from "../../types";
+import ISelectDialogProps from "./selectDialog.props";
+import {
+    ChevronRightIcon,
+    ClearIcon
+} from "../../assets/svgr";
+import {
     Portal 
 } from "../../packages/react-portalize/src";
-import ISelectSheetProps from "./selectDialog.props";
-import Text from "../text/text";
 
 const SelecetDialog = <T, K extends T & SelectObjectType>(
-    properties: ISelectSheetProps<T, K>,
+    properties: ISelectDialogProps<T, K>,
 ) => {
     const {
         childrenStyle: childrenStyleProp,
         renderItem: RenderItem,
-        isVisible = false,
         isLoadingOKButton,
         setSelectedItems,
         headerComponent,
@@ -48,8 +49,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         renderIcon,
         maxChoice,
         minChoice,
+        isVisible,
         onSearch,
         onChange,
+        onClose,
         onPress,
         title,
         data,
@@ -94,7 +97,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
-
+    
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
@@ -155,7 +158,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     size={25}
                 />}
                 placeholder={""} 
-                id={""}            />
+                id={""}
+            />
         </div>; 
     };
 
@@ -201,15 +205,23 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     onOk({
                         selectedItems: tempSelectedItems,
                         closeSheet: () => {
-                            if(onOverlayPress) onOverlayPress();
+                            if(onClose) {
+                                onClose();
+                            }
                         },
                         onSuccess: () => {
                             setSelectedItems(tempSelectedItems);
+                            if(onClose) {
+                                onClose();
+                            }
                         },
                         data: data
                     });
                 } else {
                     setSelectedItems(tempSelectedItems);
+                    if(onClose) {
+                        onClose();
+                    }
                 }
             }}
         />;
@@ -234,11 +246,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const renderActions = () => {
         return <div
+            className={styles.renderActions}
             style={{
-                display: 'flex',
-                flexDirection: 'row',
+                ...buttonsContainerProps,
                 marginTop: spaces.content,
-                ...buttonsContainerProps
             }}
         >
             {renderClear()}
@@ -263,7 +274,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 onOk: onOk ? () => onOk({
                     selectedItems: tempSelectedItems,
                     closeSheet: () => {
-                        if(onOverlayPress) onOverlayPress();
+                        if(onClose) {
+                            onClose();
+                        }
                     },
                     onSuccess: () => {
                         setSelectedItems(tempSelectedItems);
@@ -358,7 +371,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         clearButtonProps,
         okButtonProps,
         container
-    } = selectSheetStyler({
+    } = selectDialogStyler({
         childrenStyleProp,
         radiuses,
         spaces,
@@ -388,8 +401,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             <div
                 className={styles.contentContainer}
                 style={{
-                    ...container,
-                    flexDirection: 'column'
+                    ...container
                 }}
             >
                 {renderHeader()}
@@ -403,14 +415,16 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 </div>
                 {renderActions()}
                 <Button
+                    className={styles.cleanButton}
                     style={{
-                        position: "absolute",
                         top: spaces.container / 2,
                         right: spaces.container / 2
                     }}
                     variant="ghost"
                     onClick={() => {
-                        if(onOverlayPress) onOverlayPress();
+                        if(onClose) {
+                            onClose();
+                        }
                     }}
                     icon={() => <ClearIcon
                         color={colors.textGrey}

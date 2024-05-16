@@ -3,10 +3,10 @@ import {
     Meta
 } from "@storybook/react";
 import SelecetDialog from "./selectDialog";
-import ISelectSheetProps from "./selectDialog.props";
+import ISelectDialogProps from "./selectDialog.props";
 
 export default {
-    title: "Components/SelecetBoxDialog",
+    title: 'Components/SelecetDialog',
     component: SelecetDialog,
     parameters: {
         docs: {
@@ -25,17 +25,23 @@ export default {
     }
 } as Meta;
 
-const Template: Story<ISelectSheetProps> = (args) => <SelecetDialog {...args}/>;
+const Template: Story<ISelectDialogProps> = (args) => <SelecetDialog {...args}/>;
 
 export const Default = Template.bind({
 });
 Default.args = {
-    title: 'SelectDialog',
-    isVisible: true,
-    multiSelect: true,
-    isNeedConfirm: true,
     isLoadingOKButton: false,
+    title: 'SelectDialog',
+    isNeedConfirm: true,
+    multiSelect: true,
+    isVisible: true,
     selectedItems: [],
+    onClose: () => {
+        alert("Close Button pressed.");
+    },
+    onOk: () => {
+        alert("onOk Button pressed.");
+    },
     onOverlayPress: () => {
         alert("Overlay pressed.");
     },
