@@ -12,6 +12,7 @@ interface ITextInputProps {
     errorIcon?: IOCoreIconType;
     iconOnClick?: () => void;
     secureTextEntry?: boolean;
+    title: string | undefined;
     clearEnabled?: boolean;
     initialValue?: string;
     style?: CSSProperties;
@@ -27,7 +28,6 @@ interface ITextInputProps {
     password?: boolean;
     errorText?: string;
     isError?: boolean;
-    title: string;
     id: string;
 };
 
