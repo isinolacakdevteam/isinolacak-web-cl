@@ -305,8 +305,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                         size,
                         item
                     });
-
-                    return <RenderIcon/>;
+                    //@ts-ignore
+                    return <RenderIcon/>; // TODO: Type issue will be fix
                 } : undefined}
                 onChange={() => {
                     _onChange(item);
@@ -331,8 +331,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     size,
                     item
                 });
-
-                return <RenderIcon/>;
+                //@ts-ignore
+                return <RenderIcon/>; // TODO: Type issue will be fix
             } : undefined}
             onChange={() => {
                 _onChange(item);

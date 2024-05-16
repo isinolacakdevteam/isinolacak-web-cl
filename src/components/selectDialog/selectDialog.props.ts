@@ -1,12 +1,11 @@
 import {
     CSSProperties,
-    Dispatch,
-    ReactNode
+    ReactNode,
+    Dispatch
 } from "react";
 import {
     IIOCoreIconPropsType,
-    SelectObjectType,
-    IOCoreIconType
+    SelectObjectType
 } from "../../types";
 
 export type SelectDialogStylerParams = {
@@ -83,7 +82,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
         index?: number;
         data: Array<K>;
         item?: K;
-    }) => IOCoreIconType;
+    }) => ReactNode;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
     childrenStyle?: CSSProperties;

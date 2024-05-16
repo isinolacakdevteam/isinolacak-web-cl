@@ -112,7 +112,7 @@ const SelectBox = <T extends {}>({
                 if(!originalItem) {
                     originalItem = {
                         ...item,
-                        __key: keyExtractor ? keyExtractor(item, index) : null,
+                        __key: keyExtractor(item, index),
                         __title: titleExtractor(item, index),
                         __originalIndex: newData.length
                     };
