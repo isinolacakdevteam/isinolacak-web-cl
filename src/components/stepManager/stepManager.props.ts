@@ -62,17 +62,13 @@ interface IStepManagerType<T extends ReactNode, K extends Record<any, any>> {
 };
 
 export type StepManagerStylerParams = {
-    indicatorEmptyColor: keyof IOCore.ColorsType;
-    indicatorFilledColor: keyof IOCore.ColorsType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     components: Array<any>;
-    stepIndex: number;
 };
 
 export type StepManagerStylerResult = {
     backButtonContainer: CSSProperties;
-    indicatorObject: CSSProperties;
     bottomContainer: CSSProperties;
     containerStyler: CSSProperties;
     pageContainer: CSSProperties;

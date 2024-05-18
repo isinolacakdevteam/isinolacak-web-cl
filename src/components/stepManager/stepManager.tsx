@@ -60,15 +60,11 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
     const {
         backButtonContainer,
         containerStyler,
-        indicatorObject,
         pageContainer,
         headerStyler,
         bottomContainer
     } = stepManagerStyler({
-        indicatorFilledColor,
-        indicatorEmptyColor,
         components,
-        stepIndex,
         spaces,
         colors
     });
@@ -124,7 +120,7 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
                     return <div
                         className={classes.indicatorObject}
                         style={{
-                            backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor], // TODO: Cannot resolve to index issue to styler.
+                            backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor],
                             marginRight: index === components.length - 1 ? 0 : spaces.content / 4,
                             borderBottomRightRadius: index === components.length - 1 ? 50 : 0,
                             borderTopRightRadius: index === components.length - 1 ? 50 : 0,

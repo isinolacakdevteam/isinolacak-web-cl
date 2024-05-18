@@ -48,23 +48,9 @@ const useStyles = createUseStyles({
 });
 
 export const stepManagerStyler = ({
-    indicatorEmptyColor,
-    indicatorFilledColor,
-    components,
-    stepIndex,
     colors,
     spaces
 }: StepManagerStylerParams): StepManagerStylerResult => {
-    let indicatorObject: CSSProperties = {
-        /* backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor], //TODO: Index issue will fix
-        marginRight: index === components.length - 1 ? 0 : spaces.content / 4,
-        borderBottomRightRadius: index === components.length - 1 ? 50 : 0,
-        borderTopRightRadius: index === components.length - 1 ? 50 : 0,
-        marginLeft: index === 0 ? 0 : spaces.content / 4,
-        borderBottomLeftRadius: index === 0 ? 50 : 0,
-        borderTopLeftRadius: index === 0 ? 50 : 0 */
-    };
-
     let bottomContainer: CSSProperties = {
         padding: spaces.container
     };
@@ -94,7 +80,6 @@ export const stepManagerStyler = ({
 
     return {
         backButtonContainer,
-        indicatorObject,
         bottomContainer,
         containerStyler,
         pageContainer,
