@@ -57,3 +57,7 @@ export {
 export {
     default as SelectDialog
 } from "./selectDialog/selectDialog";
+
+export {
+    default as Header 
+} from "./header/header";
