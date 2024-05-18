@@ -4,20 +4,19 @@ import {
 } from "react";
 import {
     IOCoreTranslationType,
-    IIOCoreIconPropsType,
-    IOCoreColorsType,
-    IOCoreIconType
+    IOCoreColorsType
 } from "../../types/index";
 import IStateCardProps from "../stateCard/stateCard.props";
 import {
     DialogStylerParams
 } from "../dialog/dialog.props";
+import IHeaderProps from "../header/header.props";
 
 interface IStepManagerType<T extends ReactNode, K extends Record<any, any>> {
     finishButtonLocaleKey?: keyof IOCoreTranslationType;
     onUpdateStepData?: (newStepState: K & any) => void;
     nextButtonLocaleKey?: keyof IOCoreTranslationType;
-    indicatorContainerStyle?: CSSProperties | CSSProperties[];
+    indicatorContainerStyle?: CSSProperties;
     indicatorFilledColor?: keyof IOCoreColorsType;
     onGoBack?: (isGoBackForPage: boolean) => void;
     indicatorEmptyColor?: keyof IOCoreColorsType;
@@ -63,36 +62,21 @@ interface IStepManagerType<T extends ReactNode, K extends Record<any, any>> {
 };
 
 export type StepManagerStylerParams = {
-    contentColor?: keyof IOCore.ColorsType;
-    titleColor?: keyof IOCore.ColorsType;
-    iconColor?: keyof IOCore.ColorsType;
+    indicatorEmptyColor: keyof IOCore.ColorsType;
+    indicatorFilledColor: keyof IOCore.ColorsType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
-    icon?: IOCoreIconType;
-    isAction?: boolean;
-};
-
-export type TitleProps = {
-    variant: keyof IOCore.TypographyType;
-    color: keyof IOCore.ColorsType;
-    style?: CSSProperties;
-};
-
-export type ContentProps = {
-    variant: keyof IOCore.TypographyType;
-    color: keyof IOCore.ColorsType;
-    style?: CSSProperties;
-};
-
-export type IconProps = IIOCoreIconPropsType & {
-    style: CSSProperties;
+    components: Array<any>;
+    stepIndex: number;
 };
 
 export type StepManagerStylerResult = {
-    iconProps: IIOCoreIconPropsType;
-    contentProps: ContentProps;
-    container: CSSProperties;
-    titleProps: TitleProps;
+    backButtonContainer: CSSProperties;
+    indicatorObject: CSSProperties;
+    bottomContainer: CSSProperties;
+    containerStyler: CSSProperties;
+    pageContainer: CSSProperties;
+    headerStyler: CSSProperties;
 };
 
 export default IStepManagerType;

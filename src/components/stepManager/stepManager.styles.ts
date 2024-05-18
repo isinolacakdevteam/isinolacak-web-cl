@@ -1,105 +1,104 @@
 import {
-    CSSProperties 
+    CSSProperties
 } from "react";
 import {
     createUseStyles
 } from "react-jss";
 import {
     StepManagerStylerResult,
-    StepManagerStylerParams,
-    ContentProps,
-    IconProps,
-    TitleProps 
+    StepManagerStylerParams
 } from "./stepManager.props";
 
 const useStyles = createUseStyles({
     container: {
-        transition: "transform 0.1s",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-        alignSelf: "center",
-        userSelect: "none",
-        outline: "none",
         display: "flex",
-        maxWidth: 300
+        flexDirection: "column"
     },
-    content: {
-        textAlign: "center"
+    header: {
+        borderStyle: "solid",
+        borderBottomWidth: 1
+    },
+    indicatorContainer: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%"
+    },
+    contentContainerStyle: {
+        display: "flex",
+        justifyContent: "center"
+    },
+    indicatorObject: {
+        height: 5,
+        flex: 1
+    },
+    componentContainer: {
+    },
+    bottomContainer: {
+    },
+    backButtonContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 100,
+        borderWidth: 1,
+        height: 42,
+        width: 42
     }
 }, {
-    name: "NCore-StateCard"
+    name: "IOCore-Stepmanager"
 });
 
 export const stepManagerStyler = ({
-    contentColor,
-    titleColor,
-    iconColor,
-    isAction,
-    spaces,
+    indicatorEmptyColor,
+    indicatorFilledColor,
+    components,
+    stepIndex,
     colors,
-    icon
+    spaces
 }: StepManagerStylerParams): StepManagerStylerResult => {
-    let container: CSSProperties = {
-        marginBottom: spaces.content * 2,
+    let indicatorObject: CSSProperties = {
+        /* backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor], //TODO: Index issue will fix
+        marginRight: index === components.length - 1 ? 0 : spaces.content / 4,
+        borderBottomRightRadius: index === components.length - 1 ? 50 : 0,
+        borderTopRightRadius: index === components.length - 1 ? 50 : 0,
+        marginLeft: index === 0 ? 0 : spaces.content / 4,
+        borderBottomLeftRadius: index === 0 ? 50 : 0,
+        borderTopLeftRadius: index === 0 ? 50 : 0 */
+    };
+
+    let bottomContainer: CSSProperties = {
         padding: spaces.container
     };
 
-    let titleProps: TitleProps = {
-        variant: "header5-semiBold",
-        color: "body",
-        style: {
-            marginBottom: spaces.inline * 2
-        }
+    let backButtonContainer: CSSProperties = {
+        borderColor: colors.stroke
     };
 
-    let iconProps: IconProps = {
-        color: colors.body,
-        size: 65,
-        style: {
-            marginBottom: spaces.content * 2
-        }
+    let headerStyler: CSSProperties = {
+        borderBottomColor: colors.stroke,
+        marginBottom: spaces.container,
+        borderBottomStyle: "solid",
+        borderBottomWidth: 1,
     };
 
-    let contentProps: ContentProps = {
-        variant: "body2-regular",
-        color: "body"
+    let containerStyler: CSSProperties = {
+        backgroundColor: colors.layer1
     };
 
-    if(icon) {
-        titleProps = {
-            ...titleProps,
-            style: {
-                ...titleProps.style,
-                marginLeft: spaces.content
-            }
-        };
-    }
-
-    if(titleColor) {
-        titleProps.color = titleColor;
-        iconProps.color = titleColor;
-    }
-
-    if(iconColor) {
-        iconProps.color = iconColor;
-    }
-
-    if(contentColor) {
-        contentProps.color = contentColor;
-    }
-
-    if(isAction) {
-        contentProps.style = {
-            marginBottom: spaces.content * 2
-        };
-    }
+    let pageContainer: CSSProperties = {
+        paddingTop: spaces.container / 2,
+        paddingLeft: spaces.container,
+        paddingRight: spaces.container,
+        backgroundColor: colors.layer1
+    };
 
     return {
-        contentProps,
-        titleProps,
-        iconProps,
-        container
+        backButtonContainer,
+        indicatorObject,
+        bottomContainer,
+        containerStyler,
+        pageContainer,
+        headerStyler
     };
 };
 

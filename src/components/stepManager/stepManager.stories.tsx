@@ -2,78 +2,74 @@ import {
     Story,
     Meta
 } from "@storybook/react";
-import lightTheme from "../../core/theme/variants/light";
-import IStateCardProps from "./stepManager.props";
-import StateCard from "./stepManager";
-import {
-    ClearIcon 
-} from "../../assets/svgr";
+import Text from "../text/text";
+import StepManager from "./stepManager";
+import IStepManagerType from "./stepManager.props";
 
 export default {
-    title: "Components/StateCard",
-    component: StateCard,
+    title: "Components/StepManager",
+    component: StepManager,
     parameters: {
         docs: {
             description: {
-                component: "Welcome to IOCORE StateCard page."
+                component: "Welcome to IOCORE StepManager page."
             }
         }
     },
     argTypes: {
-        title: {
-            control: "string"
-        },
-        content: {
-            control: "string"
-        },
-        color: {
-            control: {
-                type: "select",
-                options: Object.keys(lightTheme.colors)
-            },
-        },
-        titleColor: {
-            control: {
-                type: "select",
-                options: Object.keys(lightTheme.colors)
-            }
-        },
-        iconColor: {
-            control: {
-                type: "select",
-                options: Object.keys(lightTheme.colors)
-            }
-        },
-        contentColor: {
-            control: {
-                type: "select",
-                options: Object.keys(lightTheme.colors)
-            }
-        },
-        isAction: {
-            control: "boolean"
-        }
+        
     },
 } as Meta;
 
-const Template: Story<IStateCardProps> = (args) => <StateCard {...args} />;
+const Template: Story<IStepManagerType> = (args) => <StepManager {...args} />;
 
 export const Default = Template.bind({
 });
 Default.args = {
-    title: "Data Not Found",
-    content: "Data not found for your query. Please try again with different keywords.",
-    icon: (iconProps) => <ClearIcon
-        {...iconProps}
-    />,
-    isAction: true,
-    buttonProps: {
-        onClick: () => {
-            alert("State Card Action");
+    finishButtonLocaleKey: "finish",
+    isShowFinishSheet: true,
+    data: [
+        {
+            key: 0
         },
-        spreadBehaviour: "stretch",
-        title: "Action",
-        color: "primary",
-        size: "medium"
+        {
+            key: 1
+        }
+    ],
+    components:[
+        () => <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 20
+        }}>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+            <Text> Component 1 </Text>
+
+        </div>,
+        () => <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 20
+        }}>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            <Text> Component 2 </Text>
+            
+        </div>
+    ],
+    headerProps: {
+        title: "Header",
+        headerLocation: "center"
     }
 };

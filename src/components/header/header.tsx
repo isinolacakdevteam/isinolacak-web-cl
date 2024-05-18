@@ -3,7 +3,7 @@ import {
 } from  "react";
 import Text from "../text/text";
 import {
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../core";
 import IHeaderProps from "./header.props";
 import useStyles, {

@@ -4,15 +4,20 @@ import React, {
     useState
 } from "react";
 import IStepManagerType from "./stepManager.props";
-import useStyles from "./stepManager.styles";
+import useStyles, {
+    stepManagerStyler 
+} from "./stepManager.styles";
 import {
     IOCoreLocale,
     IOCoreTheme
 } from "../../core/index";
-import Button from "../button/button";
 import StateCard from "../stateCard/stateCard";
+import Button from "../button/button";
 import Dialog from "../dialog/dialog";
 import Header from "../header/header";
+import {
+    ChevronRightIcon
+} from "../../assets/svgr/index";
 
 const StepManager = <T extends ReactNode, K extends Record<any, any>>({
     onUpdateStepData: onUpdateStepDataProp,
@@ -51,6 +56,22 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
 
     const [fDialogVisible, setFDialogVisible] = useState(false);
     const [stepIndex, setStepIndex] = useState(0);
+
+    const {
+        backButtonContainer,
+        containerStyler,
+        indicatorObject,
+        pageContainer,
+        headerStyler,
+        bottomContainer
+    } = stepManagerStyler({
+        indicatorFilledColor,
+        indicatorEmptyColor,
+        components,
+        stepIndex,
+        spaces,
+        colors
+    });
 
     const isFinishStep = stepIndex === components.length - 1;
 
@@ -92,28 +113,27 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
 
         return <div
             className={[
-                classes.container
+                classes.indicatorContainer
             ].join(" ")}
             style={{
-                ...style
+                ...indicatorContainerStyle
             }}
         >
             {
                 components.map((_, index) => {
                     return <div
-                        /* style={[
-                            stylesheet.indicatorObject,
-                            {
-                                backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor],
-                                marginRight: index === components.length - 1 ? 0 : spaces.content / 4,
-                                borderBottomRightRadius: index === components.length - 1 ? 50 : 0,
-                                borderTopRightRadius: index === components.length - 1 ? 50 : 0,
-                                marginLeft: index === 0 ? 0 : spaces.content / 4,
-                                borderBottomLeftRadius: index === 0 ? 50 : 0,
-                                borderTopLeftRadius: index === 0 ? 50 : 0
-                            }
-                        ]} */
-                    />;
+                        className={classes.indicatorObject}
+                        style={{
+                            backgroundColor: index <= stepIndex ? colors[indicatorFilledColor] : colors[indicatorEmptyColor], // TODO: Cannot resolve to index issue to styler.
+                            marginRight: index === components.length - 1 ? 0 : spaces.content / 4,
+                            borderBottomRightRadius: index === components.length - 1 ? 50 : 0,
+                            borderTopRightRadius: index === components.length - 1 ? 50 : 0,
+                            marginLeft: index === 0 ? 0 : spaces.content / 4,
+                            borderBottomLeftRadius: index === 0 ? 50 : 0,
+                            borderTopLeftRadius: index === 0 ? 50 : 0
+                        }}
+                    >
+                    </div>;
                 })
             }
         </div>;
@@ -121,10 +141,11 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
 
     const renderComponent = () => {
         return <div
-            /* style={{
-                ...classes.componentContainer,
-                ...contentContainerStyle
-            }} */
+            className={classes.contentContainerStyle}
+            style={{
+                ...contentContainerStyle,
+                ...pageContainer
+            }}
         >
             {components[stepIndex]({
                 stepData: data[stepIndex],
@@ -154,12 +175,8 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
         }
 
         return <div
-            /* style={[
-                stylesheet.bottomContainer,
-                {
-                    padding: spaces.container
-                }
-            ]} */
+            className={classes.bottomContainer}
+            style={bottomContainer}
         >
             <Button
                 title={isFinishStep ? localize(finishButtonLocaleKey) : localize(nextButtonLocaleKey)}
@@ -222,34 +239,24 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
                         setStepIndex(stepIndex - 1);
                         if(onGoBack) onGoBack(false);
                     }}
-                    /* style={[
-                        stylesheet.backButtonContainer,
-                        {
-                            borderColor: colors.stroke
-                        }
-                    ]} */
+                    className={classes.backButtonContainer}
+                    style={backButtonContainer}
                 >
-                    <ChevronLeftIcon
+                    <ChevronRightIcon
                         color={colors.textSecondary}
                     />
                 </div>;
             }}
-            /* style={{
-                ...stylesheet.header,
-                borderBottomColor: colors.stroke,
-                marginBottom: spaces.container
-            }} */
+            style={headerStyler}
         />;
     };
 
     return <div
-        /* style={[
-            stylesheet.container,
-            {
-                backgroundColor: colors.layer1
-            },
-            style
-        ]} */
+        className={classes.container}
+        style={{
+            ...containerStyler,
+            ...style
+        }}
     >
         {renderHeader()}
         {renderStepIndicator()}
