@@ -18,6 +18,7 @@ interface IHeaderProps {
 export type HeaderStylerParams = {
     headerLocation?: "left" | "center"; 
     spaces: IOCore.SpacesTokensType;
+    headerLeft?: () => ReactNode;
     colors: IOCore.ColorsType;
     renderBottom?: ReactNode;
     titleColor: string;

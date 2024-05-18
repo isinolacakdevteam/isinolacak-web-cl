@@ -31,6 +31,7 @@ const useStyles = createUseStyles({
     headerLeftToRightNull: {
         justifyContent: "center",
         alignItems: "center",
+        position: "absolute",
         maxWidth: "200px",
         display: "flex",
         minWidth: "50px"
@@ -42,6 +43,7 @@ const useStyles = createUseStyles({
 export const headerStyler = ({
     headerLocation,
     renderBottom,
+    headerLeft,
     titleColor,
     spaces,
     colors
@@ -62,15 +64,19 @@ export const headerStyler = ({
     };
 
     let headerRightStyler: CSSProperties = {
+        position: "absolute",
+        right: spaces.container
     };
 
     if(headerLocation === "center") {
-        headerRightStyler.right = spaces.container;
-        headerRightStyler.position = "absolute";
         customTitleStyle.alignSelf = "center";
         customTitleStyle.textAlign = "center";
         customTitleStyle.color = titleColor;
         customTitleStyle.width = "100%";
+    }
+
+    if(headerLeft && headerLocation === "left") {
+        customTitleStyle.marginLeft = spaces.container * 3;
     }
 
     return {

@@ -1,12 +1,12 @@
-import React, {
+import {
     ReactNode,
     useEffect,
     useState
 } from "react";
-import IStepManagerType from "./stepManager.props";
 import useStyles, {
-    stepManagerStyler 
+    stepManagerStyler
 } from "./stepManager.styles";
+import IStepManagerType from "./stepManager.props";
 import {
     IOCoreLocale,
     IOCoreTheme
@@ -16,7 +16,7 @@ import Button from "../button/button";
 import Dialog from "../dialog/dialog";
 import Header from "../header/header";
 import {
-    ChevronRightIcon
+    ChevronLeftIcon
 } from "../../assets/svgr/index";
 
 const StepManager = <T extends ReactNode, K extends Record<any, any>>({
@@ -242,8 +242,9 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
                     className={classes.backButtonContainer}
                     style={backButtonContainer}
                 >
-                    <ChevronRightIcon
+                    <ChevronLeftIcon
                         color={colors.textSecondary}
+                        size={20}
                     />
                 </div>;
             }}

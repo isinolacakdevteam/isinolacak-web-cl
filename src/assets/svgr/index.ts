@@ -29,3 +29,7 @@ export {
 export {
     default as NotificationIcon
 } from "./notificationIcon";
+
+export {
+    default as ChevronLeftIcon
+} from "./chevronLeft";

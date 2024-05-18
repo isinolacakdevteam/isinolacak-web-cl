@@ -17,7 +17,6 @@ export default {
         }
     },
     argTypes: {
-        
     },
 } as Meta;
 

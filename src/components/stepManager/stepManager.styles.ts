@@ -19,14 +19,14 @@ const useStyles = createUseStyles({
         borderBottomWidth: 1
     },
     indicatorContainer: {
-        display: "flex",
-        flexDirection: "row",
         alignItems: "center",
+        flexDirection: "row",
+        display: "flex",
         width: "100%"
     },
     contentContainerStyle: {
-        display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        display: "flex"
     },
     indicatorObject: {
         height: 5,
@@ -38,11 +38,10 @@ const useStyles = createUseStyles({
     },
     backButtonContainer: {
         justifyContent: "center",
-        alignItems: "center",
+        borderStyle: "solid",
         borderRadius: 100,
-        borderWidth: 1,
-        height: 42,
-        width: 42
+        display: "flex",
+        borderWidth: 2
     }
 }, {
     name: "IOCore-Stepmanager"
@@ -71,7 +70,8 @@ export const stepManagerStyler = ({
     };
 
     let backButtonContainer: CSSProperties = {
-        borderColor: colors.stroke
+        borderColor: colors.stroke,
+        padding: spaces.content
     };
 
     let headerStyler: CSSProperties = {

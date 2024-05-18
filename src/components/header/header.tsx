@@ -36,6 +36,7 @@ const Header: FC<IHeaderProps> = ({
     } = headerStyler({
         headerLocation,
         renderBottom,
+        headerLeft,
         titleColor,
         colors,
         spaces
