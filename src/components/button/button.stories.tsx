@@ -19,7 +19,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Button page."
+                component: "Welcome to IOCore Button page."
             }
         }
     },

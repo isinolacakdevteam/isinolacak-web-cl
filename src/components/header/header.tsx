@@ -7,7 +7,7 @@ import {
 } from "../../core";
 import IHeaderProps from "./header.props";
 import useStyles, {
-    headerStyler 
+    headerStyler
 } from "./header.styles";
 
 const Header: FC<IHeaderProps> = ({
@@ -62,17 +62,17 @@ const Header: FC<IHeaderProps> = ({
             ...style
         }}
     >
-        <div className={classes.contentContainer}>
+        <div 
+            className={classes.contentContainer}
+        >
             {
-                headerLeft ?
-                    headerLeft()
-                    :
-                    !headerLeft && !headerRight ?
-                        <div 
-                            className={classes.headerLeftToRightNull}
-                        />
-                        :
-                        null
+                <div
+                    className={classes.headerLeftToRightNull}
+                >
+                    {
+                        headerLeft ? headerLeft() : null
+                    }
+                </div>
             }
             {
                 customTitle ?
@@ -92,11 +92,7 @@ const Header: FC<IHeaderProps> = ({
                 {headerRight ? headerRight() : null}
             </div>
         </div>
-        <div
-            className={classes.container}
-        >
-            {renderBottomContainer()}
-        </div> 
+        {renderBottomContainer()}
     </div>;
 
 };

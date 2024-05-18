@@ -12,25 +12,31 @@ import {
 const useStyles = createUseStyles({
     container: {
         flexDirection: "column",
-        width: "100%"
+        userSelect: "none",
+        width: "100%",
+        display: "flex"
     },
     contentContainer: {
-        justifyContent: "center",
+        alignItems: "center",
         flexDirection: "row",
-        alignItems: "center"
+        display: "flex"
     },
     headerRight: {
         justifyContent: "flex-end",
-        flexDirection: "row"
+        flexDirection: "row",
+        maxWidth: "200px",
+        display: "flex",
+        minWidth: "50px"
     },
     headerLeftToRightNull: {
         justifyContent: "center",
         alignItems: "center",
-        height: 42,
-        width: 42
+        maxWidth: "200px",
+        display: "flex",
+        minWidth: "50px"
     }
 }, {
-    name: "IOCore - Header"
+    name: "IOCore-Header"
 });
 
 export const headerStyler = ({
@@ -43,8 +49,6 @@ export const headerStyler = ({
     let container: CSSProperties = {
         paddingBottom: renderBottom ? 0 : spaces.container,
         borderBottomColor: colors.seperator,
-        paddingRight: spaces.container,
-        paddingLeft: spaces.container,
         backgroundColor: colors.white,
         paddingTop: spaces.container
     };
@@ -54,16 +58,19 @@ export const headerStyler = ({
     };
 
     let customTitleStyle : CSSProperties = {
+        textAlign: "left"
     };
 
     let headerRightStyler: CSSProperties = {
     };
 
     if(headerLocation === "center") {
+        headerRightStyler.right = spaces.container;
+        headerRightStyler.position = "absolute";
+        customTitleStyle.alignSelf = "center";
         customTitleStyle.textAlign = "center";
         customTitleStyle.color = titleColor;
-        headerRightStyler.position = "absolute";
-        headerRightStyler.right = -10;
+        customTitleStyle.width = "100%";
     }
 
     return {
