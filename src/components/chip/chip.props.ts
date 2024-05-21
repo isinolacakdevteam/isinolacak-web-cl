@@ -3,7 +3,7 @@ import {
 } from "react";
 import {
     IIOCoreIconPropsType,
-    IOCoreIconType 
+    IOCoreIconType
 } from "src/types";
 
 interface IChipProps {

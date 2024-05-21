@@ -1,5 +1,5 @@
 import {
-    CSSProperties 
+    CSSProperties
 } from "react";
 import {
     IOCoreIconType
