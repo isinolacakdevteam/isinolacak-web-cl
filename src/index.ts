@@ -31,6 +31,7 @@ export {
     PageModal,
     CheckBox,
     Switcher,
+    TextArea,
     BadgeHOC,
     ToolTip,
     Sticker,
