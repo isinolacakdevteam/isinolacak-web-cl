@@ -65,6 +65,7 @@ export const buttonStyler = ({
     spreadBehaviour,
     disabledStyle,
     iconDirection,
+    textVariant,
     textColor,
     iconColor,
     disabled,
@@ -90,8 +91,8 @@ export const buttonStyler = ({
     let titleColor: keyof IOCore.ColorsType = textColor ? textColor : "body";
 
     let titleProps: TitleProps = {
+        variant: textVariant ? textVariant :  size === "xSmall" ? "body3-medium" : "body2-medium",
         color: titleColor,
-        variant: size === "xSmall" ? "body3-medium" : "body2-medium",
         style: {
             margin: "0 auto"
         }

@@ -8,9 +8,10 @@ import {
 
 interface IButtonProps extends Partial<Omit<HTMLButtonElement, "children" | "style">> {
     displayBehaviourWhileLoading?: ButtonDisplayBehaviourWhileLoading;
+    textVariant?: keyof IOCore.TypographyType;
     spreadBehaviour?: ButtonSpreadBehaviour;
-    iconColor?: keyof IOCore.ColorsType;
     textColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
     iconDirection?: "left" | "right";
     color?: keyof IOCore.ColorsType;
     titleStyle?: CSSProperties;
@@ -31,6 +32,7 @@ export type ButtonVariant = "filled" | "outline" | "ghost";
 
 export type ButtonStylerParams = {
     displayBehaviourWhileLoading: ButtonDisplayBehaviourWhileLoading;
+    textVariant?: keyof IOCore.TypographyType;
     spreadBehaviour: ButtonSpreadBehaviour;
     radiuses: IOCore.RadiusesTokensType;
     textColor?: keyof IOCore.ColorsType;
