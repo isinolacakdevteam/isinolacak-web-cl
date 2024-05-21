@@ -21,20 +21,12 @@ export type SelectDialogStylerParams = {
 };
 
 export type SelectDialogStylerResult = {
-    contentContainerStyle: CSSProperties;
-    buttonsContainerProps: CSSProperties;
-    searchContainerProps: CSSProperties;
-    clearButtonProps: CSSProperties;
     clearIcon: IIOCoreIconPropsType;
-    inputIconProps: CSSProperties;
-    okButtonProps: CSSProperties;
-    childrenStyle: CSSProperties;
     primaryButton: CSSProperties;
     container: CSSProperties;
     content: CSSProperties;
     bottom: CSSProperties;
     header: CSSProperties;
-    clearButton: any;
 };
 
 export type SelectedItem = {

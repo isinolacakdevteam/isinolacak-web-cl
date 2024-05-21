@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
         textAlign: "center"
     }
 }, {
-    name: "NCore-StateCard"
+    name: "ICore-StateCard"
 });
 
 export const stateCardStyler = ({
@@ -49,7 +49,7 @@ export const stateCardStyler = ({
         variant: "header5-semiBold",
         color: "body",
         style: {
-            marginBottom: spaces.inline * 2
+            marginBottom: spaces.content * 2
         }
     };
 

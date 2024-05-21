@@ -18,6 +18,7 @@ const useStyles = createUseStyles({
         cursor: "pointer",
     },
     toolBoxContainer: {
+        boxShadow: "0px 4px 4px 0px #00000040",
         transition: "all .03s ease",
         position: "absolute",
         width: "max-content",
@@ -45,7 +46,7 @@ export const toolBoxStyler = ({
     if(tInfo.x < 0) {
         toolBoxContainer = {
             ...toolBoxContainer,
-            right: toolBoxContainer.right + tInfo.x,
+            right: toolBoxContainer.right ? toolBoxContainer.right : 0  + tInfo.x,
         };
     }
 

@@ -144,9 +144,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             return null;
         }
         
-        return <div
-            style={searchContainerProps}
-        >
+        return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
                 initialValue={searchText}
@@ -174,9 +172,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
             variant="outline"
             style={{
-                ...clearButtonProps,
-                flex: isNeedConfirm ? undefined : 1,
-                marginRight:10
+                marginRight:spaces.content
             }}
             onClick={() => {
                 setTempSelectedItems([]);
@@ -193,7 +189,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             title={localize("iocore-select-sheet-ok-button")}
             loading={isLoadingOKButton}
             spreadBehaviour="stretch"
-            style={okButtonProps}
             variant="filled"
             size="medium"
             onClick={() => {
@@ -244,7 +239,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <div
             className={styles.renderActions}
             style={{
-                ...buttonsContainerProps,
                 marginTop: spaces.content,
             }}
         >
@@ -361,11 +355,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const {
-        buttonsContainerProps,
         content: contentStyle,
-        searchContainerProps,
-        clearButtonProps,
-        okButtonProps,
         container
     } = selectDialogStyler({
         childrenStyleProp,
