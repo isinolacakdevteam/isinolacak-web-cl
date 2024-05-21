@@ -23,6 +23,10 @@ export {
 } from "./textInput/textInput";
 
 export {
+    default as TextArea
+} from "./textArea/textArea";
+
+export {
     default as Button
 } from "./button/button";
 
