@@ -43,9 +43,7 @@ const TextInput: FC<ITextInputProps> = ({
     id,
     ...props
 }) => {
-    const classes = useStyles({
-        // disabled
-    });
+    const classes = useStyles();
 
     const {
         disabled: designTokensDisabled,
@@ -66,6 +64,8 @@ const TextInput: FC<ITextInputProps> = ({
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        contentContainer,
+        passwordIcon,
         titleProps,
         container,
         input,
@@ -155,6 +155,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return<div
+            style={passwordIcon}
             className={classes.passwordIconContainer}
         >
             <div
@@ -177,7 +178,7 @@ const TextInput: FC<ITextInputProps> = ({
             {ErrorIconProp ? 
                 <div
                     style={{
-                        marginRight: spaces.content
+                        marginRight: spaces.inline
                     }} 
                 >
                     <ErrorIconProp/>
@@ -226,33 +227,35 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     return <div
-        className={[
-            classes.container,
-            className
-        ].join(" ")}
         style={{
             ...style,
             ...container
         }}
     >
-        {renderIcon("left")}
         <div
             className={[
-                classes.content
+                classes.container,
+                className
             ].join(" ")}
+            style={contentContainer}
         >
-            <Text
-                {...titleProps}
-                color={isError ? "error" : titleProps.color}
-                variant={isInputFocused ? "body2-bold" : "body-bold"}
+            {renderIcon("left")}
+            <div
+                className={classes.content}
             >
-                {finalTitle}
-            </Text>
-            {renderInput()}
+                <Text
+                    {...titleProps}
+                    variant={isInputFocused ? "body2-bold" : "body-bold"}
+                    color={isError ? "error" : titleProps.color}
+                >
+                    {finalTitle}
+                </Text>
+                {renderInput()}
+            </div>
+            {renderIcon("right")}
+            {renderPasswordIcon()}
+            {renderClearButton()}
         </div>
-        {renderIcon("right")}
-        {renderPasswordIcon()}
-        {renderClearButton()}
         {renderErrorText()}
     </div>;
 };

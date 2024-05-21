@@ -45,6 +45,16 @@ export default {
         errorText: {
             control: "text"
         },
+        spreadBehaviour: {
+            control: {
+                type: "select",
+                options: [
+                    "baseline",
+                    "stretch",
+                    "free"
+                ]
+            }
+        },
         iconDirection: {
             control: {
                 type: "select",
