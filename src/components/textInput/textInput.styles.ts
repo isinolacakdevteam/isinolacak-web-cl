@@ -39,10 +39,10 @@ export const useStyles = createUseStyles({
         display: "flex"
     },
     passwordIconContainer: {
-        transform: "translateY(-50%)",
-        position: "absolute",
-        top: 50,
-        right: 0
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+        display: "flex"
     },
     ıconProps: {
         justifyContent:"center",
@@ -50,17 +50,14 @@ export const useStyles = createUseStyles({
         alignItems: "center"
     },
     errorText: {
-        justifyContent: 'center', 
-        position: "absolute",
-        alignItems: 'center', 
-        display: 'flex', 
-        top: 85
+        display: 'flex'
     }
 }, {
     name: "NCore-TextInput"
 });
 
 export const textInputStyler = ({
+    spreadBehaviour,
     disabledStyle,
     typography,
     isFocused,
@@ -73,11 +70,15 @@ export const textInputStyler = ({
     value
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
+    };
+
+    let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
         paddingLeft: spaces.container / 1.5,
         paddingBottom: spaces.content * 1.5,
         paddingTop: spaces.content * 1.5,
+        marginBottom: spaces.content,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line,
@@ -102,10 +103,23 @@ export const textInputStyler = ({
     };
 
     let clear: CSSProperties = {
-        marginTop: spaces.content * 1.5,
-        marginLeft: spaces.content,
-        alignSelf: "flex-start"
+        marginLeft: spaces.content
     };
+
+    let passwordIcon: CSSProperties = {
+        marginLeft: spaces.content
+    };
+
+    if(spreadBehaviour === "baseline") {
+        container.alignSelf = spreadBehaviour;
+        container.width = "auto";
+    }
+
+    if(spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+        container.justifyContent = "center";
+        container.width = "100%";
+    }
 
     if(disabled) {
         container = {
@@ -121,11 +135,9 @@ export const textInputStyler = ({
         };
     }
 
-    if(isFocused || (value && value.length)) {
-        titleProps.style.marginBottom = spaces.inline;
-    }
-
     return {
+        contentContainer,
+        passwordIcon,
         titleProps,
         container,
         input,

@@ -12,15 +12,14 @@ interface ITextInputProps {
     errorIcon?: IOCoreIconType;
     iconOnClick?: () => void;
     secureTextEntry?: boolean;
-    title: string | undefined;
     clearEnabled?: boolean;
     initialValue?: string;
     style?: CSSProperties;
-    icon: IOCoreIconType;
+    icon?: IOCoreIconType;
     isRequired?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;
-    placeholder: string;
+    placeholder?: string;
     multiline?: boolean;
     inputClass?: string;
     disabled?: boolean;
@@ -28,7 +27,8 @@ interface ITextInputProps {
     password?: boolean;
     errorText?: string;
     isError?: boolean;
-    id: string;
+    title?: string;
+    id?: string;
 };
 
 export type TextInputSpreadBehaviour = "baseline" | "stretch" | "free";
@@ -55,8 +55,10 @@ export type TitleProps = {
 };
 
 export type TextInputStylerResult = {
-    titleProps: TitleProps;
+    contentContainer: CSSProperties;
+    passwordIcon: CSSProperties;
     container: CSSProperties;
+    titleProps: TitleProps;
     input: CSSProperties;
     clear: CSSProperties;
 };
