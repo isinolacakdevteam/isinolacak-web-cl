@@ -17,7 +17,8 @@ interface IChipProps {
     onClick?: () => void;
     variant?: ChipTypes;
     className?: string;
-    disabled?:boolean;
+    selected?: boolean;
+    disabled:boolean;
     size?: ChipSizes;
     title: string;
 };
@@ -37,6 +38,7 @@ export type ChipStylerParams = {
     isCancelable?: boolean;
     icon?: IOCoreIconType;
     variant: ChipTypes;
+    selected?: boolean;
     disabled: boolean;
     loading?: boolean;
     size: ChipSizes;
