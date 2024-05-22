@@ -125,6 +125,7 @@ export const chipStyler = ({
     iconColor,
     disabled,
     radiuses,
+    selected,
     borders,
     variant,
     spaces,
@@ -207,6 +208,20 @@ export const chipStyler = ({
             cursor: "no-drop",
             transform: "none"
         };
+    }
+
+    if(selected) {
+        if(color) {
+            container.backgroundColor = colors[color];
+            container.borderColor = colors[color];
+            titleProps.color = "white";
+        } else {
+            container.backgroundColor = colors.primary;
+            container.borderColor = colors.primary;
+            titleProps.color = "white";
+        }
+    } else if(color) {
+        titleProps.color = "textDark";
     }
 
     if(titleColor) {

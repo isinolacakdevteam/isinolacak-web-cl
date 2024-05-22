@@ -45,6 +45,9 @@ export default {
         disabled: {
             control: "boolean"
         },
+        selected: {
+            control: "boolean"
+        },
         size: {
             control: "select",
             options: [
