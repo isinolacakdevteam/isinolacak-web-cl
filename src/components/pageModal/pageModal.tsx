@@ -44,8 +44,7 @@ const PageModal: FC<IPageModalProps> = ({
         <div
             className={styles.container}
             style={{
-                backgroundColor: colors.modalBackground,
-                padding: spaces.container
+                ...container
             }}
         >
             <div
@@ -59,7 +58,8 @@ const PageModal: FC<IPageModalProps> = ({
             <div
                 className={styles.contentContainer}
                 style={{
-                    ...container
+                    ...container,
+                    ...contentStyle
                 }}
             >
                 {content}
