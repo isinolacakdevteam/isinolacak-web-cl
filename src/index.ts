@@ -25,6 +25,7 @@ export type {
 export {
     SelectDialog,
     RadioButton,
+    StepManager,
     SelectBox,
     StateCard,
     TextInput,
