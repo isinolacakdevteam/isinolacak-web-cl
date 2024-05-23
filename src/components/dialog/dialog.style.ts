@@ -8,6 +8,9 @@ import {
     DialogStylerParams,
     DialogStylerResult 
 } from "./dialog.props";
+import {
+    IIOCoreIconPropsType 
+} from "src/types";
 
 export const dialogStyler = ({
     contentContainerStyle,
@@ -49,9 +52,21 @@ export const dialogStyler = ({
         marginLeft: spaces.content
     };
 
+    let clearIcon: IIOCoreIconPropsType = {
+        color: colors.primary
+    };
+
+    let clearButton: CSSProperties = {
+        position: "absolute",
+        right: 0,
+        top: 0
+    };
+
     return {
         primaryButton,
+        clearButton,
         container,
+        clearIcon,
         content,
         bottom,
         header

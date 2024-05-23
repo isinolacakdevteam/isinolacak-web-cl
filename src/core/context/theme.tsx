@@ -1,88 +1,70 @@
+import IOCoreContext, {
+    ConfigType
+} from "ncore-context";
+import light from "../theme/variants/light";
+import dark from "../theme/variants/dark";
 import {
-    createContext,
-    useReducer,
-    ReactNode,
-    useEffect,
-    useState,
-    Dispatch,
-    FC
-} from "react";
-import {
-    ThemeStoreInitial,
-    ThemeStoreReducer,
-    ThemeStore
-} from "../constants";
-import {
-    mergeGivenColorsWithIOCore,
+    mergeGivenDesignTokensWithIOCore,
     mergeGivenTypographyWithIOCore,
-    mergeGivenDesignTokensWithIOCore
+    mergeGivenColorsWithIOCore
 } from "../theme";
+import {
+    ThemeContextType,
+    ThemeType
+} from "../../types";
 
-export const ThemeContext = createContext<ThemeStore>(ThemeStoreInitial);
+class ThemeContextInheritance<T extends ThemeType> extends IOCoreContext<ThemeContextType, ConfigType<ThemeContextType>> {
+    themes: Array<IOCore.ThemeType> = [
+        light,
+        dark
+    ];
 
-type ThemeProvider = {
-    initialThemeKey?: IOCore.ThemeKey;
-    themes?: Array<IOCore.Theme>;
-    designTokens?: IOCore.DesignTokens;
-    children: ReactNode;
-};
+    constructor(initialState: T, config: ConfigType<ThemeContextType>) {
+        super({
+            activeTheme: light.key,
+            ...light,
+            ...light.designTokens
+        }, config);
 
-const ThemeProvider: FC<ThemeProvider> = ({
-    children,
-    initialThemeKey = "light",
-    themes,
-    designTokens
-}) => {
-    const [theme, setTheme]: [ThemeStore, Dispatch<ThemeStoreReducer>] = useReducer(
-        (state: ThemeStore, newValue: ThemeStoreReducer) => ({
-            ...state, ...newValue
-        }),
-        ThemeStoreInitial,
-        (initialState) => ({
-            ...initialState,
-            activeTheme: initialThemeKey
-        })
-    );
-    const [isInitialSwitchTheme, setIsInitialSwitchTheme] = useState(false);
+        this.prepare(initialState);
+    }
 
-    useEffect(() => {
-        if(!isInitialSwitchTheme && theme.isSetInitialHooks) {
-            theme.switchTheme(initialThemeKey);
-            setIsInitialSwitchTheme(true);
+    setTheme = (themeKey: IOCore.ThemeKeyType) => {
+        const currentProjectTheme = this.themes?.find(e => e.key === themeKey);
+
+        if(themeKey !== "light" && themeKey !== "dark" && !(currentProjectTheme)) {
+            throw Error(`Can not find a theme for the given themeKey: ${themeKey}`);
         }
-    }, [isInitialSwitchTheme, initialThemeKey, theme]);
 
-    useEffect(() => {
-        setTheme({
-            switchTheme: (themeKey: IOCore.ThemeKey) => {
-                const currentProjectTheme = themes?.find(e => e.key === themeKey);
+        const _typography = mergeGivenTypographyWithIOCore(themeKey, currentProjectTheme?.typography);
+        const _colors = mergeGivenColorsWithIOCore(themeKey, currentProjectTheme?.colors);
+        const _designTokens = mergeGivenDesignTokensWithIOCore(themeKey, currentProjectTheme?.designTokens);
 
-                if(themeKey !== "light" && themeKey !== "dark" && !(currentProjectTheme)) {
-                    throw Error(`Can not find a theme for the given themeKey: ${themeKey}`);
-                }
+        const newState = {
+            activeTheme: themeKey,
+            typography: _typography,
+            colors: _colors,
+            spaces: _designTokens.spaces,
+            borders: _designTokens.borders,
+            radiuses: _designTokens.radiuses,
+            disabled: _designTokens.disabled
+        };
 
-                const _typography = mergeGivenTypographyWithIOCore(themeKey, currentProjectTheme?.typography);
-                const _colors = mergeGivenColorsWithIOCore(themeKey, currentProjectTheme?.colors);
-                const _designTokens = mergeGivenDesignTokensWithIOCore(designTokens);
+        this.state = newState;
+        this.setState(newState);
+    };
 
-                setTheme({
-                    activeTheme: themeKey,
-                    typography: _typography,
-                    colors: _colors,
-                    spaces: _designTokens.spaces,
-                    borders: _designTokens.borders,
-                    radiuses: _designTokens.radiuses,
-                    disabled: _designTokens.disabled
-                });
-            },
-            isSetInitialHooks: true
-        });
-    }, [themes, designTokens]);
+    prepare = (initialState?: ThemeType) => {
+        if(initialState && initialState.themes) {
+            this.themes = initialState.themes;
+        }
 
-    return <ThemeContext.Provider
-        value={theme}
-    >
-        {children}
-    </ThemeContext.Provider>;
+        if(initialState && initialState.initialThemeKey) {
+            this.setTheme(initialState.initialThemeKey);
+            return;
+        }
+
+        this.setTheme("light");
+    };
 };
-export default ThemeProvider;
+export default ThemeContextInheritance;

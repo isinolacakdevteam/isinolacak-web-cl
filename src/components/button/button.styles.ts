@@ -5,11 +5,16 @@ import {
     createUseStyles
 } from "react-jss";
 import {
-    IIOCoreIconProps 
-} from "src/core/types";
-import {
-    ButtonStylerParams, ButtonStylerResult, TitleProps 
+    ButtonStylerParams,
+    ButtonStylerResult,
+    TitleProps
 } from "./button.props";
+import {
+    IIOCoreIconPropsType
+} from "../../types";
+import {
+    SIZE_TO_STYLE_MAPPING 
+} from "./constants";
 
 const useStyles = createUseStyles({
     container: {
@@ -39,10 +44,10 @@ const useStyles = createUseStyles({
 type ButtonStyle = {
     container: CSSProperties;
     title: {
-        size: keyof IOCore.Typography;
+        size: keyof IOCore.TypographyType;
     };
     loading: {
-        containerSize: keyof IOCore.Typography;
+        containerSize: keyof IOCore.TypographyType;
     },
     icon: {
         size: number;
@@ -59,6 +64,8 @@ export const buttonStyler = ({
     displayBehaviourWhileLoading,
     spreadBehaviour,
     disabledStyle,
+    iconDirection,
+    textVariant,
     textColor,
     iconColor,
     disabled,
@@ -69,6 +76,7 @@ export const buttonStyler = ({
     spaces,
     colors,
     color,
+    title,
     icon,
     size
 }: ButtonStylerParams): ButtonStylerResult => {
@@ -80,11 +88,11 @@ export const buttonStyler = ({
         borderRadius: radiuses.half
     };
 
-    let titleColor: keyof IOCore.Colors = textColor ? textColor : "body";
+    let titleColor: keyof IOCore.ColorsType = textColor ? textColor : "body";
 
     let titleProps: TitleProps = {
+        variant: textVariant ? textVariant :  size === "xSmall" ? "body3-medium" : "body2-medium",
         color: titleColor,
-        variant: SIZE_TO_STYLE_MAPPING[size].title.size,
         style: {
             margin: "0 auto"
         }
@@ -160,8 +168,22 @@ export const buttonStyler = ({
         };
     }
 
-    let iconProps: IIOCoreIconProps = {
-        size: SIZE_TO_STYLE_MAPPING[size].icon.size,
+    if(icon && title) {
+        if(iconDirection === "left") {
+            titleProps.style = {
+                ...titleProps.style,
+                marginLeft: spaces.inline
+            };
+        } else {
+            titleProps.style = {
+                ...titleProps.style,
+                marginRight: spaces.inline
+            };
+        }
+    }
+
+    let iconProps: IIOCoreIconPropsType = {
+        size: 18,
         color: iconColor ? colors[iconColor] : colors[titleColor]
     };
 
@@ -172,57 +194,4 @@ export const buttonStyler = ({
     };
 };
 
-export const SIZE_TO_STYLE_MAPPING: ButtonStyleMappingType = {
-    "small": {
-        container: {
-            paddingLeft: 20,
-            paddingRight: 20,
-            paddingTop: 8,
-            paddingBottom: 8
-        },
-        title: {
-            size: "buttonSmall"
-        },
-        loading: {
-            containerSize: "buttonSmall"
-        },
-        icon: {
-            size: 14
-        }
-    },
-    "medium": {
-        container: {
-            paddingLeft: 40,
-            paddingRight: 40,
-            paddingTop: 12,
-            paddingBottom: 12
-        },
-        title: {
-            size: "buttonMedium"
-        },
-        loading: {
-            containerSize: "buttonMedium"
-        },
-        icon: {
-            size: 18
-        }
-    },
-    "large": {
-        container: {
-            paddingLeft: 60,
-            paddingRight: 60,
-            paddingTop: 14,
-            paddingBottom: 14
-        },
-        title: {
-            size: "buttonLarge"
-        },
-        loading: {
-            containerSize: "buttonLarge"
-        },
-        icon: {
-            size: 22
-        }
-    }
-};
 export default useStyles;

@@ -2,32 +2,58 @@ import {
     ReactNode,
     FC
 } from "react";
-import IOCoreContext from "./context";
+import Context from "./context";
 import {
-    IOCoreConfig 
-} from "./types";
-import useStyles from "./style";
-import "./style";
+    Host 
+} from "../packages/react-portalize/src/Host";
+import useStyles from "./stylesheet";
+import "./stylesheet";
 
-type IOCoreProvider = {
-    config?: IOCoreConfig;
-    children: ReactNode;
+class IOCoreInheritance {
+    IOCoreContext;
+
+    constructor() {
+        this.IOCoreContext = new Context({
+            key: "IOCore"
+        });
+    }
+
+    ContextApi: FC = ({
+        //@ts-ignore
+        children
+    }) => {
+        return <Host>
+            {children}
+        </Host>;
+    };
+
+    Provider = ({
+        children
+    }: {
+        children: ReactNode;
+    }) => {
+        const IOCoreContext = this.IOCoreContext;
+
+        const classes = useStyles();
+        
+        //@ts-ignore
+        return <IOCoreContext.Provider>
+            {/* @ts-ignore */}
+            <this.ContextApi>
+                <header>
+                    <link rel="stylesheet" href="https://cdn.isinolacak.com/assets/fonts/iocore.css"/>
+                </header>
+                <span className={classes.hide}></span>
+                {children}
+            </this.ContextApi>
+        </IOCoreContext.Provider>;
+    };
 };
 
-const IOCoreProvider: FC<IOCoreProvider> = ({
-    children,
-    config
-}) => {
-    const classes = useStyles();
+const IOCore = new IOCoreInheritance();
 
-    return <IOCoreContext
-        config={config}
-    >
-        <header>
-            <link rel="stylesheet" href="https://cdn.isinolacak.com/assets/fonts/iocore.css"/>
-        </header>
-        <span className={classes.hide}></span>
-        {children}
-    </IOCoreContext>;
-};
-export default IOCoreProvider;
+export const IOCoreContext = IOCore.IOCoreContext;
+export const IOCoreLocale = IOCoreContext.LocaleContext;
+export const IOCoreTheme = IOCoreContext.ThemeContext;
+export const IOCoreModal = IOCoreContext.ModalContext;
+export default IOCore;

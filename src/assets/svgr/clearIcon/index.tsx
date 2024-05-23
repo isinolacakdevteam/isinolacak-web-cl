@@ -1,12 +1,12 @@
 import {
-    IIOCoreIconProps
-} from "../../../core/types";
+    IIOCoreIconPropsType
+} from "../../../types";
 
 const SvgClearIcon = ({
     size = 20,
     color,
     ...props
-}: IIOCoreIconProps) => {
+}: IIOCoreIconPropsType) => {
     const pathScale = 16.67 / size;
 
     return <svg

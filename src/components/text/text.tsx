@@ -1,13 +1,13 @@
 import {
     FC
 } from  "react";
-import {
-    useIOCoreTheme 
-} from "../../core/context";
 import ITextProps from "./text.props";
+import {
+    IOCoreTheme
+} from "../../core";
 
 const Text: FC<ITextProps> = ({
-    variant = "body",
+    variant = "body-regular",
     reference,
     children,
     color,
@@ -17,7 +17,7 @@ const Text: FC<ITextProps> = ({
     const {
         typography,
         colors
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     return <span
         {...props}

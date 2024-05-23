@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Story,
     Meta
@@ -7,10 +8,11 @@ import IButtonProps from "./button.props";
 import {
     ChevronRightIcon,
     ClearIcon
-} from "../../assets/svgr";
+} from "../../assets/svgr"; 
 import {
-    IIOCoreIconProps 
-} from "src/core/types";
+    IIOCoreIconPropsType
+} from "../../types";
+import lightTheme from "../../core/theme/variants/light";
 
 export default {
     title: "Components/Button",
@@ -18,7 +20,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Button page."
+                component: "Welcome to IOCore Button page."
             }
         }
     },
@@ -26,7 +28,7 @@ export default {
         size: {
             control: {
                 type: "select",
-                options: ["small", "medium", "large"],
+                options: ["small" , "medium" , "large" , "xSmall"],
             },
         },
         variant: {
@@ -44,8 +46,17 @@ export default {
                 options: ["free", "baseline", "stretch"]
             }
         },
-        loading: {
-            control: "boolean"
+        textColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
+        textVariant: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.typography)
+            }
         },
         icon: {
             mapping: {
@@ -53,14 +64,14 @@ export default {
                 "chevronRightIcon": ({
                     color,
                     size
-                }: IIOCoreIconProps) => <ChevronRightIcon
+                }: IIOCoreIconPropsType) => <ChevronRightIcon
                     color={color}
                     size={size}
                 />,
                 "clearIcon": ({
                     color,
                     size
-                }: IIOCoreIconProps) => <ClearIcon
+                }: IIOCoreIconPropsType) => <ClearIcon
                     color={color}
                     size={size}
                 />
@@ -69,78 +80,20 @@ export default {
                 type: "select",
                 options: ["undefined", "chevronRightIcon", "clearIcon"]
             }
+        },
+        iconDirection: {
+            control: {
+                type: "select",
+                options: ["left", "right"]
+            }
         }
     },
 } as Meta;
 
 const Template: Story<IButtonProps> = (args) => <Button {...args} />;
 
-export const Default = Template.bind({
-});
-Default.args = {
-    variant: "filled",
-    title: "Button"
-};
-
-export const Outline = Template.bind({
-});
-Outline.args = {
-    variant: "outline",
-    title: "Button"
-};
-
-export const Ghost = Template.bind({
-});
-Ghost.args = {
-    variant: "ghost",
-    title: "Button"
-};
-
-export const Large = Template.bind({
-});
-Large.args = {
-    size: "large",
-    title: "Button"
-};
-
-export const Medium = Template.bind({
-});
-Medium.args = {
-    size: "medium",
-    title: "Button"
-};
-
-export const Small = Template.bind({
-});
-Small.args = {
-    size: "small",
-    title: "Button"
-};
-
-export const Disabled = Template.bind({
-});
-Disabled.args = {
-    variant: "filled",
-    disabled: true,
-    title: "Button"
-};
-
-export const Loading = Template.bind({
-});
-Loading.args = {
-    loading: true,
-    title: "Button"
-};
-
 export const Icon = Template.bind({
 });
 Icon.args = {
-    title: "Button",
-    icon: ({
-        color,
-        size
-    }) => <ChevronRightIcon
-        color={color}
-        size={size}
-    />
+    title: "Button"
 };

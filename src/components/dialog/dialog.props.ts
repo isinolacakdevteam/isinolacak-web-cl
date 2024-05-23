@@ -6,20 +6,23 @@ import {
     ButtonDisplayBehaviourWhileLoading
 } from "../../components/button/button.props";
 import {
-    PortalizedComponentProps 
-} from "../../core/types";
+    PortalizedComponentProps,
+    IIOCoreIconPropsType
+} from "../../types";
 
 export type DialogStylerParams = {
     contentContainerStyle?: CSSProperties;
     bottomContainerStyle?: CSSProperties;
     headerContainerStyle?: CSSProperties;
-    radiuses: IOCore.RadiusesTokens;
-    spaces: IOCore.SpacesTokens;
-    colors: IOCore.Colors;
+    radiuses: IOCore.RadiusesTokensType;
+    spaces: IOCore.SpacesTokensType;
+    colors: IOCore.ColorsType;
 };
 
 export type DialogStylerResult = {
+    clearIcon: IIOCoreIconPropsType;
     primaryButton: CSSProperties;
+    clearButton: CSSProperties;
     container: CSSProperties;
     content: CSSProperties;
     bottom: CSSProperties;

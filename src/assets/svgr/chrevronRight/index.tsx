@@ -1,12 +1,12 @@
 import {
-    IIOCoreIconProps
-} from "../../../core/types";
+    IIOCoreIconPropsType 
+} from "../../../types";
 
 const SvgChevronRight = ({
     size = 30,
     color,
     ...props
-}: IIOCoreIconProps) => {
+}: IIOCoreIconPropsType) => {
     const pathScale = 38 / size;
 
     return <svg

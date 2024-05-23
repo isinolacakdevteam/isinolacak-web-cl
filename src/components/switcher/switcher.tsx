@@ -1,80 +1,36 @@
 import {
     FC
 } from  "react";
+import useStyles, {
+    switcherStyler
+} from "./switcher.style";
+import ISwitcherProps from "./switcher.props";
 import {
-    useIOCoreTheme 
-} from "../../core/context";
-import ISwitcherProps, {
-    SwitcherStylerParams, SwitcherStylerResult 
-} from "./switcher.props";
-import useStyles from "./switcher.style";
-
-const SWITCH_AREA = 30;
-const INDICATOR_WIDTH = 20;
-
-const switcherStyler = ({
-    indicatorStyle,
-    disabledStyle,
-    isActive,
-    disabled,
-    colors,
-    spaces,
-    style
-}: SwitcherStylerParams): SwitcherStylerResult => {
-    const totalWidth = (spaces.content * 2) + SWITCH_AREA;
-    const activeUsageAreaWidth = spaces.content + INDICATOR_WIDTH;
-    const activeTransformX = totalWidth - activeUsageAreaWidth;
-
-    let container = {
-        ...style,
-        backgroundColor: colors.gray80,
-        padding: spaces.content,
-        width: SWITCH_AREA
-    };
-
-    let indicator = {
-        ...indicatorStyle,
-        transform: `translateX(${isActive ? activeTransformX : 0}px)`,
-        backgroundColor: colors.panel,
-        left: spaces.content / 2,
-        width: INDICATOR_WIDTH
-    };
-
-    if(isActive) {
-        container.backgroundColor = colors.primary;
-    }
-
-    if(disabled) {
-        container = {
-            ...container,
-            ...disabledStyle,
-            cursor: "no-drop",
-        };
-    }
-
-    return {
-        indicator,
-        container
-    };
-};
+    IOCoreTheme 
+} from "../../../src/core";
+import Text from "../text/text";
 
 const Switcher: FC<ISwitcherProps> = ({
+    renderTitle: renderTitleProp,
     indicatorStyle,
+    titleStyle,
     className,
     disabled,
     isActive,
     onChange,
-    style
+    style,
+    title
 }) => {
     const {
         disabled: disabledStyle,
         colors,
         spaces
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const classes = useStyles();
 
     const {
+        titleProps,
         indicator,
         container
     } = switcherStyler({
@@ -87,26 +43,54 @@ const Switcher: FC<ISwitcherProps> = ({
         style
     });
 
-    return <div
-        onClick={() => {
-            if(onChange && !disabled) onChange();
-        }}
-        className={[
-            classes.container,
-            className
-        ].join(" ")}
-        style={{
-            ...container
-        }}
-    >
-        <div
-            className={[
-                classes.indicator
-            ].join(" ")}
+    const renderTitle = () => {
+        if(!title && !renderTitleProp) {
+            return null;
+        }
+
+        if(renderTitleProp) {
+            return renderTitleProp({
+                titleVariant: titleProps.variant,
+                color: titleProps.color,
+                titleStyle: [
+                    titleProps.style
+                ]
+            });
+        }
+
+        return <Text
+            color={titleProps.color}
             style={{
-                ...indicator
+                ...titleProps.style,
+                ...titleStyle
             }}
-        ></div>
+        >
+            {title}
+        </Text>;
+    };
+
+    return <div 
+        className={classes.switchComponentContainer}
+    >
+        <div 
+            style={{
+                marginRight: spaces.inline
+            }}>
+            {renderTitle()}
+        </div>
+        <div
+            onClick={() => {
+                if (onChange && !disabled) onChange();
+            }}
+            className={[classes.container, className].join(" ")}
+            style={{
+                ...container 
+            }}
+        >
+            <div className={[classes.indicator].join(" ")} style={{
+                ...indicator 
+            }}></div>
+        </div>
     </div>;
 };
 export default Switcher;

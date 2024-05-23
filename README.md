@@ -5,7 +5,7 @@
         src="https://cdn.isinolacak.com/assets/images/darklogo.png"
     />
     <br/>
-    <span style="font-size: 24px; font-weight: bold; text-align: center; width: 100%;">Olacak Bilgi Teknolojileri | IOCore Web Component Library</span>
+    <span style="font-size: 24px; font-weight: bold; text-align: center; width: 100%;">Olacak Bilgi Teknolojileri | IOCore Web - Component Library</span>
     <br/>
     <br/>
 </p>

@@ -12,7 +12,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Chip page."
+                component: "Welcome to IOCORE Chip page."
             }
         }
     },
@@ -40,6 +40,12 @@ export default {
             }
         },
         isCancelable: {
+            control: "boolean"
+        },
+        disabled: {
+            control: "boolean"
+        },
+        selected: {
             control: "boolean"
         },
         size: {

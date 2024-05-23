@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Story,
     Meta
@@ -30,5 +31,6 @@ const Template: Story<ISwitcherProps> = (args) => <Switcher {...args} />;
 export const Default = Template.bind({
 });
 Default.args = {
-    isActive: false
+    isActive: false,
+    title: "title"
 };

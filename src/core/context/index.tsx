@@ -1,76 +1,74 @@
 import {
-    useContext,
-    ReactNode,
-    FC
+    ReactNode
 } from "react";
-import LocalesProvider, {
-    LocalesContext
-} from "./locales";
-import ThemeProvider, {
-    ThemeContext
-} from "./theme";
+import ThemeContextInheritance from "./theme";
+import LocaleContextInheritance from "./locale";
+import ModalContextInheritance from "./modal";
+import light from "../theme/variants/light";
 import {
-    useIOCoreLocalizationReturnType,
-    useIOCoreThemeReturnType
-} from "../constants";
+    en,
+    tr
+} from "../locales";
 import {
-    Host
-} from "../../packages/react-portalize/src";
-import {
-    IOCoreConfig 
-} from "../types";
+    IOCoreContextConfigType
+} from "../../types";
 
-type IOCoreContext = {
-    config?: IOCoreConfig;
-    children: ReactNode;
-};
+class Context {
+    ThemeContext;
+    LocaleContext;
+    ModalContext;
 
-const IOCoreContext: FC<IOCoreContext> = ({
-    children,
-    config
-}) => {
-    return <ThemeProvider
-        initialThemeKey={config?.initialThemeKey}
-        themes={config?.themes}
-        designTokens={config?.designTokens}
-    >
-        <LocalesProvider
-            initialLanguage={config?.initialLanguage}
-            locales={config?.locales}
-        >
-            <Host>
-                {children}
-            </Host>
-        </LocalesProvider>
-    </ThemeProvider>;
-};
-
-export const useIOCoreTheme = (): useIOCoreThemeReturnType => useContext(ThemeContext);
-export const useIOCoreLocalization = (): useIOCoreLocalizationReturnType => {
-    const {
-        activeLocale,
-        switchLocale,
-        isRTL,
-        currentLocalizationData
-    } = useContext(LocalesContext);
-
-    return {
-        localize: (localizationKey: keyof IOCore.Translation, params?: Array<string>): string => {
-            if(!params) {
-                return currentLocalizationData[localizationKey];
+    constructor(config: IOCoreContextConfigType) {
+        this.ThemeContext = new ThemeContextInheritance(
+            {
+                initialThemeKey: "light",
+                ...light,
+                ...light.designTokens,
+            },
+            {
+                ...config,
+                key: "IOCoreTheme"
             }
+        );
 
-            let returnString = currentLocalizationData[localizationKey];
-            params.forEach((item, index) => {
-                const pattern = `\\$\\{${index}\\}`;
-                const regex = new RegExp(pattern, "g");
-                returnString = returnString.replace(regex, item);
-            });
-            return returnString;
-        },
-        activeLocale,
-        switchLocale,
-        isRTL
+        this.LocaleContext = new LocaleContextInheritance(
+            {
+                initialLanguage: "en",
+                locales: [
+                    en,
+                    tr
+                ]
+            },
+            {
+                ...config,
+                key: "IOCoreLocale"
+            }
+        );
+
+        this.ModalContext = new ModalContextInheritance(
+            {
+                ...config,
+                key: "IOCoreModal"
+            }
+        );
+    }
+
+    Provider = ({
+        children
+    }: {
+        children: ReactNode
+    }) => {
+        const ModalContext = this.ModalContext;
+        const LocaleContext= this.LocaleContext;
+        const ThemeContext = this.ThemeContext;
+
+        return <ThemeContext.Provider>
+            <LocaleContext.Provider>
+                <ModalContext.Render>
+                    {children}
+                </ModalContext.Render>
+            </LocaleContext.Provider>
+        </ThemeContext.Provider>;
     };
 };
-export default IOCoreContext;
+export default Context;

@@ -2,132 +2,17 @@ import {
     CSSProperties,
     FC
 } from  "react";
-import {
-    useIOCoreTheme 
-} from "../../core/context";
-import IChipProps, {
-    ChipStylerParams,
-    ChipStylerResult, 
-    TitleProps
-} from "./chip.props";
+import IChipProps from "./chip.props";
 import useStyles, {
-    SIZE_TO_STYLE_MAPPING 
+    chipStyler
 } from "./chip.styles";
-import {
-    IIOCoreIconProps 
-} from "../../core/types";
 import Text from "../text/text";
 import {
     ClearIcon 
 } from "../../assets/svgr";
-
-const buttonStyler = ({
-    spreadBehaviour,
-    disabledStyle,
-    isCancelable,
-    titleColor,
-    iconColor,
-    disabled,
-    borders,
-    variant,
-    spaces,
-    colors,
-    color,
-    icon,
-    size
-}: ChipStylerParams): ChipStylerResult => {
-    let container: CSSProperties = {
-        backgroundColor: colors[color],
-        borderColor: colors[color],
-        ...SIZE_TO_STYLE_MAPPING[size].container,
-        borderWidth: borders.indicator
-    };
-
-    let titleProps: TitleProps = {
-        color: "body",
-        variant: SIZE_TO_STYLE_MAPPING[size].title.size
-    };
-
-    let iconProps: IIOCoreIconProps = {
-        size: SIZE_TO_STYLE_MAPPING[size].icon.size,
-        color: "body"
-    };
-
-    let cancelIconProps: IIOCoreIconProps = {
-        size: SIZE_TO_STYLE_MAPPING[size].cancelIcon.size,
-        color: colors.body
-    };
-
-    if(variant === "outline") {
-        container.backgroundColor = "transparent";
-        cancelIconProps.color = colors[color];
-        titleProps.color = color;
-        iconProps.color = color;
-    }
-
-    if(variant === "inverted") {
-        container.backgroundColor = `${colors[color]}44`;
-        container.borderColor = "transparent";
-        cancelIconProps.color = colors[color];
-        titleProps.color = color;
-        iconProps.color = color;
-    }
-
-    if(spreadBehaviour === "baseline") {
-        container.alignSelf = spreadBehaviour;
-        container.width = "auto";
-    }
-
-    if(spreadBehaviour === "center") {
-        container.alignSelf = spreadBehaviour;
-    }
-
-    if(icon) {
-        titleProps = {
-            ...titleProps,
-            style: {
-                ...titleProps.style,
-                marginLeft: spaces.content
-            }
-        };
-    }
-
-    if(isCancelable) {
-        titleProps = {
-            ...titleProps,
-            style: {
-                ...titleProps.style,
-                marginRight: spaces.content
-            }
-        };
-    }
-
-    if(disabled) {
-        container = {
-            ...container,
-            ...disabledStyle,
-            cursor: "no-drop",
-            transform: "none"
-        };
-    }
-
-    if(titleColor) {
-        cancelIconProps.color = colors[titleColor];
-        titleProps.color = titleColor;
-        iconProps.color = titleColor;
-    }
-
-    if(iconColor) {
-        iconProps.color = iconColor;
-    }
-
-    return {
-        cancelIconProps,
-        titleProps,
-        iconProps,
-        container
-    };
-};
+import {
+    IOCoreTheme 
+} from "../../core";
 
 /**
  * A generic chip
@@ -145,6 +30,7 @@ const Chip: FC<IChipProps> = ({
     titleColor,
     className,
     iconColor,
+    selected,
     onClick,
     style,
     title,
@@ -153,24 +39,27 @@ const Chip: FC<IChipProps> = ({
     const classes = useStyles();
 
     const {
-        disabled: disabledStyle,
+        disabled: designTokensDisabled,
+        radiuses,
         borders,
         colors,
         spaces
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const {
         cancelIconProps,
         container,
         iconProps,
         titleProps
-    } = buttonStyler({
+    } = chipStyler({
         icon: IconComponentProp,
         spreadBehaviour,
-        disabledStyle,
+        disabledStyle: designTokensDisabled,
         isCancelable,
         titleColor,
         iconColor,
+        selected,
+        radiuses,
         disabled,
         borders,
         variant,

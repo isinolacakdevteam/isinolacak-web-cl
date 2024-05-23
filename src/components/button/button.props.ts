@@ -2,59 +2,76 @@ import {
     CSSProperties
 } from "react";
 import {
-    IIOCoreIconProps,
-    IOCoreIcon
-} from "../../core/types";
+    IIOCoreIconPropsType,
+    IOCoreIconType
+} from "../../types";
 
 interface IButtonProps extends Partial<Omit<HTMLButtonElement, "children" | "style">> {
     displayBehaviourWhileLoading?: ButtonDisplayBehaviourWhileLoading;
+    textVariant?: keyof IOCore.TypographyType;
     spreadBehaviour?: ButtonSpreadBehaviour;
-    iconColor?: keyof IOCore.Colors;
-    textColor?: keyof IOCore.Colors;
-    color?: keyof IOCore.Colors;
+    textColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
+    color?: keyof IOCore.ColorsType;
     titleStyle?: CSSProperties;
+    icon?: IOCoreIconType;
     variant?: ButtonVariant;
     style?: CSSProperties;
     onClick: () => void;
     disabled?: boolean;
     loading?: boolean;
     size?: ButtonSize;
-    icon?: IOCoreIcon;
     title?: string;
 };
 
 export type ButtonDisplayBehaviourWhileLoading = "none" | "disabled";
 export type ButtonSpreadBehaviour = "baseline" | "stretch" | "free";
+export type ButtonSize = "small" | "medium" | "large" | "xSmall";
 export type ButtonVariant = "filled" | "outline" | "ghost";
-export type ButtonSize = "small" | "medium" | "large";
 
 export type ButtonStylerParams = {
     displayBehaviourWhileLoading: ButtonDisplayBehaviourWhileLoading;
+    textVariant?: keyof IOCore.TypographyType;
     spreadBehaviour: ButtonSpreadBehaviour;
-    radiuses: IOCore.RadiusesTokens;
-    textColor?: keyof IOCore.Colors;
-    iconColor?: keyof IOCore.Colors;
-    borders: IOCore.BordersTokens;
+    radiuses: IOCore.RadiusesTokensType;
+    textColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
+    borders: IOCore.BordersTokensType;
+    iconDirection?: "left" | "right";
+    spaces: IOCore.SpacesTokensType;
+    color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
-    spaces: IOCore.SpacesTokens;
-    color: keyof IOCore.Colors;
+    colors: IOCore.ColorsType;
     variant: ButtonVariant;
-    colors: IOCore.Colors;
+    icon?: IOCoreIconType;
     disabled: boolean;
     loading?: boolean;
-    icon?: IOCoreIcon;
     size: ButtonSize;
+    title?: string;
 };
 
 export type TitleProps = {
-    color: keyof IOCore.Colors;
-    variant: keyof IOCore.Typography;
+    variant: keyof IOCore.TypographyType;
+    color: keyof IOCore.ColorsType;
     style?: CSSProperties;
 };
 
 export type ButtonStylerResult = {
-    iconProps: IIOCoreIconProps;
+    iconProps: IIOCoreIconPropsType;
     container: CSSProperties;
     titleProps: TitleProps;
 };
+
+export type ButtonStyle = {
+    container: CSSProperties;
+};
+
+export type ButtonStyleMappingType = {
+    xSmall: ButtonStyle;
+    small: ButtonStyle;
+    medium: ButtonStyle;
+    large: ButtonStyle;
+};
+
 export default IButtonProps;
