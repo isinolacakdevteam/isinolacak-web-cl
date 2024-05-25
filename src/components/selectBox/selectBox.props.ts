@@ -5,6 +5,7 @@ import {
     IIOCoreIconPropsType,
     SelectObjectType
 } from "../../types";
+import IPaginationProps from "../pagination/pagination.props";
 
 export type SelectedItem = {
     title: string;
@@ -59,6 +60,7 @@ export interface ISelectBoxProps<T> {
         onSuccess: () => void;
     }) => void;
     spreadBehaviour: SelectBoxSpreadBehaviour,
+    paginationProps?: IPaginationProps; 
     isLoadingOKButton?: boolean;
     onOverlayPress: () => void;
     isNeedConfirm?: boolean;
