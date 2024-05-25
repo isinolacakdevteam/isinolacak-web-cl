@@ -15,7 +15,8 @@ import {
     TextInput,
     CheckBox,
     Button,
-    Text
+    Text,
+    Pagination
 } from "../index";
 import {
     SelectObjectType
@@ -36,6 +37,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         childrenStyle: childrenStyleProp,
         renderItem: RenderItem,
         isLoadingOKButton,
+        paginationProps,
         setSelectedItems,
         headerComponent,
         onOverlayPress,
@@ -233,8 +235,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         </div>;
     };
 
-    
-
     const renderActions = () => {
         return <div
             className={styles.renderActions}
@@ -245,6 +245,16 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             {renderClear()}
             {renderConfirm()}
         </div>;
+    };
+
+    const renderPagination = () => {
+        if(!paginationProps) {
+            return null;
+        }
+
+        return <Pagination
+            {...paginationProps}
+        />;
     };
 
     const renderItem = ({
@@ -398,6 +408,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     }}
                 >
                     {renderContent()}
+                    {renderPagination()}
                 </div>
                 {renderActions()}
                 <Button

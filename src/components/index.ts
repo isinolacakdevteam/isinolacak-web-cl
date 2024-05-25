@@ -69,3 +69,7 @@ export {
 export {
     default as StepManager
 } from "./stepManager/stepManager";
+
+export {
+    default as Pagination
+} from "./pagination/pagination";

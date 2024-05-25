@@ -26,6 +26,7 @@ export {
     SelectDialog,
     RadioButton,
     StepManager,
+    Pagination,
     SelectBox,
     StateCard,
     TextInput,

@@ -78,7 +78,6 @@ export const textInputStyler = ({
         paddingLeft: spaces.container / 1.5,
         paddingBottom: spaces.content * 1.5,
         paddingTop: spaces.content * 1.5,
-        marginBottom: spaces.content,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line,
