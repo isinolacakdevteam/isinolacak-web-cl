@@ -7,6 +7,7 @@ import {
     IIOCoreIconPropsType,
     SelectObjectType
 } from "../../types";
+import IPaginationProps from "../pagination/pagination.props";
 
 export type SelectDialogStylerParams = {
     contentContainerStyle?: CSSProperties;
@@ -77,6 +78,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     }) => ReactNode;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
+    paginationProps?: IPaginationProps; 
     childrenStyle?: CSSProperties;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
