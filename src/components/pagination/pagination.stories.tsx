@@ -16,11 +16,6 @@ export default {
         }
     },
     argTypes: {
-        maxButton: {
-            control: {
-                type: "text"
-            }
-        }
     }
 } as Meta;
 
