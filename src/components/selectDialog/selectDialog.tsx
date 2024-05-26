@@ -74,7 +74,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
     const [renderData, setRenderData] = useState(data);
     const [searchText, setSearchText] = useState("");
-    const [page, setPage] = useState(1);
 
     useEffect(() => {
         if(searchText && searchText.length) {
@@ -251,7 +250,11 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const renderPagination = () => {
         if(!paginationProps) {
             return null;
-        } 
+        }
+
+        return <Pagination
+            {...paginationProps}
+        />;
     };
 
     const renderItem = ({
