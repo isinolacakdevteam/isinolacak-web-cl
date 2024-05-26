@@ -11,10 +11,12 @@ import {
 
 const useStyles = createUseStyles({
     container: {
+        boxSizing: "border-box",
         flexDirection: "row",
         alignItems: "center",
-        display: "flex",
-        width: "100%"
+        alignSelf: "stretch",
+        userSelect: "none",
+        display: "flex"
     },
     buttonsContainer: {
         flexDirection: "row",
@@ -23,7 +25,6 @@ const useStyles = createUseStyles({
         display: "flex",
     },
     buttonStyle: {
-        
     }
 });
 
@@ -32,6 +33,8 @@ export const paginationStyler = ({
 }: PaginationStylerParams): PaginationStylerResult => {
 
     let container: CSSProperties = {
+        /* paddingLeft: spaces.content,
+        paddingRight: spaces.content */
     };
 
     let arrowButton: CSSProperties = {

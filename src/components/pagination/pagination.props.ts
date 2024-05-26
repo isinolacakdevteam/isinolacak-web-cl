@@ -6,10 +6,11 @@ interface IPaginationProps {
     onSelect: (item: any, index: number) => void;
     onRight: (index: number) => void;
     onLeft: (index: number) => void;
-    maxButtonCount?: number;
+    maxButtonCount: number;
     style?: CSSProperties;
     selectedIndex: number;
-    buttonCount: number;
+    itemPerPage: number;
+    itemNumber: number;
 };
 
 export type PaginationStylerParams = {

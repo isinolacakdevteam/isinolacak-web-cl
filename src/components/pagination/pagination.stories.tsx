@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Meta,
     Story
@@ -9,21 +8,15 @@ import IPaginationProps from './pagination.props';
 export default {
     title: 'Components/Pagination',
     component: Pagination,
-    argTypes: {
-        onChange: {
-            action: 'changed' 
-        },
-        spreadBehaviour: {
-            control: {
-                type: "select",
-                options: [
-                    "baseline",
-                    "stretch",
-                    "free"
-                ]
+    parameters: {
+        docs: {
+            description: {
+                component: "Welcome to IOCore Pagination page."
             }
         }
     },
+    argTypes: {
+    }
 } as Meta;
 
 const Template: Story<IPaginationProps> = (args) => <Pagination {...args} />;
@@ -32,7 +25,9 @@ export const Default = Template.bind({
 });
 
 Default.args = {
-    buttonCount: 10,
-    selectedIndex: 2
+    maxButtonCount: 5,
+    selectedIndex: 1,
+    itemPerPage: 20,
+    itemNumber: 600
 };
 
