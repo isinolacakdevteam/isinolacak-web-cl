@@ -2,7 +2,7 @@ import {
     FC
 } from "react";
 import useStyles, {
-    paginationStyler 
+    paginationStyler
 }  from "./pagination.styles";
 import IPaginationProps from "./pagination.props";
 import {
