@@ -63,6 +63,7 @@ export interface ISelectBoxProps<T> {
     paginationProps?: IPaginationProps; 
     isLoadingOKButton?: boolean;
     onOverlayPress: () => void;
+    emptyContent?: () => JSX.Element;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;

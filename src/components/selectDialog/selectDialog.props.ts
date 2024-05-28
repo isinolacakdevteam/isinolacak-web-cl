@@ -83,6 +83,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
+    emptyContent?: () => JSX.Element;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;

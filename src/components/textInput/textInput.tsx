@@ -202,6 +202,20 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
+    const renderTitle = () => {
+        if(!finalTitle) {
+            return null;
+        }
+
+        return <Text
+            {...titleProps}
+            variant={isInputFocused ? "body2-bold" : "body-bold"}
+            color={isError ? "error" : titleProps.color}
+        >
+            {finalTitle}
+        </Text>;
+    };
+
     const renderInput = () => {
         return <input
             type={password && !showPassword ? "password" : "text"}
@@ -243,13 +257,7 @@ const TextInput: FC<ITextInputProps> = ({
             <div
                 className={classes.content}
             >
-                <Text
-                    {...titleProps}
-                    variant={isInputFocused ? "body2-bold" : "body-bold"}
-                    color={isError ? "error" : titleProps.color}
-                >
-                    {finalTitle}
-                </Text>
+                {renderTitle()}
                 {renderInput()}
             </div>
             {renderIcon("right")}

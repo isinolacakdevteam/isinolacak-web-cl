@@ -4,6 +4,7 @@ import {
 } from "@storybook/react";
 import SelecetDialog from "./selectDialog";
 import ISelectDialogProps from "./selectDialog.props";
+import Text from "../text/text";
 
 export default {
     title: 'Components/SelecetDialog',
@@ -33,9 +34,15 @@ Default.args = {
     isLoadingOKButton: false,
     title: 'SelectDialog',
     isNeedConfirm: true,
+    isSearchable: true,
     multiSelect: true,
-    isVisible: true,
     selectedItems: [],
+    isVisible: true,
+    emptyContent: () => {
+        return <Text>
+            merhaba
+        </Text>;
+    },
     onClose: () => {
         alert("Close Button pressed.");
     },

@@ -14,10 +14,7 @@ export const useStyles = createUseStyles({
     container: {
         flexDirection: "row",
         userSelect: "none",
-        display: "flex",
-        "&:hover": {
-            cursor: "pointer"
-        }
+        display: "flex"
     },
     content: {
         flexDirection: "column",
