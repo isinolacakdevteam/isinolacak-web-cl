@@ -226,7 +226,7 @@ const Pagination: FC<IPaginationProps> = ({
             {
                 pageNumbers.map((item, index) => {
                     const isCurrentSelected = selectedIndex === item;
-                    console.log("page",JSON.stringify(pageNumbers));
+
                     return <Button
                         key={`pagination-button-${index}`}
                         title={item.toString()}

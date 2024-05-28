@@ -40,6 +40,7 @@ const SelectBox = <T extends {}>({
     keyExtractor,
     isNeedConfirm,
     isSearchable,
+    emptyContent,
     inputTitle,
     renderItem,
     onSearch,
@@ -236,6 +237,7 @@ const SelectBox = <T extends {}>({
             selectedItems={selectedItems}
             isNeedConfirm={isNeedConfirm}
             isSearchable={isSearchable}
+            emptyContent={emptyContent}
             initialData={initialData}
             multiSelect={multiSelect}
             inputTitle={inputTitle}
