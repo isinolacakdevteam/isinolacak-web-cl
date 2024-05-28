@@ -61,9 +61,9 @@ export interface ISelectBoxProps<T> {
     }) => void;
     spreadBehaviour: SelectBoxSpreadBehaviour,
     paginationProps?: IPaginationProps; 
-    isLoadingOKButton?: boolean;
-    onOverlayPress: () => void;
     emptyContent?: () => JSX.Element;
+    isLoadingOKButton?: boolean;
+    onOverlayPress?: () => void;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
@@ -72,7 +72,7 @@ export interface ISelectBoxProps<T> {
     disabled?: boolean;
     isClick?: boolean;
     data: Array<T>;
-    title: string;
+    title?: string;
     style?: any;
 };
 

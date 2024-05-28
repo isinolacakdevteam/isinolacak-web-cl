@@ -57,7 +57,6 @@ const TextInput: FC<ITextInputProps> = ({
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState(initialValue ? initialValue : "");
-    const [isInputFocused, setIsInputFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -86,13 +85,11 @@ const TextInput: FC<ITextInputProps> = ({
 
     const onFocus = () => {
         if(onFocusProp) onFocusProp();
-        setIsInputFocused(true);
         setIsFocused(true);
     };
 
     const onBlur = () => {
         if(onBlurProp) onBlurProp();
-        setIsInputFocused(false);
         setIsFocused(false);
     };
 
@@ -209,7 +206,7 @@ const TextInput: FC<ITextInputProps> = ({
 
         return <Text
             {...titleProps}
-            variant={isInputFocused ? "body2-bold" : "body-bold"}
+            variant={titleProps.variant}
             color={isError ? "error" : titleProps.color}
         >
             {finalTitle}

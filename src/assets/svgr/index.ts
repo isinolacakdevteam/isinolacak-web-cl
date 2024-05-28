@@ -33,3 +33,7 @@ export {
 export {
     default as ChevronLeftIcon
 } from "./chevronLeft";
+
+export {
+    default as ChevronDownIcon
+} from "./chevronDown";

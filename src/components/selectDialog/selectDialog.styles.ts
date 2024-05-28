@@ -16,6 +16,7 @@ export const useStyles = createUseStyles({
     container: {
         justifyContent: "center",
         alignItems: "center",
+        userSelect: "none",
         position: "fixed",
         display: "flex",
         zIndex: 99996,

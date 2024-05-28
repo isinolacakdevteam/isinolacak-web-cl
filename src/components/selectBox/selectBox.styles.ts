@@ -11,17 +11,28 @@ import {
 export const useStyles = createUseStyles({
     container: {
         justifyContent: "space-between",
+        boxSizing: "border-box",
         alignItems: "center",
-        display: "flex",
+        flexDirection: "row",
+        userSelect: "none",
+        minHeight: 60.9,
+        display: "flex"
     },
     content: {
         justifyContent: "center",
         flexDirection: "column",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
         display: "flex"
     },
     customRenderForIcon: {
+        textOverflow: "ellipsis",
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        display: "flex"
     }
 });
 
@@ -38,10 +49,10 @@ export const selectBoxStyler = ({
     let container = {
         ...style,
         borderColor: isClick ? colors.primary : colors.stroke,
-        paddingRight: spaces.container / 1.5,
-        paddingLeft: spaces.container / 1.5,
         paddingBottom: spaces.content * 1.5,
+        paddingRight: spaces.content / 2,
         paddingTop: spaces.content * 1.5,
+        paddingLeft: spaces.content / 2,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line,

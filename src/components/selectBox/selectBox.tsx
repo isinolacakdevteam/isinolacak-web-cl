@@ -22,7 +22,7 @@ import {
     SelectedItem
 } from "./selectBox.props";
 import {
-    ChevronRightIcon
+    ChevronDownIcon
 } from "../../assets/svgr";
 
 const SelectBox = <T extends {}>({
@@ -149,6 +149,11 @@ const SelectBox = <T extends {}>({
         return <Text
             variant="body3-regular"
             color={titleProps.color}
+            style={{
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                overflow: "hidden"
+            }}
         >
             {title}
         </Text>;
@@ -222,7 +227,7 @@ const SelectBox = <T extends {}>({
     };
 
     const renderIcon = () => {
-        return <ChevronRightIcon
+        return <ChevronDownIcon
             color={colors.gray40}
             size={16}
         />;
