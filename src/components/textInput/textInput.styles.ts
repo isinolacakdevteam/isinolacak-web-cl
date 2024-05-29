@@ -7,7 +7,7 @@ import {
 import {
     TextInputStylerParams,
     TextInputStylerResult,
-    TitleProps 
+    TitleProps
 } from "./textInput.props";
 
 export const useStyles = createUseStyles({
@@ -43,14 +43,14 @@ export const useStyles = createUseStyles({
     },
     ıconProps: {
         justifyContent:"center",
-        alignContent:"center", 
+        alignContent:"center",
         alignItems: "center"
     },
     errorText: {
-        display: 'flex'
+        display: "flex"
     }
 }, {
-    name: "NCore-TextInput"
+    name: "ICore-TextInput"
 });
 
 export const textInputStyler = ({
@@ -82,7 +82,7 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        variant: value?.length || isFocused ? "body3-regular" : "body2-regular",
+        variant: value?.length || isFocused ? "body2-regular" : "body2-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
             alignSelf: "flex-start"

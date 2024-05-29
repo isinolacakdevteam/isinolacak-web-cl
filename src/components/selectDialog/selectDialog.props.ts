@@ -98,6 +98,6 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isVisible: boolean;
     snapPoint?: number;
     data: Array<K>;
-    title: string;
+    title?: string;
 };
 export default ISelectDialogProps;
