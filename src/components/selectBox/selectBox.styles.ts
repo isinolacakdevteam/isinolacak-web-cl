@@ -1,4 +1,7 @@
 import {
+    CSSProperties
+} from "react";
+import {
     createUseStyles
 } from "react-jss";
 import {
@@ -52,15 +55,22 @@ export const selectBoxStyler = ({
         paddingBottom: spaces.content * 1.5,
         paddingRight: spaces.content / 2,
         paddingTop: spaces.content * 1.5,
-        paddingLeft: spaces.content / 2,
         backgroundColor: colors.panel,
+        paddingLeft: spaces.content,
         borderRadius: radiuses.half,
         borderWidth: borders.line,
-        borderStyle: "solid"
+        borderStyle: "solid",
+        alignSelf: "free"
     };
 
     let titleProps: TitleProps = {
         color: "primary"
+    };
+
+    let titleStyle: CSSProperties = {
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden"
     };
 
     let contentProps: ContentProps = {
@@ -81,6 +91,7 @@ export const selectBoxStyler = ({
 
     return {
         contentProps,
+        titleStyle,
         titleProps,
         container
     };

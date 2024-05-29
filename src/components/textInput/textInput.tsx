@@ -101,11 +101,11 @@ const TextInput: FC<ITextInputProps> = ({
         if(disabled) {
             return null;
         }
-    
+
         if(!clearEnabled) {
             return null;
         }
-    
+
         if(value?.length === 0) {
             return null;
         }
