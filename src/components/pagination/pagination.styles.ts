@@ -16,7 +16,8 @@ const useStyles = createUseStyles({
         alignItems: "center",
         alignSelf: "stretch",
         userSelect: "none",
-        display: "flex"
+        display: "flex",
+        minWidth: 300
     },
     buttonsContainer: {
         flexDirection: "row",
