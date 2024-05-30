@@ -5,6 +5,9 @@ import {
 } from "@storybook/react";
 import Switcher from "./switcher";
 import ISwitcherProps from "./switcher.props";
+import {
+    variant 
+} from "styled-system";
 
 export default {
     title: "Components/Switcher",
