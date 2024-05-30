@@ -17,7 +17,6 @@ export type SelectDialogStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     childrenStyleProp?: any;
-    autoHeight?: boolean;
     fullScreen?: boolean;
 };
 
@@ -89,7 +88,6 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isSearchable?: boolean;
     multiSelect?: boolean;
     initialData: Array<T>;
-    autoHeight?: boolean;
     fullScreen?: boolean;
     inputTitle?: string;
     onClose: () => void;

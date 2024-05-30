@@ -12,7 +12,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Dialog page."
+                component: "Welcome to IOCore Dialog page."
             }
         }
     },

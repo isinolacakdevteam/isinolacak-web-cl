@@ -16,9 +16,9 @@ import {
 
 const Pagination: FC<IPaginationProps> = ({
     maxButtonCount = 5,
+    totalDataCount,
     selectedIndex,
     itemPerPage,
-    itemNumber,
     onSelect,
     onRight,
     onLeft,
@@ -33,7 +33,7 @@ const Pagination: FC<IPaginationProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const buttonCount = Math.ceil(itemNumber / itemPerPage);
+    const buttonCount = Math.ceil(totalDataCount / itemPerPage);
 
     let startPage = Math.max(selectedIndex - Math.floor(maxButtonCount / 2), 1);
     let endPage = startPage + maxButtonCount - 1;
@@ -77,16 +77,12 @@ const Pagination: FC<IPaginationProps> = ({
             isAtStart.push(3);
         }
 
-
         if(!isAtStart.length) {
             return;
         }
 
         return <div
-            style={{
-                display: "flex",
-                flexDirection: "row"
-            }}
+            className={classes.fastButtons}
         >
             {
                 isAtStart.map((item, index) => {
@@ -145,10 +141,7 @@ const Pagination: FC<IPaginationProps> = ({
         }
 
         return <div
-            style={{
-                display: "flex",
-                flexDirection: "row"
-            }}
+            className={classes.fastButtons}
         >
             <Button
                 variant="ghost"

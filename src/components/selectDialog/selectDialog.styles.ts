@@ -78,7 +78,7 @@ export const useStyles = createUseStyles({
         display: "flex"
     },
     cleanButton: {
-        position: "absolute",
+        position: "absolute"
     }
 });
 

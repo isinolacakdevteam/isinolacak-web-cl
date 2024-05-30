@@ -25,7 +25,9 @@ const useStyles = createUseStyles({
         alignItems: "center",
         display: "flex",
     },
-    buttonStyle: {
+    fastButtons: {
+        flexDirection: "row",
+        display: "flex"
     }
 });
 
@@ -34,8 +36,6 @@ export const paginationStyler = ({
 }: PaginationStylerParams): PaginationStylerResult => {
 
     let container: CSSProperties = {
-        /* paddingLeft: spaces.content,
-        paddingRight: spaces.content */
     };
 
     let arrowButton: CSSProperties = {
