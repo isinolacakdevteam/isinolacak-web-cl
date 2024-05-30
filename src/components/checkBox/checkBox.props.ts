@@ -12,6 +12,7 @@ export interface ICheckBoxProps {
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
     titleColor?: keyof IOCore.ColorsType;
+    checkDirection?: "left" | "right";
     titleStyle?: CSSProperties;
     style?: CSSProperties;
     icon?: IOCoreIconType;
@@ -27,6 +28,7 @@ export type CheckBoxStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
+    checkDirection: "left" | "right";
     titleStyle?: CSSProperties;
     colors: IOCore.ColorsType;
     isSelected?: boolean;
