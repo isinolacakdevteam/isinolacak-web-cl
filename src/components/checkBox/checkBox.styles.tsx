@@ -39,6 +39,7 @@ export const checkBoxStyler = ({
     spreadBehaviour,
     disabledStyle,
     titleStyle,
+    titleColor,
     disabled,
     radiuses,
     borders,
@@ -64,7 +65,7 @@ export const checkBoxStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: "body",
+        color: titleColor,
         style: {
             marginLeft: spaces.content,
             ...titleStyle

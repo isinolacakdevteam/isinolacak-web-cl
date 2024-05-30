@@ -40,6 +40,12 @@ export default {
         },
         disabled: {
             control: "boolean"
+        },
+        titleColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
         }
     },
 } as Meta;

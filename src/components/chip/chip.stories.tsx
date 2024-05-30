@@ -7,8 +7,7 @@ import IChipProps from "./chip.props";
 import lightTheme from "../../core/theme/variants/light";
 import {
     ChevronRightIcon, 
-    ClearIcon, 
-    InfoIcon
+    ClearIcon
 } from "../../assets/svgr/index";
 import {
     IIOCoreIconPropsType 

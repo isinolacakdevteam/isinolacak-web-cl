@@ -19,13 +19,13 @@ const CheckBox: FC<ICheckBoxProps> = ({
     spreadBehaviour = "baseline",
     titleType = "body2-regular",
     onChange: onChangeProp,
+    titleColor = "body",
     isSelected = false,
     disabled = false,
     titleStyle,
     title,
     style
 }) => {
-
     const classes = useStyles();
 
     const {
@@ -45,6 +45,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
         titleStyle,
+        titleColor,
         isSelected,
         radiuses,
         disabled,
