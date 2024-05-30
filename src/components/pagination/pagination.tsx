@@ -16,9 +16,9 @@ import {
 
 const Pagination: FC<IPaginationProps> = ({
     maxButtonCount = 5,
+    totalDataCount,
     selectedIndex,
     itemPerPage,
-    itemNumber,
     onSelect,
     onRight,
     onLeft,
@@ -33,7 +33,7 @@ const Pagination: FC<IPaginationProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const buttonCount = Math.ceil(itemNumber / itemPerPage);
+    const buttonCount = Math.ceil(totalDataCount / itemPerPage);
 
     let startPage = Math.max(selectedIndex - Math.floor(maxButtonCount / 2), 1);
     let endPage = startPage + maxButtonCount - 1;
@@ -51,7 +51,7 @@ const Pagination: FC<IPaginationProps> = ({
         return pages;
     };
 
-    const pageNumbers = getPageNumbers();
+    let pageNumbers = getPageNumbers();
 
     const {
         container,
@@ -65,56 +65,45 @@ const Pagination: FC<IPaginationProps> = ({
     });
 
     const renderGoFirstPage = () => {
-        let isAtStart = pageNumbers.includes(3);
-        if(isAtStart) {
+        let isAtStart: Array<number> = [];
+
+        if(!pageNumbers.includes(1)) {
+            isAtStart.push(1);
+        }
+        if(!pageNumbers.includes(2)) {
+            isAtStart.push(2);
+        }
+        if(!pageNumbers.includes(3)) {
+            isAtStart.push(3);
+        }
+
+        if(!isAtStart.length) {
             return;
         }
 
         return <div
-            style={{
-                display: "flex",
-                flexDirection: "row"
-            }}
+            className={classes.fastButtons}
         >
-            <Button
-                variant="outline"
-                color="textGrey"
-                title="1"
-                onClick={() => {
-                    if (onSelect) onSelect(1, 0);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-            <Button
-                variant="outline"
-                color="textGrey"
-                title="2"
-                onClick={() => {
-                    if (onSelect) onSelect(2, 0);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-            <Button
-                variant="outline"
-                color="textGrey"
-                title="3"
-                onClick={() => {
-                    if (onSelect) onSelect(3, 0);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
+            {
+                isAtStart.map((item, index) => {
+                    const isCurrentSelected = selectedIndex === item;
+
+                    return <Button
+                        key={`pagination-button-${index}`}
+                        title={item.toString()}
+                        variant={isCurrentSelected ? "filled" : "outline"}
+                        color={isCurrentSelected ? "body" : "hideBody"}
+                        onClick={() => {
+                            if (onSelect) onSelect(item, index);
+                        }}
+                        titleStyle={{
+                            textAlign: "center"
+                        }}
+                        spreadBehaviour="baseline"
+                        style={buttonStyle} 
+                    />;
+                }) 
+            }
             <Button
                 variant="ghost"
                 color="hideBody"
@@ -133,17 +122,26 @@ const Pagination: FC<IPaginationProps> = ({
     };
 
     const renderGoLastPage = () => {
-        let lastThree = buttonCount - 3;
-        let isAtEnd = pageNumbers.includes(lastThree);
-        if(isAtEnd) {
+        let isAtEnd :Array<number> = [];
+
+        if(!pageNumbers.includes(buttonCount - 2)){
+            isAtEnd.push(buttonCount - 2);
+        }
+
+        if(!pageNumbers.includes(buttonCount - 1)){
+            isAtEnd.push(buttonCount - 1);
+        }
+
+        if(!pageNumbers.includes(buttonCount)){
+            isAtEnd.push(buttonCount);
+        }
+
+        if(!isAtEnd.length) {
             return;
         }
 
         return <div
-            style={{
-                display: "flex",
-                flexDirection: "row"
-            }}
+            className={classes.fastButtons}
         >
             <Button
                 variant="ghost"
@@ -157,45 +155,26 @@ const Pagination: FC<IPaginationProps> = ({
                 spreadBehaviour="baseline"
                 style={buttonStyle} 
             />
-            <Button
-                variant="outline"
-                color="textGrey"
-                title={(buttonCount - 2).toString()}
-                onClick={() => {
-                    if (onSelect) onSelect(buttonCount -2, buttonCount - 1);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-            <Button
-                variant="outline"
-                color="textGrey"
-                title={(buttonCount - 1).toString()}
-                onClick={() => {
-                    if (onSelect) onSelect(buttonCount- 1, buttonCount - 1);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-            <Button
-                variant="outline"
-                color="textGrey"
-                title={buttonCount.toString()}
-                onClick={() => {
-                    if (onSelect) onSelect(buttonCount, buttonCount - 1);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
+            {
+                isAtEnd.map((item, index) => {
+                    const isCurrentSelected = selectedIndex === item;
+
+                    return <Button
+                        key={`pagination-button-${index}`}
+                        title={item.toString()}
+                        variant={isCurrentSelected ? "filled" : "outline"}
+                        color={isCurrentSelected ? "body" : "hideBody"}
+                        onClick={() => {
+                            if (onSelect) onSelect(item, index);
+                        }}
+                        titleStyle={{
+                            textAlign: "center"
+                        }}
+                        spreadBehaviour="baseline"
+                        style={buttonStyle} 
+                    />;
+                }) 
+            }
         </div>;
     };
 

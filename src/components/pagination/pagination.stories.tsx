@@ -25,9 +25,9 @@ export const Default = Template.bind({
 });
 
 Default.args = {
+    totalDataCount: 600,
     maxButtonCount: 5,
     selectedIndex: 1,
     itemPerPage: 20,
-    itemNumber: 600
 };
 
