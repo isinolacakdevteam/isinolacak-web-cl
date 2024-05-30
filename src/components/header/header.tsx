@@ -29,6 +29,7 @@ const Header: FC<IHeaderProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
+        contentContainerStyler,
         bottomContainerStyle,
         headerRightStyler,
         customTitleStyle,
@@ -65,6 +66,7 @@ const Header: FC<IHeaderProps> = ({
     >
         <div 
             className={classes.contentContainer}
+            style={contentContainerStyler}
         >
             {
                 <div

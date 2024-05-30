@@ -1,5 +1,5 @@
 import {
-    CSSProperties 
+    CSSProperties
 } from "react";
 import {
     createUseStyles
@@ -12,9 +12,10 @@ import {
 const useStyles = createUseStyles({
     container: {
         flexDirection: "column",
+        boxSizing: "border-box",
         userSelect: "none",
-        width: "100%",
-        display: "flex"
+        display: "flex",
+        width: "100%"
     },
     contentContainer: {
         alignItems: "center",
@@ -25,8 +26,8 @@ const useStyles = createUseStyles({
         justifyContent: "flex-end",
         flexDirection: "row",
         maxWidth: "200px",
-        display: "flex",
-        minWidth: "50px"
+        minWidth: "50px",
+        display: "flex"
     },
     headerLeftToRightNull: {
         justifyContent: "center",
@@ -55,6 +56,10 @@ export const headerStyler = ({
         paddingTop: spaces.container
     };
 
+    let contentContainerStyler: CSSProperties = {
+        paddingRight: spaces.content
+    };
+
     let bottomContainerStyle: CSSProperties = {
         marginTop: spaces.content * 2
     };
@@ -80,6 +85,7 @@ export const headerStyler = ({
     }
 
     return {
+        contentContainerStyler,
         bottomContainerStyle,
         headerRightStyler,
         customTitleStyle,

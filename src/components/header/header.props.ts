@@ -25,9 +25,10 @@ export type HeaderStylerParams = {
 };
 
 export type HeaderStylerResult = {
+    contentContainerStyler: CSSProperties;
     bottomContainerStyle: CSSProperties;
-    customTitleStyle: CSSProperties;
     headerRightStyler: CSSProperties;
+    customTitleStyle: CSSProperties;
     container: CSSProperties;
 };
 
