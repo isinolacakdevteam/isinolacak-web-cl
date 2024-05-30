@@ -14,6 +14,7 @@ import {
 const useStyles = createUseStyles({
     container: {
         transition: "transform 0.1s",
+        boxSizing: "border-box",
         justifyContent: "center",
         flexDirection: "row",
         borderStyle: "solid",
@@ -178,7 +179,7 @@ export const chipStyler = ({
         container.width = "auto";
     }
 
-    if(spreadBehaviour === "center") {
+    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
     }
 

@@ -19,12 +19,12 @@ interface IChipProps {
     variant?: ChipTypes;
     className?: string;
     selected?: boolean;
-    disabled:boolean;
+    disabled?:boolean;
     size?: ChipSizes;
     title: string;
 };
 
-export type ChipSpreadBehaviour = "baseline" | "center" | "free";
+export type ChipSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export type ChipStylerParams = {
     spreadBehaviour: ChipSpreadBehaviour;
