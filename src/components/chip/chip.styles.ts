@@ -14,6 +14,7 @@ import {
 const useStyles = createUseStyles({
     container: {
         transition: "transform 0.1s",
+        boxSizing: "border-box",
         justifyContent: "center",
         flexDirection: "row",
         borderStyle: "solid",
@@ -37,7 +38,7 @@ const useStyles = createUseStyles({
         whiteSpace: "nowrap"
     }
 }, {
-    name: "ICore-Chip"
+    name: "IOCore-Chip"
 });
 
 type ChipStyle = {
@@ -120,6 +121,7 @@ export default useStyles;
 export const chipStyler = ({
     spreadBehaviour,
     disabledStyle,
+    iconDirection,
     isCancelable,
     titleColor,
     iconColor,
@@ -135,8 +137,8 @@ export const chipStyler = ({
     size
 }: ChipStylerParams): ChipStylerResult => {
     let container: CSSProperties = {
-        backgroundColor: colors[color],
-        borderColor: colors[color],
+        backgroundColor: colors.white,
+        borderColor: colors.stroke,
         ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
         borderRadius: radiuses.half * 1.5
@@ -177,7 +179,7 @@ export const chipStyler = ({
         container.width = "auto";
     }
 
-    if(spreadBehaviour === "center") {
+    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
     }
 
@@ -186,7 +188,8 @@ export const chipStyler = ({
             ...titleProps,
             style: {
                 ...titleProps.style,
-                marginLeft: spaces.content
+                marginLeft: iconDirection === "left" ? spaces.content : 0,
+                marginRight: iconDirection === "right" ? spaces.content : 0
             }
         };
     }

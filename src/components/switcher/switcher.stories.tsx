@@ -5,9 +5,6 @@ import {
 } from "@storybook/react";
 import Switcher from "./switcher";
 import ISwitcherProps from "./switcher.props";
-import {
-    variant 
-} from "styled-system";
 
 export default {
     title: "Components/Switcher",
@@ -15,7 +12,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Switcher page. Please use with onChange prop on the project."
+                component: "Welcome to İOCore Switcher page. Please use with onChange prop on the project."
             }
         }
     },
@@ -25,6 +22,13 @@ export default {
         },
         disabled: {
             control: "boolean"
+        },
+        titleDirection: {
+            control: "select",
+            options: [
+                "left",
+                "right"
+            ]
         }
     }
 } as Meta;
