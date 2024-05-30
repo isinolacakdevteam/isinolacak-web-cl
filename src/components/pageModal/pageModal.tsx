@@ -59,8 +59,7 @@ const PageModal: FC<IPageModalProps> = ({
                 className={styles.contentContainer}
                 style={{
                     ...container,
-                    ...contentStyle,
-                    padding: 50
+                    ...contentStyle
                 }}
             >
                 {content}
