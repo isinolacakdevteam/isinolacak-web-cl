@@ -136,8 +136,8 @@ export const chipStyler = ({
     size
 }: ChipStylerParams): ChipStylerResult => {
     let container: CSSProperties = {
-        backgroundColor: colors[color],
-        borderColor: colors[color],
+        backgroundColor: colors.white,
+        borderColor: colors.stroke,
         ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
         borderRadius: radiuses.half * 1.5

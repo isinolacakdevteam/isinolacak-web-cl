@@ -6,8 +6,13 @@ import Chip from "./chip";
 import IChipProps from "./chip.props";
 import lightTheme from "../../core/theme/variants/light";
 import {
-    ChevronDownIcon 
+    ChevronRightIcon, 
+    ClearIcon, 
+    InfoIcon
 } from "../../assets/svgr/index";
+import {
+    IIOCoreIconPropsType 
+} from "src/types";
 
 export default {
     title: "Components/Chip",
@@ -75,7 +80,30 @@ export default {
                     "free"
                 ]
             }
-        }
+        },
+        icon: {
+            mapping: {
+                "undefined": undefined,
+                "chevronRightIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <ChevronRightIcon
+                    color={color}
+                    size={size}
+                />,
+                "clearIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <ClearIcon
+                    color={color}
+                    size={size}
+                />
+            },
+            control: {
+                type: "select",
+                options: ["undefined", "chevronRightIcon", "clearIcon"]
+            }
+        },
     },
 } as Meta;
 
@@ -85,10 +113,5 @@ export const Default = Template.bind({
 });
 Default.args = {
     variant: "filled",
-    title: "Chip",
-    icon: () => {
-        return <ChevronDownIcon
-            color="red"
-        />;
-    }
+    title: "Chip"
 };
