@@ -6,12 +6,13 @@ import useStyles, {
 } from "./switcher.style";
 import ISwitcherProps from "./switcher.props";
 import {
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../../src/core";
 import Text from "../text/text";
 
 const Switcher: FC<ISwitcherProps> = ({
     renderTitle: renderTitleProp,
+    titleDirection= "left",
     indicatorStyle,
     titleStyle,
     className,
@@ -34,6 +35,7 @@ const Switcher: FC<ISwitcherProps> = ({
         indicator,
         container
     } = switcherStyler({
+        titleDirection,
         indicatorStyle,
         disabledStyle,
         disabled,
@@ -43,7 +45,11 @@ const Switcher: FC<ISwitcherProps> = ({
         style
     });
 
-    const renderTitle = () => {
+    const renderTitle = (direction: "left" | "right") => {
+        if(direction !== titleDirection) {
+            return null;
+        }
+
         if(!title && !renderTitleProp) {
             return null;
         }
@@ -52,9 +58,9 @@ const Switcher: FC<ISwitcherProps> = ({
             return renderTitleProp({
                 titleVariant: titleProps.variant,
                 color: titleProps.color,
-                titleStyle: [
-                    titleProps.style
-                ]
+                titleStyle: {
+                    ...titleProps.style
+                }
             });
         }
 
@@ -72,12 +78,7 @@ const Switcher: FC<ISwitcherProps> = ({
     return <div 
         className={classes.switchComponentContainer}
     >
-        <div 
-            style={{
-                marginRight: spaces.inline
-            }}>
-            {renderTitle()}
-        </div>
+        {renderTitle("left")}
         <div
             onClick={() => {
                 if (onChange && !disabled) onChange();
@@ -91,6 +92,7 @@ const Switcher: FC<ISwitcherProps> = ({
                 ...indicator 
             }}></div>
         </div>
+        {renderTitle("right")}
     </div>;
 };
 export default Switcher;
