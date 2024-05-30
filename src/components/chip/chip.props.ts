@@ -10,6 +10,7 @@ interface IChipProps {
     spreadBehaviour?: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     iconColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
     color?: keyof IOCore.ColorsType;
     isCancelable?: boolean;
     style?: CSSProperties;
@@ -32,6 +33,7 @@ export type ChipStylerParams = {
     iconColor?: keyof IOCore.ColorsType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
+    iconDirection: "left" | "right";
     color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
     colors: IOCore.ColorsType;

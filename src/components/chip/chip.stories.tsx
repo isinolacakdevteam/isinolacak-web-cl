@@ -5,6 +5,9 @@ import {
 import Chip from "./chip";
 import IChipProps from "./chip.props";
 import lightTheme from "../../core/theme/variants/light";
+import {
+    ChevronDownIcon 
+} from "../../assets/svgr/index";
 
 export default {
     title: "Components/Chip",
@@ -56,6 +59,13 @@ export default {
                 "large"
             ]
         },
+        iconDirection: {
+            control: "select",
+            options: [
+                "left",
+                "right"
+            ]
+        },
         spreadBehaviour: {
             control: {
                 type: "select",
@@ -75,5 +85,10 @@ export const Default = Template.bind({
 });
 Default.args = {
     variant: "filled",
-    title: "Chip"
+    title: "Chip",
+    icon: () => {
+        return <ChevronDownIcon
+            color="red"
+        />;
+    }
 };

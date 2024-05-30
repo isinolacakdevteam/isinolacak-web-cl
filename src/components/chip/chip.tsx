@@ -22,6 +22,7 @@ import {
 const Chip: FC<IChipProps> = ({
     spreadBehaviour = "free",
     icon: IconComponentProp,
+    iconDirection = "left",
     variant = "filled",
     color = "primary",
     disabled = false,
@@ -52,9 +53,10 @@ const Chip: FC<IChipProps> = ({
         iconProps,
         titleProps
     } = chipStyler({
+        disabledStyle: designTokensDisabled,
         icon: IconComponentProp,
         spreadBehaviour,
-        disabledStyle: designTokensDisabled,
+        iconDirection,
         isCancelable,
         titleColor,
         iconColor,
@@ -69,7 +71,11 @@ const Chip: FC<IChipProps> = ({
         size
     });
 
-    const renderIcon = () => {
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
+        }
+
         if(!IconComponentProp) {
             return null;
         }
@@ -131,8 +137,9 @@ const Chip: FC<IChipProps> = ({
                 ...container
             }}
         >
-            {renderIcon()}
+            {renderIcon("left")}
             {renderTitle()}
+            {renderIcon("right")}
             {renderCancelIcon()}
         </div>
     </div>;

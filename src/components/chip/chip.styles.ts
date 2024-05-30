@@ -37,7 +37,7 @@ const useStyles = createUseStyles({
         whiteSpace: "nowrap"
     }
 }, {
-    name: "ICore-Chip"
+    name: "IOCore-Chip"
 });
 
 type ChipStyle = {
@@ -120,6 +120,7 @@ export default useStyles;
 export const chipStyler = ({
     spreadBehaviour,
     disabledStyle,
+    iconDirection,
     isCancelable,
     titleColor,
     iconColor,
@@ -186,7 +187,8 @@ export const chipStyler = ({
             ...titleProps,
             style: {
                 ...titleProps.style,
-                marginLeft: spaces.content
+                marginLeft: iconDirection === "left" ? spaces.content : 0,
+                marginRight: iconDirection === "right" ? spaces.content : 0
             }
         };
     }
