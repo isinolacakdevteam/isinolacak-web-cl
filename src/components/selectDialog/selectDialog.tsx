@@ -96,7 +96,20 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
-    
+
+    useEffect(() => {
+        if(isVisible) {
+            setTempSelectedItems(selectedItems);
+        } else {
+            if(searchText && searchText.length) {
+                setSearchText("");
+                setRenderData(data);
+            }
+
+            setTempSelectedItems([]);
+        }
+    }, [isVisible]);
+
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
