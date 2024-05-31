@@ -11,8 +11,11 @@ import {
 
 const useStyles = createUseStyles({
     container: {
-        display: "flex",
-        flexDirection: "column"
+        justifyContent: "space-between",
+        flexDirection: "column",
+        boxSizing: "border-box",
+        userSelect: "none",
+        display: "flex"
     },
     header: {
         borderStyle: "solid",
@@ -29,12 +32,14 @@ const useStyles = createUseStyles({
         display: "flex"
     },
     indicatorObject: {
-        height: 5,
-        flex: 1
+        width: "100%",
+        height: 5
     },
     componentContainer: {
     },
     bottomContainer: {
+        display: "flex",
+        justifySelf: "end"
     },
     backButtonContainer: {
         justifyContent: "center",
@@ -62,7 +67,7 @@ export const stepManagerStyler = ({
 
     let headerStyler: CSSProperties = {
         borderBottomColor: colors.stroke,
-        marginBottom: spaces.container,
+        marginBottom: spaces.content,
         borderBottomStyle: "solid",
         borderBottomWidth: 1,
     };

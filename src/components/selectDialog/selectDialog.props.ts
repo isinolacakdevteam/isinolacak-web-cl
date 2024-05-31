@@ -17,7 +17,6 @@ export type SelectDialogStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     childrenStyleProp?: any;
-    autoHeight?: boolean;
     fullScreen?: boolean;
 };
 
@@ -83,12 +82,12 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
+    emptyContent?: () => JSX.Element;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
-    initialData: Array<T>;
-    autoHeight?: boolean;
+    initialData?: Array<T>;
     fullScreen?: boolean;
     inputTitle?: string;
     onClose: () => void;
@@ -97,6 +96,6 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isVisible: boolean;
     snapPoint?: number;
     data: Array<K>;
-    title: string;
+    title?: string;
 };
 export default ISelectDialogProps;

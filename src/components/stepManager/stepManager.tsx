@@ -240,7 +240,7 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
                 >
                     <ChevronLeftIcon
                         color={colors.textSecondary}
-                        size={20}
+                        size={15}
                     />
                 </div>;
             }}
@@ -255,9 +255,11 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
             ...style
         }}
     >
-        {renderHeader()}
-        {renderStepIndicator()}
-        {renderComponent()}
+        <div>
+            {renderHeader()}
+            {renderStepIndicator()}
+            {renderComponent()}
+        </div>
         {renderBottom()}
         {renderFinishSheet()}
     </div>;

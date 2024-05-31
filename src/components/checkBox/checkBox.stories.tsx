@@ -40,6 +40,21 @@ export default {
         },
         disabled: {
             control: "boolean"
+        },
+        titleColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
+        checkDirection: {
+            control: {
+                type: "select",
+                options: [
+                    "left",
+                    "right"
+                ]
+            }
         }
     },
 } as Meta;

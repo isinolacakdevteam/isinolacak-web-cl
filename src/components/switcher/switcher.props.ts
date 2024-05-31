@@ -1,25 +1,26 @@
 import {
     CSSProperties
 } from "react";
-
 interface ISwitcherProps {
+    titleDirection?: "left" | "right";
     indicatorStyle?: CSSProperties;
+    titleStyle?: CSSProperties;
     onChange?: () => void;
     style?: CSSProperties;
     disabled?: boolean;
     className?: string;
-    titleStyle?: any;
     isActive: boolean;
-    title: string;
+    title?: string;
     renderTitle?: (props: {
         titleVariant: keyof IOCore.TypographyType;
         color: keyof IOCore.ColorsType;
-        titleStyle?: any;
+        titleStyle?: CSSProperties;
     }) => JSX.Element;
 };
 
 export type SwitcherStylerParams = {
     disabledStyle: IOCore.DisabledTokensType
+    titleDirection?: "left" | "right";
     spaces: IOCore.SpacesTokensType;
     indicatorStyle?: CSSProperties;
     colors: IOCore.ColorsType;

@@ -57,7 +57,6 @@ const TextInput: FC<ITextInputProps> = ({
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState(initialValue ? initialValue : "");
-    const [isInputFocused, setIsInputFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -86,13 +85,11 @@ const TextInput: FC<ITextInputProps> = ({
 
     const onFocus = () => {
         if(onFocusProp) onFocusProp();
-        setIsInputFocused(true);
         setIsFocused(true);
     };
 
     const onBlur = () => {
         if(onBlurProp) onBlurProp();
-        setIsInputFocused(false);
         setIsFocused(false);
     };
 
@@ -104,11 +101,11 @@ const TextInput: FC<ITextInputProps> = ({
         if(disabled) {
             return null;
         }
-    
+
         if(!clearEnabled) {
             return null;
         }
-    
+
         if(value?.length === 0) {
             return null;
         }
@@ -202,6 +199,20 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
+    const renderTitle = () => {
+        if(!finalTitle) {
+            return null;
+        }
+
+        return <Text
+            {...titleProps}
+            variant={titleProps.variant}
+            color={isError ? "error" : titleProps.color}
+        >
+            {finalTitle}
+        </Text>;
+    };
+
     const renderInput = () => {
         return <input
             type={password && !showPassword ? "password" : "text"}
@@ -243,13 +254,7 @@ const TextInput: FC<ITextInputProps> = ({
             <div
                 className={classes.content}
             >
-                <Text
-                    {...titleProps}
-                    variant={isInputFocused ? "body2-bold" : "body-bold"}
-                    color={isError ? "error" : titleProps.color}
-                >
-                    {finalTitle}
-                </Text>
+                {renderTitle()}
                 {renderInput()}
             </div>
             {renderIcon("right")}

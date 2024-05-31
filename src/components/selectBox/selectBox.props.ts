@@ -1,4 +1,5 @@
 import {
+    CSSProperties,
     ReactNode
 } from "react";
 import {
@@ -59,20 +60,21 @@ export interface ISelectBoxProps<T> {
         closeSheet: () => void;
         onSuccess: () => void;
     }) => void;
-    spreadBehaviour: SelectBoxSpreadBehaviour,
+    spreadBehaviour?: SelectBoxSpreadBehaviour,
     paginationProps?: IPaginationProps; 
+    emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
-    onOverlayPress: () => void;
+    onOverlayPress?: () => void;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
+    style?: CSSProperties;
     isVisible?: boolean,
     inputTitle: string;
     disabled?: boolean;
     isClick?: boolean;
     data: Array<T>;
-    title: string;
-    style?: any;
+    title?: string;
 };
 
 export type SelectBoxStylerParams = {
@@ -81,9 +83,9 @@ export type SelectBoxStylerParams = {
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
+    style?: CSSProperties;
     disabled?: boolean;
     isClick?: boolean;
-    style?: any;
 };
 
 export type TitleProps = {
@@ -92,11 +94,12 @@ export type TitleProps = {
 
 export type ContentProps = {
     color: keyof IOCore.ColorsType;
-    style: any;
+    style: CSSProperties;
 };
 
 export type SelectBoxStylerResult = {
     contentProps: ContentProps;
+    titleStyle: CSSProperties;
+    container: CSSProperties;
     titleProps: TitleProps;
-    container: any;
 };

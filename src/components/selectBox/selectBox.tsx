@@ -22,7 +22,7 @@ import {
     SelectedItem
 } from "./selectBox.props";
 import {
-    ChevronRightIcon
+    ChevronDownIcon
 } from "../../assets/svgr";
 
 const SelectBox = <T extends {}>({
@@ -40,6 +40,7 @@ const SelectBox = <T extends {}>({
     keyExtractor,
     isNeedConfirm,
     isSearchable,
+    emptyContent,
     inputTitle,
     renderItem,
     onSearch,
@@ -65,6 +66,7 @@ const SelectBox = <T extends {}>({
     const {
         contentProps,
         titleProps,
+        titleStyle,
         container
     } = selectBoxStyler({
         spreadBehaviour,
@@ -148,6 +150,7 @@ const SelectBox = <T extends {}>({
         return <Text
             variant="body3-regular"
             color={titleProps.color}
+            style={titleStyle}
         >
             {title}
         </Text>;
@@ -212,16 +215,20 @@ const SelectBox = <T extends {}>({
             });
         }
 
-        return <Text
-            color= {contentProps.color}
-            variant="body2-regular"
+        return <div
+            className={classes.customRenderForIcon}
         >
-            {content}
-        </Text>;
+            <Text
+                color= {contentProps.color}
+                variant="body2-regular"
+            >
+                {content}
+            </Text>
+        </div>;
     };
 
     const renderIcon = () => {
-        return <ChevronRightIcon
+        return <ChevronDownIcon
             color={colors.gray40}
             size={16}
         />;
@@ -236,6 +243,7 @@ const SelectBox = <T extends {}>({
             selectedItems={selectedItems}
             isNeedConfirm={isNeedConfirm}
             isSearchable={isSearchable}
+            emptyContent={emptyContent}
             initialData={initialData}
             multiSelect={multiSelect}
             inputTitle={inputTitle}
@@ -256,7 +264,7 @@ const SelectBox = <T extends {}>({
         className={classes.container}
         style={{
             ...container,
-            ...style,
+            ...style
         }}
         onClick={() => {
             if (disabled) {

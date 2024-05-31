@@ -37,8 +37,10 @@ export const useStyles = createUseStyles({
 
 export const checkBoxStyler = ({
     spreadBehaviour,
+    checkDirection,
     disabledStyle,
     titleStyle,
+    titleColor,
     disabled,
     radiuses,
     borders,
@@ -53,8 +55,9 @@ export const checkBoxStyler = ({
     let checkContainer: CSSProperties = {
         backgroundColor: colors.backgroundLight,
         borderRadius: radiuses.quarter,
-        borderWidth: borders.line,
+        marginRight: spaces.content,
         borderColor: colors.stroke,
+        borderWidth: borders.line,
         borderStyle: "solid"
     };
 
@@ -64,9 +67,8 @@ export const checkBoxStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: "body",
+        color: titleColor,
         style: {
-            marginLeft: spaces.content,
             ...titleStyle
         }
     };
@@ -81,6 +83,11 @@ export const checkBoxStyler = ({
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
+    }
+
+    if(checkDirection === "right") {
+        checkContainer.marginLeft = spaces.content,
+        checkContainer.marginRight = 0;
     }
 
     return {

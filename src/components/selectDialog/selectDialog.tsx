@@ -12,18 +12,17 @@ import {
 } from "./selectDialog.styles";
 import {
     RadioButton,
+    Pagination,
     TextInput,
     CheckBox,
     Button,
-    Text,
-    Pagination
+    Text
 } from "../index";
 import {
     SelectObjectType
 } from "../../types";
 import ISelectDialogProps from "./selectDialog.props";
 import {
-    ChevronRightIcon,
     ClearIcon
 } from "../../assets/svgr";
 import {
@@ -35,6 +34,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 ) => {
     const {
         childrenStyle: childrenStyleProp,
+        emptyContent: RenderEmptyContent,
         renderItem: RenderItem,
         isLoadingOKButton,
         paginationProps,
@@ -96,7 +96,20 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
-    
+
+    useEffect(() => {
+        if(isVisible) {
+            setTempSelectedItems(selectedItems);
+        } else {
+            if(searchText && searchText.length) {
+                setSearchText("");
+                setRenderData(data);
+            }
+
+            setTempSelectedItems([]);
+        }
+    }, [isVisible]);
+
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
@@ -145,17 +158,12 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         if(!isSearchable) {
             return null;
         }
-        
+
         return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
                 initialValue={searchText}
                 title={inputTitle}
-                icon={() => <ChevronRightIcon
-                    size={25}
-                />}
-                placeholder={""} 
-                id={""}
             />
         </div>; 
     };
@@ -346,11 +354,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const renderContent = () => {
         if(!renderData || !renderData.length) {
+            if(RenderEmptyContent) {
+                return <RenderEmptyContent/>;
+            }
             return null;
         }
 
         return <div>
-            {renderSearch()}
             <div>
                 {
                     renderData.map((item, index) => {
@@ -407,6 +417,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                         ...contentStyle
                     }}
                 >
+                    {renderSearch()}
                     {renderContent()}
                     {renderPagination()}
                 </div>
