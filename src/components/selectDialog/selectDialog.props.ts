@@ -87,7 +87,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
-    initialData: Array<T>;
+    initialData?: Array<T>;
     fullScreen?: boolean;
     inputTitle?: string;
     onClose: () => void;
