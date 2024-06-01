@@ -5,6 +5,13 @@ import {
 import Chip from "./chip";
 import IChipProps from "./chip.props";
 import lightTheme from "../../core/theme/variants/light";
+import {
+    ChevronRightIcon, 
+    ClearIcon
+} from "../../assets/svgr/index";
+import {
+    IIOCoreIconPropsType 
+} from "src/types";
 
 export default {
     title: "Components/Chip",
@@ -45,12 +52,22 @@ export default {
         disabled: {
             control: "boolean"
         },
+        selected: {
+            control: "boolean"
+        },
         size: {
             control: "select",
             options: [
                 "small",
                 "medium",
                 "large"
+            ]
+        },
+        iconDirection: {
+            control: "select",
+            options: [
+                "left",
+                "right"
             ]
         },
         spreadBehaviour: {
@@ -62,7 +79,30 @@ export default {
                     "free"
                 ]
             }
-        }
+        },
+        icon: {
+            mapping: {
+                "undefined": undefined,
+                "chevronRightIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <ChevronRightIcon
+                    color={color}
+                    size={size}
+                />,
+                "clearIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <ClearIcon
+                    color={color}
+                    size={size}
+                />
+            },
+            control: {
+                type: "select",
+                options: ["undefined", "chevronRightIcon", "clearIcon"]
+            }
+        },
     },
 } as Meta;
 

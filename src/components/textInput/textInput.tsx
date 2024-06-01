@@ -43,9 +43,7 @@ const TextInput: FC<ITextInputProps> = ({
     id,
     ...props
 }) => {
-    const classes = useStyles({
-        // disabled
-    });
+    const classes = useStyles();
 
     const {
         disabled: designTokensDisabled,
@@ -59,13 +57,14 @@ const TextInput: FC<ITextInputProps> = ({
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState(initialValue ? initialValue : "");
-    const [isInputFocused, setIsInputFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        contentContainer,
+        passwordIcon,
         titleProps,
         container,
         input,
@@ -86,13 +85,11 @@ const TextInput: FC<ITextInputProps> = ({
 
     const onFocus = () => {
         if(onFocusProp) onFocusProp();
-        setIsInputFocused(true);
         setIsFocused(true);
     };
 
     const onBlur = () => {
         if(onBlurProp) onBlurProp();
-        setIsInputFocused(false);
         setIsFocused(false);
     };
 
@@ -104,11 +101,11 @@ const TextInput: FC<ITextInputProps> = ({
         if(disabled) {
             return null;
         }
-    
+
         if(!clearEnabled) {
             return null;
         }
-    
+
         if(value?.length === 0) {
             return null;
         }
@@ -155,6 +152,7 @@ const TextInput: FC<ITextInputProps> = ({
         }
 
         return<div
+            style={passwordIcon}
             className={classes.passwordIconContainer}
         >
             <div
@@ -177,7 +175,7 @@ const TextInput: FC<ITextInputProps> = ({
             {ErrorIconProp ? 
                 <div
                     style={{
-                        marginRight: spaces.content
+                        marginRight: spaces.inline
                     }} 
                 >
                     <ErrorIconProp/>
@@ -199,6 +197,20 @@ const TextInput: FC<ITextInputProps> = ({
                 {errorText}
             </Text>
         </div>;
+    };
+
+    const renderTitle = () => {
+        if(!finalTitle) {
+            return null;
+        }
+
+        return <Text
+            {...titleProps}
+            variant={titleProps.variant}
+            color={isError ? "error" : titleProps.color}
+        >
+            {finalTitle}
+        </Text>;
     };
 
     const renderInput = () => {
@@ -226,33 +238,29 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     return <div
-        className={[
-            classes.container,
-            className
-        ].join(" ")}
         style={{
             ...style,
             ...container
         }}
     >
-        {renderIcon("left")}
         <div
             className={[
-                classes.content
+                classes.container,
+                className
             ].join(" ")}
+            style={contentContainer}
         >
-            <Text
-                {...titleProps}
-                color={isError ? "error" : titleProps.color}
-                variant={isInputFocused ? "body2-bold" : "body-bold"}
+            {renderIcon("left")}
+            <div
+                className={classes.content}
             >
-                {finalTitle}
-            </Text>
-            {renderInput()}
+                {renderTitle()}
+                {renderInput()}
+            </div>
+            {renderIcon("right")}
+            {renderPasswordIcon()}
+            {renderClearButton()}
         </div>
-        {renderIcon("right")}
-        {renderPasswordIcon()}
-        {renderClearButton()}
         {renderErrorText()}
     </div>;
 };

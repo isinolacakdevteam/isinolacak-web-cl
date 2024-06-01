@@ -1,5 +1,5 @@
 import {
-    CSSProperties 
+    CSSProperties
 } from "react";
 import {
     IOCoreIconType
@@ -11,6 +11,8 @@ export interface ICheckBoxProps {
     spreadBehaviour?: CheckBoxSpreadBehaviour;
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
+    titleColor?: keyof IOCore.ColorsType;
+    checkDirection?: "left" | "right";
     titleStyle?: CSSProperties;
     style?: CSSProperties;
     icon?: IOCoreIconType;
@@ -22,9 +24,11 @@ export interface ICheckBoxProps {
 export type CheckBoxStylerParams = {
     spreadBehaviour: CheckBoxSpreadBehaviour;
     disabledStyle: IOCore.DisabledTokensType;
+    titleColor: keyof IOCore.ColorsType;
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
+    checkDirection: "left" | "right";
     titleStyle?: CSSProperties;
     colors: IOCore.ColorsType;
     isSelected?: boolean;

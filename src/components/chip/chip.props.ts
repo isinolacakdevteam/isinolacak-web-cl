@@ -3,13 +3,14 @@ import {
 } from "react";
 import {
     IIOCoreIconPropsType,
-    IOCoreIconType 
+    IOCoreIconType
 } from "src/types";
 
 interface IChipProps {
     spreadBehaviour?: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     iconColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
     color?: keyof IOCore.ColorsType;
     isCancelable?: boolean;
     style?: CSSProperties;
@@ -17,12 +18,13 @@ interface IChipProps {
     onClick?: () => void;
     variant?: ChipTypes;
     className?: string;
+    selected?: boolean;
     disabled?:boolean;
     size?: ChipSizes;
     title: string;
 };
 
-export type ChipSpreadBehaviour = "baseline" | "center" | "free";
+export type ChipSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export type ChipStylerParams = {
     spreadBehaviour: ChipSpreadBehaviour;
@@ -31,12 +33,14 @@ export type ChipStylerParams = {
     iconColor?: keyof IOCore.ColorsType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
+    iconDirection: "left" | "right";
     color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
     colors: IOCore.ColorsType;
     isCancelable?: boolean;
     icon?: IOCoreIconType;
     variant: ChipTypes;
+    selected?: boolean;
     disabled: boolean;
     loading?: boolean;
     size: ChipSizes;

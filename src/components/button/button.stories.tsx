@@ -10,8 +10,9 @@ import {
     ClearIcon
 } from "../../assets/svgr"; 
 import {
-    IIOCoreIconPropsType 
+    IIOCoreIconPropsType
 } from "../../types";
+import lightTheme from "../../core/theme/variants/light";
 
 export default {
     title: "Components/Button",
@@ -19,7 +20,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Button page."
+                component: "Welcome to IOCore Button page."
             }
         }
     },
@@ -43,6 +44,18 @@ export default {
             control: {
                 type: "select",
                 options: ["free", "baseline", "stretch"]
+            }
+        },
+        textColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
+        textVariant: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.typography)
             }
         },
         icon: {

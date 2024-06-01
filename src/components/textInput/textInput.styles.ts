@@ -7,17 +7,14 @@ import {
 import {
     TextInputStylerParams,
     TextInputStylerResult,
-    TitleProps 
+    TitleProps
 } from "./textInput.props";
 
 export const useStyles = createUseStyles({
     container: {
         flexDirection: "row",
         userSelect: "none",
-        display: "flex",
-        "&:hover": {
-            cursor: "pointer"
-        }
+        display: "flex"
     },
     content: {
         flexDirection: "column",
@@ -39,28 +36,25 @@ export const useStyles = createUseStyles({
         display: "flex"
     },
     passwordIconContainer: {
-        transform: "translateY(-50%)",
-        position: "absolute",
-        top: 50,
-        right: 0
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+        display: "flex"
     },
     ıconProps: {
         justifyContent:"center",
-        alignContent:"center", 
+        alignContent:"center",
         alignItems: "center"
     },
     errorText: {
-        justifyContent: 'center', 
-        position: "absolute",
-        alignItems: 'center', 
-        display: 'flex', 
-        top: 85
+        display: "flex"
     }
 }, {
-    name: "NCore-TextInput"
+    name: "ICore-TextInput"
 });
 
 export const textInputStyler = ({
+    spreadBehaviour,
     disabledStyle,
     typography,
     isFocused,
@@ -73,6 +67,9 @@ export const textInputStyler = ({
     value
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
+    };
+
+    let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
         paddingLeft: spaces.container / 1.5,
@@ -85,7 +82,7 @@ export const textInputStyler = ({
     };
 
     let titleProps: TitleProps = {
-        variant: value?.length || isFocused ? "body3-regular" : "body2-regular",
+        variant: value?.length || isFocused ? "body2-regular" : "body2-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
             alignSelf: "flex-start"
@@ -102,10 +99,23 @@ export const textInputStyler = ({
     };
 
     let clear: CSSProperties = {
-        marginTop: spaces.content * 1.5,
-        marginLeft: spaces.content,
-        alignSelf: "flex-start"
+        marginLeft: spaces.content
     };
+
+    let passwordIcon: CSSProperties = {
+        marginLeft: spaces.content
+    };
+
+    if(spreadBehaviour === "baseline") {
+        container.alignSelf = spreadBehaviour;
+        container.width = "auto";
+    }
+
+    if(spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+        container.justifyContent = "center";
+        container.width = "100%";
+    }
 
     if(disabled) {
         container = {
@@ -121,11 +131,9 @@ export const textInputStyler = ({
         };
     }
 
-    if(isFocused || (value && value.length)) {
-        titleProps.style.marginBottom = spaces.inline;
-    }
-
     return {
+        contentContainer,
+        passwordIcon,
         titleProps,
         container,
         input,

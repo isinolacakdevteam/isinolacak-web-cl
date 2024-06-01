@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
         height: 20
     }
 }, {
-    name: "NCore-Switcher"
+    name: "IOCore-Switcher"
 });
 export default useStyles;
 
@@ -39,6 +39,7 @@ const INDICATOR_WIDTH = 20;
 
 export const switcherStyler = ({
     indicatorStyle,
+    titleDirection,
     disabledStyle,
     isActive,
     disabled,
@@ -72,6 +73,11 @@ export const switcherStyler = ({
         variant: "body2-regular",
         color: "textGrey"
     };
+
+    if(titleDirection === "right") {
+        titleProps.style.marginLeft= spaces.content,
+        titleProps.style.marginRight = 0;
+    }
 
     if(isActive) {
         container.backgroundColor = colors.primary;

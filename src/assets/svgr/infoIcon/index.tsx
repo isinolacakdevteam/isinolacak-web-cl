@@ -3,11 +3,11 @@ import {
 } from "../../../types";
 
 const Info = ({
-    color = "#697488",
-    size = 30,
+    color = "#9AA6B8",
+    size = 24,
     ...props
 }: IIOCoreIconPropsType) => {
-    const pathScale = 114 / size;
+    const pathScale = 24 / size;
 
     return <svg
         height={size}
@@ -16,11 +16,16 @@ const Info = ({
         {...props}
     >
         <path
-            d="M108.6 57.3c0 28.332-22.968 51.3-51.3 51.3C28.968 108.6 6 85.632 6 57.3 6 28.968 28.968 6 57.3 6c28.332 0 51.3 22.968 51.3 51.3ZM63.713 31.65a6.413 6.413 0 1 1-12.826 0 6.413 6.413 0 0 1 12.825 0ZM50.888 50.888a6.413 6.413 0 0 0 0 12.825V82.95a6.413 6.413 0 0 0 6.412 6.412h6.413a6.413 6.413 0 0 0 0-12.825V57.3a6.413 6.413 0 0 0-6.413-6.412h-6.412Z"
-            scale={1 / pathScale}
-            clipRule="evenodd"
-            fillRule="evenodd"
             fill={color}
+            transform={`scale(${1 / pathScale})`}
+            d="M12 17.884a.767.767 0 0 0 .767-.768v-6.14a.767.767 0 0 0-1.534 0v6.14c0 .424.343.768.767.768ZM12 6.884a1.023 1.023 0 1 1 0 2.046 1.023 1.023 0 0 1 0-2.046Z"
+        />
+        <path
+            fill={color}
+            fillRule="evenodd"
+            transform={`scale(${1 / pathScale})`}
+            d="M1 12C1 5.925 5.925 1 12 1s11 4.925 11 11-4.925 11-11 11S1 18.075 1 12Zm11-9.465a9.465 9.465 0 1 0 0 18.93 9.465 9.465 0 0 0 0-18.93Z"
+            clipRule="evenodd"
         />
     </svg>;
 };

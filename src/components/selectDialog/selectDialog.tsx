@@ -12,6 +12,7 @@ import {
 } from "./selectDialog.styles";
 import {
     RadioButton,
+    Pagination,
     TextInput,
     CheckBox,
     Button,
@@ -22,7 +23,6 @@ import {
 } from "../../types";
 import ISelectDialogProps from "./selectDialog.props";
 import {
-    ChevronRightIcon,
     ClearIcon
 } from "../../assets/svgr";
 import {
@@ -34,8 +34,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 ) => {
     const {
         childrenStyle: childrenStyleProp,
+        emptyContent: RenderEmptyContent,
         renderItem: RenderItem,
         isLoadingOKButton,
+        paginationProps,
         setSelectedItems,
         headerComponent,
         onOverlayPress,
@@ -94,7 +96,20 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
-    
+
+    useEffect(() => {
+        if(isVisible) {
+            setTempSelectedItems(selectedItems);
+        } else {
+            if(searchText && searchText.length) {
+                setSearchText("");
+                setRenderData(data);
+            }
+
+            setTempSelectedItems([]);
+        }
+    }, [isVisible]);
+
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
@@ -143,19 +158,12 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         if(!isSearchable) {
             return null;
         }
-        
-        return <div
-            style={searchContainerProps}
-        >
+
+        return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
                 initialValue={searchText}
                 title={inputTitle}
-                icon={() => <ChevronRightIcon
-                    size={25}
-                />}
-                placeholder={""} 
-                id={""}
             />
         </div>; 
     };
@@ -174,9 +182,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
             variant="outline"
             style={{
-                ...clearButtonProps,
-                flex: isNeedConfirm ? undefined : 1,
-                marginRight:10
+                marginRight:spaces.content
             }}
             onClick={() => {
                 setTempSelectedItems([]);
@@ -193,7 +199,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             title={localize("iocore-select-sheet-ok-button")}
             loading={isLoadingOKButton}
             spreadBehaviour="stretch"
-            style={okButtonProps}
             variant="filled"
             size="medium"
             onClick={() => {
@@ -238,19 +243,26 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         </div>;
     };
 
-    
-
     const renderActions = () => {
         return <div
             className={styles.renderActions}
             style={{
-                ...buttonsContainerProps,
                 marginTop: spaces.content,
             }}
         >
             {renderClear()}
             {renderConfirm()}
         </div>;
+    };
+
+    const renderPagination = () => {
+        if(!paginationProps) {
+            return null;
+        }
+
+        return <Pagination
+            {...paginationProps}
+        />;
     };
 
     const renderItem = ({
@@ -342,11 +354,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const renderContent = () => {
         if(!renderData || !renderData.length) {
+            if(RenderEmptyContent) {
+                return <RenderEmptyContent/>;
+            }
             return null;
         }
 
         return <div>
-            {renderSearch()}
             <div>
                 {
                     renderData.map((item, index) => {
@@ -361,11 +375,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const {
-        buttonsContainerProps,
         content: contentStyle,
-        searchContainerProps,
-        clearButtonProps,
-        okButtonProps,
         container
     } = selectDialogStyler({
         childrenStyleProp,
@@ -407,7 +417,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                         ...contentStyle
                     }}
                 >
+                    {renderSearch()}
                     {renderContent()}
+                    {renderPagination()}
                 </div>
                 {renderActions()}
                 <Button

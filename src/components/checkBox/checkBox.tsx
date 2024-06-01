@@ -1,89 +1,32 @@
 import {
-    CSSProperties,
     FC
 } from "react";
 import {
     IOCoreTheme
 } from "../../core";
-import useStyles from "./checkBox.styles";
+import useStyles, {
+    checkBoxStyler
+} from "./checkBox.styles";
 import Text from "../text/text";
 import {
-    CheckIcon 
+    CheckIcon
 } from "../../assets/svgr";
 import {
-    CheckBoxStylerParams,
-    CheckBoxStylerResult,
-    ICheckBoxProps,
-    TitleProps 
+    ICheckBoxProps
 } from "./checkBox.props";
-
-const checkBoxStyler = ({
-    spreadBehaviour,
-    disabledStyle,
-    titleStyle,
-    disabled,
-    radiuses,
-    borders,
-    colors,
-    spaces
-}: CheckBoxStylerParams): CheckBoxStylerResult => {
-    let container: CSSProperties = {
-        paddingTop: spaces.container / 2,
-        paddingBottom: spaces.container / 2,
-    };
-
-    let checkContainer: CSSProperties = {
-        backgroundColor: colors.backgroundLight,
-        borderRadius: radiuses.quarter,
-        borderWidth: borders.line,
-        borderColor: colors.stroke,
-        borderStyle: "solid"
-    };
-
-    let checkIndicator: CSSProperties = {
-        borderRadius: radiuses.quarter,
-        backgroundColor: colors.primary
-    };
-
-    let titleProps: TitleProps = {
-        color: "body",
-        style: {
-            marginLeft: spaces.content,
-            ...titleStyle
-        }
-    };
-
-    if(disabled) {
-        container = {
-            ...container,
-            ...disabledStyle
-        };
-        checkIndicator.backgroundColor = colors.textGrey;
-    }
-
-    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
-        container.alignSelf = spreadBehaviour;
-    }
-
-    return {
-        checkContainer,
-        checkIndicator,
-        titleProps,
-        container
-    };
-};
 
 const CheckBox: FC<ICheckBoxProps> = ({
     spreadBehaviour = "baseline",
     titleType = "body2-regular",
     onChange: onChangeProp,
+    checkDirection = "left",
+    titleColor = "body",
     isSelected = false,
     disabled = false,
     titleStyle,
     title,
     style
 }) => {
-
     const classes = useStyles();
 
     const {
@@ -102,7 +45,9 @@ const CheckBox: FC<ICheckBoxProps> = ({
     } = checkBoxStyler({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
+        checkDirection,
         titleStyle,
+        titleColor,
         isSelected,
         radiuses,
         disabled,
@@ -115,7 +60,11 @@ const CheckBox: FC<ICheckBoxProps> = ({
         if(onChangeProp) onChangeProp(isSelected);
     };
 
-    const renderRadioContainer = () => {
+    const renderRadioContainer = (direction: "left" | "right") => {
+        if(direction !== checkDirection) {
+            return null;
+        }
+
         return <div
             className={classes.checkContainer}
             style={{
@@ -138,7 +87,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
             }}
         >
             <CheckIcon
-                size={15}
+                size={12}
                 color="#fff"
             />
         </div>;
@@ -167,11 +116,11 @@ const CheckBox: FC<ICheckBoxProps> = ({
             ...container,
             ...style,
         }}
-        //disabled={disabled}
         onClick={onChange}
     >
-        {renderRadioContainer()}
+        {renderRadioContainer("left")}
         {renderTitle()}
+        {renderRadioContainer("right")}
     </div>;
 };
 export default CheckBox;

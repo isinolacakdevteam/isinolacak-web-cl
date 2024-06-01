@@ -65,9 +65,7 @@ const StateCard: FC<IStateCardProps> = ({
         return <Text
             variant={titleProps.variant}
             color={titleProps.color}
-            style={{
-                ...titleProps.style
-            }}
+            style={titleProps.style}
         >
             {title}
         </Text>;
@@ -78,9 +76,7 @@ const StateCard: FC<IStateCardProps> = ({
             variant={contentProps.variant}
             className={classes.content}
             color={contentProps.color}
-            style={{
-                ...contentProps.style
-            }}
+            style={contentProps.style}
         >
             {content}
         </Text>;

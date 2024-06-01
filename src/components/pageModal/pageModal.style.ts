@@ -16,7 +16,7 @@ export const modalPageStyler = ({
     colors
 }: PageModalStylerParams): PageModalStylerResult => {
     let container: CSSProperties = {
-        backgroundColor: colors.layer1,
+        backgroundColor: colors.modalBackground,
         borderRadius: radiuses.half,
         padding: spaces.container
     };

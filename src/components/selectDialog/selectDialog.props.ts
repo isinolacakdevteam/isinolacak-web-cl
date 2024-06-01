@@ -7,6 +7,7 @@ import {
     IIOCoreIconPropsType,
     SelectObjectType
 } from "../../types";
+import IPaginationProps from "../pagination/pagination.props";
 
 export type SelectDialogStylerParams = {
     contentContainerStyle?: CSSProperties;
@@ -16,25 +17,16 @@ export type SelectDialogStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     childrenStyleProp?: any;
-    autoHeight?: boolean;
     fullScreen?: boolean;
 };
 
 export type SelectDialogStylerResult = {
-    contentContainerStyle: CSSProperties;
-    buttonsContainerProps: CSSProperties;
-    searchContainerProps: CSSProperties;
-    clearButtonProps: CSSProperties;
     clearIcon: IIOCoreIconPropsType;
-    inputIconProps: CSSProperties;
-    okButtonProps: CSSProperties;
-    childrenStyle: CSSProperties;
     primaryButton: CSSProperties;
     container: CSSProperties;
     content: CSSProperties;
     bottom: CSSProperties;
     header: CSSProperties;
-    clearButton: any;
 };
 
 export type SelectedItem = {
@@ -85,16 +77,17 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     }) => ReactNode;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
+    paginationProps?: IPaginationProps; 
     childrenStyle?: CSSProperties;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
+    emptyContent?: () => JSX.Element;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
-    initialData: Array<T>;
-    autoHeight?: boolean;
+    initialData?: Array<T>;
     fullScreen?: boolean;
     inputTitle?: string;
     onClose: () => void;
@@ -103,6 +96,6 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isVisible: boolean;
     snapPoint?: number;
     data: Array<K>;
-    title: string;
+    title?: string;
 };
 export default ISelectDialogProps;

@@ -23,6 +23,10 @@ export {
 } from "./textInput/textInput";
 
 export {
+    default as TextArea
+} from "./textArea/textArea";
+
+export {
     default as Button
 } from "./button/button";
 
@@ -57,3 +61,15 @@ export {
 export {
     default as SelectDialog
 } from "./selectDialog/selectDialog";
+
+export {
+    default as Header 
+} from "./header/header";
+
+export {
+    default as StepManager
+} from "./stepManager/stepManager";
+
+export {
+    default as Pagination
+} from "./pagination/pagination";

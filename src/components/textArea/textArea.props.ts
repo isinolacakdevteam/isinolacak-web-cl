@@ -1,9 +1,6 @@
 import {
     CSSProperties
 } from "react";
-import {
-    variant 
-} from "styled-system";
 
 interface ITextAreaProps {
     spreadBehaviour?: TextAreaSpreadBehaviour;
@@ -21,8 +18,8 @@ interface ITextAreaProps {
     textLimit?: number;
     className?: string;
     isError?: boolean;
-    title: string;
-    id: string;
+    title?: string;
+    id?: string;
 };
 
 export type TextAreaSpreadBehaviour = "baseline" | "stretch" | "free";

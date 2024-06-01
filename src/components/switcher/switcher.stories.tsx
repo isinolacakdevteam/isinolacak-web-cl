@@ -12,7 +12,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Switcher page. Please use with onChange prop on the project."
+                component: "Welcome to İOCore Switcher page. Please use with onChange prop on the project."
             }
         }
     },
@@ -22,6 +22,13 @@ export default {
         },
         disabled: {
             control: "boolean"
+        },
+        titleDirection: {
+            control: "select",
+            options: [
+                "left",
+                "right"
+            ]
         }
     }
 } as Meta;
