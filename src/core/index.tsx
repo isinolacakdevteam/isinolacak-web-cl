@@ -10,7 +10,7 @@ import useStyles from "./stylesheet";
 import "./stylesheet";
 
 class IOCoreInheritance {
-    IOCoreContext;
+    IOCoreContext: Context;
 
     constructor() {
         this.IOCoreContext = new Context({

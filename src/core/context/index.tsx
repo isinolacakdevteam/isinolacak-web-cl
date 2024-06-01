@@ -1,6 +1,9 @@
 import {
     ReactNode
 } from "react";
+import IOCoreContext, {
+    ConfigType
+} from "ncore-context";
 import ThemeContextInheritance from "./theme";
 import LocaleContextInheritance from "./locale";
 import ModalContextInheritance from "./modal";
@@ -10,13 +13,20 @@ import {
     tr
 } from "../locales";
 import {
-    IOCoreContextConfigType
+    IOCoreContextConfigType,
+    LocaleContextType,
+    ModalContextType,
+    ThemeContextType
 } from "../../types";
 
 class Context {
-    ThemeContext;
-    LocaleContext;
-    ModalContext;
+    ThemeContext: IOCoreContext<ThemeContextType, ConfigType<ThemeContextType>>;
+    LocaleContext: IOCoreContext<LocaleContextType, ConfigType<LocaleContextType>>;
+    ModalContext: IOCoreContext<ModalContextType, ConfigType<ModalContextType>> & {
+        Render: (params: {
+            children: ReactNode;
+        }) => ReactNode;
+    };
 
     constructor(config: IOCoreContextConfigType) {
         this.ThemeContext = new ThemeContextInheritance(
