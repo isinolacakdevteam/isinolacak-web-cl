@@ -23,9 +23,11 @@ class Context {
     ThemeContext: IOCoreContext<ThemeContextType, ConfigType<ThemeContextType>>;
     LocaleContext: IOCoreContext<LocaleContextType, ConfigType<LocaleContextType>>;
     ModalContext: IOCoreContext<ModalContextType, ConfigType<ModalContextType>> & {
-        Render: (params: {
+        Render: ({
+            children 
+        }: {
             children: ReactNode;
-        }) => ReactNode;
+        }) => JSX.Element;
     };
 
     constructor(config: IOCoreContextConfigType) {
