@@ -5,6 +5,13 @@ import {
 } from "@storybook/react";
 import TextInput from "./textInput";
 import ITextInputProps from "./textInput.props";
+import {
+    IIOCoreIconPropsType
+} from "../../types";
+import {
+    ClearIcon,
+    EyeOpenedIcon 
+} from "../../assets/svgr";
 
 export default {
     title: "Components/TextInput",
@@ -26,11 +33,59 @@ export default {
         clearEnabled: {
             control: "boolean"
         },
-        multiline: {
-            control: "boolean"
-        },
         disabled: {
             control: "boolean"
+        },
+        password: {
+            control: "boolean"
+        },
+        isError: {
+            control: "boolean"
+        },
+        errorText: {
+            control: "text"
+        },
+        spreadBehaviour: {
+            control: {
+                type: "select",
+                options: [
+                    "baseline",
+                    "stretch",
+                    "free"
+                ]
+            }
+        },
+        iconDirection: {
+            control: {
+                type: "select",
+                options: [
+                    "left",
+                    "right"
+                ]
+            }
+        },
+        icon: {
+            mapping: {
+                "undefined": undefined,
+                "EyeOpenedIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <EyeOpenedIcon
+                    color={color}
+                    size={size}
+                />,
+                "clearIcon": ({
+                    color,
+                    size
+                }: IIOCoreIconPropsType) => <ClearIcon
+                    color={color}
+                    size={size}
+                />
+            },
+            control: {
+                type: "select",
+                options: ["undefined", "EyeOpenedIcon", "clearIcon"]
+            }
         }
     }
 } as Meta;
@@ -42,15 +97,6 @@ export const Default = Template.bind({
 Default.args = {
     title: "Text Input",
     placeholder: "Please enter text"
-};
-
-export const Multiline = Template.bind({
-});
-Multiline.args = {
-    title: "Text Input",
-    placeholder: "Please enter text",
-    clearEnabled: true,
-    multiline: true
 };
 
 export const Disabled = Template.bind({

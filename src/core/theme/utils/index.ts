@@ -1,11 +1,10 @@
-import designTokens from "../designTokens";
 import light from "../variants/light";
 import dark from "../variants/dark";
 
-const themes: Array<Required<IOCore.Theme>> = [light, dark];
+const themes: Array<Required<IOCore.ThemeType>> = [light, dark];
 
-export const mergeGivenTypographyWithIOCore = (themeKey: IOCore.ThemeKey, customTypography: IOCore.Typography | undefined): IOCore.Typography => {
-    const defaultThemeTypography = themes.find(e => e.key === themeKey)?.typography ?? themes[0].typography;
+export const mergeGivenTypographyWithIOCore = (themeKey: IOCore.ThemeKeyType, customTypography: IOCore.TypographyType | undefined): IOCore.TypographyType => {
+    const defaultThemeTypography = themes.find(e => e.key === themeKey)?.typography ?? light.typography;
 
     if(!(customTypography)) {
         return defaultThemeTypography;
@@ -17,8 +16,8 @@ export const mergeGivenTypographyWithIOCore = (themeKey: IOCore.ThemeKey, custom
     };
 };
 
-export const mergeGivenColorsWithIOCore = (themeKey: IOCore.ThemeKey, customColors: IOCore.Colors | undefined): IOCore.Colors => {
-    const defaultThemeColors = themes.find(e => e.key === themeKey)?.colors ?? themes[0].colors;
+export const mergeGivenColorsWithIOCore = (themeKey: IOCore.ThemeKeyType, customColors: IOCore.ColorsType | undefined): IOCore.ColorsType => {
+    const defaultThemeColors = themes.find(e => e.key === themeKey)?.colors ?? light.colors;
 
     if(!(customColors)) {
         return defaultThemeColors;
@@ -30,29 +29,31 @@ export const mergeGivenColorsWithIOCore = (themeKey: IOCore.ThemeKey, customColo
     };
 };
 
-export const mergeGivenDesignTokensWithIOCore = (customDesignTokens: IOCore.DesignTokens | undefined): Required<IOCore.DesignTokens> => {
+export const mergeGivenDesignTokensWithIOCore = (themeKey: IOCore.ThemeKeyType, customDesignTokens: IOCore.DesignTokensType | undefined): Required<IOCore.DesignTokensType> => {
+    const defaultThemeDesignTokens = themes.find(e => e.key === themeKey)?.designTokens ?? light.designTokens;
+
     if(!(customDesignTokens)) {
-        return designTokens;
+        return defaultThemeDesignTokens;
     }
 
-    const spaces: IOCore.SpacesTokens = {
-        ...designTokens.spaces,
-        ...customDesignTokens.spaces ?? designTokens.spaces
+    const spaces: IOCore.SpacesTokensType = {
+        ...defaultThemeDesignTokens.spaces,
+        ...customDesignTokens.spaces ?? defaultThemeDesignTokens.spaces
     };
 
-    const borders: IOCore.BordersTokens = {
-        ...designTokens.borders,
-        ...customDesignTokens.borders ?? designTokens.borders
+    const borders: IOCore.BordersTokensType = {
+        ...defaultThemeDesignTokens.borders,
+        ...customDesignTokens.borders ?? defaultThemeDesignTokens.borders
     };
 
-    const radiuses: IOCore.RadiusesTokens = {
-        ...designTokens.radiuses,
-        ...customDesignTokens.radiuses ?? designTokens.radiuses
+    const radiuses: IOCore.RadiusesTokensType = {
+        ...defaultThemeDesignTokens.radiuses,
+        ...customDesignTokens.radiuses ?? defaultThemeDesignTokens.radiuses
     };
 
-    const disabled: IOCore.DisabledTokens = {
-        ...designTokens.disabled,
-        ...customDesignTokens.disabled ?? designTokens.disabled
+    const disabled: IOCore.DisabledTokensType = {
+        ...defaultThemeDesignTokens.disabled,
+        ...customDesignTokens.disabled ?? defaultThemeDesignTokens.disabled
     };
 
     return {

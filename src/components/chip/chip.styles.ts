@@ -4,10 +4,17 @@ import {
 import {
     createUseStyles
 } from "react-jss";
+import {
+    ChipStylerParams, ChipStylerResult, TitleProps 
+} from "./chip.props";
+import {
+    IIOCoreIconPropsType 
+} from "../../types/index";
 
 const useStyles = createUseStyles({
     container: {
         transition: "transform 0.1s",
+        boxSizing: "border-box",
         justifyContent: "center",
         flexDirection: "row",
         borderStyle: "solid",
@@ -37,7 +44,7 @@ const useStyles = createUseStyles({
 type ChipStyle = {
     container: CSSProperties;
     title: {
-        size: keyof IOCore.Typography;
+        size: keyof IOCore.TypographyType;
     };
     cancelIcon: {
         size: number;
@@ -63,7 +70,7 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
             borderRadius: 40
         },
         title: {
-            size: "buttonSmall"
+            size: "body3-regular"
         },
         cancelIcon: {
             size: 12
@@ -81,7 +88,7 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
             borderRadius: 50
         },
         title: {
-            size: "buttonMedium"
+            size: "body2-regular"
         },
         cancelIcon: {
             size: 14
@@ -99,7 +106,7 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
             borderRadius: 60
         },
         title: {
-            size: "buttonLarge"
+            size: "body-regular"
         },
         cancelIcon: {
             size: 16
@@ -110,3 +117,130 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
     }
 };
 export default useStyles;
+
+export const chipStyler = ({
+    spreadBehaviour,
+    disabledStyle,
+    iconDirection,
+    isCancelable,
+    titleColor,
+    iconColor,
+    disabled,
+    radiuses,
+    selected,
+    borders,
+    variant,
+    spaces,
+    colors,
+    color,
+    icon,
+    size
+}: ChipStylerParams): ChipStylerResult => {
+    let container: CSSProperties = {
+        backgroundColor: colors.white,
+        borderColor: colors.stroke,
+        ...SIZE_TO_STYLE_MAPPING[size].container,
+        borderWidth: borders.indicator,
+        borderRadius: radiuses.half * 1.5
+    };
+
+    let titleProps: TitleProps = {
+        color: "body",
+        variant: SIZE_TO_STYLE_MAPPING[size].title.size
+    };
+
+    let iconProps: IIOCoreIconPropsType = {
+        size: SIZE_TO_STYLE_MAPPING[size].icon.size,
+        color: "body"
+    };
+
+    let cancelIconProps: IIOCoreIconPropsType = {
+        size: SIZE_TO_STYLE_MAPPING[size].cancelIcon.size,
+        color: colors.body
+    };
+
+    if(variant === "outline") {
+        container.backgroundColor = "transparent";
+        cancelIconProps.color = colors[color];
+        titleProps.color = color;
+        iconProps.color = color;
+    }
+
+    if(variant === "inverted") {
+        container.backgroundColor = `${colors[color]}44`;
+        container.borderColor = "transparent";
+        cancelIconProps.color = colors[color];
+        titleProps.color = color;
+        iconProps.color = color;
+    }
+
+    if(spreadBehaviour === "baseline") {
+        container.alignSelf = spreadBehaviour;
+        container.width = "auto";
+    }
+
+    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+    }
+
+    if(icon) {
+        titleProps = {
+            ...titleProps,
+            style: {
+                ...titleProps.style,
+                marginLeft: iconDirection === "left" ? spaces.content : 0,
+                marginRight: iconDirection === "right" ? spaces.content : 0
+            }
+        };
+    }
+
+    if(isCancelable) {
+        titleProps = {
+            ...titleProps,
+            style: {
+                ...titleProps.style,
+                marginRight: spaces.content
+            }
+        };
+    }
+
+    if(disabled) {
+        container = {
+            ...container,
+            ...disabledStyle,
+            cursor: "no-drop",
+            transform: "none"
+        };
+    }
+
+    if(selected) {
+        if(color) {
+            container.backgroundColor = colors[color];
+            container.borderColor = colors[color];
+            titleProps.color = "white";
+        } else {
+            container.backgroundColor = colors.primary;
+            container.borderColor = colors.primary;
+            titleProps.color = "white";
+        }
+    } else if(color) {
+        titleProps.color = "textDark";
+    }
+
+    if(titleColor) {
+        cancelIconProps.color = colors[titleColor];
+        titleProps.color = titleColor;
+        iconProps.color = titleColor;
+    }
+
+    if(iconColor) {
+        iconProps.color = iconColor;
+    }
+
+    return {
+        cancelIconProps,
+        titleProps,
+        iconProps,
+        container
+    };
+};

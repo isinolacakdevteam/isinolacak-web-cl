@@ -93,25 +93,25 @@ interface Colors {
 
 ```ts
 interface DesignTokens {
-    spaces?: SpacesTokens;
-    borders?: BordersTokens;
-    radiuses?: RadiusesTokens;
+    spaces?: SpacesTokensType;
+    borders?: BordersTokensType;
+    radiuses?: RadiusesTokensType;
     disabled?: DisabledTokens;
 }
 
-interface SpacesTokens {
+interface SpacesTokensType {
     container: number;
     content: number;
     inline: number;
     item: number;
 }
 
-interface BordersTokens {
+interface BordersTokensType {
     indicator?: number;
     line?: number;
 }
 
-interface RadiusesTokens {
+interface RadiusesTokensType {
     quarter?: number;
     hard?: number;
     half?: number;

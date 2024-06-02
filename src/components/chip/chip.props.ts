@@ -2,54 +2,59 @@ import {
     CSSProperties
 } from "react";
 import {
-    IIOCoreIconProps,
-    IOCoreIcon 
-} from "src/core/types";
+    IIOCoreIconPropsType,
+    IOCoreIconType
+} from "src/types";
 
 interface IChipProps {
     spreadBehaviour?: ChipSpreadBehaviour;
-    titleColor?: keyof IOCore.Colors;
-    iconColor?: keyof IOCore.Colors;
-    color?: keyof IOCore.Colors;
+    titleColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
+    color?: keyof IOCore.ColorsType;
     isCancelable?: boolean;
     style?: CSSProperties;
+    icon?: IOCoreIconType;
     onClick?: () => void;
     variant?: ChipTypes;
     className?: string;
+    selected?: boolean;
     disabled?:boolean;
-    icon?: IOCoreIcon;
     size?: ChipSizes;
     title: string;
 };
 
-export type ChipSpreadBehaviour = "baseline" | "center" | "free";
+export type ChipSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export type ChipStylerParams = {
     spreadBehaviour: ChipSpreadBehaviour;
-    titleColor?: keyof IOCore.Colors;
-    iconColor?: keyof IOCore.Colors;
-    borders: IOCore.BordersTokens;
+    titleColor?: keyof IOCore.ColorsType;
+    radiuses: IOCore.RadiusesTokensType;
+    iconColor?: keyof IOCore.ColorsType;
+    borders: IOCore.BordersTokensType;
+    spaces: IOCore.SpacesTokensType;
+    iconDirection: "left" | "right";
+    color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
-    spaces: IOCore.SpacesTokens;
-    color: keyof IOCore.Colors;
+    colors: IOCore.ColorsType;
     isCancelable?: boolean;
-    colors: IOCore.Colors;
+    icon?: IOCoreIconType;
     variant: ChipTypes;
+    selected?: boolean;
     disabled: boolean;
     loading?: boolean;
-    icon?: IOCoreIcon;
     size: ChipSizes;
 };
 
 export type TitleProps = {
-    variant: keyof IOCore.Typography;
-    color: keyof IOCore.Colors;
+    variant: keyof IOCore.TypographyType;
+    color: keyof IOCore.ColorsType;
     style?: CSSProperties;
 };
 
 export type ChipStylerResult = {
-    cancelIconProps: IIOCoreIconProps;
-    iconProps: IIOCoreIconProps;
+    cancelIconProps: IIOCoreIconPropsType;
+    iconProps: IIOCoreIconPropsType;
     container: CSSProperties;
     titleProps: TitleProps;
 };

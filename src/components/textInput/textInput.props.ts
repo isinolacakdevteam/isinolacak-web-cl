@@ -1,52 +1,66 @@
 import {
     CSSProperties
 } from "react";
+import {
+    IOCoreIconType
+} from "../../types";
 
 interface ITextInputProps {
     spreadBehaviour?: TextInputSpreadBehaviour;
-    contentType?: "email" | "text" | "password";
     onChangeText?: (value: string) => void;
+    iconDirection?: "left" | "right";
+    errorIcon?: IOCoreIconType;
+    iconOnClick?: () => void;
+    secureTextEntry?: boolean;
     clearEnabled?: boolean;
     initialValue?: string;
     style?: CSSProperties;
+    icon?: IOCoreIconType;
     isRequired?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;
-    placeholder: string;
+    placeholder?: string;
     multiline?: boolean;
     inputClass?: string;
     disabled?: boolean;
     className?: string;
     password?: boolean;
-    title: string;
-    id: string;
+    errorText?: string;
+    isError?: boolean;
+    title?: string;
+    id?: string;
 };
 
 export type TextInputSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export type TextInputStylerParams = {
     spreadBehaviour?: TextInputSpreadBehaviour;
-    radiuses: IOCore.RadiusesTokens;
-    borders: IOCore.BordersTokens;
-    typography: IOCore.Typography;
+    radiuses: IOCore.RadiusesTokensType;
+    borders: IOCore.BordersTokensType;
+    typography: IOCore.TypographyType;
+    spaces: IOCore.SpacesTokensType;
     disabledStyle: CSSProperties;
-    spaces: IOCore.SpacesTokens;
-    colors: IOCore.Colors;
+    colors: IOCore.ColorsType;
     multiline?: boolean;
     isFocused: boolean;
     disabled?: boolean;
+    isError?: boolean;
     value: string;
 };
 
 export type TitleProps = {
-    color: keyof IOCore.Colors;
+    variant: keyof IOCore.TypographyType;
+    color: keyof IOCore.ColorsType;
     style: CSSProperties;
 };
 
 export type TextInputStylerResult = {
-    titleProps: TitleProps;
+    contentContainer: CSSProperties;
+    passwordIcon: CSSProperties;
     container: CSSProperties;
+    titleProps: TitleProps;
     input: CSSProperties;
     clear: CSSProperties;
 };
+
 export default ITextInputProps;

@@ -6,8 +6,8 @@ import {
 
 interface ITextProps {
     reference?: RefObject<HTMLSpanElement>;
-    variant?: keyof IOCore.Typography;
-    color?: keyof IOCore.Colors;
+    variant?: keyof IOCore.TypographyType;
+    color?: keyof IOCore.ColorsType;
     style?: CSSProperties;
     children?: ReactNode;
     className?: string;

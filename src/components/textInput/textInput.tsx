@@ -1,116 +1,49 @@
 import {
-    CSSProperties,
     useState,
     useRef,
     FC
 } from  "react";
 import {
-    useIOCoreTheme 
-} from "../../core/context";
-import ITextInputProps, {
-    TextInputStylerParams,
-    TextInputStylerResult,
-    TitleProps
-} from "./textInput.props";
-import useStyles from "./textInput.styles";
+    textInputStyler,
+    useStyles
+} from "./textInput.styles";
+import ITextInputProps from "./textInput.props";
 import Text from "../text/text";
 import {
-    ClearIcon
+    EyeOpenedIcon,
+    EyeClosedIcon,
+    ClearIcon,
+    InfoIcon
 } from "../../assets/svgr";
-
-const textInputStyler = ({
-    disabledStyle,
-    typography,
-    isFocused,
-    multiline,
-    disabled,
-    radiuses,
-    borders,
-    colors,
-    spaces,
-    value
-}: TextInputStylerParams): TextInputStylerResult => {
-    let container: CSSProperties = {
-        borderColor: isFocused ? colors.primary : colors.panel,
-        paddingRight: spaces.container / 1.5,
-        paddingLeft: spaces.container / 1.5,
-        paddingBottom: spaces.content * 1.5,
-        paddingTop: spaces.content * 1.5,
-        backgroundColor: colors.panel,
-        borderRadius: radiuses.half,
-        borderWidth: borders.line
-    };
-
-    let titleProps: TitleProps = {
-        color: value?.length || isFocused ? "primary" : "gray50",
-        style: {
-            marginBottom: spaces.inline
-        }
-    };
-
-    let input: CSSProperties = {
-        backgroundColor: "transparent",
-        opacity: value ? 1 : 0.5,
-        color: colors.body,
-        ...typography.body,
-        lineHeight: undefined,
-        height: 18
-    };
-
-    let clear: CSSProperties = {
-        marginLeft: spaces.content
-    };
-
-    if(disabled) {
-        container = {
-            ...container,
-            ...disabledStyle,
-            cursor: "no-drop"
-        };
-        input = {
-            backgroundColor: "transparent",
-            cursor: "no-drop",
-            resize: "none"
-        };
-    }
-
-    if(multiline) {
-        input.height = "auto";
-        clear.marginTop = spaces.content * 1.5;
-        clear.alignSelf = "flex-start";
-    }
-
-    return {
-        titleProps,
-        container,
-        input,
-        clear
-    };
-};
+import {
+    IOCoreTheme
+} from "../../../src/core";
 
 const TextInput: FC<ITextInputProps> = ({
     spreadBehaviour = "baseline",
+    errorIcon: ErrorIconProp,
+    icon: IconComponentProp,
+    iconDirection = "left",
     clearEnabled = false,
     onFocus: onFocusProp,
-    contentType = "text",
     onBlur: onBlurProp,
     isRequired = false,
-    multiline = false,
     disabled = false,
+    isError = false,
     onChangeText,
     initialValue,
     placeholder,
+    iconOnClick,
     inputClass,
     className,
+    errorText,
     password,
     style,
     title,
     id,
     ...props
 }) => {
-    const classes = useStyles({
-        // disabled
-    });
+    const classes = useStyles();
 
     const {
         disabled: designTokensDisabled,
@@ -119,27 +52,19 @@ const TextInput: FC<ITextInputProps> = ({
         borders,
         spaces,
         colors
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const inputTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
-    const onClickContainer = () => {
-        if(multiline && inputTextAreaRef.current) {
-            inputTextAreaRef.current.focus();
-        }
-        
-        if(inputRef.current) {
-            inputRef.current.focus();
-        }
-    };
-
-    const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState(initialValue ? initialValue : "");
+    const [showPassword, setShowPassword] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
 
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        contentContainer,
+        passwordIcon,
         titleProps,
         container,
         input,
@@ -149,34 +74,38 @@ const TextInput: FC<ITextInputProps> = ({
         spreadBehaviour,
         typography,
         isFocused,
-        multiline,
         disabled,
         radiuses,
         borders,
+        isError,
         colors,
         spaces,
         value
     });
 
     const onFocus = () => {
-        setIsFocused(true);
         if(onFocusProp) onFocusProp();
+        setIsFocused(true);
     };
 
     const onBlur = () => {
-        setIsFocused(false);
         if(onBlurProp) onBlurProp();
+        setIsFocused(false);
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prevState => !prevState);
     };
 
     const renderClearButton = () => {
         if(disabled) {
             return null;
         }
-    
+
         if(!clearEnabled) {
             return null;
         }
-    
+
         if(value?.length === 0) {
             return null;
         }
@@ -197,42 +126,107 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
-    const renderInput = () => {
-        if(multiline) {
-            return <textarea
-                disabled={disabled}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                ref={inputTextAreaRef}
-                onChange={(e) => {
-                    if(onChangeText) onChangeText(e.target.value);
-                    setValue(e.target.value);
-                }}
-                placeholder={placeholder}
-                value={value}
-                className={[
-                    classes.multilineInput,
-                    inputClass
-                ].join(" ")}
-                style={{
-                    ...input
-                }}
-            />;
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
         }
 
+        if(!IconComponentProp) {
+            return null;
+        }
+
+        return <div
+            className={classes.ıconProps}
+            onClick={iconOnClick}
+        >
+            <IconComponentProp 
+                color={colors.primary} 
+                size={24}
+            />
+        </div>;
+    };
+
+    const renderPasswordIcon = () => {
+        if (!password) {
+            return null;
+        }
+
+        return<div
+            style={passwordIcon}
+            className={classes.passwordIconContainer}
+        >
+            <div
+                onClick={togglePasswordVisibility}
+            >
+                {showPassword ? 
+                    <EyeOpenedIcon color={colors.hideBody} size={24} /> :
+                    <EyeClosedIcon color={colors.hideBody} size={24} />
+                }
+            </div>
+        </div>;
+    };
+
+    const renderErrorText = () => {
+        if(!errorText) {
+            return null;
+        }
+
+        return <div className={classes.errorText}>
+            {ErrorIconProp ? 
+                <div
+                    style={{
+                        marginRight: spaces.inline
+                    }} 
+                >
+                    <ErrorIconProp/>
+                </div>: <div
+                    style={{
+                        marginRight: spaces.content
+                    }}
+                >
+                    <InfoIcon
+                        color={isError ? colors.error : colors.textGrey}
+                        size={15}
+                    />
+                </div>
+            }
+            <Text
+                color={isError ? "error" : "textGrey"}
+                variant="body3-regular"
+            >
+                {errorText}
+            </Text>
+        </div>;
+    };
+
+    const renderTitle = () => {
+        if(!finalTitle) {
+            return null;
+        }
+
+        return <Text
+            {...titleProps}
+            variant={titleProps.variant}
+            color={isError ? "error" : titleProps.color}
+        >
+            {finalTitle}
+        </Text>;
+    };
+
+    const renderInput = () => {
         return <input
-            {...props}
-            ref={inputRef}
-            type={password ? "password" : contentType}
-            value={value}
+            type={password && !showPassword ? "password" : "text"}
+            placeholder={placeholder}
             disabled={disabled}
             onFocus={onFocus}
             onBlur={onBlur}
+            ref={inputRef}
+            value={value}
+            {...props}
             onChange={(e) => {
                 if(onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);
             }}
-            placeholder={placeholder}
             className={[
                 classes.input,
                 inputClass
@@ -244,11 +238,6 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     return <div
-        className={[
-            classes.container,
-            className
-        ].join(" ")}
-        onClick={onClickContainer}
         style={{
             ...style,
             ...container
@@ -256,17 +245,23 @@ const TextInput: FC<ITextInputProps> = ({
     >
         <div
             className={[
-                classes.content
+                classes.container,
+                className
             ].join(" ")}
+            style={contentContainer}
         >
-            <Text
-                {...titleProps}
+            {renderIcon("left")}
+            <div
+                className={classes.content}
             >
-                {finalTitle}
-            </Text>
-            {renderInput()}
+                {renderTitle()}
+                {renderInput()}
+            </div>
+            {renderIcon("right")}
+            {renderPasswordIcon()}
+            {renderClearButton()}
         </div>
-        {renderClearButton()}
+        {renderErrorText()}
     </div>;
 };
 export default TextInput;

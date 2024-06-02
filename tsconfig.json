@@ -2,7 +2,11 @@
     "compilerOptions": {
         "baseUrl": "./",
         "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -17,6 +21,7 @@
         "jsx": "react-jsx",
         "declaration": true,
         "outDir": "./lib",
+        "noImplicitAny": false,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "noImplicitReturns": true,
@@ -25,6 +30,11 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "lib"]
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib"
+    ]
 }

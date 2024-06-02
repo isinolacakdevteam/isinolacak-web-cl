@@ -11,7 +11,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Dialog page."
+                component: "Welcome to IOCORE Dialog page."
             }
         }
     },
@@ -50,6 +50,7 @@ Default.args = {
     title: "Alert!",
     content: "Hello world!.",
     isVisible: true,
+    variant: "info",
     onOverlayPress: () => {
         alert("Overlay pressed.");
     },
@@ -62,5 +63,5 @@ Default.args = {
         onClick: () => {
             alert("Secondary button pressed.");
         }
-    }
+    } 
 };

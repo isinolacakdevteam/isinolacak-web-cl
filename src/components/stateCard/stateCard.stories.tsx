@@ -2,9 +2,9 @@ import {
     Story,
     Meta
 } from "@storybook/react";
-import StateCard from "./stateCard";
-import IStateCardProps from "./stateCard.props";
 import lightTheme from "../../core/theme/variants/light";
+import IStateCardProps from "./stateCard.props";
+import StateCard from "./stateCard";
 import {
     ClearIcon 
 } from "../../assets/svgr";
@@ -15,7 +15,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N StateCard page."
+                component: "Welcome to IOCORE StateCard page."
             }
         }
     },
@@ -66,13 +66,14 @@ Default.args = {
     icon: (iconProps) => <ClearIcon
         {...iconProps}
     />,
+    isAction: true,
     buttonProps: {
         onClick: () => {
             alert("State Card Action");
         },
-        spreadBehaviour: "free",
+        spreadBehaviour: "stretch",
         title: "Action",
-        color: "body",
-        size: "small"
+        color: "primary",
+        size: "medium"
     }
 };

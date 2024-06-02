@@ -1,92 +1,15 @@
 import {
-    CSSProperties,
     FC
 } from  "react";
-import {
-    useIOCoreTheme 
-} from "../../core/context";
-import IStateCardProps, {
-    StateCardStylerParams,
-    StateCardStylerResult,
-    ContentProps,
-    TitleProps,
-    IconProps
-} from "./stateCard.props";
-import useStyles from "./stateCard.styles";
+import useStyles, {
+    stateCardStyler 
+} from "./stateCard.styles";
+import IStateCardProps from "./stateCard.props";
 import Button from "../button/button";
 import Text from "../text/text";
-
-const stateCardStyler = ({
-    contentColor,
-    titleColor,
-    iconColor,
-    isAction,
-    spaces,
-    colors,
-    icon
-}: StateCardStylerParams): StateCardStylerResult => {
-    let container: CSSProperties = {
-        marginBottom: spaces.content * 2,
-        padding: spaces.container
-    };
-
-    let titleProps: TitleProps = {
-        variant: "header7",
-        color: "body",
-        style: {
-            marginBottom: spaces.inline * 2
-        }
-    };
-
-    let iconProps: IconProps = {
-        color: colors.body,
-        size: 65,
-        style: {
-            marginBottom: spaces.content * 2
-        }
-    };
-
-    let contentProps: ContentProps = {
-        variant: "body",
-        color: "body"
-    };
-
-    if(icon) {
-        titleProps = {
-            ...titleProps,
-            style: {
-                ...titleProps.style,
-                marginLeft: spaces.content
-            }
-        };
-    }
-
-    if(titleColor) {
-        titleProps.color = titleColor;
-        iconProps.color = titleColor;
-    }
-
-    if(iconColor) {
-        iconProps.color = iconColor;
-    }
-
-    if(contentColor) {
-        contentProps.color = contentColor;
-    }
-
-    if(isAction) {
-        contentProps.style = {
-            marginBottom: spaces.content * 2
-        };
-    }
-
-    return {
-        contentProps,
-        titleProps,
-        iconProps,
-        container
-    };
-};
+import {
+    IOCoreTheme 
+} from "../../core";
 
 /**
  * A generic stateCard
@@ -111,7 +34,7 @@ const StateCard: FC<IStateCardProps> = ({
     const {
         colors,
         spaces
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const {
         contentProps,
@@ -142,9 +65,7 @@ const StateCard: FC<IStateCardProps> = ({
         return <Text
             variant={titleProps.variant}
             color={titleProps.color}
-            style={{
-                ...titleProps.style
-            }}
+            style={titleProps.style}
         >
             {title}
         </Text>;
@@ -155,9 +76,7 @@ const StateCard: FC<IStateCardProps> = ({
             variant={contentProps.variant}
             className={classes.content}
             color={contentProps.color}
-            style={{
-                ...contentProps.style
-            }}
+            style={contentProps.style}
         >
             {content}
         </Text>;

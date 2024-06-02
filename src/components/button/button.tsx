@@ -3,28 +3,24 @@ import {
     FC
 } from 'react';
 import IButtonProps from './button.props';
-import {
-    useIOCoreTheme
-} from "../../";
 import useStyles, {
-    buttonStyler 
+    buttonStyler
 } from './button.styles';
 import Text from "../text/text";
-import Loading from '../loading/loading';
+import {
+    IOCoreTheme
+} from '../../core';
 
-/**
- * A generic button
- * @param props {@link IButtonProps}
- * @returns Element
- */
 const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
     spreadBehaviour = "baseline",
     icon: IconComponentProp,
+    iconDirection= "left",
     variant = "filled",
     color = "primary",
     disabled = false,
     size = "medium",
+    textVariant,
     titleStyle,
     textColor,
     iconColor,
@@ -42,7 +38,7 @@ const Button: FC<IButtonProps> = ({
         borders,
         colors,
         spaces
-    } = useIOCoreTheme();
+    } = IOCoreTheme.useContext();
 
     const {
         titleProps,
@@ -53,6 +49,8 @@ const Button: FC<IButtonProps> = ({
         icon: IconComponentProp,
         spreadBehaviour,
         disabledStyle,
+        iconDirection,
+        textVariant,
         textColor,
         iconColor,
         radiuses,
@@ -63,14 +61,13 @@ const Button: FC<IButtonProps> = ({
         colors,
         spaces,
         color,
+        title,
         size
     });
 
-    const renderIcon = () => {
-        if(loading) {
-            return <Loading
-                color={titleProps.color}
-            />;
+    const renderIcon = (direction: "left" | "right") => {
+        if(direction !== iconDirection) {
+            return null;
         }
 
         if(!IconComponentProp) {
@@ -114,8 +111,9 @@ const Button: FC<IButtonProps> = ({
             ...container
         }}
     >
-        {renderIcon()}
+        {renderIcon("left")}
         {renderTitle()}
+        {renderIcon("right")}
     </button>;
 };
 export default Button;

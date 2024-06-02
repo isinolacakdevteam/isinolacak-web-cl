@@ -2,53 +2,53 @@ import {
     CSSProperties
 } from "react";
 import {
-    IIOCoreIconProps,
-    IOCoreIcon 
-} from "src/core/types";
+    IIOCoreIconPropsType,
+    IOCoreIconType 
+} from "src/types";
 import IButtonProps from "../button/button.props";
 
 interface IStateCardProps {
-    contentColor?: keyof IOCore.Colors;
-    titleColor?: keyof IOCore.Colors;
-    iconColor?: keyof IOCore.Colors;
+    contentColor?: keyof IOCore.ColorsType;
+    titleColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
     buttonProps?: IButtonProps;
+    icon?: IOCoreIconType;
     style?: CSSProperties;
     className?: string;
     isAction?: boolean;
-    icon?: IOCoreIcon;
     content: string;
     title: string;
 };
 
 export type StateCardStylerParams = {
-    contentColor?: keyof IOCore.Colors;
-    titleColor?: keyof IOCore.Colors;
-    iconColor?: keyof IOCore.Colors;
-    spaces: IOCore.SpacesTokens;
-    colors: IOCore.Colors;
+    contentColor?: keyof IOCore.ColorsType;
+    titleColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
+    spaces: IOCore.SpacesTokensType;
+    colors: IOCore.ColorsType;
+    icon?: IOCoreIconType;
     isAction?: boolean;
-    icon?: IOCoreIcon;
 };
 
 export type TitleProps = {
-    variant: keyof IOCore.Typography;
-    color: keyof IOCore.Colors;
+    variant: keyof IOCore.TypographyType;
+    color: keyof IOCore.ColorsType;
     style?: CSSProperties;
 };
 
 export type ContentProps = {
-    variant: keyof IOCore.Typography;
-    color: keyof IOCore.Colors;
+    variant: keyof IOCore.TypographyType;
+    color: keyof IOCore.ColorsType;
     style?: CSSProperties;
 };
 
-export type IconProps = IIOCoreIconProps & {
+export type IconProps = IIOCoreIconPropsType & {
     style: CSSProperties;
 };
 
 export type StateCardStylerResult = {
+    iconProps: IIOCoreIconPropsType;
     contentProps: ContentProps;
-    iconProps: IIOCoreIconProps;
     container: CSSProperties;
     titleProps: TitleProps;
 };
