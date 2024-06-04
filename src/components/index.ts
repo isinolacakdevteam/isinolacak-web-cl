@@ -73,3 +73,7 @@ export {
 export {
     default as Pagination
 } from "./pagination/pagination";
+
+export {
+    default as AccordionCard
+} from "./accordionCard/accordionCard";

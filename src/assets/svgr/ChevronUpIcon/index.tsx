@@ -2,12 +2,12 @@ import {
     IIOCoreIconPropsType 
 } from "../../../types";
 
-const SvgChevronDown = ({
-    size = 18,
-    color,
+const SvgChevronUp = ({
+    color = "#8C8C8C",
+    size = 24,
     ...props
 }: IIOCoreIconPropsType) => {
-    const pathScale = 18 / size;
+    const pathScale = 94 / size;
 
     return <svg
         width={size}
@@ -17,10 +17,10 @@ const SvgChevronDown = ({
         {...props}
     >
         <path
-            d="M1.186 5.28a.757.757 0 0 1 1.092-.087L9 11.146l6.722-5.953a.757.757 0 0 1 1.092.086c.278.336.24.84-.084 1.128l-7.226 6.4a.755.755 0 0 1-1.008 0l-7.226-6.4a.819.819 0 0 1-.084-1.128Z"
+            d="M44.453 31.746a3.18 3.18 0 0 1 4.094 0l29.355 24.8a3.07 3.07 0 0 1 .34 4.371 3.177 3.177 0 0 1-4.434.337L46.5 38.183l-27.308 23.07a3.177 3.177 0 0 1-4.435-.336 3.07 3.07 0 0 1 .341-4.37l29.355-24.8Z"
             fill={color}
             transform={`scale(${1 / pathScale})`}
         />
     </svg>;
 };
-export default SvgChevronDown;
+export default SvgChevronUp;
