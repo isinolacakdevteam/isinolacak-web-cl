@@ -23,6 +23,7 @@ export type {
 } from "./types";
 
 export {
+    AccordionCard,
     SelectDialog,
     RadioButton,
     StepManager,

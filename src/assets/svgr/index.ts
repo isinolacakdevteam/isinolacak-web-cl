@@ -8,7 +8,7 @@ export {
 
 export {
     default as ChevronRightIcon
-} from "./chrevronRight";
+} from "./chrevronRightIcon";
 
 export {
     default as InfoIcon
@@ -16,15 +16,15 @@ export {
 
 export {
     default as CheckIcon
-} from "./checkIcon";
+} from "./checkIconIcon";
 
 export {
     default as EyeClosedIcon
-} from "./eyeClosed";
+} from "./eyeClosedIcon";
 
 export {
     default as EyeOpenedIcon
-} from "./eyeOpened";
+} from "./eyeOpenedIcon";
 
 export {
     default as NotificationIcon
@@ -32,8 +32,12 @@ export {
 
 export {
     default as ChevronLeftIcon
-} from "./chevronLeft";
+} from "./chevronLeftIcon";
 
 export {
     default as ChevronDownIcon
-} from "./chevronDown";
+} from "./chevronDownIcon";
+
+export {
+    default as ChevronUpIcon
+} from "./ChevronUpIcon";
