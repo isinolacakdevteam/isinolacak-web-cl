@@ -92,13 +92,12 @@ const TextArea: FC<ITextAreaProps> = ({
         if(!clearEnabled) {
             return null;
         }
-    
-        if(value?.length === 0) {
-            return null;
-        }
 
         return <div
-            onClick={() => setValue("")}
+            onClick={() => {
+                if(onChangeText) onChangeText("");
+                setValue("");
+            }}
             className={[
                 classes.clearButton
             ].join(" ")}
@@ -144,6 +143,8 @@ const TextArea: FC<ITextAreaProps> = ({
             variant="body3-regular"
             color="textSecondary"
             style={{
+
+                display: "flex",
                 alignSelf: "flex-end"
             }}
         >
