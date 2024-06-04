@@ -11,8 +11,6 @@ import {
     IOCoreTheme
 } from "../../core";
 import IPageModalProps from "./pageModal.props";
-import StepManager from "../stepManager/stepManager";
-import Text from "../text/text";
 
 const PageModal: FC<IPageModalProps> = ({
     contentContainerStyle,
@@ -64,77 +62,7 @@ const PageModal: FC<IPageModalProps> = ({
                     ...contentStyle
                 }}
             >
-                {/* {content} */}
-                <div
-                    style={{
-                        width: 1000,
-                        height: 1000,
-                        backgroundColor: "wheat"
-                    }}/>
-                <StepManager
-                    isShowFinishSheet={false}
-                    isShowHeader={true}
-                    data={[]}
-                    components={[
-                        () => <div
-                            style={{
-                                display:"flex",
-                                flexDirection:"column"
-                            }}
-                        >
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                            <Text>
-                                    denene
-                            </Text>
-                        </div>,
-                        () => <div
-                            style={{
-                                display:"flex",
-                                flexDirection:"column"
-                            }}
-                        >
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                            <Text>
-                                denene
-                            </Text>
-                        </div>
-                    ]}
-                    onFinish={()=> {}}
-                />
+                {content} 
             </div>
         </div>
     </Portal>;
