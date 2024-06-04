@@ -65,6 +65,7 @@ const Switcher: FC<ISwitcherProps> = ({
         }
 
         return <Text
+            variant={titleProps.variant}
             color={titleProps.color}
             style={{
                 ...titleProps.style,

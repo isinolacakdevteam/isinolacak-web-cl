@@ -14,7 +14,13 @@ const useStyles = createUseStyles({
         flexDirection: "column",
         boxSizing: "border-box",
         userSelect: "none",
-        display: "flex"
+        display: "flex",
+        "&:hover": {
+            transition: "transform 0.1s",
+            cursor: "pointer",
+            // cursor: (props: { disabled: boolean; }) => props.disabled ? "no-drop" : "pointer",
+            opacity: 0.75
+        }
     },
     headerContainer: {
         flexDirection: "row",
