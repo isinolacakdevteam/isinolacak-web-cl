@@ -9,7 +9,7 @@ interface ITextInputProps {
     spreadBehaviour?: TextInputSpreadBehaviour;
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
-    errorIcon?: IOCoreIconType;
+    infoIcon?: IOCoreIconType;
     iconOnClick?: () => void;
     secureTextEntry?: boolean;
     clearEnabled?: boolean;
@@ -25,7 +25,7 @@ interface ITextInputProps {
     disabled?: boolean;
     className?: string;
     password?: boolean;
-    errorText?: string;
+    infoText?: string;
     isError?: boolean;
     title?: string;
     id?: string;
@@ -55,7 +55,9 @@ export type TitleProps = {
 };
 
 export type TextInputStylerResult = {
+    infoTextContainer: CSSProperties;
     contentContainer: CSSProperties;
+    infoIconStyler: CSSProperties;
     passwordIcon: CSSProperties;
     container: CSSProperties;
     titleProps: TitleProps;

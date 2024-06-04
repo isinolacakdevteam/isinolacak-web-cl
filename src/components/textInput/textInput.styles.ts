@@ -13,7 +13,8 @@ import {
 export const useStyles = createUseStyles({
     container: {
         flexDirection: "row",
-        userSelect: "none",
+        alignItems: "center",
+        cursor: "pointer",
         display: "flex"
     },
     content: {
@@ -46,7 +47,7 @@ export const useStyles = createUseStyles({
         alignContent:"center",
         alignItems: "center"
     },
-    errorText: {
+    infoText: {
         display: "flex"
     }
 }, {
@@ -67,6 +68,7 @@ export const textInputStyler = ({
     value
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
+        userSelect: "none"
     };
 
     let contentContainer: CSSProperties = {
@@ -77,6 +79,7 @@ export const textInputStyler = ({
         paddingTop: spaces.content * 1.5,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
+        marginBottom: spaces.inline,
         borderWidth: borders.line,
         borderStyle: "solid"
     };
@@ -90,11 +93,11 @@ export const textInputStyler = ({
     };
 
     let input: CSSProperties = {
+        ...typography["body-regular"],
         backgroundColor: "transparent",
         opacity: value ? 1 : 0.5,
-        color: colors.body,
-        ...typography["body-regular"],
         lineHeight: undefined,
+        color: colors.body,
         height: 18
     };
 
@@ -106,15 +109,23 @@ export const textInputStyler = ({
         marginLeft: spaces.content
     };
 
+    let infoTextContainer: CSSProperties = {
+        paddingLeft: spaces.content
+    };
+    
+    let infoIconStyler: CSSProperties = {
+        marginRight: spaces.inline
+    };
+
     if(spreadBehaviour === "baseline") {
         container.alignSelf = spreadBehaviour;
-        container.width = "auto";
+        container.width = "auto"; 
     }
 
     if(spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
         container.justifyContent = "center";
-        container.width = "100%";
+        container.width = "100%"; 
     }
 
     if(disabled) {
@@ -132,7 +143,9 @@ export const textInputStyler = ({
     }
 
     return {
+        infoTextContainer,
         contentContainer,
+        infoIconStyler,
         passwordIcon,
         titleProps,
         container,
