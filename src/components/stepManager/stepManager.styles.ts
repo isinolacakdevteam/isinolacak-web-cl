@@ -46,7 +46,12 @@ const useStyles = createUseStyles({
         borderStyle: "solid",
         borderRadius: 100,
         display: "flex",
-        borderWidth: 2
+        borderWidth: 2,
+        "&:hover": {
+            transition: "transform 0.1s",
+            cursor: "pointer",
+            opacity: 0.75
+        }
     }
 }, {
     name: "IOCore-Stepmanager"
@@ -56,8 +61,14 @@ export const stepManagerStyler = ({
     colors,
     spaces
 }: StepManagerStylerParams): StepManagerStylerResult => {
+    let containerStyler: CSSProperties = {
+        backgroundColor: colors.layer1,
+        paddingRight: spaces.content,  
+        paddingLeft: spaces.content,
+        paddingTop: spaces.content
+    };
+    
     let bottomContainer: CSSProperties = {
-        padding: spaces.container
     };
 
     let backButtonContainer: CSSProperties = {
@@ -67,19 +78,13 @@ export const stepManagerStyler = ({
 
     let headerStyler: CSSProperties = {
         borderBottomColor: colors.stroke,
-        marginBottom: spaces.content,
-        borderBottomStyle: "solid",
-        borderBottomWidth: 1,
-    };
-
-    let containerStyler: CSSProperties = {
-        backgroundColor: colors.layer1
+        marginBottom: spaces.content
     };
 
     let pageContainer: CSSProperties = {
         paddingTop: spaces.container / 2,
-        paddingLeft: spaces.container,
         paddingRight: spaces.container,
+        paddingLeft: spaces.container,
         backgroundColor: colors.layer1
     };
 
