@@ -71,6 +71,16 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         localize
     } = IOCoreLocale.useContext();
 
+    const {
+        content: contentStyle,
+        container
+    } = selectDialogStyler({
+        childrenStyleProp,
+        radiuses,
+        spaces,
+        colors
+    });
+
     const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
     const [renderData, setRenderData] = useState(data);
     const [searchText, setSearchText] = useState("");
@@ -113,7 +123,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const _onChange = (item: K) => {
         let _selectedItems = JSON.parse(JSON.stringify(tempSelectedItems));
 
-        const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.key === item.__key);
+        const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.__key === item.__key);
 
         if(isExistsInSelectedData !== -1) {
             if(multiSelect) {
@@ -138,8 +148,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
                 _selectedItems.push({
                     ...item,
-                    key: item.__key,
-                    title: item.__title
+                    __key: item.__key,
+                    __title: item.__title
                 });
                 setTempSelectedItems(_selectedItems);
             } else {
@@ -272,7 +282,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         item: K,
         index: number;
     }) => {
-        const isSelected = tempSelectedItems.findIndex((c_item) => c_item.key === item.__key) !== -1;
+        const isSelected = tempSelectedItems.findIndex((c_item) => c_item.__key === item.__key) !== -1;
 
         if(RenderItem) {
             return RenderItem({
@@ -373,16 +383,6 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </div>
         </div>;
     };
-
-    const {
-        content: contentStyle,
-        container
-    } = selectDialogStyler({
-        childrenStyleProp,
-        radiuses,
-        spaces,
-        colors
-    });
 
     if(!isVisible) {
         return null;

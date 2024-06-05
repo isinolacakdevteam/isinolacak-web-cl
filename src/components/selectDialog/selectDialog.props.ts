@@ -30,8 +30,9 @@ export type SelectDialogStylerResult = {
 };
 
 export type SelectedItem = {
-    title: string;
-    key: string;
+    __originalIndex: number;
+    __title: string;
+    __key: string;
 };
 
 interface ISelectDialogProps<T, K extends T & SelectObjectType> {
