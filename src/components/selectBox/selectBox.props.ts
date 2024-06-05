@@ -9,8 +9,9 @@ import {
 import IPaginationProps from "../pagination/pagination.props";
 
 export type SelectedItem = {
-    title: string;
-    key: string;
+    __originalIndex: number;
+    __title: string;
+    __key: string;
 };
 export type SelectBoxSpreadBehaviour = "baseline" | "stretch" | "free";
 
@@ -52,7 +53,7 @@ export interface ISelectBoxProps<T> {
     titleExtractor: (item: T, index: number) => string;
     keyExtractor: (item: T, index: number) => string;
     initialSelectedItems?: Array<T & {
-        originalIndex: number;
+        originalIndex?: number;
     }>;
     onChange?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
     onOk?: (props: {
