@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
         alignItems: "center",
         position: "absolute",
         display: "flex",
-        zIndex: 99,
+        zIndex: 99
     },
     count: {
         textAlign: "center"
