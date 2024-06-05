@@ -26,6 +26,7 @@ import {
 } from "../../assets/svgr";
 
 const SelectBox = <T extends {}>({
+    customIcon: CustomIconComponentProp,
     spreadBehaviour = "free",
     renderIcon: RenderIcon,
     initialSelectedItems,
@@ -228,6 +229,10 @@ const SelectBox = <T extends {}>({
     };
 
     const renderIcon = () => {
+        if(CustomIconComponentProp) {
+            return CustomIconComponentProp();
+        }
+
         return <ChevronDownIcon
             color={colors.gray40}
             size={16}

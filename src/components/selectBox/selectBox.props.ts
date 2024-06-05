@@ -32,6 +32,7 @@ export interface ISelectBoxProps<T> {
         isSelected?: boolean;
         index?: number;
     }) => JSX.Element;
+    customIcon?: () => JSX.Element;
     renderIcon?: (props: IIOCoreIconPropsType & {
         onChange?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
         onPress?: (selectedItems: Array<SelectedItem>, data: Array<T & SelectObjectType>) => void;
