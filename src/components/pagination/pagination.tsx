@@ -178,6 +178,11 @@ const Pagination: FC<IPaginationProps> = ({
         </div>;
     };
 
+
+    if(itemPerPage > totalDataCount) {
+        return null;
+    }
+
     return <div
         className={classes.container}
         style={{
