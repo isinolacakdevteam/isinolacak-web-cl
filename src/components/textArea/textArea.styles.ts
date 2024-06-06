@@ -12,6 +12,7 @@ import {
 
 const useStyles = createUseStyles({
     container: {
+        boxSizing: "border-box",
         flexDirection: "row",
         userSelect: "none",
         display: "flex",
@@ -87,10 +88,11 @@ export const textAreaStyler = ({
 
     let input: CSSProperties = {
         backgroundColor: "transparent",
-        opacity: value ? 1 : 0.5,
-        color: colors.body,
         ...typography["body-regular"],
+        opacity: value ? 1 : 0.5,
         lineHeight: undefined,
+        color: colors.body,
+        resize: "none",
         height: 60
     };
 

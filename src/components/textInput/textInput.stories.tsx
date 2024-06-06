@@ -95,14 +95,14 @@ const Template: Story<ITextInputProps> = (args) => <TextInput {...args} />;
 export const Default = Template.bind({
 });
 Default.args = {
-    title: "Text Input",
+    /* title: "Text Input", */
     placeholder: "Please enter text"
 };
 
 export const Disabled = Template.bind({
 });
 Disabled.args = {
-    title: "Text Input",
     placeholder: "Please enter text",
+    title: "Text Input",
     disabled: true
 };

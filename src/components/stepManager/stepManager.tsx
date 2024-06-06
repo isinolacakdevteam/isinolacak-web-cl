@@ -60,9 +60,9 @@ const StepManager = <T extends ReactNode, K extends Record<any, any>>({
     const {
         backButtonContainer,
         containerStyler,
+        bottomContainer,
         pageContainer,
-        headerStyler,
-        bottomContainer
+        headerStyler
     } = stepManagerStyler({
         components,
         spaces,

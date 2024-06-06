@@ -2,20 +2,21 @@ import {
     createUseStyles
 } from "react-jss";
 import {
-    SwitcherStylerParams, SwitcherStylerResult, 
+    SwitcherStylerParams, 
+    SwitcherStylerResult, 
     TitleProps
 } from "./switcher.props";
 
 const useStyles = createUseStyles({
     switchComponentContainer: {
-        alignItems: "center",
+        flexDirection: "row",
         display: "flex"
     },
     container: {
         transition: "transform 0.5s !important",
-        alignSelf: "baseline",
         position: "relative",
         alignItems: "center",
+        alignSelf: "center",
         borderRadius: 50,
         display: "flex",
         height: 10,
@@ -68,9 +69,11 @@ export const switcherStyler = ({
 
     let titleProps: TitleProps = {
         style: {
-            marginRight: spaces.content
+            marginRight: spaces.content,
+            alignSelf: "center",
+            display: "flex"
         },
-        variant: "body2-regular",
+        variant: "header4-regular",
         color: "textGrey"
     };
 

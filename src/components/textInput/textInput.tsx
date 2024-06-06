@@ -21,7 +21,7 @@ import {
 
 const TextInput: FC<ITextInputProps> = ({
     spreadBehaviour = "baseline",
-    errorIcon: ErrorIconProp,
+    infoIcon: InfoIconProp,
     icon: IconComponentProp,
     iconDirection = "left",
     clearEnabled = false,
@@ -36,7 +36,7 @@ const TextInput: FC<ITextInputProps> = ({
     iconOnClick,
     inputClass,
     className,
-    errorText,
+    infoText,
     password,
     style,
     title,
@@ -63,7 +63,9 @@ const TextInput: FC<ITextInputProps> = ({
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        infoTextContainer,
         contentContainer,
+        infoIconStyler,
         passwordIcon,
         titleProps,
         container,
@@ -106,12 +108,11 @@ const TextInput: FC<ITextInputProps> = ({
             return null;
         }
 
-        if(value?.length === 0) {
-            return null;
-        }
-
         return <div
-            onClick={() => setValue("")}
+            onClick={() => {
+                if(onChangeText) onChangeText("");
+                setValue("");
+            }}
             className={[
                 classes.clearButton
             ].join(" ")}
@@ -166,23 +167,21 @@ const TextInput: FC<ITextInputProps> = ({
         </div>;
     };
 
-    const renderErrorText = () => {
-        if(!errorText) {
+    const renderInfoText = () => {
+        if(!infoText) {
             return null;
         }
 
-        return <div className={classes.errorText}>
-            {ErrorIconProp ? 
+        return <div className={classes.infoText}
+            style={infoTextContainer}
+        >
+            {InfoIconProp ? 
                 <div
-                    style={{
-                        marginRight: spaces.inline
-                    }} 
+                    style={infoIconStyler} 
                 >
-                    <ErrorIconProp/>
+                    <InfoIconProp/>
                 </div>: <div
-                    style={{
-                        marginRight: spaces.content
-                    }}
+                    style={infoIconStyler}
                 >
                     <InfoIcon
                         color={isError ? colors.error : colors.textGrey}
@@ -194,7 +193,7 @@ const TextInput: FC<ITextInputProps> = ({
                 color={isError ? "error" : "textGrey"}
                 variant="body3-regular"
             >
-                {errorText}
+                {infoText}
             </Text>
         </div>;
     };
@@ -238,6 +237,9 @@ const TextInput: FC<ITextInputProps> = ({
     };
 
     return <div
+        onClick={() => {
+            inputRef.current?.focus();
+        }}
         style={{
             ...style,
             ...container
@@ -261,7 +263,7 @@ const TextInput: FC<ITextInputProps> = ({
             {renderPasswordIcon()}
             {renderClearButton()}
         </div>
-        {renderErrorText()}
+        {renderInfoText()}
     </div>;
 };
 export default TextInput;

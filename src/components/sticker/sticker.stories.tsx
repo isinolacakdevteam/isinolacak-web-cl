@@ -13,7 +13,7 @@ import {
 import {
     ClearIcon 
 } from "../../assets/svgr";
-import EyeOpenedIcon from "../../assets/svgr/eyeOpened";
+import EyeOpenedIcon from "../../assets/svgr/eyeOpenedIcon";
 
 export default {
     title: "Components/Sticker",
