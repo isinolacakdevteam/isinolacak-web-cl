@@ -3,10 +3,6 @@ export {
 } from "./clearIcon";
 
 export {
-    default as LoadingIcon
-} from "./loading";
-
-export {
     default as ChevronRightIcon
 } from "./chrevronRightIcon";
 
@@ -41,3 +37,7 @@ export {
 export {
     default as ChevronUpIcon
 } from "./ChevronUpIcon";
+
+export {
+    default as LoadingDots
+} from "./loadingDotIcon";

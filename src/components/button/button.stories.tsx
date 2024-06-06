@@ -58,6 +58,11 @@ export default {
                 options: Object.keys(lightTheme.typography)
             }
         },
+        loading: {
+            control: {
+                type: "boolean"
+            }
+        },
         icon: {
             mapping: {
                 "undefined": undefined,
