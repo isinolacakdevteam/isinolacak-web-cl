@@ -11,7 +11,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: "Welcome to N Loading page."
+                component: "Welcome to IOCore Loading page."
             }
         }
     },

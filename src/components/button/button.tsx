@@ -10,6 +10,7 @@ import Text from "../text/text";
 import {
     IOCoreTheme
 } from '../../core';
+import Loading from '../loading/loading';
 
 const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
@@ -66,6 +67,10 @@ const Button: FC<IButtonProps> = ({
     });
 
     const renderIcon = (direction: "left" | "right") => {
+        if(loading) {
+            return null;
+        }
+
         if(direction !== iconDirection) {
             return null;
         }
@@ -79,7 +84,15 @@ const Button: FC<IButtonProps> = ({
         />;
     };
 
-    const renderTitle = () => {
+    const renderTitle = () => { 
+        if(loading) {
+            return <Loading
+                color={titleProps.color}
+                size={22}
+            />;
+        }
+
+
         if(!title) {
             return null;
         }

@@ -7,11 +7,11 @@ import {
     IOCoreTheme
 } from "../../core/index";
 import {
-    LoadingDots 
+    LoadingDots
 } from "../../assets/svgr/index";
 
 const Loading: FC<ILoadingProps> = ({
-    color = "body",
+    color = "primary",
     size = 22,
     className,
     children,
@@ -27,14 +27,24 @@ const Loading: FC<ILoadingProps> = ({
     return  <div className={classes.loader}>
         <span className={`${classes.loaderSpan} ${classes.loaderSpanNthChild1}`}>
             <LoadingDots
-                size={22}
+                color={colors[color]}
+                size={size}
+                {...props}
             />
         </span>
         <span className={`${classes.loaderSpan} ${classes.loaderSpanNthChild2}`}>
-            <LoadingDots/>
+            <LoadingDots
+                color={colors[color]}
+                size={size}
+                {...props}
+            />
         </span>
         <span className={`${classes.loaderSpan} ${classes.loaderSpanNthChild3}`}>
-            <LoadingDots/>
+            <LoadingDots
+                color={colors[color]}
+                size={size}
+                {...props}
+            />
         </span>
     </div>;
 };
