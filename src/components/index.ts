@@ -77,3 +77,7 @@ export {
 export {
     default as AccordionCard
 } from "./accordionCard/accordionCard";
+
+export {
+    default as ToolBox
+} from "./toolBox/toolBox";
