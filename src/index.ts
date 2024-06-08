@@ -37,6 +37,7 @@ export {
     TextArea,
     BadgeHOC,
     ToolTip,
+    ToolBox,
     Sticker,
     Dialog,
     Header,
