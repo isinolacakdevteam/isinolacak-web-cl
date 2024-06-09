@@ -12,6 +12,8 @@ import {
 } from "../../core";
 import IPageModalProps from "./pageModal.props";
 import RadioButton from "../radioButton/radioButton";
+import Switcher from "../switcher/switcher";
+import Text from "../text/text";
 
 const PageModal: FC<IPageModalProps> = ({
     contentContainerStyle,
@@ -79,11 +81,12 @@ const PageModal: FC<IPageModalProps> = ({
                             flexDirection: "row"
                         }}
                     >
-                        <RadioButton
-                            isSelected
+                        <Switcher
+                            isActive
                             title="Deneme"
                         />
-                        <RadioButton
+                        <Switcher
+                            isActive={false}
                             title="Deneme"
                         />
                     </div>

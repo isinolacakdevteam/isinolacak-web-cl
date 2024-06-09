@@ -9,7 +9,9 @@ import {
 
 const useStyles = createUseStyles({
     switchComponentContainer: {
+        alignContent: "center",
         flexDirection: "row",
+        alignItems: "center",
         display: "flex"
     },
     container: {
