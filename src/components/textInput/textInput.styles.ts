@@ -13,6 +13,7 @@ import {
 export const useStyles = createUseStyles({
     container: {
         flexDirection: "row",
+        boxSizing: "border-box",
         alignItems: "center",
         cursor: "pointer",
         display: "flex"
@@ -79,8 +80,8 @@ export const textInputStyler = ({
         paddingTop: spaces.content * 1.5,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
-        marginBottom: spaces.inline,
         borderWidth: borders.line,
+        boxSizing: "border-box",
         borderStyle: "solid"
     };
 

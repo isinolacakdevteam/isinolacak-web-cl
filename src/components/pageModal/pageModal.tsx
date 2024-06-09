@@ -14,6 +14,8 @@ import IPageModalProps from "./pageModal.props";
 import RadioButton from "../radioButton/radioButton";
 import Switcher from "../switcher/switcher";
 import Text from "../text/text";
+import Button from "../button/button";
+import TextInput from "../textInput/textInput";
 
 const PageModal: FC<IPageModalProps> = ({
     contentContainerStyle,
@@ -78,16 +80,23 @@ const PageModal: FC<IPageModalProps> = ({
                     <div
                         style={{
                             display:"flex",
-                            flexDirection: "row"
+                            flexDirection: "row",
+                            width: 1000,
+                            height: 200
                         }}
                     >
-                        <Switcher
-                            isActive
+                        {/* <Button
                             title="Deneme"
+                            onClick={() => {}}
                         />
-                        <Switcher
-                            isActive={false}
+                        <Button
+                            spreadBehaviour="baseline"
                             title="Deneme"
+                            size="large"
+                            onClick={() => {}}
+                        /> */}
+                        <TextInput
+                            spreadBehaviour="stretch"
                         />
                     </div>
 
