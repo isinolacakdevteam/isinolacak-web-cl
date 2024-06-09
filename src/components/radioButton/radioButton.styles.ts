@@ -24,19 +24,14 @@ export const useStyles = createUseStyles({
     },
     radioContainer: {
         border: '1px solid #ccc',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 100,
-        display: 'flex',
-        minHeight: 22,
-        minWidth: 22,
-        height: 22,
-        width: 22
+        borderRadius: 100
     },
     radioIndicator: {
-        borderRadius: 8,
-        height: 16,
-        width: 16
+        borderRadius: 100,
+        alignSelf: "center",
+        display:"flex",
+        height: "100%",
+        width: "100%"
     },
     title: {
         alignSelf: 'center'
@@ -46,6 +41,7 @@ export const useStyles = createUseStyles({
 export const radioButtonStyler = ({
     spreadBehaviour,
     disabledStyle,
+    indicatorSize,
     titleStyle,
     disabled,
     borders,
@@ -62,6 +58,11 @@ export const radioButtonStyler = ({
         backgroundColor: colors.backgroundLight,
         borderWidth: borders.line,
         borderColor: colors.stroke,
+        padding: spaces.inline,
+        minHeight: indicatorSize,
+        minWidth: indicatorSize,
+        height: indicatorSize,
+        width: indicatorSize
     };
 
     let radioIndicator: CSSProperties = {

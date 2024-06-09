@@ -11,6 +11,7 @@ import {
     IOCoreTheme
 } from "../../core";
 import IPageModalProps from "./pageModal.props";
+import RadioButton from "../radioButton/radioButton";
 
 const PageModal: FC<IPageModalProps> = ({
     contentContainerStyle,
@@ -62,7 +63,32 @@ const PageModal: FC<IPageModalProps> = ({
                     ...contentStyle
                 }}
             >
-                {content}
+                {/* {content} */}
+                <div
+                    style={{
+                        width: 1000,
+                        height: 1000,
+                        display: "flex",
+                        flexDirection: "column",
+                        backgroundColor: "wheat"
+                    }}
+                >
+                    <div
+                        style={{
+                            display:"flex",
+                            flexDirection: "row"
+                        }}
+                    >
+                        <RadioButton
+                            isSelected
+                            title="Deneme"
+                        />
+                        <RadioButton
+                            title="Deneme"
+                        />
+                    </div>
+
+                </div>
             </div>
         </div>
     </Portal>;

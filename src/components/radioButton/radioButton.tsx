@@ -18,6 +18,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
     titleType = "body2-regular",
     onChange: onChangeProp,
     isSelected = false,
+    indicatorSize = 20,
     disabled = false,
     titleStyle,
     title,
@@ -40,6 +41,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
     } = radioButtonStyler({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
+        indicatorSize,
         titleStyle,
         isSelected,
         disabled,
