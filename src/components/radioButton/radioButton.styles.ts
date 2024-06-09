@@ -19,7 +19,6 @@ export const useStyles = createUseStyles({
         "&:hover": {
             transition: "transform 0.1s",
             cursor: "pointer",
-            // cursor: (props: { disabled: boolean; }) => props.disabled ? "no-drop" : "pointer",
             opacity: 0.75
         }
     },
@@ -27,8 +26,10 @@ export const useStyles = createUseStyles({
         border: '1px solid #ccc',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 13,
+        borderRadius: 100,
         display: 'flex',
+        minHeight: 22,
+        minWidth: 22,
         height: 22,
         width: 22
     },
@@ -38,8 +39,7 @@ export const useStyles = createUseStyles({
         width: 16
     },
     title: {
-        alignSelf: 'center',
-        marginLeft: 10
+        alignSelf: 'center'
     }
 });
 

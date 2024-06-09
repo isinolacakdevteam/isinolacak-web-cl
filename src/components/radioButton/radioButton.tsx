@@ -88,9 +88,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
             className={classes.title}
             color={titleProps.color}
             variant={titleType}
-            style={{
-                ...titleProps
-            }}
+            style={titleProps.style}
         >
             {title}
         </Text>;
