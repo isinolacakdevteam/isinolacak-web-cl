@@ -56,9 +56,13 @@ const StateCard: FC<IStateCardProps> = ({
             return null;
         }
 
-        return <IconComponentProp
-            {...iconProps}
-        />;
+        return <div
+            style={iconProps.style}
+        >
+            <IconComponentProp
+                {...iconProps}
+            />
+        </div>;
     };
 
     const renderTitle = () => {
