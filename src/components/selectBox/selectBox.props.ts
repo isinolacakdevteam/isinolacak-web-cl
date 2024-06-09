@@ -74,6 +74,7 @@ export interface ISelectBoxProps<T> {
     isVisible?: boolean,
     inputTitle: string;
     disabled?: boolean;
+    isError?: boolean;
     isClick?: boolean;
     data: Array<T>;
     title?: string;
@@ -87,6 +88,7 @@ export type SelectBoxStylerParams = {
     colors: IOCore.ColorsType;
     style?: CSSProperties;
     disabled?: boolean;
+    isError?: boolean;
     isClick?: boolean;
 };
 

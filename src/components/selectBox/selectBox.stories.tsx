@@ -38,6 +38,11 @@ export default {
             control: {
                 type: "boolean"
             }
+        },
+        isError: {
+            control: {
+                type: "boolean"
+            }
         }
     },
 } as Meta;

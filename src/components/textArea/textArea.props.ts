@@ -12,7 +12,7 @@ interface ITextAreaProps {
     isRequired?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;
-    placeholder: string;
+    placeholder?: string;
     inputClass?: string;
     disabled?: boolean;
     textLimit?: number;

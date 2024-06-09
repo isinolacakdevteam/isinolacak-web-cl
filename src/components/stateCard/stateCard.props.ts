@@ -47,7 +47,7 @@ export type IconProps = IIOCoreIconPropsType & {
 };
 
 export type StateCardStylerResult = {
-    iconProps: IIOCoreIconPropsType;
+    iconProps: IconProps;
     contentProps: ContentProps;
     container: CSSProperties;
     titleProps: TitleProps;

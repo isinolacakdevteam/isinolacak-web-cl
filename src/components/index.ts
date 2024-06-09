@@ -81,3 +81,7 @@ export {
 export {
     default as ToolBox
 } from "./toolBox/toolBox";
+
+export {
+    default as Loading
+} from "./loading/loading";

@@ -13,6 +13,7 @@ import Text from "../text/text";
 const Switcher: FC<ISwitcherProps> = ({
     renderTitle: renderTitleProp,
     titleDirection= "left",
+    switchSize = "medium",
     indicatorStyle,
     titleStyle,
     className,
@@ -38,6 +39,7 @@ const Switcher: FC<ISwitcherProps> = ({
         titleDirection,
         indicatorStyle,
         disabledStyle,
+        switchSize,
         disabled,
         isActive,
         colors,
@@ -78,20 +80,22 @@ const Switcher: FC<ISwitcherProps> = ({
 
     return <div 
         className={classes.switchComponentContainer}
+        onClick={() => {
+            if (onChange && !disabled) onChange();
+        }}
     >
         {renderTitle("left")}
-        <div
-            onClick={() => {
-                if (onChange && !disabled) onChange();
-            }}
-            className={[classes.container, className].join(" ")}
-            style={{
-                ...container 
-            }}
-        >
-            <div className={[classes.indicator].join(" ")} style={{
-                ...indicator 
-            }}></div>
+        <div>
+            <div
+                className={[classes.container, className].join(" ")}
+                style={{
+                    ...container 
+                }}
+            >
+                <div className={[classes.indicator].join(" ")} style={{
+                    ...indicator 
+                }}></div>
+            </div>
         </div>
         {renderTitle("right")}
     </div>;

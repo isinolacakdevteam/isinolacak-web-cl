@@ -51,7 +51,7 @@ Default.args = {
                 display: "flex",
             }}
         >
-            <Text color="constrastBody" >Random content row</Text>
+            <Text color="textDark" >Random content row</Text>
         </div>
         <div
             style={{
@@ -60,7 +60,7 @@ Default.args = {
                 display: "flex"
             }}
         >
-            <Text color="constrastBody" >Random content row</Text>
+            <Text color="textDark" >Random content row</Text>
         </div>
         <div
             style={{
@@ -69,7 +69,7 @@ Default.args = {
                 display: "flex"
             }}
         >
-            <Text color="constrastBody" >Random content row</Text>
+            <Text color="textDark" >Random content row</Text>
         </div>
         <div
             style={{
@@ -78,7 +78,7 @@ Default.args = {
                 display: "flex"
             }}
         >
-            <Text color="constrastBody" >Random content row</Text>
+            <Text color="textDark" >Random content row</Text>
         </div>
     </div>
 };

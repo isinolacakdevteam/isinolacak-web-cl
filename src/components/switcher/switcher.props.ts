@@ -9,6 +9,7 @@ interface ISwitcherProps {
     style?: CSSProperties;
     disabled?: boolean;
     className?: string;
+    switchSize?: "small" | "medium",
     isActive: boolean;
     title?: string;
     renderTitle?: (props: {
@@ -25,6 +26,7 @@ export type SwitcherStylerParams = {
     indicatorStyle?: CSSProperties;
     colors: IOCore.ColorsType;
     style?: CSSProperties;
+    switchSize: "small" | "medium",
     disabled?: boolean;
     isActive: boolean;
 };

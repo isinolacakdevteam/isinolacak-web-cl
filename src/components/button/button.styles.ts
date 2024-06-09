@@ -19,6 +19,7 @@ import {
 const useStyles = createUseStyles({
     container: {
         transition: "transform 0.1s",
+        boxSizing: "border-box",
         alignItems: "center",
         borderStyle: "solid",
         flexDirection: "row",

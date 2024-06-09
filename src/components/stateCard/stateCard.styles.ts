@@ -49,7 +49,7 @@ export const stateCardStyler = ({
         variant: "header5-semiBold",
         color: "body",
         style: {
-            marginBottom: spaces.content * 2
+            marginBottom: spaces.inline
         }
     };
 
@@ -57,7 +57,7 @@ export const stateCardStyler = ({
         color: colors.body,
         size: 65,
         style: {
-            marginBottom: spaces.content * 2
+            marginBottom: spaces.content * 2.5
         }
     };
 
@@ -91,7 +91,7 @@ export const stateCardStyler = ({
 
     if(isAction) {
         contentProps.style = {
-            marginBottom: spaces.content * 2
+            marginBottom: spaces.content * 2.5
         };
     }
 

@@ -62,7 +62,7 @@ const PageModal: FC<IPageModalProps> = ({
                     ...contentStyle
                 }}
             >
-                {content}  
+                {content}
             </div>
         </div>
     </Portal>;
