@@ -9,10 +9,15 @@ import {
 
 const useStyles = createUseStyles({
     switchComponentContainer: {
-        alignContent: "center",
+        alignContent: "baseline",
         flexDirection: "row",
         alignItems: "center",
-        display: "flex"
+        userSelect: "none",
+        display: "flex",
+        "&:hover": {
+            cursor: "pointer",
+            opacity: 0.75
+        }
     },
     container: {
         transition: "transform 0.5s !important",
@@ -21,7 +26,6 @@ const useStyles = createUseStyles({
         alignSelf: "center",
         borderRadius: 50,
         display: "flex",
-        height: 10,
         "&:hover": {
             cursor: "pointer",
             opacity: 0.75
@@ -29,8 +33,7 @@ const useStyles = createUseStyles({
     },
     indicator: {
         position: "absolute",
-        borderRadius: 10,
-        height: 20
+        borderRadius: 10
     }
 }, {
     name: "IOCore-Switcher"
@@ -44,6 +47,7 @@ export const switcherStyler = ({
     indicatorStyle,
     titleDirection,
     disabledStyle,
+    switchSize,
     isActive,
     disabled,
     colors,
@@ -58,6 +62,7 @@ export const switcherStyler = ({
         ...style,
         backgroundColor: colors.gray80,
         padding: spaces.content,
+        height: 10,
         width: SWITCH_AREA
     };
 
@@ -66,12 +71,13 @@ export const switcherStyler = ({
         transform: `translateX(${isActive ? activeTransformX : 0}px)`,
         backgroundColor: colors.panel,
         left: spaces.content / 2,
+        height: 20,
         width: INDICATOR_WIDTH
     };
 
     let titleProps: TitleProps = {
         style: {
-            marginRight: spaces.content,
+            marginRight: switchSize === "medium" ? spaces.content : spaces.content / 2,
             alignSelf: "center",
             display: "flex"
         },
@@ -80,8 +86,18 @@ export const switcherStyler = ({
     };
 
     if(titleDirection === "right") {
-        titleProps.style.marginLeft= spaces.content,
+        titleProps.style.marginLeft= switchSize === "medium" ? spaces.content : spaces.content / 2,
         titleProps.style.marginRight = 0;
+    }
+
+    if(switchSize == "small") {
+        indicator.transform = `translateX(${isActive ? activeTransformX / 2 : 0}px)`;
+        container.padding= spaces.content / 2;
+        indicator.width = INDICATOR_WIDTH / 2;
+        indicator.left = spaces.content / 4;
+        container.width= SWITCH_AREA / 2;
+        indicator.height= 20 / 2;
+        container.height= 5;
     }
 
     if(isActive) {
