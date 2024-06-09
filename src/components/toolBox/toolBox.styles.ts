@@ -39,7 +39,7 @@ export const toolBoxStyler = ({
 }: ToolBoxStylerParams): ToolBoxStylerResult => {
     let toolBoxContainer: CSSProperties = {
         borderRadius: radiuses.quarter * 1.5,
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.layer2,
         padding: spaces.container * .75,
         right: 0
     };

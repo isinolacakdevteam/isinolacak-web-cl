@@ -46,6 +46,7 @@ const SelectBox = <T extends {}>({
     renderItem,
     onSearch,
     onChange,
+    isError,
     onClick,
     style,
     title,
@@ -75,6 +76,7 @@ const SelectBox = <T extends {}>({
         disabled,
         isClick,
         borders,
+        isError,
         spaces,
         colors,
         style

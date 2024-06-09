@@ -49,6 +49,7 @@ export const selectBoxStyler = ({
     spreadBehaviour,
     radiuses,
     disabled,
+    isError,
     borders,
     isClick,
     colors,
@@ -57,7 +58,7 @@ export const selectBoxStyler = ({
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container = {
         ...style,
-        borderColor: isClick ? colors.primary : colors.stroke,
+        borderColor: isError ? colors.error : isClick ? colors.primary : colors.stroke,
         paddingBottom: spaces.content * 1.5,
         paddingRight: spaces.content / 2,
         paddingTop: spaces.content * 1.5,

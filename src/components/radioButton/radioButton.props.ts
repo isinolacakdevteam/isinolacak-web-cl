@@ -8,6 +8,7 @@ export interface IRadioButtonProps {
     spreadBehaviour?: RadioButtonSpreadBehaviour;
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
+    indicatorSize?: number;
     icon?: IOCoreIconType;
     isSelected?: boolean;
     disabled?: boolean;
@@ -22,6 +23,7 @@ export type RadioButtonStylerParams = {
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
+    indicatorSize?: number;
     isSelected?: boolean;
     disabled?: boolean;
     titleStyle?: any;
