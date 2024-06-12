@@ -60,6 +60,7 @@ export const textInputStyler = ({
     disabledStyle,
     typography,
     isFocused,
+    infoText,
     disabled,
     radiuses,
     borders,
@@ -127,6 +128,10 @@ export const textInputStyler = ({
         container.alignSelf = spreadBehaviour;
         container.justifyContent = "center";
         container.width = "100%"; 
+    }
+
+    if(infoText) {
+        contentContainer.marginBottom= spaces.inline;
     }
 
     if(disabled) {

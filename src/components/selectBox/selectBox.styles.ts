@@ -12,12 +12,17 @@ import {
 } from "./selectBox.props";
 
 export const useStyles = createUseStyles({
+    mainContainer: {
+        boxSizing: "border-box",
+        flexDirection: "column",
+        userSelect: "none",
+        display: "flex"
+    },
     container: {
         justifyContent: "space-between",
         boxSizing: "border-box",
         alignItems: "center",
         flexDirection: "row",
-        userSelect: "none",
         minHeight: 60.9,
         display: "flex",
         "&:hover": {
@@ -42,6 +47,9 @@ export const useStyles = createUseStyles({
         whiteSpace: "nowrap",
         overflow: "hidden",
         display: "flex"
+    },
+    infoText: {
+        display: "flex"
     }
 });
 
@@ -49,9 +57,10 @@ export const selectBoxStyler = ({
     spreadBehaviour,
     radiuses,
     disabled,
+    infoText,
     isError,
-    borders,
     isClick,
+    borders,
     colors,
     spaces,
     style
@@ -87,6 +96,18 @@ export const selectBoxStyler = ({
         }
     };
 
+    let infoTextContainer: CSSProperties = {
+        paddingLeft: spaces.content
+    };
+
+    let infoIconStyler: CSSProperties = {
+        marginRight: spaces.inline
+    };
+
+    if(infoText) {
+        container.marginBottom= spaces.inline;
+    }
+
     if(disabled) {
         contentProps.color = "textGrey";
         titleProps.color = "textGrey";
@@ -97,6 +118,8 @@ export const selectBoxStyler = ({
     }
 
     return {
+        infoTextContainer,
+        infoIconStyler,
         contentProps,
         titleStyle,
         titleProps,

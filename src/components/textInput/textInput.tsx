@@ -78,6 +78,7 @@ const TextInput: FC<ITextInputProps> = ({
         isFocused,
         disabled,
         radiuses,
+        infoText,
         borders,
         isError,
         colors,

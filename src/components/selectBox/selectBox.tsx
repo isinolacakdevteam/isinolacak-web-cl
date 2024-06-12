@@ -22,13 +22,15 @@ import {
     SelectedItem
 } from "./selectBox.props";
 import {
-    ChevronDownIcon
+    ChevronDownIcon,
+    InfoIcon
 } from "../../assets/svgr";
 
 const SelectBox = <T extends {}>({
     customIcon: CustomIconComponentProp,
     spreadBehaviour = "free",
     renderIcon: RenderIcon,
+    infoIcon: InfoIconProp,
     initialSelectedItems,
     multiSelect = false,
     isLoadingOKButton,
@@ -45,6 +47,7 @@ const SelectBox = <T extends {}>({
     inputTitle,
     renderItem,
     onSearch,
+    infoText,
     onChange,
     isError,
     onClick,
@@ -66,12 +69,15 @@ const SelectBox = <T extends {}>({
     } = IOCoreTheme.useContext();
 
     const {
+        infoTextContainer,
+        infoIconStyler,
         contentProps,
         titleProps,
         titleStyle,
         container
     } = selectBoxStyler({
         spreadBehaviour,
+        infoText,
         radiuses,
         disabled,
         isClick,
@@ -266,33 +272,69 @@ const SelectBox = <T extends {}>({
         />;
     };
 
-    return <div
-        className={classes.container}
-        style={{
-            ...container,
-            ...style
-        }}
-        onClick={() => {
-            if (disabled) {
-                return;
-            }
+    const renderInfoText = () => {
+        if(!infoText) {
+            return null;
+        }
 
-            if (!onClick) {
-                setIsVisible(true);
-                if (onOverlayPress) {
-                    return onOverlayPress();
-                }
-            } else {
-                onClick(selectedItems, cleanData());
+        return <div className={classes.infoText}
+            style={infoTextContainer}
+        >
+            {InfoIconProp ? 
+                <div
+                    style={infoIconStyler} 
+                >
+                    <InfoIconProp/>
+                </div>: <div
+                    style={infoIconStyler}
+                >
+                    <InfoIcon
+                        color={isError ? colors.error : colors.textGrey}
+                        size={15}
+                    />
+                </div>
             }
-        }}
+            <Text
+                color={isError ? "error" : "textGrey"}
+                variant="body3-regular"
+            >
+                {infoText}
+            </Text>
+        </div>;
+    };
+
+    return <div
+        className={classes.mainContainer}
     >
-        <div className={classes.content}>
-            {renderTitle()}
-            {renderContent()}
+        <div
+            className={classes.container}
+            style={{
+                ...container,
+                ...style
+            }}
+            onClick={() => {
+                if (disabled) {
+                    return;
+                }
+
+                if (!onClick) {
+                    setIsVisible(true);
+                    if (onOverlayPress) {
+                        return onOverlayPress();
+                    }
+                } else {
+                    onClick(selectedItems, cleanData());
+                }
+            }}
+        >
+            <div className={classes.content}>
+                {renderTitle()}
+                {renderContent()}
+            </div>
+            {renderIcon()}
+            {renderDialog()}
         </div>
-        {renderIcon()}
-        {renderDialog()}
+        {renderInfoText()}
     </div>;
 };
 export default SelectBox;

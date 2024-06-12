@@ -43,6 +43,7 @@ export type TextInputStylerParams = {
     colors: IOCore.ColorsType;
     multiline?: boolean;
     isFocused: boolean;
+    infoText?: string;
     disabled?: boolean;
     isError?: boolean;
     value: string;
