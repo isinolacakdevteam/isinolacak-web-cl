@@ -58,7 +58,7 @@ export const radioButtonStyler = ({
         backgroundColor: colors.backgroundLight,
         borderWidth: borders.line,
         borderColor: colors.stroke,
-        padding: spaces.inline,
+        padding: spaces.inline / 2,
         minHeight: indicatorSize,
         minWidth: indicatorSize,
         height: indicatorSize,

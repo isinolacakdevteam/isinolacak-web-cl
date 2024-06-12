@@ -15,6 +15,9 @@ export default {
         onChange: {
             action: 'changed' 
         },
+        isSelected: {
+            control: "boolean"
+        },
         spreadBehaviour: {
             control: {
                 type: "select",

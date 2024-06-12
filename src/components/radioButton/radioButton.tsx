@@ -18,7 +18,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
     titleType = "body2-regular",
     onChange: onChangeProp,
     isSelected = false,
-    indicatorSize = 20,
+    indicatorSize = 15,
     disabled = false,
     titleStyle,
     title,

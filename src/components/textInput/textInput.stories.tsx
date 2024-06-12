@@ -42,7 +42,7 @@ export default {
         isError: {
             control: "boolean"
         },
-        errorText: {
+        infoText: {
             control: "text"
         },
         spreadBehaviour: {
