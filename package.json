@@ -1,6 +1,6 @@
 {
     "name": "isinolacak-web-cl",
-    "version": "1.0.0-pre-alpha.13",
+    "version": "1.0.0-pre-alpha.14",
     "description": "Olacak Bilgi Teknolojileri | IOCore - Web Component Library",
     "main": "lib/index.js",
     "module": "lib/index.js",
@@ -95,7 +95,7 @@
     },
     "dependencies": {
         "@storybook/addon-docs": "6.5.9",
-        "ncore-context": "^1.0.4",
+        "ncore-context": "^1.0.5",
         "react-jss": "10.9.0"
     },
     "resolutions": {
