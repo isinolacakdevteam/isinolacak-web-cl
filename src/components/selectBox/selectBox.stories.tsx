@@ -43,6 +43,9 @@ export default {
             control: {
                 type: "boolean"
             }
+        },
+        infoText: {
+            control: "text"
         }
     },
 } as Meta;

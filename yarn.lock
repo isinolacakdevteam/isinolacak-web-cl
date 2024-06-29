@@ -11056,10 +11056,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-ncore-context@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/ncore-context/-/ncore-context-1.0.3.tgz#fbf820c7c351c4dbf950ae5d916a9f132407d0fe"
-  integrity sha512-9ndaWE1GZUNm4jtr81tFxRV9246m1tgGpIW+UMvSWoQGIzO1HxlPwJmi2oC7glD4zv/j4gF4XT7RtmWJbiiY/Q==
+ncore-context@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ncore-context/-/ncore-context-1.0.4.tgz#da69cbd0c3dafba7e1464305cfa9f40f16c42af8"
+  integrity sha512-58GPvtbVeRRuyjMddaa35pVeXgWj9hBZCZhmc9lRH5Omco4YkkmbGGIl17aRVAJsAWzmpiQkHQxrV6PKnrSYxQ==
   dependencies:
     "@storybook/addon-docs" "^6.5.9"
 

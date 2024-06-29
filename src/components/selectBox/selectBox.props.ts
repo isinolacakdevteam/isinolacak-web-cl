@@ -4,7 +4,8 @@ import {
 } from "react";
 import {
     IIOCoreIconPropsType,
-    SelectObjectType
+    SelectObjectType,
+    IOCoreIconType
 } from "../../types";
 import IPaginationProps from "../pagination/pagination.props";
 
@@ -67,6 +68,7 @@ export interface ISelectBoxProps<T> {
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
+    infoIcon?: IOCoreIconType;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
@@ -76,6 +78,7 @@ export interface ISelectBoxProps<T> {
     disabled?: boolean;
     isError?: boolean;
     isClick?: boolean;
+    infoText?: string;
     data: Array<T>;
     title?: string;
 };
@@ -88,6 +91,7 @@ export type SelectBoxStylerParams = {
     colors: IOCore.ColorsType;
     style?: CSSProperties;
     disabled?: boolean;
+    infoText?: string;
     isError?: boolean;
     isClick?: boolean;
 };
@@ -102,6 +106,8 @@ export type ContentProps = {
 };
 
 export type SelectBoxStylerResult = {
+    infoTextContainer: CSSProperties;
+    infoIconStyler: CSSProperties;
     contentProps: ContentProps;
     titleStyle: CSSProperties;
     container: CSSProperties;
