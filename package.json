@@ -95,7 +95,7 @@
     },
     "dependencies": {
         "@storybook/addon-docs": "6.5.9",
-        "ncore-context": "^1.0.4",
+        "ncore-context": "^1.0.5",
         "react-jss": "10.9.0"
     },
     "resolutions": {
