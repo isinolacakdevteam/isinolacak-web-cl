@@ -85,3 +85,7 @@ export {
 export {
     default as Loading
 } from "./loading/loading";
+
+export {
+    default as DateTimePicker
+} from "./dateTimePicker/dateTimePicker";

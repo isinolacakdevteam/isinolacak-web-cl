@@ -49,6 +49,26 @@ const useStyles = createUseStyles({
         },
         "::-webkit-scrollbar-corner": {
             background: "transparent"
+        },
+        "input[type='date']::-webkit-calendar-picker-indicator": {
+            display: "none",
+            "-webkit-appearance": "none"
+        },
+        "input[type='time']::-webkit-calendar-picker-indicator": {
+            display: "none",
+            "-webkit-appearance": "none"
+        },
+        "input[type='datetime-local']::-webkit-calendar-picker-indicator": {
+            display: "none",
+            "-webkit-appearance": "none"
+        },
+        "input[type='month']::-webkit-calendar-picker-indicator": {
+            display: "none",
+            "-webkit-appearance": "none"
+        },
+        "input[type='week']::-webkit-calendar-picker-indicator": {
+            display: "none",
+            "-webkit-appearance": "none"
         }
     }
 }, {
