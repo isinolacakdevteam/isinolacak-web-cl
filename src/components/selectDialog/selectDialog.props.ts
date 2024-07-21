@@ -90,6 +90,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     multiSelect?: boolean;
     initialData?: Array<T>;
     fullScreen?: boolean;
+    placeholder?: string;
     inputTitle?: string;
     onClose: () => void;
     maxChoice?: number;
