@@ -69,6 +69,7 @@ export interface ISelectBoxProps<T> {
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     infoIcon?: IOCoreIconType;
+    inputPlaceholder: string;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;
