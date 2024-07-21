@@ -1,13 +1,17 @@
 import {
+    ForwardRefRenderFunction,
+    useImperativeHandle,
+    forwardRef,
     useState,
-    useRef,
-    FC
+    useRef
 } from  "react";
 import {
     textInputStyler,
     useStyles
 } from "./textInput.styles";
-import ITextInputProps from "./textInput.props";
+import ITextInputProps, {
+    ITextInputRef
+} from "./textInput.props";
 import Text from "../text/text";
 import {
     EyeOpenedIcon,
@@ -19,7 +23,9 @@ import {
     IOCoreTheme
 } from "../../../src/core";
 
-const TextInput: FC<ITextInputProps> = ({
+interface RefForwardingComponent <T, P = {}> extends ForwardRefRenderFunction<T, P> {};
+
+const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     spreadBehaviour = "baseline",
     infoIcon: InfoIconProp,
     icon: IconComponentProp,
@@ -42,7 +48,7 @@ const TextInput: FC<ITextInputProps> = ({
     title,
     id,
     ...props
-}) => {
+}, ref) => {
     const classes = useStyles();
 
     const {
@@ -85,6 +91,18 @@ const TextInput: FC<ITextInputProps> = ({
         spaces,
         value
     });
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            cleanText
+        }),
+        []
+    );
+
+    const cleanText = () => {
+        setValue("");
+    };
 
     const onFocus = () => {
         if(onFocusProp) onFocusProp();
@@ -267,4 +285,4 @@ const TextInput: FC<ITextInputProps> = ({
         {renderInfoText()}
     </div>;
 };
-export default TextInput;
+export default forwardRef(TextInput);

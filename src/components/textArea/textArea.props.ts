@@ -2,6 +2,10 @@ import {
     CSSProperties
 } from "react";
 
+export type ITextAreaRef = {
+    cleanText: () => void;
+};
+
 interface ITextAreaProps {
     spreadBehaviour?: TextAreaSpreadBehaviour;
     onChangeText?: (value: string) => void;

@@ -5,6 +5,10 @@ import {
     IOCoreIconType
 } from "../../types";
 
+export type ITextInputRef = {
+    cleanText: () => void;
+};
+
 interface ITextInputProps {
     spreadBehaviour?: TextInputSpreadBehaviour;
     onChangeText?: (value: string) => void;
