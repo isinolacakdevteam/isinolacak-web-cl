@@ -1,9 +1,13 @@
 import {
+    ForwardRefRenderFunction,
+    useImperativeHandle,
+    forwardRef,
     useState,
-    useRef,
-    FC
+    useRef
 } from  "react";
-import ITextAreaProps from "./textArea.props";
+import ITextAreaProps, {
+    ITextAreaRef
+} from "./textArea.props";
 import useStyles, {
     textAreaStyler
 } from "./textArea.styles";
@@ -15,7 +19,9 @@ import {
     IOCoreTheme
 } from "../../core";
 
-const TextArea: FC<ITextAreaProps> = ({
+interface RefForwardingComponent <T, P = {}> extends ForwardRefRenderFunction<T, P> {};
+
+const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
     spreadBehaviour = "baseline",
     clearEnabled = false,
     onFocus: onFocusProp,
@@ -32,7 +38,7 @@ const TextArea: FC<ITextAreaProps> = ({
     className,
     style,
     title
-}) => {
+}, ref) => {
     const classes = useStyles();
 
     const {
@@ -73,6 +79,18 @@ const TextArea: FC<ITextAreaProps> = ({
         spaces,
         value
     });
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            cleanText
+        }),
+        []
+    );
+
+    const cleanText = () => {
+        setValue("");
+    };
 
     const onFocus = () => {
         setIsFocused(true);
@@ -181,4 +199,4 @@ const TextArea: FC<ITextAreaProps> = ({
         {renderClearButton()}
     </div>;
 };
-export default TextArea;
+export default forwardRef(TextArea);
