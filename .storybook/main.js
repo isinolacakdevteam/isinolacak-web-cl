@@ -10,5 +10,6 @@ module.exports = {
     "@storybook/addon-a11y",
     "storybook-addon-styled-component-theme/dist/preset",
     "@whitespace/storybook-addon-html"
-  ]
+  ],
+  typescript: "react-docgen-typescript-plugin"
 };
