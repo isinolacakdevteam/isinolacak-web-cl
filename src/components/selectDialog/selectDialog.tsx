@@ -10,14 +10,12 @@ import {
     selectDialogStyler,
     useStyles
 } from "./selectDialog.styles";
-import {
-    RadioButton,
-    Pagination,
-    TextInput,
-    CheckBox,
-    Button,
-    Text
-} from "../index";
+import RadioButton from "../radioButton/radioButton";
+import Pagination from "../pagination/pagination";
+import TextInput from "../textInput/textInput";
+import CheckBox from "../checkBox/checkBox";
+import Button from "../button/button";
+import Text from "../text/text";
 import {
     SelectObjectType
 } from "../../types";

@@ -10,10 +10,8 @@ import {
     selectBoxStyler,
     useStyles
 } from "./selectBox.styles";
-import {
-    SelectDialog,
-    Text
-} from "../index";
+import SelectDialog from "../selectDialog/selectDialog";
+import Text from "../text/text";
 import {
     SelectObjectType
 } from "../../types";

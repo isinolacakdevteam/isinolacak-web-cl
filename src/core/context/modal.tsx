@@ -8,9 +8,7 @@ import {
     ModalContextType,
     ModalDataType
 } from "../../types";
-import {
-    Dialog 
-} from "../../components";
+import Dialog from "../../components/dialog/dialog";
 
 const isDialog = (object: any): object is ModalDataType["type"] => {
     return 'dialog' in object;
