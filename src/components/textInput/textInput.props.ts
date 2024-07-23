@@ -1,4 +1,5 @@
 import {
+    HTMLAttributes,
     CSSProperties
 } from "react";
 import {
@@ -9,7 +10,9 @@ export type ITextInputRef = {
     cleanText: () => void;
 };
 
-interface ITextInputProps {
+type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLInputElement>, "disabled" | "placeholder" | "title" | "className" | "id" | "style">;
+
+interface ITextInputProps extends HTMLInputElementWithoutBase {
     spreadBehaviour?: TextInputSpreadBehaviour;
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
@@ -18,8 +21,8 @@ interface ITextInputProps {
     secureTextEntry?: boolean;
     clearEnabled?: boolean;
     initialValue?: string;
-    style?: CSSProperties;
     icon?: IOCoreIconType;
+    style?: CSSProperties;
     isRequired?: boolean;
     onFocus?: () => void;
     onBlur?: () => void;

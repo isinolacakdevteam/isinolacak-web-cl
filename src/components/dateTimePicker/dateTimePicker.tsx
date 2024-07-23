@@ -43,7 +43,6 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
     password,
     style,
     title,
-    id,
     ...props
 }) => {
     if(initialValue && String(new Date(initialValue)) == "Invalid Date") {
@@ -233,6 +232,7 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
         const type = inputTypes.indexOf(inputType) === -1 ? "date" : inputType;
 
         return <input
+            {...props}
             type={type}
             placeholder={placeholder}
             disabled={disabled}
@@ -240,7 +240,6 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
             onBlur={onBlur}
             ref={inputRef}
             value={value}
-            {...props}
             onChange={(e) => {
                 if(onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);

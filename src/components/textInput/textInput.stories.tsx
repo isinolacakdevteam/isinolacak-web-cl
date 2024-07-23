@@ -90,7 +90,7 @@ export default {
     }
 } as Meta;
 
-const Template: Story<ITextInputProps> = (args) => <TextInput {...args} />;
+const Template: Story<ITextInputProps> = (args) => <TextInput {...args}/>;
 
 export const Default = Template.bind({
 });
