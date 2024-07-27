@@ -10,10 +10,8 @@ import {
     selectBoxStyler,
     useStyles
 } from "./selectBox.styles";
-import {
-    SelectDialog,
-    Text
-} from "../index";
+import SelectDialog from "../selectDialog/selectDialog";
+import Text from "../text/text";
 import {
     SelectObjectType
 } from "../../types";
@@ -201,26 +199,6 @@ const SelectBox = <T extends {}>({
                     data: data
                 })}
             </div>;
-        }
-
-        if(
-            renderItem &&
-            selectedItems.length &&
-            (
-                !multiSelect ||
-                (multiSelect && selectedItems.length === 1)
-            )
-        ) {
-            const selectedIndex = data.findIndex(e => e.__key === selectedItems[0]?.__key);
-
-            return renderItem({
-                size: typography["body2-regular"]?.fontSize,
-                selectedItems: selectedItems,
-                color: contentProps.color,
-                item: data[selectedIndex],
-                index: selectedIndex,
-                data: data
-            });
         }
 
         return <div

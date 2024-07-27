@@ -37,7 +37,8 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
     inputClass,
     className,
     style,
-    title
+    title,
+    ...props
 }, ref) => {
     const classes = useStyles();
 
@@ -113,12 +114,12 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
 
         return <div
             onClick={() => {
-                if(onChangeText) onChangeText("");
+                if(onChangeText) {
+                    onChangeText("");
+                }
                 setValue("");
             }}
-            className={[
-                classes.clearButton
-            ].join(" ")}
+            className={classes.clearButton}
             style={{
                 ...clear
             }}
@@ -132,6 +133,7 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
 
     const renderInput = () => {
         return <textarea
+            {...props}
             ref={inputTextAreaRef}
             disabled={disabled}
             onFocus={onFocus}

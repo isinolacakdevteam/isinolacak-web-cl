@@ -46,7 +46,6 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     password,
     style,
     title,
-    id,
     ...props
 }, ref) => {
     const classes = useStyles();
@@ -129,12 +128,12 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
 
         return <div
             onClick={() => {
-                if(onChangeText) onChangeText("");
+                if(onChangeText) {
+                    onChangeText("");
+                }
                 setValue("");
             }}
-            className={[
-                classes.clearButton
-            ].join(" ")}
+            className={classes.clearButton}
             style={{
                 ...clear
             }}
@@ -233,6 +232,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
 
     const renderInput = () => {
         return <input
+            {...props}
             type={password && !showPassword ? "password" : "text"}
             placeholder={placeholder}
             disabled={disabled}
@@ -240,7 +240,6 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             onBlur={onBlur}
             ref={inputRef}
             value={value}
-            {...props}
             onChange={(e) => {
                 if(onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);

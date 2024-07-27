@@ -1,11 +1,14 @@
 import {
+    HTMLAttributes,
     CSSProperties
 } from "react";
 import {
     IOCoreIconType
 } from "../../types";
 
-interface IDateTimePickerProps {
+type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLInputElement>, "disabled" | "placeholder" | "title" | "className" | "id" | "style">;
+
+interface IDateTimePickerProps extends HTMLInputElementWithoutBase {
     spreadBehaviour?: DateTimePickerBehaviour;
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";

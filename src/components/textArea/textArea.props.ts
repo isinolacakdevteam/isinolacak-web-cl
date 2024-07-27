@@ -1,4 +1,5 @@
 import {
+    HTMLAttributes,
     CSSProperties
 } from "react";
 
@@ -6,7 +7,9 @@ export type ITextAreaRef = {
     cleanText: () => void;
 };
 
-interface ITextAreaProps {
+type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLTextAreaElement>, "disabled" | "placeholder" | "title" | "className" | "id" | "style">;
+
+interface ITextAreaProps extends HTMLInputElementWithoutBase {
     spreadBehaviour?: TextAreaSpreadBehaviour;
     onChangeText?: (value: string) => void;
     clearEnabled?: boolean;

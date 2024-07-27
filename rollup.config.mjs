@@ -3,7 +3,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import cleaner from 'rollup-plugin-cleaner';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import packageJson from './package.json';
+import packageJson from './package.json' assert { type: 'json' };
 
 export default {
     input: 'src/index.ts',
@@ -11,13 +11,8 @@ export default {
         {
             file: packageJson.main,
             format: 'cjs',
-            sourcemap: true,
-        },
-        {
-            file: packageJson.module,
-            format: 'esm',
-            sourcemap: true,
-        },
+            sourcemap: true
+        }
     ],
     plugins: [
         cleaner({
@@ -28,6 +23,6 @@ export default {
         commonjs(),
         typescript({
             exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
-        }),
+        })
     ],
 };
