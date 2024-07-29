@@ -1,13 +1,18 @@
-import {
+import React, {
+    useEffect,
+    useState,
+    Fragment,
     FC
 } from "react";
 import useStyles, {
     paginationStyler
 }  from "./pagination.styles";
-import IPaginationProps from "./pagination.props";
+import IPaginationProps, {
+    PaginationButtonType
+} from "./pagination.props";
 import {
-    ChevronLeftIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+    ChevronLeftIcon
 } from "../../assets/svgr";
 import Button from "../button/button";
 import {
@@ -15,13 +20,10 @@ import {
 } from "../../core/index";
 
 const Pagination: FC<IPaginationProps> = ({
-    maxButtonCount = 5,
     totalDataCount,
     selectedIndex,
     itemPerPage,
     onSelect,
-    onRight,
-    onLeft,
     style
 }) => {
     const classes = useStyles();
@@ -33,25 +35,15 @@ const Pagination: FC<IPaginationProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const buttonCount = Math.ceil(totalDataCount / itemPerPage);
-
-    let startPage = Math.max(selectedIndex - Math.floor(maxButtonCount / 2), 1);
-    let endPage = startPage + maxButtonCount - 1;
-
-    const getPageNumbers = (): number[] => {
-        if (endPage > buttonCount) {
-            endPage = buttonCount;
-            startPage = Math.max(endPage - maxButtonCount + 1, 1);
+    const [buttons, setButtons] = useState<Array<PaginationButtonType>>([
+        {
+            pageNumber: 1
         }
+    ]);
 
-        const pages: number[] = [];
-        for (let i = startPage; i <= endPage; i++) {
-            pages.push(i);
-        }
-        return pages;
-    };
-
-    let pageNumbers = getPageNumbers();
+    useEffect(() => {
+        calculateButtons();
+    }, [totalDataCount, itemPerPage, selectedIndex]);
 
     const {
         container,
@@ -64,124 +56,83 @@ const Pagination: FC<IPaginationProps> = ({
         spaces
     });
 
-    const renderGoFirstPage = () => {
-        let isAtStart: Array<number> = [];
+    const calculateButtons = () => {
+        let pageCount = Math.floor(totalDataCount / itemPerPage);
+        const lastPage = totalDataCount % itemPerPage;
 
-        if(!pageNumbers.includes(1)) {
-            isAtStart.push(1);
-        }
-        if(!pageNumbers.includes(2)) {
-            isAtStart.push(2);
-        }
-        if(!pageNumbers.includes(3)) {
-            isAtStart.push(3);
+        if(lastPage > 0) {
+            pageCount += 1;
         }
 
-        if(!isAtStart.length) {
-            return;
-        }
+        if(pageCount > 6) {
+            let _pageButtons: Array<PaginationButtonType> = [];
 
-        return <div
-            className={classes.fastButtons}
-        >
-            {
-                isAtStart.map((item, index) => {
-                    const isCurrentSelected = selectedIndex === item;
-
-                    return <Button
-                        key={`pagination-button-${index}`}
-                        title={item.toString()}
-                        variant={isCurrentSelected ? "filled" : "outline"}
-                        color={isCurrentSelected ? "body" : "hideBody"}
-                        onClick={() => {
-                            if (onSelect) onSelect(item, index);
-                        }}
-                        titleStyle={{
-                            textAlign: "center"
-                        }}
-                        spreadBehaviour="baseline"
-                        style={buttonStyle} 
-                    />;
-                }) 
+            for(let i = 0; i < 3; i++) {
+                _pageButtons.push({
+                    pageNumber: i + 1
+                });
             }
-            <Button
-                variant="ghost"
-                color="hideBody"
-                disabled={true}
-                title="..."
-                onClick={() => {
-                    if (onSelect) onSelect(selectedIndex, 0);
-                }}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-        </div>;
+
+            for(let i = selectedIndex - 1; i < selectedIndex + 2; i++) {
+                const isExists = _pageButtons.findIndex(item => item.pageNumber === i);
+
+                if(
+                    isExists === -1 &&
+                    i < pageCount &&
+                    _pageButtons[_pageButtons.length - 1].pageNumber < i
+                ) {
+                    _pageButtons.push({
+                        pageNumber: i
+                    });
+                }
+            }
+
+            for(let i = pageCount - 2; i < pageCount + 1; i++) {
+                const isExists = _pageButtons.findIndex(item => item.pageNumber === i);
+
+                if(isExists === -1) {
+                    _pageButtons.push({
+                        pageNumber: i
+                    });
+                }
+            }
+
+            _pageButtons = _pageButtons.sort((a, b) => {
+                return a.pageNumber - b.pageNumber;
+            });
+            setButtons(_pageButtons);
+        } else {
+            let _pageButtons: Array<PaginationButtonType> = [];
+
+            for(let i = 0; i < 6; i++) {
+                _pageButtons.push({
+                    pageNumber: i + 1
+                });
+            }
+
+            setButtons(_pageButtons);
+        }
     };
 
-    const renderGoLastPage = () => {
-        let isAtEnd :Array<number> = [];
-
-        if(!pageNumbers.includes(buttonCount - 2)){
-            isAtEnd.push(buttonCount - 2);
+    const renderButtons = () => {
+        if(!buttons || !buttons.length) {
+            return null;
         }
 
-        if(!pageNumbers.includes(buttonCount - 1)){
-            isAtEnd.push(buttonCount - 1);
-        }
-
-        if(!pageNumbers.includes(buttonCount)){
-            isAtEnd.push(buttonCount);
-        }
-
-        if(!isAtEnd.length) {
-            return;
-        }
-
-        return <div
-            className={classes.fastButtons}
-        >
-            <Button
-                variant="ghost"
-                color="hideBody"
-                disabled={true}
-                title="..."
-                onClick={() => {}}
-                titleStyle={{
-                    textAlign: "center"
-                }}
-                spreadBehaviour="baseline"
-                style={buttonStyle} 
-            />
-            {
-                isAtEnd.map((item, index) => {
-                    const isCurrentSelected = selectedIndex === item;
-
-                    return <Button
-                        key={`pagination-button-${index}`}
-                        title={item.toString()}
-                        variant={isCurrentSelected ? "filled" : "outline"}
-                        color={isCurrentSelected ? "body" : "hideBody"}
-                        onClick={() => {
-                            if (onSelect) onSelect(item, index);
-                        }}
-                        titleStyle={{
-                            textAlign: "center"
-                        }}
-                        spreadBehaviour="baseline"
-                        style={buttonStyle} 
-                    />;
-                }) 
-            }
-        </div>;
+        return buttons.map((item, index) => {
+            return <Fragment>
+                {buttons[index - 1] && item.pageNumber - 1 !== buttons[index - 1].pageNumber ? "..." : null}
+                <Button
+                    variant={item.pageNumber === selectedIndex ? "filled" : "ghost"}
+                    title={String(item.pageNumber)}
+                    className={classes.button}
+                    onClick={() => {
+                        onSelect(item, index);
+                    }}
+                />
+            </Fragment>;
+        });
     };
-
-
-    if(itemPerPage > totalDataCount) {
-        return null;
-    }
 
     return <div
         className={classes.container}
@@ -191,7 +142,28 @@ const Pagination: FC<IPaginationProps> = ({
         }}
     >
         <Button
-            disabled={selectedIndex === startPage}
+            disabled={selectedIndex === buttons[0].pageNumber}
+            icon={() => {
+                return <Fragment>
+                    <ChevronLeftIcon
+                        size={20}
+                        color={colors.body}
+                    />
+                    <ChevronLeftIcon
+                        size={20}
+                        color={colors.body}
+                    />
+                </Fragment>;
+            }}
+            variant="ghost"
+            spreadBehaviour="free"
+            onClick={() => {
+                if(onSelect) onSelect(buttons[0], 0);
+            }}
+            style={arrowButton} 
+        />
+        <Button
+            disabled={selectedIndex === buttons[0].pageNumber}
             icon={() => <ChevronLeftIcon
                 size={20}
                 color={colors.body}
@@ -199,38 +171,25 @@ const Pagination: FC<IPaginationProps> = ({
             variant="ghost"
             spreadBehaviour="free"
             onClick={() => {
-                if (onLeft && selectedIndex) onLeft(selectedIndex - 1);
+                if(onSelect) {
+                    const currentIndex = buttons.findIndex(item => item.pageNumber === selectedIndex);
+
+                    if(buttons[currentIndex - 1]) {
+                        onSelect(buttons[currentIndex - 1], currentIndex - 1);
+                    } else {
+                        onSelect(buttons[0], 0);
+                    }
+                };
             }}
             style={arrowButton} 
         />
-        {renderGoFirstPage()}
         <div
             className={classes.buttonsContainer}
         >
-            {
-                pageNumbers.map((item, index) => {
-                    const isCurrentSelected = selectedIndex === item;
-
-                    return <Button
-                        key={`pagination-button-${index}`}
-                        title={item.toString()}
-                        variant={isCurrentSelected ? "filled" : "outline"}
-                        color={isCurrentSelected ? "body" : "hideBody"}
-                        onClick={() => {
-                            if (onSelect) onSelect(item, index);
-                        }}
-                        titleStyle={{
-                            textAlign: "center"
-                        }}
-                        spreadBehaviour="baseline"
-                        style={buttonStyle} 
-                    />;
-                }) 
-            }
+            {renderButtons()}
         </div>
-        {renderGoLastPage()}
         <Button
-            disabled={selectedIndex === endPage}
+            disabled={selectedIndex === buttons[buttons.length - 1].pageNumber}
             icon={() =>  <ChevronRightIcon
                 size={20}
                 color={colors.body}
@@ -238,7 +197,36 @@ const Pagination: FC<IPaginationProps> = ({
             variant="ghost"
             spreadBehaviour="free"
             onClick={() => {
-                if (onRight && selectedIndex) onRight(selectedIndex + 1);
+                if(onSelect) {
+                    const currentIndex = buttons.findIndex(item => item.pageNumber === selectedIndex);
+
+                    if(buttons[currentIndex + 1]) {
+                        onSelect(buttons[currentIndex + 1], currentIndex + 1);
+                    } else {
+                        onSelect(buttons[buttons.length - 1], buttons.length - 1);
+                    }
+                }
+            }}
+            style={arrowButton}
+        />
+        <Button
+            disabled={selectedIndex === buttons[buttons.length - 1].pageNumber}
+            icon={() =>  {
+                return <Fragment>
+                    <ChevronRightIcon
+                        size={20}
+                        color={colors.body}
+                    />
+                    <ChevronRightIcon
+                        size={20}
+                        color={colors.body}
+                    />
+                </Fragment>;
+            }}
+            variant="ghost"
+            spreadBehaviour="free"
+            onClick={() => {
+                if(onSelect) onSelect(buttons[buttons.length - 1], buttons.length - 1);;
             }}
             style={arrowButton}
         />
