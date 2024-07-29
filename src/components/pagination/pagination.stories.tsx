@@ -1,6 +1,9 @@
 import {
-    Meta,
-    Story
+    useState
+} from "react";
+import {
+    Story,
+    Meta
 } from '@storybook/react';
 import Pagination from './pagination';
 import IPaginationProps from './pagination.props';
@@ -19,15 +22,23 @@ export default {
     }
 } as Meta;
 
-const Template: Story<IPaginationProps> = (args) => <Pagination {...args} />;
+const Template: Story<IPaginationProps> = (args) => {
+    const [selectedIndex, setSelectedIndex] = useState(1);
+
+    return <Pagination
+        {...args}
+        selectedIndex={selectedIndex}
+        onSelect={(item) => {
+            setSelectedIndex(item.pageNumber);
+        }}
+    />;
+};
 
 export const Default = Template.bind({
 });
 
 Default.args = {
     totalDataCount: 600,
-    maxButtonCount: 5,
     selectedIndex: 1,
-    itemPerPage: 20,
+    itemPerPage: 20
 };
-

@@ -2,22 +2,15 @@ import {
     CSSProperties
 } from "react";
 
-interface IPaginationProps {
-    onSelect: (item: any, index: number) => void;
-    onRight: (index: number) => void;
-    onLeft: (index: number) => void;
-    totalDataCount: number;
-    maxButtonCount: number;
-    style?: CSSProperties;
-    selectedIndex: number;
-    itemPerPage: number;
+export type PaginationButtonType = {
+    pageNumber: number;
 };
 
 export type PaginationStylerParams = {
     radiuses: IOCore.RadiusesTokensType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
-    colors: IOCore.ColorsType
+    colors: IOCore.ColorsType;
 };
 
 export type PaginationStylerResult = {
@@ -26,4 +19,12 @@ export type PaginationStylerResult = {
     container: CSSProperties;
 };
 
+interface IPaginationProps {
+    onSelect: (item: PaginationButtonType, index: number) => void;
+    totalDataCount: number;
+    maxButtonCount: number;
+    style?: CSSProperties;
+    selectedIndex: number;
+    itemPerPage: number;
+};
 export default IPaginationProps;
