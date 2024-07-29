@@ -28,6 +28,10 @@ const useStyles = createUseStyles({
     fastButtons: {
         flexDirection: "row",
         display: "flex"
+    },
+    button: {
+        height: "40px !important",
+        width: "40px !important"
     }
 });
 
