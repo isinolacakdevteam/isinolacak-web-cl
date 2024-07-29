@@ -1,4 +1,4 @@
-import React, {
+import {
     useEffect,
     useState,
     Fragment,
@@ -47,8 +47,7 @@ const Pagination: FC<IPaginationProps> = ({
 
     const {
         container,
-        arrowButton,
-        buttonStyle
+        arrowButton
     } = paginationStyler({
         borders,
         colors,
