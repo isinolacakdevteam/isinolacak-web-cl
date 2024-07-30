@@ -22,9 +22,8 @@ export type PaginationStylerResult = {
 interface IPaginationProps {
     onSelect: (item: PaginationButtonType, index: number) => void;
     totalDataCount: number;
-    maxButtonCount: number;
     style?: CSSProperties;
-    selectedIndex: number;
+    currentPage: number;
     itemPerPage: number;
 };
 export default IPaginationProps;
