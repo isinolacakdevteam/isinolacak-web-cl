@@ -25,6 +25,11 @@ export const useStyles = createUseStyles({
         left: 0,
         top: 0
     },
+    loadingContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex"
+    },
     overlay: {
         position: "fixed",
         zIndex: 99997,

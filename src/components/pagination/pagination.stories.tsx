@@ -23,11 +23,11 @@ export default {
 } as Meta;
 
 const Template: Story<IPaginationProps> = (args) => {
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [currentPage, setSelectedIndex] = useState(1);
 
     return <Pagination
         {...args}
-        selectedIndex={selectedIndex}
+        currentPage={currentPage}
         onSelect={(item) => {
             setSelectedIndex(item.pageNumber);
         }}
@@ -39,6 +39,6 @@ export const Default = Template.bind({
 
 Default.args = {
     totalDataCount: 600,
-    selectedIndex: 1,
-    itemPerPage: 20
+    itemPerPage: 20,
+    currentPage: 1
 };

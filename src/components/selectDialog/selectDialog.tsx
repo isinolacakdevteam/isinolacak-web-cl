@@ -26,6 +26,7 @@ import {
 import {
     Portal
 } from "../../packages/react-portalize/src";
+import Loading from "../loading/loading";
 
 const SelecetDialog = <T, K extends T & SelectObjectType>(
     properties: ISelectDialogProps<T, K>,
@@ -38,6 +39,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         paginationProps,
         setSelectedItems,
         headerComponent,
+        isSearchLoading,
         onOverlayPress,
         isNeedConfirm,
         selectedItems,
@@ -268,6 +270,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             return null;
         }
 
+        if(isSearchLoading) {
+            return null;
+        }
+
         return <Pagination
             {...paginationProps}
         />;
@@ -366,6 +372,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 return <RenderEmptyContent/>;
             }
             return null;
+        }
+
+        if(isSearchLoading) {
+            return <div
+                className={styles.loadingContainer}
+                style={{
+                    padding: spaces.container
+                }}
+            >
+                <Loading/>
+            </div>;
         }
 
         return <div>

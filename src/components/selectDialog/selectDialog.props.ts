@@ -79,11 +79,12 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
     paginationProps?: IPaginationProps; 
+    emptyContent?: () => JSX.Element;
     childrenStyle?: CSSProperties;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
-    emptyContent?: () => JSX.Element;
+    isSearchLoading?: boolean;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;

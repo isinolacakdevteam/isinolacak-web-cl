@@ -68,6 +68,7 @@ export interface ISelectBoxProps<T> {
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
+    isSearchLoading?: boolean;
     infoIcon?: IOCoreIconType;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
