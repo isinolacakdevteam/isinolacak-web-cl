@@ -22,6 +22,9 @@ export default {
         },
         title: {
             control: "text"
+        },
+        isSearchLoading: {
+            control: "boolean"
         }
     }
 } as Meta;
@@ -32,6 +35,7 @@ export const Default = Template.bind({
 });
 Default.args = {
     isLoadingOKButton: false,
+    isSearchLoading: false,
     title: 'SelectDialog',
     isNeedConfirm: true,
     isSearchable: true,

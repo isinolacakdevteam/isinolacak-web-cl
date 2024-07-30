@@ -21,7 +21,7 @@ import {
 
 const Pagination: FC<IPaginationProps> = ({
     totalDataCount,
-    selectedIndex,
+    currentPage,
     itemPerPage,
     onSelect,
     style
@@ -43,7 +43,7 @@ const Pagination: FC<IPaginationProps> = ({
 
     useEffect(() => {
         calculateButtons();
-    }, [totalDataCount, itemPerPage, selectedIndex]);
+    }, [totalDataCount, itemPerPage, currentPage]);
 
     const {
         container,
@@ -72,7 +72,7 @@ const Pagination: FC<IPaginationProps> = ({
                 });
             }
 
-            for(let i = selectedIndex - 1; i < selectedIndex + 2; i++) {
+            for(let i = currentPage - 1; i < currentPage + 2; i++) {
                 const isExists = _pageButtons.findIndex(item => item.pageNumber === i);
 
                 if(
@@ -122,7 +122,7 @@ const Pagination: FC<IPaginationProps> = ({
             return <Fragment>
                 {buttons[index - 1] && item.pageNumber - 1 !== buttons[index - 1].pageNumber ? "..." : null}
                 <Button
-                    variant={item.pageNumber === selectedIndex ? "filled" : "ghost"}
+                    variant={item.pageNumber === currentPage ? "filled" : "ghost"}
                     title={String(item.pageNumber)}
                     className={classes.button}
                     onClick={() => {
@@ -141,7 +141,7 @@ const Pagination: FC<IPaginationProps> = ({
         }}
     >
         <Button
-            disabled={selectedIndex === buttons[0].pageNumber}
+            disabled={currentPage === buttons[0].pageNumber}
             icon={() => {
                 return <Fragment>
                     <ChevronLeftIcon
@@ -162,7 +162,7 @@ const Pagination: FC<IPaginationProps> = ({
             style={arrowButton} 
         />
         <Button
-            disabled={selectedIndex === buttons[0].pageNumber}
+            disabled={currentPage === buttons[0].pageNumber}
             icon={() => <ChevronLeftIcon
                 size={20}
                 color={colors.body}
@@ -171,7 +171,7 @@ const Pagination: FC<IPaginationProps> = ({
             spreadBehaviour="free"
             onClick={() => {
                 if(onSelect) {
-                    const currentIndex = buttons.findIndex(item => item.pageNumber === selectedIndex);
+                    const currentIndex = buttons.findIndex(item => item.pageNumber === currentPage);
 
                     if(buttons[currentIndex - 1]) {
                         onSelect(buttons[currentIndex - 1], currentIndex - 1);
@@ -188,7 +188,7 @@ const Pagination: FC<IPaginationProps> = ({
             {renderButtons()}
         </div>
         <Button
-            disabled={selectedIndex === buttons[buttons.length - 1].pageNumber}
+            disabled={currentPage === buttons[buttons.length - 1].pageNumber}
             icon={() =>  <ChevronRightIcon
                 size={20}
                 color={colors.body}
@@ -197,7 +197,7 @@ const Pagination: FC<IPaginationProps> = ({
             spreadBehaviour="free"
             onClick={() => {
                 if(onSelect) {
-                    const currentIndex = buttons.findIndex(item => item.pageNumber === selectedIndex);
+                    const currentIndex = buttons.findIndex(item => item.pageNumber === currentPage);
 
                     if(buttons[currentIndex + 1]) {
                         onSelect(buttons[currentIndex + 1], currentIndex + 1);
@@ -209,7 +209,7 @@ const Pagination: FC<IPaginationProps> = ({
             style={arrowButton}
         />
         <Button
-            disabled={selectedIndex === buttons[buttons.length - 1].pageNumber}
+            disabled={currentPage === buttons[buttons.length - 1].pageNumber}
             icon={() =>  {
                 return <Fragment>
                     <ChevronRightIcon

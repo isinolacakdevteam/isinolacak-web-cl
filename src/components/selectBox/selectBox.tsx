@@ -36,6 +36,7 @@ const SelectBox = <T extends {}>({
     disabled = false,
     paginationProps,
     isClick = false,
+    isSearchLoading,
     onOverlayPress,
     titleExtractor,
     keyExtractor,
@@ -229,6 +230,7 @@ const SelectBox = <T extends {}>({
             isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
             paginationProps={paginationProps}
+            isSearchLoading={isSearchLoading}
             onOverlayPress={onOverlayPress}
             selectedItems={selectedItems}
             isNeedConfirm={isNeedConfirm}
