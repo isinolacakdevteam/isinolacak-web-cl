@@ -274,9 +274,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             return null;
         }
 
-        return <Pagination
-            {...paginationProps}
-        />;
+        return <div
+            className={styles.paginationContainer}
+        >
+            <Pagination
+                {...paginationProps}
+            />
+        </div>;
     };
 
     const renderItem = ({
@@ -385,17 +389,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </div>;
         }
 
-        return <div>
-            <div>
-                {
-                    renderData.map((item, index) => {
-                        return renderItem({
-                            item,
-                            index
-                        });
-                    })
-                }
-            </div>
+        return  <div
+            className={styles.innerContent}
+        >
+            {
+                renderData.map((item, index) => {
+                    return renderItem({
+                        item,
+                        index
+                    });
+                })
+            }
         </div>;
     };
 
