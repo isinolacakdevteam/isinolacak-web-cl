@@ -52,10 +52,11 @@ export const useStyles = createUseStyles({
         alignContent: "center",
         position: "relative",
         alignSelf: "center",
-        maxHeight: "80%",
+        maxHeight: "90%",
         display: "flex",
-        maxWidth: "90%",
-        minWidth: 250,
+        maxWidth: "95%",
+        minWidth: "50%",
+        minHeight: "50%",
         zIndex: 99999
     },
     content: {
@@ -63,6 +64,13 @@ export const useStyles = createUseStyles({
         overflowY: "auto",
         flexWrap: "wrap"
     },
+    innerContent: {
+        minHeight: "200px"
+    },
+    paginationContainer: {
+        justifyContent: "center",
+        display: "flex"
+    }, 
     renderActions: {
         flexDirection: 'row',
         display: 'flex',
