@@ -60,7 +60,9 @@ const DateTimePicker: FC<IDateTimePickerProps> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement & {
+        showPicker: () => void;
+            }>(null);
 
     const [value, setValue] = useState(initialValue ? initialValue : "");
     const [showPassword, setShowPassword] = useState(false);
