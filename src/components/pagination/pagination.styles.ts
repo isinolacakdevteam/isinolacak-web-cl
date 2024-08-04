@@ -25,13 +25,16 @@ const useStyles = createUseStyles({
         alignItems: "center",
         display: "flex",
     },
+    chevroLeft: {
+        rotate: "180deg"
+    },
     fastButtons: {
         flexDirection: "row",
         display: "flex"
     },
     button: {
         height: "40px !important",
-        width: "40px !important"
+        minWidth: "40px !important"
     }
 });
 
