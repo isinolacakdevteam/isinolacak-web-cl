@@ -11,8 +11,10 @@ import IPaginationProps, {
     PaginationButtonType
 } from "./pagination.props";
 import {
-    ChevronRightIcon,
-    ChevronLeftIcon
+    ChevronLeftDoubleIcon,
+    ChevronRightDoubleIcon,
+    RightArrowIcon,
+    LeftArrowIcon
 } from "../../assets/svgr";
 import Button from "../button/button";
 import {
@@ -125,6 +127,7 @@ const Pagination: FC<IPaginationProps> = ({
                     variant={item.pageNumber === currentPage ? "filled" : "ghost"}
                     title={String(item.pageNumber)}
                     className={classes.button}
+                    color="secondary"
                     onClick={() => {
                         onSelect(item, index);
                     }}
@@ -143,16 +146,10 @@ const Pagination: FC<IPaginationProps> = ({
         <Button
             disabled={currentPage === buttons[0].pageNumber}
             icon={() => {
-                return <Fragment>
-                    <ChevronLeftIcon
-                        size={20}
-                        color={colors.body}
-                    />
-                    <ChevronLeftIcon
-                        size={20}
-                        color={colors.body}
-                    />
-                </Fragment>;
+                return <ChevronLeftDoubleIcon
+                    color={colors.body}
+                    size={20}
+                />;
             }}
             variant="ghost"
             spreadBehaviour="free"
@@ -163,9 +160,9 @@ const Pagination: FC<IPaginationProps> = ({
         />
         <Button
             disabled={currentPage === buttons[0].pageNumber}
-            icon={() => <ChevronLeftIcon
-                size={20}
+            icon={() => <LeftArrowIcon
                 color={colors.body}
+                size={20}
             />}
             variant="ghost"
             spreadBehaviour="free"
@@ -189,9 +186,9 @@ const Pagination: FC<IPaginationProps> = ({
         </div>
         <Button
             disabled={currentPage === buttons[buttons.length - 1].pageNumber}
-            icon={() =>  <ChevronRightIcon
-                size={20}
+            icon={() =>  <RightArrowIcon
                 color={colors.body}
+                size={20}
             />}
             variant="ghost"
             spreadBehaviour="free"
@@ -211,16 +208,10 @@ const Pagination: FC<IPaginationProps> = ({
         <Button
             disabled={currentPage === buttons[buttons.length - 1].pageNumber}
             icon={() =>  {
-                return <Fragment>
-                    <ChevronRightIcon
-                        size={20}
-                        color={colors.body}
-                    />
-                    <ChevronRightIcon
-                        size={20}
-                        color={colors.body}
-                    />
-                </Fragment>;
+                return <ChevronRightDoubleIcon
+                    color={colors.body}
+                    size={20}
+                />;
             }}
             variant="ghost"
             spreadBehaviour="free"
