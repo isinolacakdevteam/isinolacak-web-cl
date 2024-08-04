@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
     },
     button: {
         height: "40px !important",
-        width: "40px !important"
+        minWidth: "40px !important"
     }
 });
 

@@ -41,3 +41,19 @@ export {
 export {
     default as LoadingDots
 } from "./loadingDotIcon";
+
+export {
+    default as ChevronLeftDoubleIcon
+} from "./chevronLeftDoubleIcon";
+
+export {
+    default as ChevronRightDoubleIcon
+} from "./chevronDoubleRightIcon";
+
+export {
+    default as LeftArrowIcon
+} from "./leftArrowIcon";
+
+export {
+    default as RightArrowIcon
+} from "./rightArrowIcon";
