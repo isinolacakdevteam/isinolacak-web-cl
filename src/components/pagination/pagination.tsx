@@ -11,8 +11,7 @@ import IPaginationProps, {
     PaginationButtonType
 } from "./pagination.props";
 import {
-    ChevronRightIcon,
-    ChevronLeftIcon
+    ChevronRightIcon
 } from "../../assets/svgr";
 import Button from "../button/button";
 import {
@@ -125,6 +124,8 @@ const Pagination: FC<IPaginationProps> = ({
                     variant={item.pageNumber === currentPage ? "filled" : "ghost"}
                     title={String(item.pageNumber)}
                     className={classes.button}
+                    spreadBehaviour="stretch"
+                    color="secondary"
                     onClick={() => {
                         onSelect(item, index);
                     }}
@@ -144,14 +145,22 @@ const Pagination: FC<IPaginationProps> = ({
             disabled={currentPage === buttons[0].pageNumber}
             icon={() => {
                 return <Fragment>
-                    <ChevronLeftIcon
-                        size={20}
-                        color={colors.body}
-                    />
-                    <ChevronLeftIcon
-                        size={20}
-                        color={colors.body}
-                    />
+                    <div
+                        className={classes.chevroLeft}
+                    >
+                        <ChevronRightIcon
+                            size={20}
+                            color={colors.body}
+                        />
+                    </div>
+                    <div
+                        className={classes.chevroLeft}
+                    >
+                        <ChevronRightIcon
+                            color={colors.body}
+                            size={20}
+                        />
+                    </div>
                 </Fragment>;
             }}
             variant="ghost"
@@ -163,10 +172,14 @@ const Pagination: FC<IPaginationProps> = ({
         />
         <Button
             disabled={currentPage === buttons[0].pageNumber}
-            icon={() => <ChevronLeftIcon
-                size={20}
-                color={colors.body}
-            />}
+            icon={() => <div
+                className={classes.chevroLeft}
+            >
+                <ChevronRightIcon
+                    color={colors.body}
+                    size={20}
+                />
+            </div>}
             variant="ghost"
             spreadBehaviour="free"
             onClick={() => {

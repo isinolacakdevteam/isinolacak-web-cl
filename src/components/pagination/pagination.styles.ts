@@ -25,6 +25,9 @@ const useStyles = createUseStyles({
         alignItems: "center",
         display: "flex",
     },
+    chevroLeft: {
+        rotate: "180deg"
+    },
     fastButtons: {
         flexDirection: "row",
         display: "flex"

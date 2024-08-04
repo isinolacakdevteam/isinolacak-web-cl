@@ -7,7 +7,7 @@ const SvgChevronLeft = ({
     color,
     ...props
 }: IIOCoreIconPropsType) => {
-    const pathScale = 38 / size;
+    const pathScale = 36 / size;
 
     return <svg
         xmlns="http://www.w3.org/2000/svg"
