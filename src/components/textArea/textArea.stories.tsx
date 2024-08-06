@@ -9,6 +9,7 @@ export default {
     title: "Components/TextArea",
     component: TextArea,
     parameters: {
+        layout: "fullscreen",
         docs: {
             description: {
                 component: "Welcome to IOCORE TextArea page."
@@ -20,6 +21,9 @@ export default {
             control: "text"
         },
         placeholder: {
+            control: "text"
+        },
+        infoText: {
             control: "text"
         },
         clearEnabled: {
@@ -53,7 +57,16 @@ export default {
     }
 } as Meta;
 
-const Template: Story<ITextAreaProps> = (args) => <TextArea {...args} />;
+const Template: Story<ITextAreaProps> = (args) => <div
+    style={{
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        padding: 20
+    }}
+>
+    <TextArea {...args} />
+</div>;
 
 export const Default = Template.bind({
 });

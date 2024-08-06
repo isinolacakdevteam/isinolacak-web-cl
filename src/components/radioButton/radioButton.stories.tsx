@@ -11,12 +11,30 @@ import {
 export default {
     title: 'Components/RadioButton',
     component: RadioButton,
+    parameters: {
+        layout: "fullscreen"
+    },
     argTypes: {
         onChange: {
             action: 'changed' 
         },
         isSelected: {
             control: "boolean"
+        },
+        isError: {
+            control: "boolean"
+        },
+        infoText: {
+            control: "text"
+        },
+        direction: {
+            control: {
+                type: "select",
+                options: [
+                    "leftToRight",
+                    "rightToLeft"
+                ]
+            }
         },
         spreadBehaviour: {
             control: {
@@ -31,7 +49,16 @@ export default {
     },
 } as Meta;
 
-const Template: Story<IRadioButtonProps> = (args) => <RadioButton {...args} />;
+const Template: Story<IRadioButtonProps> = (args) => <div
+    style={{
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        padding: 20
+    }}
+>
+    <RadioButton {...args} />
+</div>;
 
 export const Default = Template.bind({
 });
@@ -44,6 +71,13 @@ export const Selected = Template.bind({
 Selected.args = {
     title: 'Option 2',
     isSelected: true,
+};
+
+export const Direction = Template.bind({
+});
+Direction.args = {
+    title: 'Direction',
+    direction: "rightToLeft"
 };
 
 export const Disabled = Template.bind({

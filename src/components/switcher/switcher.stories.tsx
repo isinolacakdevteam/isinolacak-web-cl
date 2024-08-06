@@ -10,6 +10,7 @@ export default {
     title: "Components/Switcher",
     component: Switcher,
     parameters: {
+        layout: "fullscreen",
         docs: {
             description: {
                 component: "Welcome to İOCore Switcher page. Please use with onChange prop on the project."
@@ -20,8 +21,14 @@ export default {
         isActive: {
             control: "boolean"
         },
+        isError: {
+            control: "boolean"
+        },
         disabled: {
             control: "boolean"
+        },
+        infoText: {
+            control: "text"
         },
         titleDirection: {
             control: "select",

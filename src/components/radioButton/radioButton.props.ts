@@ -1,17 +1,25 @@
 import {
+    CSSProperties
+} from "react";
+import {
     IOCoreIconType
 } from "../../types";
+import ITextProps from "../text/text.props";
 
 export type RadioButtonSpreadBehaviour = "baseline" | "stretch" | "free";
 
 export interface IRadioButtonProps {
     spreadBehaviour?: RadioButtonSpreadBehaviour;
+    direction?: "leftToRight" | "rightToLeft";
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
+    infoTextProps?: ITextProps;
     indicatorSize?: number;
     icon?: IOCoreIconType;
     isSelected?: boolean;
     disabled?: boolean;
+    infoText?: string;
+    isError?: boolean;
     titleStyle?: any;
     title?: string;
     style?: any;
@@ -19,6 +27,7 @@ export interface IRadioButtonProps {
 
 export type RadioButtonStylerParams = {
     spreadBehaviour: RadioButtonSpreadBehaviour;
+    direction?: "leftToRight" | "rightToLeft";
     disabledStyle: IOCore.DisabledTokensType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
@@ -26,6 +35,7 @@ export type RadioButtonStylerParams = {
     indicatorSize?: number;
     isSelected?: boolean;
     disabled?: boolean;
+    isError?: boolean;
     titleStyle?: any;
     style?: any;
 };
@@ -36,6 +46,7 @@ export type TitleProps = {
 };
 
 export type RadioButtonStylerResult = {
+    contentContainerStyle: CSSProperties;
     titleProps: TitleProps;
     radioContainer: any;
     radioIndicator: any;

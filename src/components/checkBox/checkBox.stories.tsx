@@ -24,13 +24,19 @@ export default {
                 type: "select",
                 options: [
                     "baseline",
-                    "center",
+                    "stretch",
                     "free"
                 ]
             }
         },
         isSelected: {
             control: "boolean"
+        },
+        isError: {
+            control: "boolean"
+        },
+        infoText: {
+            control: "text"
         },
         titleType: {
             control: {
@@ -59,7 +65,16 @@ export default {
     },
 } as Meta;
 
-const Template: Story<ICheckBoxProps> = (args) => <CheckBox {...args} />;
+const Template: Story<ICheckBoxProps> = (args) => <div
+    style={{
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        padding: 20
+    }}
+>
+    <CheckBox {...args} />
+</div>;
 
 export const Default = Template.bind({
 });

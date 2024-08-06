@@ -18,6 +18,7 @@ export default {
     title: "Components/Button",
     component: Button,
     parameters: {
+        layout: "fullscreen",
         docs: {
             description: {
                 component: "Welcome to IOCore Button page."
@@ -95,7 +96,16 @@ export default {
     },
 } as Meta;
 
-const Template: Story<IButtonProps> = (args) => <Button {...args} />;
+const Template: Story<IButtonProps> = (args) => <div
+    style={{
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        padding: 20
+    }}
+>
+    <Button {...args} />
+</div>;
 
 export const Icon = Template.bind({
 });

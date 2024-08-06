@@ -32,6 +32,8 @@ interface IDateTimePickerProps extends HTMLInputElementWithoutBase {
     infoText?: string;
     isError?: boolean;
     title?: string;
+    max?: string;
+    min?: string;
     id?: string;
 };
 
