@@ -16,11 +16,15 @@ import {
 const RadioButton: FC<IRadioButtonProps> = ({
     spreadBehaviour = "baseline",
     titleType = "body2-regular",
+    direction = "leftToRight",
     onChange: onChangeProp,
     isSelected = false,
     indicatorSize = 15,
     disabled = false,
+    infoTextProps,
     titleStyle,
+    infoText,
+    isError,
     title,
     style
 }) => {
@@ -44,7 +48,9 @@ const RadioButton: FC<IRadioButtonProps> = ({
         indicatorSize,
         titleStyle,
         isSelected,
+        direction,
         disabled,
+        isError,
         borders,
         colors,
         spaces
@@ -96,6 +102,25 @@ const RadioButton: FC<IRadioButtonProps> = ({
         </Text>;
     };
 
+    const renderInfoText = () => {
+        if(!infoText) {
+            return null;
+        }
+
+        const customStyle = infoTextProps && infoTextProps.style ? infoTextProps.style : {
+        };
+
+        return <Text
+            {...infoTextProps}
+            style={{
+                marginTop: spaces.content,
+                ...customStyle
+            }}
+        >
+            {infoText}
+        </Text>;
+    };
+
     return <div
         className={classes.container}
         style={{
@@ -104,9 +129,17 @@ const RadioButton: FC<IRadioButtonProps> = ({
         }}
         onClick={onChange}
     >
-        {renderRadioContainer()}
-        {renderTitle()}
+        <div
+            className={classes.contentContainer}
+            style={{
+
+            }}
+        >
+            {direction === "leftToRight" ? renderRadioContainer() : null}
+            {renderTitle()}
+            {direction === "rightToLeft" ? renderRadioContainer() : null}
+        </div>
+        {renderInfoText()}
     </div>;
 };
-
 export default RadioButton;

@@ -12,8 +12,7 @@ import {
 
 export const useStyles = createUseStyles({
     container: {
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: "column",
         userSelect: "none",
         display: "flex",
         "&:hover": {
@@ -22,6 +21,11 @@ export const useStyles = createUseStyles({
             // cursor: (props: { disabled: boolean; }) => props.disabled ? "no-drop" : "pointer",
             opacity: 0.75
         }
+    },
+    contentContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        display: "flex"
     },
     checkContainer: {
         justifyContent: "center",
@@ -51,6 +55,7 @@ export const checkBoxStyler = ({
     disabled,
     radiuses,
     borders,
+    isError,
     colors,
     spaces
 }: CheckBoxStylerParams): CheckBoxStylerResult => {
@@ -59,10 +64,12 @@ export const checkBoxStyler = ({
         paddingBottom: spaces.container / 2,
     };
 
+    let contentContainerStyle: CSSProperties = {
+    };
+
     let checkContainer: CSSProperties = {
         backgroundColor: colors.backgroundLight,
         borderRadius: radiuses.quarter,
-        marginRight: spaces.content,
         borderColor: colors.stroke,
         borderWidth: borders.line,
         borderStyle: "solid"
@@ -88,21 +95,34 @@ export const checkBoxStyler = ({
         checkIndicator.backgroundColor = colors.textGrey;
     }
 
-    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+    if(spreadBehaviour === "baseline") {
         container.alignSelf = spreadBehaviour;
+        container.width = "auto";
+    }
+
+    if(spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+        container.width = "100%";
     }
 
     if(checkDirection === "right") {
-        checkContainer.marginLeft = spaces.content,
-        checkContainer.marginRight = 0;
+        checkContainer.marginLeft = spaces.content;
+    } else {
+        checkContainer.marginRight = spaces.content;
+    }
+
+    if(isError) {
+        checkIndicator.backgroundColor = colors.error;
+        checkContainer.borderColor = colors.error;
+        titleProps.color = "error";
     }
 
     return {
+        contentContainerStyle,
         checkContainer,
         checkIndicator,
         titleProps,
         container
     };
 };
-
 export default useStyles;

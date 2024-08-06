@@ -10,7 +10,7 @@ import {
 const useStyles = createUseStyles({
     switchComponentContainer: {
         alignContent: "baseline",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         userSelect: "none",
         display: "flex",
@@ -18,6 +18,11 @@ const useStyles = createUseStyles({
             cursor: "pointer",
             opacity: 0.75
         }
+    },
+    contentContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        display: "flex"
     },
     container: {
         transition: "transform 0.5s !important",
@@ -50,6 +55,7 @@ export const switcherStyler = ({
     switchSize,
     isActive,
     disabled,
+    isError,
     colors,
     spaces,
     style
@@ -62,8 +68,11 @@ export const switcherStyler = ({
         ...style,
         backgroundColor: colors.gray80,
         padding: spaces.content,
-        height: 10,
-        width: SWITCH_AREA
+        width: SWITCH_AREA,
+        height: 10
+    };
+
+    let contentContainerStyle = {
     };
 
     let indicator = {
@@ -84,6 +93,12 @@ export const switcherStyler = ({
         variant: "header4-regular",
         color: "textGrey"
     };
+
+    if(isError) {
+        container.backgroundColor = colors.error;
+        indicator.backgroundColor = colors.panel;
+        titleProps.color = "error";
+    }
 
     if(titleDirection === "right") {
         titleProps.style.marginLeft= switchSize === "medium" ? spaces.content : spaces.content / 2,
@@ -113,6 +128,7 @@ export const switcherStyler = ({
     }
 
     return {
+        contentContainerStyle,
         titleProps,
         indicator,
         container

@@ -4,6 +4,7 @@ import {
 import {
     IOCoreIconType
 } from "../../types";
+import ITextProps from "../text/text.props";
 
 export type CheckBoxSpreadBehaviour = "baseline" | "stretch" | "free";
 
@@ -13,11 +14,14 @@ export interface ICheckBoxProps {
     titleType?: keyof IOCore.TypographyType;
     titleColor?: keyof IOCore.ColorsType;
     checkDirection?: "left" | "right";
+    infoTextProps?: ITextProps;
     titleStyle?: CSSProperties;
     style?: CSSProperties;
     icon?: IOCoreIconType;
     isSelected?: boolean;
     disabled?: boolean;
+    infoText?: string;
+    isError?: boolean;
     title?: string;
 };
 
@@ -33,6 +37,7 @@ export type CheckBoxStylerParams = {
     colors: IOCore.ColorsType;
     isSelected?: boolean;
     disabled?: boolean;
+    isError?: boolean;
 };
 
 export type TitleProps = {
@@ -41,6 +46,7 @@ export type TitleProps = {
 };
 
 export type CheckBoxStylerResult = {
+    contentContainerStyle: CSSProperties;
     checkContainer: CSSProperties;
     checkIndicator: CSSProperties;
     container: CSSProperties;

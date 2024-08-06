@@ -2,6 +2,7 @@ import {
     HTMLAttributes,
     CSSProperties
 } from "react";
+import ITextProps from "../text/text.props";
 
 export type ITextAreaRef = {
     cleanText: () => void;
@@ -12,6 +13,7 @@ type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLTextAreaElement>, "di
 interface ITextAreaProps extends HTMLInputElementWithoutBase {
     spreadBehaviour?: TextAreaSpreadBehaviour;
     onChangeText?: (value: string) => void;
+    infoTextProps?: ITextProps;
     clearEnabled?: boolean;
     initialValue?: string;
     style?: CSSProperties;
@@ -24,6 +26,7 @@ interface ITextAreaProps extends HTMLInputElementWithoutBase {
     disabled?: boolean;
     textLimit?: number;
     className?: string;
+    infoText?: string;
     isError?: boolean;
     title?: string;
     id?: string;
@@ -52,6 +55,7 @@ export type TitleProps = {
 };
 
 export type TextAreaStylerResult = {
+    contentContainerStyle: CSSProperties;
     container: CSSProperties;
     titleProps: TitleProps;
     input: CSSProperties;
