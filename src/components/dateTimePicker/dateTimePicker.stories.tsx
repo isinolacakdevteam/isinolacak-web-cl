@@ -97,7 +97,7 @@ const Template: Story<IDateTimePickerProps> = (args) => <div
         width: "100%"
     }}
 >
-    <DateTimePicker {...args} />
+    <DateTimePicker {...args} min="2018-07-15" max="2019-05-05" />
 </div>;
 
 export const Default = Template.bind({

@@ -23,7 +23,10 @@ const CheckBox: FC<ICheckBoxProps> = ({
     titleColor = "body",
     isSelected = false,
     disabled = false,
+    infoTextProps,
     titleStyle,
+    infoText,
+    isError,
     title,
     style
 }) => {
@@ -38,6 +41,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
     } = IOCoreTheme.useContext();
 
     const {
+        contentContainerStyle,
         checkContainer,
         checkIndicator,
         titleProps,
@@ -51,6 +55,7 @@ const CheckBox: FC<ICheckBoxProps> = ({
         isSelected,
         radiuses,
         disabled,
+        isError,
         borders,
         colors,
         spaces
@@ -110,6 +115,25 @@ const CheckBox: FC<ICheckBoxProps> = ({
         </Text>;
     };
 
+    const renderInfoText = () => {
+        if(!infoText) {
+            return null;
+        }
+
+        const customStyle = infoTextProps && infoTextProps.style ? infoTextProps.style : {
+        };
+
+        return <Text
+            {...infoTextProps}
+            style={{
+                marginTop: spaces.content,
+                ...customStyle
+            }}
+        >
+            {infoText}
+        </Text>;
+    };
+
     return <div
         className={classes.container}
         style={{
@@ -118,9 +142,17 @@ const CheckBox: FC<ICheckBoxProps> = ({
         }}
         onClick={onChange}
     >
-        {renderRadioContainer("left")}
-        {renderTitle()}
-        {renderRadioContainer("right")}
+        <div
+            className={classes.contentContainer}
+            style={{
+                ...contentContainerStyle
+            }}
+        >
+            {renderRadioContainer("left")}
+            {renderTitle()}
+            {renderRadioContainer("right")}
+        </div>
+        {renderInfoText()}
     </div>;
 };
 export default CheckBox;

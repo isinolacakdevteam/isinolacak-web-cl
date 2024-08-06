@@ -13,12 +13,16 @@ import {
 const useStyles = createUseStyles({
     container: {
         boxSizing: "border-box",
-        flexDirection: "row",
+        flexDirection: "column",
         userSelect: "none",
         display: "flex",
         "&:hover": {
             cursor: "pointer"
         }
+    },
+    contentContainer: {
+        flexDirection: "row",
+        display: "flex"
     },
     content: {
         flexDirection: "column",
@@ -67,6 +71,10 @@ export const textAreaStyler = ({
     value
 }: TextAreaStylerParams): TextAreaStylerResult => {
     let container: CSSProperties = {
+        borderRadius: radiuses.half
+    };
+    
+    let contentContainerStyle: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
         paddingLeft: spaces.container / 1.5,
@@ -79,8 +87,8 @@ export const textAreaStyler = ({
     };
 
     let titleProps: TitleProps = {
-        variant: value?.length || isFocused ? "body3-regular" : "body2-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
+        variant: "body2-regular",
         style: {
             alignSelf: "flex-start"
         }
@@ -127,16 +135,12 @@ export const textAreaStyler = ({
         };
     }
 
-    if(isFocused || (value && value.length)) {
-        titleProps.style.marginBottom = spaces.inline;
-    }
-
     return {
+        contentContainerStyle,
         titleProps,
         container,
         input,
         clear
     };
 };
-
 export default useStyles;

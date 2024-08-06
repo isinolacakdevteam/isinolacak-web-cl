@@ -31,11 +31,13 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
     disabled = false,
     isError = false,
     textLimit = 0,
+    infoTextProps,
     initialValue,
     onChangeText,
     placeholder,
     inputClass,
     className,
+    infoText,
     style,
     title,
     ...props
@@ -63,6 +65,7 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
     const finalTitle = isRequired ? "* " + title : title;
 
     const {
+        contentContainerStyle,
         titleProps,
         container,
         input,
@@ -172,6 +175,25 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
         </Text>;
     };
 
+    const renderInfoText = () => {
+        if(!infoText) {
+            return null;
+        }
+
+        const customStyle = infoTextProps && infoTextProps.style ? infoTextProps.style : {
+        };
+
+        return <Text
+            {...infoTextProps}
+            style={{
+                marginTop: spaces.content,
+                ...customStyle
+            }}
+        >
+            {infoText}
+        </Text>;
+    };
+
     return <div
         className={[
             classes.container,
@@ -184,21 +206,28 @@ const TextArea: RefForwardingComponent<ITextAreaRef, ITextAreaProps> = ({
         }}
     >
         <div
-            className={[
-                classes.content
-            ].join(" ")}
+            className={classes.contentContainer}
+            style={{
+                ...contentContainerStyle
+            }}
         >
-            <Text
-                {...titleProps}
-                color={isError ? "error" : titleProps.color}
+            <div
+                className={[
+                    classes.content
+                ].join(" ")}
             >
-                {finalTitle}
-            </Text>
-            {renderInput()}
-            {renderCounter()}
-            
+                <Text
+                    {...titleProps}
+                    color={isError ? "error" : titleProps.color}
+                >
+                    {finalTitle}
+                </Text>
+                {renderInput()}
+                {renderCounter()}
+            </div>
+            {renderClearButton()}
         </div>
-        {renderClearButton()}
+        {renderInfoText()}
     </div>;
 };
 export default forwardRef(TextArea);

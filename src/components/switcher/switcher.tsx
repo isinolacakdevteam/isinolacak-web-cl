@@ -15,11 +15,14 @@ const Switcher: FC<ISwitcherProps> = ({
     titleDirection= "left",
     switchSize = "medium",
     indicatorStyle,
+    infoTextProps,
     titleStyle,
     className,
+    infoText,
     disabled,
     isActive,
     onChange,
+    isError,
     style,
     title
 }) => {
@@ -32,6 +35,7 @@ const Switcher: FC<ISwitcherProps> = ({
     const classes = useStyles();
 
     const {
+        contentContainerStyle,
         titleProps,
         indicator,
         container
@@ -42,6 +46,7 @@ const Switcher: FC<ISwitcherProps> = ({
         switchSize,
         disabled,
         isActive,
+        isError,
         colors,
         spaces,
         style
@@ -78,26 +83,53 @@ const Switcher: FC<ISwitcherProps> = ({
         </Text>;
     };
 
+    const renderInfoText = () => {
+        if(!infoText) {
+            return null;
+        }
+
+        const customStyle = infoTextProps && infoTextProps.style ? infoTextProps.style : {
+        };
+
+        return <Text
+            {...infoTextProps}
+            style={{
+                marginTop: spaces.content,
+                ...customStyle
+            }}
+        >
+            {infoText}
+        </Text>;
+    };
+
     return <div 
         className={classes.switchComponentContainer}
         onClick={() => {
             if (onChange && !disabled) onChange();
         }}
     >
-        {renderTitle("left")}
-        <div>
-            <div
-                className={[classes.container, className].join(" ")}
-                style={{
-                    ...container 
-                }}
-            >
-                <div className={[classes.indicator].join(" ")} style={{
-                    ...indicator 
-                }}></div>
+        <div
+            className={classes.contentContainer}
+            style={{
+                ...contentContainerStyle
+            }}
+        >
+            {renderTitle("left")}
+            <div>
+                <div
+                    className={[classes.container, className].join(" ")}
+                    style={{
+                        ...container 
+                    }}
+                >
+                    <div className={[classes.indicator].join(" ")} style={{
+                        ...indicator 
+                    }}></div>
+                </div>
             </div>
+            {renderTitle("right")}
         </div>
-        {renderTitle("right")}
+        {renderInfoText()}
     </div>;
 };
 export default Switcher;

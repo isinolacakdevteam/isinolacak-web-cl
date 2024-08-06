@@ -12,15 +12,21 @@ import {
 
 export const useStyles = createUseStyles({
     container: {
-        alignItems: 'center',
-        flexDirection: 'row',
+        flexDirection: "column",
+        alignItems: "center",
         userSelect: "none",
-        display: 'flex',
+        display: "flex",
         "&:hover": {
             transition: "transform 0.1s",
             cursor: "pointer",
             opacity: 0.75
         }
+    },
+    contentContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        display: "flex",
+        width: "100%"
     },
     radioContainer: {
         border: '1px solid #ccc',
@@ -43,7 +49,9 @@ export const radioButtonStyler = ({
     disabledStyle,
     indicatorSize,
     titleStyle,
+    direction,
     disabled,
+    isError,
     borders,
     colors,
     spaces,
@@ -52,6 +60,10 @@ export const radioButtonStyler = ({
     let container = {
         ...style,
         padding: spaces.container / 2
+    };
+
+    const contentContainerStyle = {
+
     };
 
     let radioContainer: CSSProperties = {
@@ -72,10 +84,21 @@ export const radioButtonStyler = ({
     let titleProps: TitleProps = {
         color: "body",
         style: {
-            marginLeft: spaces.content,
             ...titleStyle
         }
     };
+
+    if(isError) {
+        radioIndicator.backgroundColor = colors.error;
+        radioContainer.borderColor = colors.error;
+        titleProps.color = "error";
+    }
+
+    if(direction === "leftToRight") {
+        titleProps.style.marginLeft = spaces.content;
+    } else {
+        titleProps.style.marginRight = spaces.content;
+    }
 
     if(disabled) {
         container = {
@@ -85,11 +108,18 @@ export const radioButtonStyler = ({
         radioIndicator.backgroundColor = colors.textGrey;
     }
 
-    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+    if(spreadBehaviour === "baseline") {
         container.alignSelf = spreadBehaviour;
+        container.width = "auto";
+    }
+    
+    if(spreadBehaviour === "stretch") {
+        container.alignSelf = spreadBehaviour;
+        container.width = "100%";
     }
 
     return {
+        contentContainerStyle,
         radioContainer,
         radioIndicator,
         titleProps,

@@ -6,25 +6,9 @@ import {
     IOCoreIconType
 } from "src/types";
 
-interface IChipProps {
-    spreadBehaviour?: ChipSpreadBehaviour;
-    titleColor?: keyof IOCore.ColorsType;
-    iconColor?: keyof IOCore.ColorsType;
-    iconDirection?: "left" | "right";
-    color?: keyof IOCore.ColorsType;
-    isCancelable?: boolean;
-    style?: CSSProperties;
-    icon?: IOCoreIconType;
-    onClick?: () => void;
-    variant?: ChipTypes;
-    className?: string;
-    selected?: boolean;
-    disabled?:boolean;
-    size?: ChipSizes;
-    title: string;
-};
-
 export type ChipSpreadBehaviour = "baseline" | "stretch" | "free";
+export type ChipTypes = "filled" | "outline" | "inverted";
+export type ChipSizes = "small" | "medium" | "large";
 
 export type ChipStylerParams = {
     spreadBehaviour: ChipSpreadBehaviour;
@@ -59,6 +43,21 @@ export type ChipStylerResult = {
     titleProps: TitleProps;
 };
 
-export type ChipTypes = "filled" | "outline" | "inverted";
-export type ChipSizes = "small" | "medium" | "large";
+interface IChipProps {
+    spreadBehaviour?: ChipSpreadBehaviour;
+    titleColor?: keyof IOCore.ColorsType;
+    iconColor?: keyof IOCore.ColorsType;
+    iconDirection?: "left" | "right";
+    color?: keyof IOCore.ColorsType;
+    isCancelable?: boolean;
+    style?: CSSProperties;
+    icon?: IOCoreIconType;
+    onClick?: () => void;
+    variant?: ChipTypes;
+    className?: string;
+    selected?: boolean;
+    disabled?:boolean;
+    size?: ChipSizes;
+    title: string;
+};
 export default IChipProps;
