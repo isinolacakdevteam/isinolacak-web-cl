@@ -27,11 +27,11 @@ const useStyles = createUseStyles({
         },
         "::-webkit-scrollbar-thumb": {
             border: "0px none #ffffff",
-            background: "#00c0a8",
+            background: "#3C32A3",
             borderRadius: 100
         },
         "::-webkit-scrollbar-thumb:hover": {
-            background: "#00dbc2"
+            background: "#3C32A3"
         },
         "::-webkit-scrollbar-thumb:active": {
             background: "#fafafa"
