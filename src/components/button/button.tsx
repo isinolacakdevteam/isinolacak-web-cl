@@ -16,11 +16,12 @@ const Button: FC<IButtonProps> = ({
     displayBehaviourWhileLoading = "disabled",
     spreadBehaviour = "baseline",
     icon: IconComponentProp,
-    iconDirection= "left",
+    iconDirection = "left",
     variant = "filled",
     color = "primary",
     disabled = false,
     size = "medium",
+    backgroundColor,
     textVariant,
     titleStyle,
     textColor,
@@ -49,6 +50,7 @@ const Button: FC<IButtonProps> = ({
         displayBehaviourWhileLoading,
         icon: IconComponentProp,
         spreadBehaviour,
+        backgroundColor,
         disabledStyle,
         iconDirection,
         textVariant,
@@ -67,15 +69,15 @@ const Button: FC<IButtonProps> = ({
     });
 
     const renderIcon = (direction: "left" | "right") => {
-        if(loading) {
+        if (loading) {
             return null;
         }
 
-        if(direction !== iconDirection) {
+        if (direction !== iconDirection) {
             return null;
         }
 
-        if(!IconComponentProp) {
+        if (!IconComponentProp) {
             return null;
         }
 
@@ -84,8 +86,8 @@ const Button: FC<IButtonProps> = ({
         />;
     };
 
-    const renderTitle = () => { 
-        if(loading) {
+    const renderTitle = () => {
+        if (loading) {
             return <Loading
                 color={titleProps.color}
                 size={22}
@@ -93,7 +95,7 @@ const Button: FC<IButtonProps> = ({
         }
 
 
-        if(!title) {
+        if (!title) {
             return null;
         }
 

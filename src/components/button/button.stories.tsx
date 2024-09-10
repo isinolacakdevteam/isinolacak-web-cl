@@ -8,11 +8,14 @@ import IButtonProps from "./button.props";
 import {
     ChevronRightIcon,
     ClearIcon
-} from "../../assets/svgr"; 
+} from "../../assets/svgr";
 import {
     IIOCoreIconPropsType
 } from "../../types";
 import lightTheme from "../../core/theme/variants/light";
+import {
+    background
+} from "styled-system";
 
 export default {
     title: "Components/Button",
@@ -29,7 +32,7 @@ export default {
         size: {
             control: {
                 type: "select",
-                options: ["small" , "medium" , "large" , "xSmall"],
+                options: ["small", "medium", "large", "xSmall"],
             },
         },
         variant: {
@@ -53,6 +56,12 @@ export default {
                 options: Object.keys(lightTheme.colors)
             },
         },
+        backgroundColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
         textVariant: {
             control: {
                 type: "select",
@@ -71,16 +80,16 @@ export default {
                     color,
                     size
                 }: IIOCoreIconPropsType) => <ChevronRightIcon
-                    color={color}
-                    size={size}
-                />,
+                        color={color}
+                        size={size}
+                    />,
                 "clearIcon": ({
                     color,
                     size
                 }: IIOCoreIconPropsType) => <ClearIcon
-                    color={color}
-                    size={size}
-                />
+                        color={color}
+                        size={size}
+                    />
             },
             control: {
                 type: "select",
