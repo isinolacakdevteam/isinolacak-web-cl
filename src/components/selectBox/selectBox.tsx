@@ -70,6 +70,7 @@ const SelectBox = <T extends {}>({
     const {
         infoTextContainer,
         infoIconStyler,
+        iconContainer,
         contentProps,
         titleProps,
         titleStyle,
@@ -97,7 +98,7 @@ const SelectBox = <T extends {}>({
     ] = useState<Array<SelectedItem> | []>([]);
 
     useEffect(() => {
-        if(!initialData || !initialData.length) {
+        if (!initialData || !initialData.length) {
             return;
         }
 
@@ -116,13 +117,13 @@ const SelectBox = <T extends {}>({
 
         setData(newData);
 
-        if(initialSelectedItems && initialSelectedItems.length) {
+        if (initialSelectedItems && initialSelectedItems.length) {
             const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
                 let originalItem = newData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
 
-                if(!originalItem) {
+                if (!originalItem) {
                     originalItem = {
                         ...item,
                         __title: titleExtractor(item, index),
@@ -162,22 +163,22 @@ const SelectBox = <T extends {}>({
             {title}
         </Text>;
     };
-        
+
     const renderContent = () => {
         let content = localize("iocore-select-box-no-selection");
 
-        if(selectedItems.length) {
+        if (selectedItems.length) {
             content = localize("iocore-select-box-n-selected", [
                 selectedItems.length
             ]);
 
-            if(selectedItems.length === 1) {
+            if (selectedItems.length === 1) {
                 //@ts-ignore
                 content = selectedItems[0].__title;
             }
         }
 
-        if(
+        if (
             RenderIcon &&
             !renderItem &&
             selectedItems.length &&
@@ -206,7 +207,7 @@ const SelectBox = <T extends {}>({
             className={classes.customRenderForIcon}
         >
             <Text
-                color= {contentProps.color}
+                color={contentProps.color}
                 variant="body2-regular"
             >
                 {content}
@@ -215,14 +216,18 @@ const SelectBox = <T extends {}>({
     };
 
     const renderIcon = () => {
-        if(CustomIconComponentProp) {
+        if (CustomIconComponentProp) {
             return CustomIconComponentProp();
         }
 
-        return <ChevronDownIcon
-            color={colors.gray40}
-            size={16}
-        />;
+        return <div
+            style={iconContainer}
+        >
+            <ChevronDownIcon
+                color={colors.gray40}
+                size={16}
+            />
+        </div>;
     };
 
     const renderDialog = () => {
@@ -253,19 +258,19 @@ const SelectBox = <T extends {}>({
     };
 
     const renderInfoText = () => {
-        if(!infoText) {
+        if (!infoText) {
             return null;
         }
 
         return <div className={classes.infoText}
             style={infoTextContainer}
         >
-            {InfoIconProp ? 
+            {InfoIconProp ?
                 <div
-                    style={infoIconStyler} 
+                    style={infoIconStyler}
                 >
-                    <InfoIconProp/>
-                </div>: <div
+                    <InfoIconProp />
+                </div> : <div
                     style={infoIconStyler}
                 >
                     <InfoIcon
