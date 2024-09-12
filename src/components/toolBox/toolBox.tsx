@@ -106,7 +106,7 @@ const ToolBox: FC<IToolBoxProps> = ({
                     }}
                     style={{
                         ...style,
-                        ...toolBoxContainer,
+                        ...toolBoxContainer
                     }}
                 >
                     {content}
