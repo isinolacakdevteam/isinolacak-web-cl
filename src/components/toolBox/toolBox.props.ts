@@ -1,11 +1,12 @@
 import {
     CSSProperties,
-    ReactNode 
+    ReactNode
 } from "react";
 
 interface IToolBoxProps {
     children: ReactNode;
     content: ReactNode;
+    style?: CSSProperties;
 };
 
 export type ToolBoxDirectionProps = "right" | "left" | "top" | "bottom";
