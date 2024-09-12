@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Story,
     Meta
@@ -13,10 +12,6 @@ import {
     IIOCoreIconPropsType
 } from "../../types";
 import lightTheme from "../../core/theme/variants/light";
-import {
-    background
-} from "styled-system";
-
 export default {
     title: "Components/Button",
     component: Button,
