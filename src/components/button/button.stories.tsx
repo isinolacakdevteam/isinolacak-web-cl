@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Story,
     Meta
@@ -8,12 +7,11 @@ import IButtonProps from "./button.props";
 import {
     ChevronRightIcon,
     ClearIcon
-} from "../../assets/svgr"; 
+} from "../../assets/svgr";
 import {
     IIOCoreIconPropsType
 } from "../../types";
 import lightTheme from "../../core/theme/variants/light";
-
 export default {
     title: "Components/Button",
     component: Button,
@@ -29,7 +27,7 @@ export default {
         size: {
             control: {
                 type: "select",
-                options: ["small" , "medium" , "large" , "xSmall"],
+                options: ["small", "medium", "large", "xSmall"],
             },
         },
         variant: {
@@ -48,6 +46,12 @@ export default {
             }
         },
         textColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
+        backgroundColor: {
             control: {
                 type: "select",
                 options: Object.keys(lightTheme.colors)

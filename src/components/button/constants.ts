@@ -1,5 +1,5 @@
 import {
-    ButtonStyleMappingType 
+    ButtonStyleMappingType
 } from "./button.props";
 
 export const SIZE_TO_STYLE_MAPPING: ButtonStyleMappingType = {
