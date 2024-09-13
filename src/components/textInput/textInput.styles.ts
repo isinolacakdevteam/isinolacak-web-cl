@@ -44,8 +44,8 @@ export const useStyles = createUseStyles({
         display: "flex"
     },
     ıconProps: {
-        justifyContent:"center",
-        alignContent:"center",
+        justifyContent: "center",
+        alignContent: "center",
         alignItems: "center"
     },
     infoText: {
@@ -75,12 +75,12 @@ export const textInputStyler = ({
 
     let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
-        paddingRight: spaces.container / 1.5,
-        paddingLeft: spaces.container / 1.5,
-        paddingBottom: spaces.content * 1.5,
-        paddingTop: spaces.content * 1.5,
+        paddingBottom: spaces.content,
         backgroundColor: colors.panel,
+        paddingRight: spaces.content,
+        paddingLeft: spaces.content,
         borderRadius: radiuses.half,
+        paddingTop: spaces.content,
         borderWidth: borders.line,
         boxSizing: "border-box",
         borderStyle: "solid"
@@ -114,27 +114,27 @@ export const textInputStyler = ({
     let infoTextContainer: CSSProperties = {
         paddingLeft: spaces.content
     };
-    
+
     let infoIconStyler: CSSProperties = {
         marginRight: spaces.inline
     };
 
-    if(spreadBehaviour === "baseline") {
+    if (spreadBehaviour === "baseline") {
         container.alignSelf = spreadBehaviour;
-        container.width = "auto"; 
+        container.width = "auto";
     }
 
-    if(spreadBehaviour === "stretch") {
+    if (spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
         container.justifyContent = "center";
-        container.width = "100%"; 
+        container.width = "100%";
     }
 
-    if(infoText) {
-        contentContainer.marginBottom= spaces.inline;
+    if (infoText) {
+        contentContainer.marginBottom = spaces.inline;
     }
 
-    if(disabled) {
+    if (disabled) {
         container = {
             ...container,
             ...disabledStyle,

@@ -4,7 +4,7 @@ import {
     forwardRef,
     useState,
     useRef
-} from  "react";
+} from "react";
 import {
     textInputStyler,
     useStyles
@@ -23,7 +23,7 @@ import {
     IOCoreTheme
 } from "../../../src/core";
 
-interface RefForwardingComponent <T, P = {}> extends ForwardRefRenderFunction<T, P> {};
+interface RefForwardingComponent<T, P = {}> extends ForwardRefRenderFunction<T, P> { };
 
 const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     spreadBehaviour = "baseline",
@@ -104,12 +104,12 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const onFocus = () => {
-        if(onFocusProp) onFocusProp();
+        if (onFocusProp) onFocusProp();
         setIsFocused(true);
     };
 
     const onBlur = () => {
-        if(onBlurProp) onBlurProp();
+        if (onBlurProp) onBlurProp();
         setIsFocused(false);
     };
 
@@ -118,17 +118,17 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const renderClearButton = () => {
-        if(disabled) {
+        if (disabled) {
             return null;
         }
 
-        if(!clearEnabled) {
+        if (!clearEnabled) {
             return null;
         }
 
         return <div
             onClick={() => {
-                if(onChangeText) {
+                if (onChangeText) {
                     onChangeText("");
                 }
                 setValue("");
@@ -139,18 +139,18 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             }}
         >
             <ClearIcon
-                color={colors.hideBody}
-                size={24}
+                color={colors.grey200}
+                size={18}
             />
         </div>;
     };
 
     const renderIcon = (direction: "left" | "right") => {
-        if(direction !== iconDirection) {
+        if (direction !== iconDirection) {
             return null;
         }
 
-        if(!IconComponentProp) {
+        if (!IconComponentProp) {
             return null;
         }
 
@@ -158,8 +158,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             className={classes.ıconProps}
             onClick={iconOnClick}
         >
-            <IconComponentProp 
-                color={colors.primary} 
+            <IconComponentProp
+                color={colors.primary}
                 size={24}
             />
         </div>;
@@ -170,14 +170,14 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             return null;
         }
 
-        return<div
+        return <div
             style={passwordIcon}
             className={classes.passwordIconContainer}
         >
             <div
                 onClick={togglePasswordVisibility}
             >
-                {showPassword ? 
+                {showPassword ?
                     <EyeOpenedIcon color={colors.hideBody} size={24} /> :
                     <EyeClosedIcon color={colors.hideBody} size={24} />
                 }
@@ -186,19 +186,19 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const renderInfoText = () => {
-        if(!infoText) {
+        if (!infoText) {
             return null;
         }
 
         return <div className={classes.infoText}
             style={infoTextContainer}
         >
-            {InfoIconProp ? 
+            {InfoIconProp ?
                 <div
-                    style={infoIconStyler} 
+                    style={infoIconStyler}
                 >
-                    <InfoIconProp/>
-                </div>: <div
+                    <InfoIconProp />
+                </div> : <div
                     style={infoIconStyler}
                 >
                     <InfoIcon
@@ -217,7 +217,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const renderTitle = () => {
-        if(!finalTitle) {
+        if (!finalTitle) {
             return null;
         }
 
@@ -241,7 +241,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             ref={inputRef}
             value={value}
             onChange={(e) => {
-                if(onChangeText) onChangeText(e.target.value);
+                if (onChangeText) onChangeText(e.target.value);
                 setValue(e.target.value);
             }}
             className={[
