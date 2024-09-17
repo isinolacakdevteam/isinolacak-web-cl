@@ -184,6 +184,10 @@ export const buttonStyler = ({
         }
     }
 
+    if(backgroundColor){
+        container.backgroundColor = backgroundColor;
+    }
+
     let iconProps: IIOCoreIconPropsType = {
         size: 18,
         color: iconColor ? colors[iconColor] : colors[titleColor]
