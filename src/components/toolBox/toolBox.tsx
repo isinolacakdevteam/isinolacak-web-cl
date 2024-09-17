@@ -5,10 +5,10 @@ import {
     useEffect,
 } from "react";
 import {
-    IOCoreTheme 
+    IOCoreTheme
 } from "../../core";
 import useStyles, {
-    toolBoxStyler 
+    toolBoxStyler
 } from "./toolBox.styles";
 import IToolBoxProps from "./toolBox.props";
 
@@ -19,7 +19,8 @@ import IToolBoxProps from "./toolBox.props";
  */
 const ToolBox: FC<IToolBoxProps> = ({
     children,
-    content
+    content,
+    style
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [tInfo, setTInfo] = useState({
@@ -56,11 +57,11 @@ const ToolBox: FC<IToolBoxProps> = ({
     }, []);
 
     const onResize = () => {
-        if(!(testRef && testRef.current)) {
+        if (!(testRef && testRef.current)) {
             return;
         }
         const position = testRef.current.getBoundingClientRect();
-        if(
+        if (
             position.width !== tInfo.w ||
             position.height !== tInfo.h ||
             position.y !== tInfo.y ||
@@ -81,7 +82,7 @@ const ToolBox: FC<IToolBoxProps> = ({
         className={classes.container}
         onClick={() => {
             setIsVisible(prev => {
-                if(prev) {
+                if (prev) {
                     setTInfo(c_prev => {
                         return {
                             ...c_prev,
@@ -104,7 +105,8 @@ const ToolBox: FC<IToolBoxProps> = ({
                         onResize();
                     }}
                     style={{
-                        ...toolBoxContainer,
+                        ...style,
+                        ...toolBoxContainer
                     }}
                 >
                     {content}

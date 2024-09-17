@@ -13,7 +13,7 @@ import {
     IIOCoreIconPropsType
 } from "../../types";
 import {
-    SIZE_TO_STYLE_MAPPING 
+    SIZE_TO_STYLE_MAPPING
 } from "./constants";
 
 const useStyles = createUseStyles({
@@ -63,6 +63,7 @@ export type ButtonStyleMappingType = {
 
 export const buttonStyler = ({
     displayBehaviourWhileLoading,
+    backgroundColor,
     spreadBehaviour,
     disabledStyle,
     iconDirection,
@@ -82,7 +83,7 @@ export const buttonStyler = ({
     size
 }: ButtonStylerParams): ButtonStylerResult => {
     let container: CSSProperties = {
-        backgroundColor: variant === "filled" ? colors[color] : "transparent",
+        backgroundColor: backgroundColor ? colors[backgroundColor] : variant === "filled" ? colors[color] : "transparent",
         borderColor: variant !== "ghost" ? colors[color] : "transparent",
         ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
@@ -92,15 +93,15 @@ export const buttonStyler = ({
     let titleColor: keyof IOCore.ColorsType = textColor ? textColor : "body";
 
     let titleProps: TitleProps = {
-        variant: textVariant ? textVariant :  size === "xSmall" ? "body3-medium" : "body2-medium",
+        variant: textVariant ? textVariant : size === "xSmall" ? "body3-medium" : "body2-medium",
         color: titleColor,
         style: {
             margin: "0 auto"
         }
     };
 
-    if(loading) {
-        if(displayBehaviourWhileLoading === "disabled") {
+    if (loading) {
+        if (displayBehaviourWhileLoading === "disabled") {
             container = {
                 ...container,
                 ...disabledStyle,
@@ -118,7 +119,7 @@ export const buttonStyler = ({
         }
     }
 
-    if(loading && spreadBehaviour === "stretch") {
+    if (loading && spreadBehaviour === "stretch") {
         titleProps = {
             ...titleProps,
             style: {
@@ -129,7 +130,7 @@ export const buttonStyler = ({
         };
     }
 
-    if(icon && !loading) {
+    if (icon && !loading) {
         titleProps = {
             ...titleProps,
             style: {
@@ -140,8 +141,8 @@ export const buttonStyler = ({
         };
     }
 
-    if(!textColor) {
-        if(variant !== "filled") {
+    if (!textColor) {
+        if (variant !== "filled") {
             titleColor = color;
         } else {
             titleColor = "constrastBody";
@@ -149,18 +150,18 @@ export const buttonStyler = ({
         titleProps.color = titleColor;
     }
 
-    if(spreadBehaviour === "baseline") {
+    if (spreadBehaviour === "baseline") {
         container.alignSelf = spreadBehaviour;
         container.width = "auto";
     }
 
-    if(spreadBehaviour === "stretch") {
+    if (spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
         container.justifyContent = "center";
         container.width = "100%";
     }
 
-    if(disabled) {
+    if (disabled) {
         container = {
             ...container,
             ...disabledStyle,
@@ -169,8 +170,8 @@ export const buttonStyler = ({
         };
     }
 
-    if(icon && title) {
-        if(iconDirection === "left") {
+    if (icon && title) {
+        if (iconDirection === "left") {
             titleProps.style = {
                 ...titleProps.style,
                 marginLeft: spaces.inline
@@ -181,6 +182,10 @@ export const buttonStyler = ({
                 marginRight: spaces.inline
             };
         }
+    }
+
+    if(backgroundColor){
+        container.backgroundColor = backgroundColor;
     }
 
     let iconProps: IIOCoreIconPropsType = {

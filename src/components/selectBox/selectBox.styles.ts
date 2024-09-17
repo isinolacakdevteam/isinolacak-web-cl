@@ -104,22 +104,27 @@ export const selectBoxStyler = ({
         marginRight: spaces.inline
     };
 
-    if(infoText) {
-        container.marginBottom= spaces.inline;
+    let iconContainer: CSSProperties = {
+        marginRight: spaces.content
+    };
+
+    if (infoText) {
+        container.marginBottom = spaces.inline;
     }
 
-    if(disabled) {
+    if (disabled) {
         contentProps.color = "textGrey";
         titleProps.color = "textGrey";
     }
 
-    if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
+    if (spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
     }
 
     return {
         infoTextContainer,
         infoIconStyler,
+        iconContainer,
         contentProps,
         titleStyle,
         titleProps,

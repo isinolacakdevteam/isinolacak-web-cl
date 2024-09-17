@@ -64,7 +64,7 @@ export interface ISelectBoxProps<T> {
         onSuccess: () => void;
     }) => void;
     spreadBehaviour?: SelectBoxSpreadBehaviour,
-    paginationProps?: IPaginationProps; 
+    paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
@@ -109,6 +109,7 @@ export type ContentProps = {
 export type SelectBoxStylerResult = {
     infoTextContainer: CSSProperties;
     infoIconStyler: CSSProperties;
+    iconContainer: CSSProperties;
     contentProps: ContentProps;
     titleStyle: CSSProperties;
     container: CSSProperties;
