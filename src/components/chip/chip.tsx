@@ -27,6 +27,7 @@ const Chip: FC<IChipProps> = ({
     color = "primary",
     disabled = false,
     selected = false,
+    shape = 'pill',
     size = "small",
     isCancelable,
     titleColor,
@@ -68,6 +69,7 @@ const Chip: FC<IChipProps> = ({
         spaces,
         colors,
         color,
+        shape,
         size
     });
 

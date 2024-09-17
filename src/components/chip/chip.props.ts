@@ -21,6 +21,7 @@ export type ChipStylerParams = {
     color: keyof IOCore.ColorsType;
     disabledStyle: CSSProperties;
     colors: IOCore.ColorsType;
+    shape: "pill" | 'square';
     isCancelable?: boolean;
     icon?: IOCoreIconType;
     variant: ChipTypes;
@@ -49,6 +50,7 @@ interface IChipProps {
     iconColor?: keyof IOCore.ColorsType;
     iconDirection?: "left" | "right";
     color?: keyof IOCore.ColorsType;
+    shape?: 'pill' | 'square';
     isCancelable?: boolean;
     style?: CSSProperties;
     icon?: IOCoreIconType;
