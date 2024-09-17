@@ -133,6 +133,7 @@ export const chipStyler = ({
     spaces,
     colors,
     color,
+    shape,
     icon,
     size
 }: ChipStylerParams): ChipStylerResult => {
@@ -141,7 +142,7 @@ export const chipStyler = ({
         borderColor: colors.stroke,
         ...SIZE_TO_STYLE_MAPPING[size].container,
         borderWidth: borders.indicator,
-        borderRadius: radiuses.half * 1.5
+        borderRadius: shape === 'pill' ? radiuses.half * 1.5 : radiuses.half
     };
 
     let titleProps: TitleProps = {
@@ -225,6 +226,17 @@ export const chipStyler = ({
         }
     } else if(color) {
         titleProps.color = "textDark";
+    }
+
+    if(selected && variant === 'outline') {
+        if(color) {
+            container.backgroundColor = "transparent";
+            container.borderColor = colors[color];
+            titleProps.color = color;
+        } else {
+            container.borderColor = colors.primary;
+            titleProps.color = color;
+        }
     }
 
     if(titleColor) {
