@@ -75,12 +75,12 @@ export const textInputStyler = ({
 
     let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
-        paddingBottom: spaces.content,
+        paddingRight: spaces.container / 1.5,
+        paddingLeft: spaces.container / 1.5,
+        paddingBottom: spaces.content * 1.5,
+        paddingTop: spaces.content * 1.5,
         backgroundColor: colors.panel,
-        paddingRight: spaces.content,
-        paddingLeft: spaces.content,
         borderRadius: radiuses.half,
-        paddingTop: spaces.content,
         borderWidth: borders.line,
         boxSizing: "border-box",
         borderStyle: "solid"
