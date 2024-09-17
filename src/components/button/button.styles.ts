@@ -184,7 +184,7 @@ export const buttonStyler = ({
         }
     }
 
-    if (backgroundColor) {
+    if(backgroundColor){
         container.backgroundColor = backgroundColor;
     }
 
