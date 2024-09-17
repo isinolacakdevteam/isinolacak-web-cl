@@ -122,7 +122,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             return null;
         }
 
-        if (!clearEnabled) {
+        if (!clearEnabled || !value) {
             return null;
         }
 
