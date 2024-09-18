@@ -9,8 +9,8 @@ import {
     IIOCoreIconPropsType
 } from "../../types";
 import {
-    EyeOpenedIcon,
-    ClearIcon
+    ClearIcon,
+    EyeOpenedIcon
 } from "../../assets/svgr";
 
 export default {

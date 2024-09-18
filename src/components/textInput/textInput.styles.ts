@@ -43,7 +43,7 @@ export const useStyles = createUseStyles({
         alignSelf: "center",
         display: "flex"
     },
-    ıconProps: {
+    iconProps: {
         justifyContent: "center",
         alignContent: "center",
         alignItems: "center"
@@ -57,6 +57,7 @@ export const useStyles = createUseStyles({
 
 export const textInputStyler = ({
     spreadBehaviour,
+    iconDirection,
     disabledStyle,
     typography,
     isFocused,
@@ -107,6 +108,9 @@ export const textInputStyler = ({
         marginLeft: spaces.content
     };
 
+    let iconStyler: CSSProperties = {
+    };
+
     let passwordIcon: CSSProperties = {
         marginLeft: spaces.content
     };
@@ -148,12 +152,17 @@ export const textInputStyler = ({
         };
     }
 
+    if (iconDirection === "left") {
+        iconStyler.marginRight = spaces.content;
+    }
+
     return {
         infoTextContainer,
         contentContainer,
         infoIconStyler,
         passwordIcon,
         titleProps,
+        iconStyler,
         container,
         input,
         clear

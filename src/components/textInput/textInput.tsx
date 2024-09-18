@@ -73,12 +73,14 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         infoIconStyler,
         passwordIcon,
         titleProps,
+        iconStyler,
         container,
         input,
         clear
     } = textInputStyler({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
+        iconDirection,
         typography,
         isFocused,
         disabled,
@@ -155,7 +157,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         }
 
         return <div
-            className={classes.ıconProps}
+            className={classes.iconProps}
+            style={iconStyler}
             onClick={iconOnClick}
         >
             <IconComponentProp
