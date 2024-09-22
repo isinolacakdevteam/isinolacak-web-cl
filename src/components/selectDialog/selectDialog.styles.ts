@@ -101,13 +101,15 @@ export const selectDialogStyler = ({
     headerContainerStyle,
     radiuses,
     colors,
-    spaces
+    spaces,
+    size
 }: SelectDialogStylerParams): SelectDialogStylerResult => {
 
     let container = {
+        minWidth: size === "small" ? "25%" : size === "medium" ? "35%" : size === "large" ? "45%" : "50%",
         backgroundColor: colors.layer1,
         borderRadius: radiuses.half,
-        padding: spaces.container
+        padding: spaces.container,
     };
 
     let header: CSSProperties = {

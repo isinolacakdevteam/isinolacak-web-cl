@@ -79,7 +79,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         childrenStyleProp,
         radiuses,
         spaces,
-        colors
+        colors,
+        size
     });
 
     const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);
@@ -427,8 +428,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             <div
                 className={styles.contentContainer}
                 style={{
-                    ...container,
-                    minWidth: size === 'small' ? '25%' : size === 'medium' ? '35%' : size === 'large' ? '45%' : '50%'
+                    ...container
                 }}
             >
                 {renderHeader()}
