@@ -38,11 +38,11 @@ export const stickerStyler = ({
         borderColor: type === "outline" ? colors[color] : (type === "ghost" ? colors[color] : "transparent"),
         backgroundColor: type === "filled" ? colors[color] : "transparent",
         borderWidth: type === "outline" ? 1 : 0,
-        paddingRight: spaces.inline * 1.5,
-        paddingLeft: spaces.inline * 1.5,
+        paddingRight: spaces.container / 2.6,
+        paddingLeft: spaces.container / 2.6,
+        paddingBottom: spaces.container / 4,
+        paddingTop: spaces.container / 4,
         borderRadius: radiuses.quarter,
-        paddingBottom: spaces.inline,
-        paddingTop: spaces.inline
     };
 
     let titleProps: TitleProps = {
