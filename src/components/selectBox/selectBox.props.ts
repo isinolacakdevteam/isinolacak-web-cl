@@ -63,6 +63,7 @@ export interface ISelectBoxProps<T> {
         closeSheet: () => void;
         onSuccess: () => void;
     }) => void;
+    size?: 'small' | 'medium' | 'large' | 'xLarge';
     spreadBehaviour?: SelectBoxSpreadBehaviour,
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;

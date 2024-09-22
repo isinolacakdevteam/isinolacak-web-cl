@@ -55,7 +55,7 @@ export const useStyles = createUseStyles({
         maxHeight: "90%",
         display: "flex",
         maxWidth: "95%",
-        minWidth: "50%",
+        // minWidth: "20%",
         minHeight: "50%",
         zIndex: 99999
     },

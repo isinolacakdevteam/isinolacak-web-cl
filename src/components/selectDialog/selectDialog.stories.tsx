@@ -25,7 +25,18 @@ export default {
         },
         isSearchLoading: {
             control: "boolean"
-        }
+        },
+        size: {
+            control: {
+                type: "select",
+                options: [
+                    "small",
+                    "medium",
+                    "large",
+                    'xLarge'
+                ]
+            }
+        },
     }
 } as Meta;
 
@@ -47,6 +58,7 @@ Default.args = {
             merhaba
         </Text>;
     },
+    size: 'medium',
     onClose: () => {
         alert("Close Button pressed.");
     },

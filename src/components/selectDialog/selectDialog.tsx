@@ -56,6 +56,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         onPress,
         title,
         data,
+        size,
         onOk
     } = properties;
 
@@ -426,7 +427,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             <div
                 className={styles.contentContainer}
                 style={{
-                    ...container
+                    ...container,
+                    minWidth: size === 'small' ? '25%' : size === 'medium' ? '35%' : size === 'large' ? '45%' : '50%'
                 }}
             >
                 {renderHeader()}

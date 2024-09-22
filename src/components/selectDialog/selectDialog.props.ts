@@ -76,6 +76,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
         data: Array<K>;
         item?: K;
     }) => ReactNode;
+    size?: 'small' | 'medium' | 'large' | 'xLarge';
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
     paginationProps?: IPaginationProps; 
