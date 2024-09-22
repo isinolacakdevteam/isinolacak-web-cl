@@ -38,8 +38,11 @@ export const stickerStyler = ({
         borderColor: type === "outline" ? colors[color] : (type === "ghost" ? colors[color] : "transparent"),
         backgroundColor: type === "filled" ? colors[color] : "transparent",
         borderWidth: type === "outline" ? 1 : 0,
+        paddingRight: spaces.inline * 1.5,
+        paddingLeft: spaces.inline * 1.5,
         borderRadius: radiuses.quarter,
-        padding: spaces.inline,
+        paddingBottom: spaces.inline,
+        paddingTop: spaces.inline
     };
 
     let titleProps: TitleProps = {
@@ -57,7 +60,7 @@ export const stickerStyler = ({
 
     let iconProps: IIOCoreIconPropsType = {
         color: colors[titleProps.color],
-        size: 12
+        size: 10
     };
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
