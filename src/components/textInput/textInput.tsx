@@ -23,7 +23,7 @@ import {
     IOCoreTheme
 } from "../../../src/core";
 
-interface RefForwardingComponent<T, P = {}> extends ForwardRefRenderFunction<T, P> { };
+interface RefForwardingComponent<T, P = {}> extends ForwardRefRenderFunction<T, P> {};
 
 const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     spreadBehaviour = "baseline",
@@ -106,12 +106,12 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const onFocus = () => {
-        if (onFocusProp) onFocusProp();
+        if(onFocusProp) onFocusProp();
         setIsFocused(true);
     };
 
     const onBlur = () => {
-        if (onBlurProp) onBlurProp();
+        if(onBlurProp) onBlurProp();
         setIsFocused(false);
     };
 
@@ -120,17 +120,17 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const renderClearButton = () => {
-        if (disabled) {
+        if(disabled) {
             return null;
         }
 
-        if (!clearEnabled || !value) {
+        if(!clearEnabled || !value) {
             return null;
         }
 
         return <div
             onClick={() => {
-                if (onChangeText) {
+                if(onChangeText) {
                     onChangeText("");
                 }
                 setValue("");

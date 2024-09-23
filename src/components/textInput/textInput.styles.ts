@@ -16,6 +16,7 @@ export const useStyles = createUseStyles({
         boxSizing: "border-box",
         alignItems: "center",
         cursor: "pointer",
+        minHeight: 60.9,
         display: "flex"
     },
     content: {
