@@ -10,7 +10,7 @@ import {
 } from "../../types";
 import {
     ClearIcon,
-    EyeOpenedIcon 
+    EyeOpenedIcon
 } from "../../assets/svgr";
 
 export default {
@@ -71,16 +71,16 @@ export default {
                     color,
                     size
                 }: IIOCoreIconPropsType) => <EyeOpenedIcon
-                    color={color}
-                    size={size}
-                />,
+                        color={color}
+                        size={size}
+                    />,
                 "clearIcon": ({
                     color,
                     size
                 }: IIOCoreIconPropsType) => <ClearIcon
-                    color={color}
-                    size={size}
-                />
+                        color={color}
+                        size={size}
+                    />
             },
             control: {
                 type: "select",
@@ -90,7 +90,7 @@ export default {
     }
 } as Meta;
 
-const Template: Story<ITextInputProps> = (args) => <TextInput {...args}/>;
+const Template: Story<ITextInputProps> = (args) => <TextInput {...args} />;
 
 export const Default = Template.bind({
 });

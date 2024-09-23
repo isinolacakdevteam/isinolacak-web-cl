@@ -16,6 +16,7 @@ export const useStyles = createUseStyles({
         boxSizing: "border-box",
         alignItems: "center",
         cursor: "pointer",
+        minHeight: 60.9,
         display: "flex"
     },
     content: {
@@ -43,7 +44,7 @@ export const useStyles = createUseStyles({
         alignSelf: "center",
         display: "flex"
     },
-    ıconProps: {
+    iconProps: {
         justifyContent: "center",
         alignContent: "center",
         alignItems: "center"
@@ -57,6 +58,7 @@ export const useStyles = createUseStyles({
 
 export const textInputStyler = ({
     spreadBehaviour,
+    iconDirection,
     disabledStyle,
     typography,
     isFocused,
@@ -75,12 +77,12 @@ export const textInputStyler = ({
 
     let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
-        paddingBottom: spaces.content,
+        paddingRight: spaces.container / 1.5,
+        paddingLeft: spaces.container / 1.5,
+        paddingBottom: spaces.content * 1.5,
+        paddingTop: spaces.content * 1.5,
         backgroundColor: colors.panel,
-        paddingRight: spaces.content,
-        paddingLeft: spaces.content,
         borderRadius: radiuses.half,
-        paddingTop: spaces.content,
         borderWidth: borders.line,
         boxSizing: "border-box",
         borderStyle: "solid"
@@ -105,6 +107,9 @@ export const textInputStyler = ({
 
     let clear: CSSProperties = {
         marginLeft: spaces.content
+    };
+
+    let iconStyler: CSSProperties = {
     };
 
     let passwordIcon: CSSProperties = {
@@ -148,12 +153,17 @@ export const textInputStyler = ({
         };
     }
 
+    if (iconDirection === "left") {
+        iconStyler.marginRight = spaces.content;
+    }
+
     return {
         infoTextContainer,
         contentContainer,
         infoIconStyler,
         passwordIcon,
         titleProps,
+        iconStyler,
         container,
         input,
         clear

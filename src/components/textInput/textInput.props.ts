@@ -48,10 +48,11 @@ export type TextInputStylerParams = {
     spaces: IOCore.SpacesTokensType;
     disabledStyle: CSSProperties;
     colors: IOCore.ColorsType;
+    iconDirection: string;
     multiline?: boolean;
     isFocused: boolean;
-    infoText?: string;
     disabled?: boolean;
+    infoText?: string;
     isError?: boolean;
     value: string;
 };
@@ -67,6 +68,7 @@ export type TextInputStylerResult = {
     contentContainer: CSSProperties;
     infoIconStyler: CSSProperties;
     passwordIcon: CSSProperties;
+    iconStyler: CSSProperties;
     container: CSSProperties;
     titleProps: TitleProps;
     input: CSSProperties;
