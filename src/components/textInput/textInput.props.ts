@@ -54,6 +54,7 @@ export type TextInputStylerParams = {
     disabled?: boolean;
     infoText?: string;
     isError?: boolean;
+    title?: string;
     value: string;
 };
 

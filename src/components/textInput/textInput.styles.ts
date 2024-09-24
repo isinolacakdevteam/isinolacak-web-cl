@@ -16,7 +16,6 @@ export const useStyles = createUseStyles({
         boxSizing: "border-box",
         alignItems: "center",
         cursor: "pointer",
-        minHeight: 60.9,
         display: "flex"
     },
     content: {
@@ -42,7 +41,8 @@ export const useStyles = createUseStyles({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
-        display: "flex"
+        display: "flex",
+        height: 18
     },
     iconProps: {
         justifyContent: "center",
@@ -69,7 +69,8 @@ export const textInputStyler = ({
     isError,
     spaces,
     colors,
-    value
+    value,
+    title
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
         userSelect: "none"
@@ -79,8 +80,8 @@ export const textInputStyler = ({
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
         paddingRight: spaces.container / 1.5,
         paddingLeft: spaces.container / 1.5,
-        paddingBottom: spaces.content * 1.5,
-        paddingTop: spaces.content * 1.5,
+        paddingBottom: spaces.container,
+        paddingTop: spaces.container,
         backgroundColor: colors.panel,
         borderRadius: radiuses.half,
         borderWidth: borders.line,
@@ -92,6 +93,7 @@ export const textInputStyler = ({
         variant: value?.length || isFocused ? "body2-regular" : "body2-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
+            marginBottom: spaces.inline,
             alignSelf: "flex-start"
         }
     };
@@ -155,6 +157,11 @@ export const textInputStyler = ({
 
     if (iconDirection === "left") {
         iconStyler.marginRight = spaces.content;
+    }
+
+    if(title) {
+        contentContainer.paddingBottom = spaces.container / 1.5;
+        contentContainer.paddingTop = spaces.container / 1.5;
     }
 
     return {

@@ -90,7 +90,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         isError,
         colors,
         spaces,
-        value
+        value,
+        title
     });
 
     useImperativeHandle(
@@ -181,8 +182,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
                 onClick={togglePasswordVisibility}
             >
                 {showPassword ?
-                    <EyeOpenedIcon color={colors.hideBody} size={24} /> :
-                    <EyeClosedIcon color={colors.hideBody} size={24} />
+                    <EyeOpenedIcon color={colors.hideBody} size={18} /> :
+                    <EyeClosedIcon color={colors.hideBody} size={18} />
                 }
             </div>
         </div>;
