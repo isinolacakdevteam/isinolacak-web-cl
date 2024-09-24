@@ -23,7 +23,7 @@ import {
     IOCoreTheme
 } from "../../../src/core";
 
-interface RefForwardingComponent<T, P = {}> extends ForwardRefRenderFunction<T, P> { };
+interface RefForwardingComponent<T, P = {}> extends ForwardRefRenderFunction<T, P> {};
 
 const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     spreadBehaviour = "baseline",
@@ -73,12 +73,14 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         infoIconStyler,
         passwordIcon,
         titleProps,
+        iconStyler,
         container,
         input,
         clear
     } = textInputStyler({
         disabledStyle: designTokensDisabled,
         spreadBehaviour,
+        iconDirection,
         typography,
         isFocused,
         disabled,
@@ -88,7 +90,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         isError,
         colors,
         spaces,
-        value
+        value,
+        title
     });
 
     useImperativeHandle(
@@ -104,12 +107,12 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const onFocus = () => {
-        if (onFocusProp) onFocusProp();
+        if(onFocusProp) onFocusProp();
         setIsFocused(true);
     };
 
     const onBlur = () => {
-        if (onBlurProp) onBlurProp();
+        if(onBlurProp) onBlurProp();
         setIsFocused(false);
     };
 
@@ -118,17 +121,17 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     const renderClearButton = () => {
-        if (disabled) {
+        if(disabled) {
             return null;
         }
 
-        if (!clearEnabled) {
+        if(!clearEnabled || !value) {
             return null;
         }
 
         return <div
             onClick={() => {
-                if (onChangeText) {
+                if(onChangeText) {
                     onChangeText("");
                 }
                 setValue("");
@@ -155,7 +158,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
         }
 
         return <div
-            className={classes.ıconProps}
+            className={classes.iconProps}
+            style={iconStyler}
             onClick={iconOnClick}
         >
             <IconComponentProp
@@ -178,8 +182,8 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
                 onClick={togglePasswordVisibility}
             >
                 {showPassword ?
-                    <EyeOpenedIcon color={colors.hideBody} size={24} /> :
-                    <EyeClosedIcon color={colors.hideBody} size={24} />
+                    <EyeOpenedIcon color={colors.hideBody} size={18} /> :
+                    <EyeClosedIcon color={colors.hideBody} size={18} />
                 }
             </div>
         </div>;

@@ -63,6 +63,13 @@ export default {
                 "large"
             ]
         },
+        shape: {
+            control: "select",
+            options: [
+                "pill",
+                "square"
+            ]
+        },
         iconDirection: {
             control: "select",
             options: [

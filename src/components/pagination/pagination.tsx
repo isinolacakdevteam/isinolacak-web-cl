@@ -105,7 +105,7 @@ const Pagination: FC<IPaginationProps> = ({
         } else {
             let _pageButtons: Array<PaginationButtonType> = [];
 
-            for(let i = 0; i < 6; i++) {
+            for(let i = 0; i < pageCount; i++) {
                 _pageButtons.push({
                     pageNumber: i + 1
                 });

@@ -41,9 +41,10 @@ export const useStyles = createUseStyles({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
-        display: "flex"
+        display: "flex",
+        height: 18
     },
-    ıconProps: {
+    iconProps: {
         justifyContent: "center",
         alignContent: "center",
         alignItems: "center"
@@ -57,6 +58,7 @@ export const useStyles = createUseStyles({
 
 export const textInputStyler = ({
     spreadBehaviour,
+    iconDirection,
     disabledStyle,
     typography,
     isFocused,
@@ -67,7 +69,8 @@ export const textInputStyler = ({
     isError,
     spaces,
     colors,
-    value
+    value,
+    title
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
         userSelect: "none"
@@ -75,12 +78,12 @@ export const textInputStyler = ({
 
     let contentContainer: CSSProperties = {
         borderColor: isError ? colors.error : isFocused ? colors.primary : colors.stroke,
-        paddingBottom: spaces.content,
+        paddingRight: spaces.container / 1.5,
+        paddingLeft: spaces.container / 1.5,
+        paddingBottom: spaces.container,
+        paddingTop: spaces.container,
         backgroundColor: colors.panel,
-        paddingRight: spaces.content,
-        paddingLeft: spaces.content,
         borderRadius: radiuses.half,
-        paddingTop: spaces.content,
         borderWidth: borders.line,
         boxSizing: "border-box",
         borderStyle: "solid"
@@ -90,6 +93,7 @@ export const textInputStyler = ({
         variant: value?.length || isFocused ? "body2-regular" : "body2-regular",
         color: value?.length || isFocused ? "primary" : "textSecondary",
         style: {
+            marginBottom: spaces.inline,
             alignSelf: "flex-start"
         }
     };
@@ -105,6 +109,9 @@ export const textInputStyler = ({
 
     let clear: CSSProperties = {
         marginLeft: spaces.content
+    };
+
+    let iconStyler: CSSProperties = {
     };
 
     let passwordIcon: CSSProperties = {
@@ -148,12 +155,22 @@ export const textInputStyler = ({
         };
     }
 
+    if (iconDirection === "left") {
+        iconStyler.marginRight = spaces.content;
+    }
+
+    if(title) {
+        contentContainer.paddingBottom = spaces.container / 1.5;
+        contentContainer.paddingTop = spaces.container / 1.5;
+    }
+
     return {
         infoTextContainer,
         contentContainer,
         infoIconStyler,
         passwordIcon,
         titleProps,
+        iconStyler,
         container,
         input,
         clear
