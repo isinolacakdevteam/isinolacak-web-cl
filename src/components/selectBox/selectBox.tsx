@@ -155,6 +155,10 @@ const SelectBox = <T extends {}>({
     };
 
     const renderTitle = () => {
+        if(!title) {
+            return null;
+        }
+
         return <Text
             variant="body3-regular"
             color={titleProps.color}

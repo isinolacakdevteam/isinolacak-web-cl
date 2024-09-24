@@ -95,6 +95,7 @@ export type SelectBoxStylerParams = {
     infoText?: string;
     isError?: boolean;
     isClick?: boolean;
+    title?: string;
 };
 
 export type TitleProps = {
