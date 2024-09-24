@@ -12,11 +12,12 @@ import {
 
 export const useStyles = createUseStyles({
     container: {
-        flexDirection: "row",
         boxSizing: "border-box",
+        flexDirection: "row",
         alignItems: "center",
         cursor: "pointer",
-        display: "flex"
+        display: "flex",
+        minHeight: 52
     },
     content: {
         flexDirection: "column",
@@ -73,7 +74,8 @@ export const textInputStyler = ({
     title
 }: TextInputStylerParams): TextInputStylerResult => {
     let container: CSSProperties = {
-        userSelect: "none"
+        userSelect: "none",
+        minHeight: 52
     };
 
     let contentContainer: CSSProperties = {
@@ -162,6 +164,8 @@ export const textInputStyler = ({
     if(title) {
         contentContainer.paddingBottom = spaces.container / 1.5;
         contentContainer.paddingTop = spaces.container / 1.5;
+        contentContainer.minHeight = 62;
+        container.minHeight = 62;
     }
 
     return {

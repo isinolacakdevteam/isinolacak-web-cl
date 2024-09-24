@@ -13,10 +13,11 @@ import {
 
 export const useStyles = createUseStyles({
     mainContainer: {
-        boxSizing: "border-box",
         flexDirection: "column",
+        boxSizing: "border-box",
         userSelect: "none",
-        display: "flex"
+        display: "flex",
+        minHeight: 52
     },
     container: {
         justifyContent: "space-between",
@@ -24,6 +25,7 @@ export const useStyles = createUseStyles({
         alignItems: "center",
         flexDirection: "row",
         display: "flex",
+        minHeight: 52,
         "&:hover": {
             transition: "transform 0.1s",
             cursor: "pointer",
@@ -128,6 +130,7 @@ export const selectBoxStyler = ({
     if(title) {
         container.paddingBottom = spaces.container / 1.5;
         container.paddingTop = spaces.container / 1.5;
+        container.minHeight = 62;
     }
 
     return {

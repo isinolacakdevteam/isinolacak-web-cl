@@ -85,7 +85,8 @@ const SelectBox = <T extends {}>({
         isError,
         spaces,
         colors,
-        style
+        style,
+        title
     });
 
     const {
