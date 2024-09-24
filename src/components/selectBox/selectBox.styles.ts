@@ -62,15 +62,16 @@ export const selectBoxStyler = ({
     borders,
     colors,
     spaces,
-    style
+    style,
+    title
 }: SelectBoxStylerParams): SelectBoxStylerResult => {
     let container = {
         ...style,
         borderColor: isError ? colors.error : isClick ? colors.primary : colors.stroke,
-        paddingBottom: spaces.content * 1.5,
         paddingRight: spaces.content / 2,
-        paddingTop: spaces.content * 1.5,
+        paddingBottom: spaces.container,
         backgroundColor: colors.panel,
+        paddingTop: spaces.container,
         paddingLeft: spaces.content,
         borderRadius: radiuses.half,
         borderWidth: borders.line,
@@ -92,7 +93,6 @@ export const selectBoxStyler = ({
     let contentProps: ContentProps = {
         color: "body",
         style: {
-            marginTop: spaces.content / 2
         }
     };
 
@@ -123,6 +123,11 @@ export const selectBoxStyler = ({
 
     if (spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
         container.alignSelf = spreadBehaviour;
+    }
+
+    if(title) {
+        container.paddingBottom = spaces.container / 1.5;
+        container.paddingTop = spaces.container / 1.5;
     }
 
     return {
