@@ -131,6 +131,9 @@ export const selectBoxStyler = ({
         container.paddingBottom = spaces.container / 1.5;
         container.paddingTop = spaces.container / 1.5;
         container.minHeight = 62;
+        container.maxHeight = 62;
+    } else {
+        container.maxHeight = 52;
     }
 
     return {
