@@ -23,7 +23,6 @@ export const useStyles = createUseStyles({
         boxSizing: "border-box",
         alignItems: "center",
         flexDirection: "row",
-        minHeight: 60.9,
         display: "flex",
         "&:hover": {
             transition: "transform 0.1s",
@@ -84,6 +83,7 @@ export const selectBoxStyler = ({
     };
 
     let titleStyle: CSSProperties = {
+        marginBottom: spaces.inline,
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
         overflow: "hidden"
@@ -105,7 +105,11 @@ export const selectBoxStyler = ({
     };
 
     let iconContainer: CSSProperties = {
-        marginRight: spaces.content
+        marginRight: spaces.content,
+        marginLeft: spaces.content,
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex"
     };
 
     if (infoText) {
