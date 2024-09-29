@@ -40,6 +40,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     initialValue,
     placeholder,
     iconOnClick,
+    validation,
     inputClass,
     className,
     infoText,
@@ -245,8 +246,23 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
             ref={inputRef}
             value={value}
             onChange={(e) => {
-                if (onChangeText) onChangeText(e.target.value);
-                setValue(e.target.value);
+                const inputValue = e.target.value;
+
+                if (inputValue === "") {
+                    setValue("");
+                    onChangeText && onChangeText("");
+                    return;
+                }
+
+                if (validation) {
+                    if (validation(inputValue)) {
+                        setValue(inputValue);
+                        onChangeText && onChangeText(inputValue);
+                    }
+                } else {
+                    setValue(inputValue);
+                    onChangeText && onChangeText(inputValue);
+                }
             }}
             className={[
                 classes.input,
