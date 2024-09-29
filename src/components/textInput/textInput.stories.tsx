@@ -71,16 +71,16 @@ export default {
                     color,
                     size
                 }: IIOCoreIconPropsType) => <EyeOpenedIcon
-                        color={color}
-                        size={size}
-                    />,
+                    color={color}
+                    size={size}
+                />,
                 "clearIcon": ({
                     color,
                     size
                 }: IIOCoreIconPropsType) => <ClearIcon
-                        color={color}
-                        size={size}
-                    />
+                    color={color}
+                    size={size}
+                />
             },
             control: {
                 type: "select",
