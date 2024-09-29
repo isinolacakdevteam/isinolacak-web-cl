@@ -92,11 +92,17 @@ export default {
 
 const Template: Story<ITextInputProps> = (args) => <TextInput {...args} />;
 
+const regexValidation = (text: string) => {
+    const regex = /^[A-Za-z]+$/;
+    return regex.test(text);
+};
+
 export const Default = Template.bind({
 });
 Default.args = {
     /* title: "Text Input", */
-    placeholder: "Please enter text"
+    placeholder: "Please enter text",
+    validation: regexValidation
 };
 
 export const Disabled = Template.bind({
