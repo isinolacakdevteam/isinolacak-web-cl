@@ -14,6 +14,7 @@ type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLInputElement>, "disab
 
 interface ITextInputProps extends HTMLInputElementWithoutBase {
     spreadBehaviour?: TextInputSpreadBehaviour;
+    validation?: (text: string) => boolean;
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
     infoIcon?: IOCoreIconType;
