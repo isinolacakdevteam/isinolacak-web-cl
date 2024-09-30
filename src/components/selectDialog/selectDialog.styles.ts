@@ -104,9 +104,20 @@ export const selectDialogStyler = ({
     spaces,
     size
 }: SelectDialogStylerParams): SelectDialogStylerResult => {
+    let containerMinWidthValue = '35%';
+
+    if(size === 'small') {
+        containerMinWidthValue = "25%";
+    } else if(size === "large") {
+        containerMinWidthValue = "45%";
+    } else if(size === 'xLarge') {
+        containerMinWidthValue = "50%";
+    } else {
+        containerMinWidthValue = "35%";
+    }
 
     let container = {
-        minWidth: size === "small" ? "25%" : size === "medium" ? "35%" : size === "large" ? "45%" : "50%",
+        minWidth: containerMinWidthValue,
         backgroundColor: colors.layer1,
         borderRadius: radiuses.half,
         padding: spaces.container,
