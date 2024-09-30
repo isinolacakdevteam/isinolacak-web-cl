@@ -86,7 +86,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
-        if(searchText && searchText.length) {
+        if (searchText && searchText.length) {
             let newData = JSON.parse(JSON.stringify(data));
             newData = newData.filter((item: K) => item.__title.match(new RegExp(searchText, "gi")));
             setRenderData(newData);
@@ -96,22 +96,22 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     }, [searchText, data]);
 
     useEffect(() => {
-        if(onSearch) {
+        if (onSearch) {
             onSearch(searchText);
         }
     }, [searchText]);
 
     useEffect(() => {
-        if(!isNeedConfirm) {
+        if (!isNeedConfirm) {
             setSelectedItems(tempSelectedItems);
         }
     }, [tempSelectedItems]);
 
     useEffect(() => {
-        if(isVisible) {
+        if (isVisible) {
             setTempSelectedItems(selectedItems);
         } else {
-            if(searchText && searchText.length) {
+            if (searchText && searchText.length) {
                 setSearchText("");
                 setRenderData(data);
             }
@@ -125,9 +125,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
         const isExistsInSelectedData = tempSelectedItems.findIndex(e => e.__key === item.__key);
 
-        if(isExistsInSelectedData !== -1) {
-            if(multiSelect) {
-                if(
+        if (isExistsInSelectedData !== -1) {
+            if (multiSelect) {
+                if (
                     minChoice !== undefined &&
                     tempSelectedItems.length <= minChoice
                 ) {
@@ -138,8 +138,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 setTempSelectedItems(_selectedItems);
             }
         } else {
-            if(multiSelect) {
-                if(
+            if (multiSelect) {
+                if (
                     maxChoice !== undefined &&
                     tempSelectedItems.length >= maxChoice
                 ) {
@@ -165,7 +165,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderSearch = () => {
-        if(!isSearchable) {
+        if (!isSearchable) {
             return null;
         }
 
@@ -173,17 +173,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
                 initialValue={searchText}
-                title={inputTitle}
+                placeholder={inputTitle}
             />
-        </div>; 
+        </div>;
     };
 
     const renderClear = () => {
-        if(isLoadingOKButton || !multiSelect) {
+        if (isLoadingOKButton || !multiSelect) {
             return null;
         }
 
-        if(!tempSelectedItems.length) {
+        if (!tempSelectedItems.length) {
             return null;
         }
 
@@ -192,7 +192,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             spreadBehaviour={isNeedConfirm ? "baseline" : "stretch"}
             variant="outline"
             style={{
-                marginRight:spaces.content
+                marginRight: spaces.content
             }}
             onClick={() => {
                 setTempSelectedItems([]);
@@ -201,7 +201,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderConfirm = () => {
-        if(!isNeedConfirm) {
+        if (!isNeedConfirm) {
             return null;
         }
 
@@ -212,17 +212,17 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             variant="filled"
             size="medium"
             onClick={() => {
-                if(onOk) {
+                if (onOk) {
                     onOk({
                         selectedItems: tempSelectedItems,
                         closeSheet: () => {
-                            if(onClose) {
+                            if (onClose) {
                                 onClose();
                             }
                         },
                         onSuccess: () => {
                             setSelectedItems(tempSelectedItems);
-                            if(onClose) {
+                            if (onClose) {
                                 onClose();
                             }
                         },
@@ -230,7 +230,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     });
                 } else {
                     setSelectedItems(tempSelectedItems);
-                    if(onClose) {
+                    if (onClose) {
                         onClose();
                     }
                 }
@@ -266,11 +266,11 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderPagination = () => {
-        if(!paginationProps) {
+        if (!paginationProps) {
             return null;
         }
 
-        if(isSearchLoading) {
+        if (isSearchLoading) {
             return null;
         }
 
@@ -292,7 +292,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     }) => {
         const isSelected = tempSelectedItems.findIndex((c_item) => c_item.__key === item.__key) !== -1;
 
-        if(RenderItem) {
+        if (RenderItem) {
             return RenderItem({
                 onChange: onChange ? () => onChange(selectedItems, renderData) : undefined,
                 onPress: onPress ? () => onPress(selectedItems, renderData) : undefined,
@@ -300,7 +300,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 onOk: onOk ? () => onOk({
                     selectedItems: tempSelectedItems,
                     closeSheet: () => {
-                        if(onClose) {
+                        if (onClose) {
                             onClose();
                         }
                     },
@@ -317,7 +317,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             });
         }
 
-        if(multiSelect) {
+        if (multiSelect) {
             return <CheckBox
                 key={`select-box-item-${index}`}
                 isSelected={isSelected}
@@ -336,7 +336,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                         item
                     });
                     //@ts-ignore
-                    return <RenderIcon/>; // TODO: Type issue will be fix
+                    return <RenderIcon />; // TODO: Type issue will be fix
                 } : undefined}
                 onChange={() => {
                     _onChange(item);
@@ -362,7 +362,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     item
                 });
                 //@ts-ignore
-                return <RenderIcon/>; // TODO: Type issue will be fix
+                return <RenderIcon />; // TODO: Type issue will be fix
             } : undefined}
             onChange={() => {
                 _onChange(item);
@@ -371,25 +371,25 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderContent = () => {
-        if(!renderData || !renderData.length) {
-            if(RenderEmptyContent) {
-                return <RenderEmptyContent/>;
+        if (!renderData || !renderData.length) {
+            if (RenderEmptyContent) {
+                return <RenderEmptyContent />;
             }
             return null;
         }
 
-        if(isSearchLoading) {
+        if (isSearchLoading) {
             return <div
                 className={styles.loadingContainer}
                 style={{
                     padding: spaces.container
                 }}
             >
-                <Loading/>
+                <Loading />
             </div>;
         }
 
-        return  <div
+        return <div
             className={styles.innerContent}
         >
             {
@@ -403,10 +403,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         </div>;
     };
 
-    if(!isVisible) {
+    if (!isVisible) {
         return null;
     }
-    
+
     return <Portal>
         <div
             className={styles.container}
@@ -418,10 +418,10 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             <div
                 className={styles.overlay}
                 onClick={() => {
-                    if(onOverlayPress) onOverlayPress();
+                    if (onOverlayPress) onOverlayPress();
                 }}
             >
-                <div className={styles.overlayTouchableArea}/>
+                <div className={styles.overlayTouchableArea} />
             </div>
             <div
                 className={styles.contentContainer}
@@ -449,7 +449,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                     }}
                     variant="ghost"
                     onClick={() => {
-                        if(onClose) {
+                        if (onClose) {
                             onClose();
                         }
                     }}
