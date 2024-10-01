@@ -56,6 +56,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         onPress,
         title,
         data,
+        size,
         onOk
     } = properties;
 
@@ -78,7 +79,8 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         childrenStyleProp,
         radiuses,
         spaces,
-        colors
+        colors,
+        size
     });
 
     const [tempSelectedItems, setTempSelectedItems] = useState(selectedItems);

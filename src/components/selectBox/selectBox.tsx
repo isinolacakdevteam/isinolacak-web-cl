@@ -37,10 +37,11 @@ const SelectBox = <T extends {}>({
     paginationProps,
     isClick = false,
     isSearchLoading,
+    size = 'medium',
     onOverlayPress,
     titleExtractor,
-    keyExtractor,
     isNeedConfirm,
+    keyExtractor,
     isSearchable,
     emptyContent,
     inputTitle,
@@ -259,6 +260,7 @@ const SelectBox = <T extends {}>({
             title={title}
             data={data}
             onOk={onOk}
+            size={size}
         />;
     };
 

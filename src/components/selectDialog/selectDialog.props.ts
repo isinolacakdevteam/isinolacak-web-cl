@@ -8,6 +8,9 @@ import {
     SelectObjectType
 } from "../../types";
 import IPaginationProps from "../pagination/pagination.props";
+import {
+    SelectDialogSize 
+} from "../selectBox/selectBox.props";
 
 export type SelectDialogStylerParams = {
     contentContainerStyle?: CSSProperties;
@@ -17,6 +20,7 @@ export type SelectDialogStylerParams = {
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;
     childrenStyleProp?: any;
+    size?: SelectDialogSize;
     fullScreen?: boolean;
 };
 
@@ -87,6 +91,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isSearchLoading?: boolean;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
+    size?: SelectDialogSize;
     isSearchable?: boolean;
     multiSelect?: boolean;
     initialData?: Array<T>;
