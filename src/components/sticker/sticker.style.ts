@@ -56,6 +56,9 @@ export const stickerStyler = ({
 
     let iconContainerStyle = {
         marginRight: spaces.inline,
+        justifyContent: "center",
+        alignItems: 'center',
+        display: 'flex'
     };
 
     let iconProps: IIOCoreIconPropsType = {

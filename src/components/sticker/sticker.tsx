@@ -66,10 +66,7 @@ const Sticker: FC<IStickerProps> = ({
 
         return <div
             style={{
-                ...iconContainerStyle,
-                justifyContent: "center",
-                alignItems: 'center',
-                display: 'flex'
+                ...iconContainerStyle
             }}
         >
             <IconComponentProp
