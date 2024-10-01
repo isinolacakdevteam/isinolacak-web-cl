@@ -4,9 +4,9 @@ import {
 } from "react";
 
 interface IToolBoxProps {
+    style?: CSSProperties;
     children: ReactNode;
     content: ReactNode;
-    style?: CSSProperties;
 };
 
 export type ToolBoxDirectionProps = "right" | "left" | "top" | "bottom";

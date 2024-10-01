@@ -50,6 +50,28 @@ const ToolBox: FC<IToolBoxProps> = ({
         tInfo
     });
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (testRef.current && !testRef.current.contains(event.target as Node)) {
+            setIsVisible(false);
+            setTInfo({
+                windowHeight: 0,
+                windowWidth: 0,
+                w: 0,
+                h: 0,
+                x: 0,
+                y: 0
+            });
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    },[]);
+
     useEffect(() => {
         window.addEventListener("resize", onResize);
 
