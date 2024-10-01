@@ -60,7 +60,7 @@ export const stickerStyler = ({
 
     let iconProps: IIOCoreIconPropsType = {
         color: colors[titleProps.color],
-        size: 10
+        size: 14
     };
 
     if(spreadBehaviour === "baseline" || spreadBehaviour === "stretch") {
