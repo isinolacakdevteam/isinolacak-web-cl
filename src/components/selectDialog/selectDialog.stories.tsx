@@ -27,15 +27,7 @@ export default {
             control: "boolean"
         },
         size: {
-            control: {
-                type: "select",
-                options: [
-                    "small",
-                    "medium",
-                    "large",
-                    'xLarge'
-                ]
-            }
+            control: "text"
         },
     }
 } as Meta;

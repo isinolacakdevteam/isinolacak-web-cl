@@ -15,7 +15,7 @@ export type SelectedItem = {
     __key: string;
 };
 export type SelectBoxSpreadBehaviour = "baseline" | "stretch" | "free";
-export type SelectDialogSize = "small" | "medium" | "large" | "xLarge";
+export type SelectDialogSize = "small" | "medium" | "large" | "xLarge" | string;
 
 export interface ISelectBoxProps<T> {
     onClick?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
