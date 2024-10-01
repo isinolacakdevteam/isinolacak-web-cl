@@ -27,6 +27,7 @@ const Chip: FC<IChipProps> = ({
     color = "primary",
     disabled = false,
     selected = false,
+    backgroundColor,
     shape = 'pill',
     size = "small",
     isCancelable,
@@ -56,6 +57,7 @@ const Chip: FC<IChipProps> = ({
     } = chipStyler({
         disabledStyle: designTokensDisabled,
         icon: IconComponentProp,
+        backgroundColor,
         spreadBehaviour,
         iconDirection,
         isCancelable,

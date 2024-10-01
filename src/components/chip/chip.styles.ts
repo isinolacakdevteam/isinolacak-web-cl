@@ -119,6 +119,7 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
 export default useStyles;
 
 export const chipStyler = ({
+    backgroundColor,
     spreadBehaviour,
     disabledStyle,
     iconDirection,
@@ -237,6 +238,10 @@ export const chipStyler = ({
             container.borderColor = colors.primary;
             titleProps.color = color;
         }
+    }
+
+    if(backgroundColor) {
+        container.backgroundColor = colors[backgroundColor];
     }
 
     if(titleColor) {
