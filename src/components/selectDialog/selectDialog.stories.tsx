@@ -25,7 +25,10 @@ export default {
         },
         isSearchLoading: {
             control: "boolean"
-        }
+        },
+        size: {
+            control: "text"
+        },
     }
 } as Meta;
 
@@ -47,6 +50,7 @@ Default.args = {
             merhaba
         </Text>;
     },
+    size: 'medium',
     onClose: () => {
         alert("Close Button pressed.");
     },

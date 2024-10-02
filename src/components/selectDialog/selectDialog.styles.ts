@@ -55,7 +55,7 @@ export const useStyles = createUseStyles({
         maxHeight: "90%",
         display: "flex",
         maxWidth: "95%",
-        minWidth: "50%",
+        // minWidth: "20%",
         minHeight: "50%",
         zIndex: 99999
     },
@@ -101,13 +101,30 @@ export const selectDialogStyler = ({
     headerContainerStyle,
     radiuses,
     colors,
-    spaces
+    spaces,
+    size
 }: SelectDialogStylerParams): SelectDialogStylerResult => {
+    let containerMinWidthValue = '35%';
+
+    if(size === 'small') {
+        containerMinWidthValue = "25%";
+    } else if(size === 'medium'){
+        containerMinWidthValue = "35%";
+    } else if(size === "large") {
+        containerMinWidthValue = "45%";
+    } else if(size === 'xLarge') {
+        containerMinWidthValue = "50%";
+    } else {
+        if(size?.endsWith('%')) {
+            containerMinWidthValue = size;
+        }
+    }
 
     let container = {
+        minWidth: containerMinWidthValue,
         backgroundColor: colors.layer1,
         borderRadius: radiuses.half,
-        padding: spaces.container
+        padding: spaces.container,
     };
 
     let header: CSSProperties = {

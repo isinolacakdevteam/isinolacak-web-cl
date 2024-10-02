@@ -11,6 +11,7 @@ export type ChipTypes = "filled" | "outline" | "inverted";
 export type ChipSizes = "small" | "medium" | "large";
 
 export type ChipStylerParams = {
+    backgroundColor?: keyof IOCore.ColorsType;
     spreadBehaviour: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     radiuses: IOCore.RadiusesTokensType;
@@ -45,6 +46,7 @@ export type ChipStylerResult = {
 };
 
 interface IChipProps {
+    backgroundColor?: keyof IOCore.ColorsType;
     spreadBehaviour?: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     iconColor?: keyof IOCore.ColorsType;

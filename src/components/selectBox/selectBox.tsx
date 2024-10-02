@@ -37,10 +37,10 @@ const SelectBox = <T extends {}>({
     paginationProps,
     isClick = false,
     isSearchLoading,
-    onOverlayPress,
+    size = 'medium',
     titleExtractor,
-    keyExtractor,
     isNeedConfirm,
+    keyExtractor,
     isSearchable,
     emptyContent,
     inputTitle,
@@ -241,13 +241,13 @@ const SelectBox = <T extends {}>({
             setSelectedItems={setSelectedItems}
             paginationProps={paginationProps}
             isSearchLoading={isSearchLoading}
-            onOverlayPress={onOverlayPress}
             selectedItems={selectedItems}
             isNeedConfirm={isNeedConfirm}
             isSearchable={isSearchable}
             emptyContent={emptyContent}
             initialData={initialData}
             multiSelect={multiSelect}
+            onOverlayPress={onClose}
             inputTitle={inputTitle}
             renderIcon={renderIcon}
             renderItem={renderItem}
@@ -259,6 +259,7 @@ const SelectBox = <T extends {}>({
             title={title}
             data={data}
             onOk={onOk}
+            size={size}
         />;
     };
 
@@ -309,9 +310,6 @@ const SelectBox = <T extends {}>({
 
                 if (!onClick) {
                     setIsVisible(true);
-                    if (onOverlayPress) {
-                        return onOverlayPress();
-                    }
                 } else {
                     onClick(selectedItems, cleanData());
                 }

@@ -15,6 +15,7 @@ export type SelectedItem = {
     __key: string;
 };
 export type SelectBoxSpreadBehaviour = "baseline" | "stretch" | "free";
+export type SelectDialogSize = "small" | "medium" | "large" | "xLarge" | string;
 
 export interface ISelectBoxProps<T> {
     onClick?: (selectedItems: Array<SelectedItem>, data: Array<SelectObjectType>) => void;
@@ -67,9 +68,9 @@ export interface ISelectBoxProps<T> {
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
-    onOverlayPress?: () => void;
     isSearchLoading?: boolean;
     infoIcon?: IOCoreIconType;
+    size?: SelectDialogSize;
     isNeedConfirm?: boolean;
     isSearchable?: boolean;
     multiSelect?: boolean;

@@ -46,6 +46,13 @@ export default {
                 options: Object.keys(lightTheme.colors)
             }
         },
+        backgroundColor: {
+            control: {
+                type: "select",
+                options: ['Not Selected', ...Object.keys(lightTheme.colors)]
+            },
+            defaultValue: undefined
+        },
         isCancelable: {
             control: "boolean"
         },
