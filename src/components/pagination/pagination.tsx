@@ -60,12 +60,12 @@ const Pagination: FC<IPaginationProps> = ({
     const calculateButtons = () => {
         let pageCount = Math.floor(totalDataCount / itemPerPage);
         const lastPage = totalDataCount % itemPerPage;
-
         if(lastPage > 0) {
             pageCount += 1;
         }
 
         if(pageCount > 6) {
+
             let _pageButtons: Array<PaginationButtonType> = [];
 
             for(let i = 0; i < 3; i++) {
@@ -102,9 +102,10 @@ const Pagination: FC<IPaginationProps> = ({
                 return a.pageNumber - b.pageNumber;
             });
             setButtons(_pageButtons);
+        } else if(pageCount === 0) {
+            return;
         } else {
             let _pageButtons: Array<PaginationButtonType> = [];
-
             for(let i = 0; i < pageCount; i++) {
                 _pageButtons.push({
                     pageNumber: i + 1
