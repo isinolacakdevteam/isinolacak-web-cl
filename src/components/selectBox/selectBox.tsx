@@ -37,7 +37,6 @@ const SelectBox = <T extends {}>({
     paginationProps,
     isClick = false,
     isSearchLoading,
-    onOverlayPress,
     titleExtractor,
     keyExtractor,
     isNeedConfirm,
@@ -304,9 +303,6 @@ const SelectBox = <T extends {}>({
 
                 if (!onClick) {
                     setIsVisible(true);
-                    if (onOverlayPress) {
-                        return onOverlayPress();
-                    }
                 } else {
                     onClick(selectedItems, cleanData());
                 }
