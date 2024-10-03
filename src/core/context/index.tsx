@@ -48,6 +48,7 @@ class Context {
         );
 
         this.ModalContext = new ModalContextInheritance(
+            [],
             {
                 ...config,
                 key: "IOCoreModal"
@@ -61,7 +62,7 @@ class Context {
         children: ReactNode
     }) => {
         const ModalContext = this.ModalContext;
-        const LocaleContext= this.LocaleContext;
+        const LocaleContext = this.LocaleContext;
         const ThemeContext = this.ThemeContext;
 
         return <ThemeContext.Provider>

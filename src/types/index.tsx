@@ -58,13 +58,7 @@ export type DialogTypeForModalType = IDialogProps & {
     key: string;
 };
 
-/* export type BottomSheetTypeForModalType = ModalizeProps & IBottomSheetProps & {
-    type: "bottomsheet";
-    isVisible: boolean;
-    key: string;
-}; */
-
-export type ModalDataType = DialogTypeForModalType /* | BottomSheetTypeForModalType */;
+export type ModalDataType = DialogTypeForModalType;
 
 export type ModalContextType = {
     open: (modalData: ModalDataType) => void;
@@ -72,6 +66,10 @@ export type ModalContextType = {
         index?: number;
         key?: string;
     }) => void;
+    data: Array<ModalDataType>;
+};
+
+export type ModalStateContextType = {
     data: Array<ModalDataType>;
 };
 
