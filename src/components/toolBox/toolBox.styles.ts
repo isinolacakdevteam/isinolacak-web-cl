@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
         textAlign: "center",
         maxWidth: "500px",
         top: "100%",
-        zIndex: 1
+        zIndex: 999
     }
 }, {
     name: "IOCore-ToolBox"
