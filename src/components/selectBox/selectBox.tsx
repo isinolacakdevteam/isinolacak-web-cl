@@ -1,6 +1,11 @@
 import {
+    useImperativeHandle,
+    forwardRef,
     useEffect,
-    useState
+    ReactNode,
+    useState,
+    Ref,
+    useCallback
 } from "react";
 import {
     IOCoreLocale,
@@ -16,6 +21,7 @@ import {
     SelectObjectType
 } from "../../types";
 import {
+    ISelectBoxRefProps,
     ISelectBoxProps,
     SelectedItem
 } from "./selectBox.props";
@@ -53,7 +59,7 @@ const SelectBox = <T extends {}>({
     style,
     title,
     onOk
-}: ISelectBoxProps<T>) => {
+}: ISelectBoxProps<T>, ref: Ref<ISelectBoxRefProps<T>>) => {
     const classes = useStyles();
 
     const [data, setData] = useState<Array<T & SelectObjectType>>([]);
@@ -98,6 +104,14 @@ const SelectBox = <T extends {}>({
         setSelectedItems
     ] = useState<Array<SelectedItem> | []>([]);
 
+    useImperativeHandle(
+        ref,
+        () => ({
+            updateSelectedItems
+        }),
+        [selectedItems, data]
+    );
+
     useEffect(() => {
         if (!initialData || !initialData.length) {
             return;
@@ -119,27 +133,59 @@ const SelectBox = <T extends {}>({
         setData(newData);
 
         if (initialSelectedItems && initialSelectedItems.length) {
-            const newSelectedItems: Array<T & SelectedItem> = initialSelectedItems.map((item, index) => {
-                let originalItem = newData.find(dataItem => {
+            const preparedDatas = prepareSelectedItems(initialSelectedItems, newData);
+            const newSelectedItems: Array<T & SelectedItem> = preparedDatas.selectedItems;
+
+            setSelectedItems(newSelectedItems);
+        }
+    }, [initialData]);
+
+    const prepareSelectedItems = (items, allData) => {
+        if(allData && allData.length) {
+            const newSI = items.map((item, index) => {
+                let originalItem = allData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
-
+    
                 if (!originalItem) {
                     originalItem = {
                         ...item,
                         __title: titleExtractor(item, index),
                         __key: keyExtractor(item, index),
-                        __originalIndex: newData.length
+                        __originalIndex: allData.length
                     };
-                    newData.push(originalItem);
+                    allData.push(originalItem);
                 };
-
+    
                 return originalItem;
             });
 
-            setSelectedItems(newSelectedItems);
+            return {
+                selectedItems: newSI,
+                allData
+            };
+        } else {
+            return {
+                selectedItems: [],
+                allData
+            };
         }
-    }, [initialData]);
+    };
+
+    const updateSelectedItems: ISelectBoxRefProps<T>["updateSelectedItems"] = useCallback(({
+        getCurrentSelectedItems,
+        newSelectedItems
+    }) => {
+        if(getCurrentSelectedItems) {
+            getCurrentSelectedItems(selectedItems, (processedSelectedItems) => {
+                setSelectedItems(prepareSelectedItems(processedSelectedItems, data).selectedItems);
+            });
+        }
+
+        if(newSelectedItems) {
+            setSelectedItems(prepareSelectedItems(newSelectedItems, data).selectedItems);
+        }
+    }, [selectedItems, data]);
 
     const onClose = () => {
         setIsVisible(false);
@@ -325,4 +371,8 @@ const SelectBox = <T extends {}>({
         {renderInfoText()}
     </div>;
 };
-export default SelectBox;
+export default forwardRef(SelectBox) as <T extends {}>(
+    props: ISelectBoxProps<T> & {
+        ref?: Ref<ISelectBoxRefProps<T>>
+    }
+) => ReactNode;

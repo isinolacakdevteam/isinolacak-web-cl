@@ -85,6 +85,20 @@ export interface ISelectBoxProps<T> {
     title?: string;
 };
 
+export interface ISelectBoxRefProps<T> {
+    updateSelectedItems: (p: {
+        getCurrentSelectedItems?: (
+            selectedItems: Array<SelectedItem>,
+            update: (processedSelectedItems: Array<T & {
+                originalIndex?: number;
+            }>) => void
+        ) => void,
+        newSelectedItems?: Array<T & {
+            originalIndex?: number;
+        }>
+    }) => void;
+};
+
 export type SelectBoxStylerParams = {
     spreadBehaviour: SelectBoxSpreadBehaviour;
     radiuses: IOCore.RadiusesTokensType;
