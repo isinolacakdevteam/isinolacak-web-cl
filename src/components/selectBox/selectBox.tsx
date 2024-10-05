@@ -1,11 +1,10 @@
 import {
     useImperativeHandle,
+    useCallback,
     forwardRef,
     useEffect,
-    ReactNode,
     useState,
-    Ref,
-    useCallback
+    Ref
 } from "react";
 import {
     IOCoreLocale,
@@ -375,4 +374,4 @@ export default forwardRef(SelectBox) as <T extends {}>(
     props: ISelectBoxProps<T> & {
         ref?: Ref<ISelectBoxRefProps<T>>
     }
-) => ReactNode;
+) => JSX.Element;
