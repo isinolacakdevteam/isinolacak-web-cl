@@ -52,6 +52,10 @@ export {
     Portal
 } from "./packages/react-portalize/src/Portal";
 
+export type {
+    ISelectBoxRefProps
+} from "./components/selectBox/selectBox.props";
+
 export {
     default as IOCore,
     IOCoreContext,
