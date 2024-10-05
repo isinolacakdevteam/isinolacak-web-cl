@@ -7,8 +7,12 @@ import {
     Text
 } from "../index";
 import {
-    ISelectBoxProps
+    ISelectBoxProps,
+    ISelectBoxRefProps
 } from './selectBox.props';
+import {
+    useRef 
+} from 'react';
 
 export default {
     title: 'Components/SelectBox',
@@ -50,9 +54,66 @@ export default {
     },
 } as Meta;
 
+const MOCK_DATA = [
+    {
+        id: "34534w534ste",
+        title: "Item 1"
+    },
+    {
+        id: "34534w^356574534ste",
+        title: "Item 2"
+    },
+    {
+        id: "34534568443w534ste",
+        title: "Item 3"
+    },
+    {
+        id: "34534w5547)W(+=987634ste",
+        title: "Item 4"
+    },
+    {
+        id: "34534w35735534ste",
+        title: "Item 5"
+    },
+    {
+        id: "346/)(534w534ste",
+        title: "Item 6"
+    },
+    {
+        id: "34534w9=?534ste",
+        title: "Item 7"
+    },
+    {
+        id: "34534w534s65487te",
+        title: "Item 8"
+    },
+    {
+        id: "3454/534w534ste",
+        title: "Item 9"
+    },
+    {
+        id: "34534w53%&/4ste",
+        title: "Item 10"
+    }
+];
+
 const Template: Story<ISelectBoxProps<{
-    title: "Title"
-}>> = (args) => <SelectBox {...args} />;
+    title: string;
+    id: string;
+}>> = (args) => {
+    const rrr = useRef<ISelectBoxRefProps<typeof MOCK_DATA[0]>>(null);
+
+    return <div>
+        <button
+            onClick={() => {
+                rrr.current?.updateSelectedItems({
+                    newSelectedItems: [MOCK_DATA[0]]
+                });
+            }}
+        >Bana Bas</button>
+        <SelectBox {...args} ref={rrr} />
+    </div>;
+};
 
 export const Default = Template.bind({
 });
@@ -64,57 +125,14 @@ Default.args = {
     disabled: false,
     isClick: false,
     title: 'Title',
-    onOverlayPress: () => {
-        alert("Overlay pressed.");
-    },
-    titleExtractor: (item: any) => {
-        return <Text>
-            {item.__title}
-        </Text>;
+    titleExtractor: (item: {
+        title: string;
+        id: string;
+    }) => {
+        return item.title;
     },
     keyExtractor: (item: any) => {
-        return item.__key;
+        return item.id;
     },
-    data: [
-        {
-            __key: "1",
-            __title: "Item 1"
-        },
-        {
-            __key: "2",
-            __title: "Item 2"
-        },
-        {
-            __key: "3",
-            __title: "Item 3"
-        },
-        {
-            __key: "4",
-            __title: "Item 4"
-        },
-        {
-            __key: "5",
-            __title: "Item 5"
-        },
-        {
-            __key: "6",
-            __title: "Item 6"
-        },
-        {
-            __key: "7",
-            __title: "Item 7"
-        },
-        {
-            __key: "8",
-            __title: "Item 8"
-        },
-        {
-            __key: "9",
-            __title: "Item 9"
-        },
-        {
-            __key: "10",
-            __title: "Item 10"
-        }
-    ]
+    data: MOCK_DATA
 };
