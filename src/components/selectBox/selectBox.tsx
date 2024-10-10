@@ -140,12 +140,12 @@ const SelectBox = <T extends {}>({
     }, [initialData]);
 
     const prepareSelectedItems = (items, allData) => {
-        if(allData && allData.length) {
+        if (allData && allData.length) {
             const newSI = items.map((item, index) => {
                 let originalItem = allData.find(dataItem => {
                     return dataItem.__key === keyExtractor(item, index);
                 });
-    
+
                 if (!originalItem) {
                     originalItem = {
                         ...item,
@@ -155,7 +155,7 @@ const SelectBox = <T extends {}>({
                     };
                     allData.push(originalItem);
                 };
-    
+
                 return originalItem;
             });
 
@@ -175,13 +175,13 @@ const SelectBox = <T extends {}>({
         getCurrentSelectedItems,
         newSelectedItems
     }) => {
-        if(getCurrentSelectedItems) {
+        if (getCurrentSelectedItems) {
             getCurrentSelectedItems(selectedItems, (processedSelectedItems) => {
                 setSelectedItems(prepareSelectedItems(processedSelectedItems, data).selectedItems);
             });
         }
 
-        if(newSelectedItems) {
+        if (newSelectedItems) {
             setSelectedItems(prepareSelectedItems(newSelectedItems, data).selectedItems);
         }
     }, [selectedItems, data]);
@@ -201,7 +201,7 @@ const SelectBox = <T extends {}>({
     };
 
     const renderTitle = () => {
-        if(!title) {
+        if (!title) {
             return null;
         }
 

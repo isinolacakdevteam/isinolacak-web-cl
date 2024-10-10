@@ -241,6 +241,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderHeader = () => {
+        if (!title) {
+            return <div
+                style={{
+                    marginBottom: spaces.container * 2
+                }}
+            />;
+        }
         return <div
             className={styles.headerContainer}
             style={{
