@@ -63,6 +63,7 @@ export const textInputStyler = ({
     disabledStyle,
     typography,
     isFocused,
+    minHeight,
     infoText,
     disabled,
     radiuses,
@@ -166,6 +167,10 @@ export const textInputStyler = ({
         contentContainer.paddingTop = spaces.container / 1.5;
         contentContainer.minHeight = 62;
         container.minHeight = 62;
+    }
+
+    if(minHeight) {
+        contentContainer.minHeight = minHeight;
     }
 
     return {

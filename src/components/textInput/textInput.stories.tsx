@@ -12,6 +12,9 @@ import {
     ClearIcon,
     EyeOpenedIcon
 } from "../../assets/svgr";
+import {
+    minHeight 
+} from "styled-system";
 
 export default {
     title: "Components/TextInput",
@@ -44,6 +47,9 @@ export default {
         },
         infoText: {
             control: "text"
+        },
+        minHeight: {
+            control: 'text'
         },
         spreadBehaviour: {
             control: {
