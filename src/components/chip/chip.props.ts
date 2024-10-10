@@ -8,10 +8,11 @@ import {
 
 export type ChipSpreadBehaviour = "baseline" | "stretch" | "free";
 export type ChipTypes = "filled" | "outline" | "inverted";
-export type ChipSizes = "small" | "medium" | "large";
+export type ChipSizes = "small" | "medium" | "large" | "xLarge";
 
 export type ChipStylerParams = {
     backgroundColor?: keyof IOCore.ColorsType;
+    notSelectedColor?: keyof IOCore.ColorsType;
     spreadBehaviour: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;
     radiuses: IOCore.RadiusesTokensType;
@@ -46,6 +47,7 @@ export type ChipStylerResult = {
 };
 
 interface IChipProps {
+    notSelectedColor?: keyof IOCore.ColorsType;
     backgroundColor?: keyof IOCore.ColorsType;
     spreadBehaviour?: ChipSpreadBehaviour;
     titleColor?: keyof IOCore.ColorsType;

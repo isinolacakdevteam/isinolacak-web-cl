@@ -58,6 +58,7 @@ export type ChipStyleMappingType = {
     small: ChipStyle;
     medium: ChipStyle;
     large: ChipStyle;
+    xLarge: ChipStyle;
 };
 
 export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
@@ -114,11 +115,30 @@ export const SIZE_TO_STYLE_MAPPING: ChipStyleMappingType = {
         icon: {
             size: 16
         }
+    },
+    "xLarge": {
+        container: {
+            paddingBottom: 12,
+            paddingRight: 18,
+            paddingLeft: 18,
+            paddingTop: 12,
+            borderRadius: 60
+        },
+        title: {
+            size: "body2-medium"
+        },
+        cancelIcon: {
+            size: 16
+        },
+        icon: {
+            size: 16
+        }
     }
 };
 export default useStyles;
 
 export const chipStyler = ({
+    notSelectedColor,
     backgroundColor,
     spreadBehaviour,
     disabledStyle,
@@ -242,6 +262,11 @@ export const chipStyler = ({
 
     if(backgroundColor) {
         container.backgroundColor = colors[backgroundColor];
+    }
+
+    if(!selected && notSelectedColor) {
+        container.borderColor = colors[notSelectedColor];
+        titleProps.color = notSelectedColor;
     }
 
     if(titleColor) {
