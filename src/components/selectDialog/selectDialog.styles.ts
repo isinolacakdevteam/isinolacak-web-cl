@@ -115,7 +115,7 @@ export const selectDialogStyler = ({
     } else if(size === 'xLarge') {
         containerMinWidthValue = "50%";
     } else {
-        if(size?.endsWith('%')) {
+        if(size) {
             containerMinWidthValue = size;
         }
     }
