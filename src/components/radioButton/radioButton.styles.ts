@@ -58,8 +58,8 @@ export const radioButtonStyler = ({
     style
 }: RadioButtonStylerParams): RadioButtonStylerResult => {
     let container = {
-        ...style,
-        padding: spaces.container / 2
+        padding: spaces.container / 2,
+        ...style
     };
 
     const contentContainerStyle = {
