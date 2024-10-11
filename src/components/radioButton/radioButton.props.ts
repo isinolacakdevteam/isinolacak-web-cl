@@ -13,6 +13,7 @@ export interface IRadioButtonProps {
     direction?: "leftToRight" | "rightToLeft";
     onChange?: (isSelected: boolean) => void;
     titleType?: keyof IOCore.TypographyType;
+    titleColor?: keyof IOCore.ColorsType;
     infoTextProps?: ITextProps;
     indicatorSize?: number;
     icon?: IOCoreIconType;
@@ -29,6 +30,7 @@ export type RadioButtonStylerParams = {
     spreadBehaviour: RadioButtonSpreadBehaviour;
     direction?: "leftToRight" | "rightToLeft";
     disabledStyle: IOCore.DisabledTokensType;
+    titleColor?: keyof IOCore.ColorsType;
     borders: IOCore.BordersTokensType;
     spaces: IOCore.SpacesTokensType;
     colors: IOCore.ColorsType;

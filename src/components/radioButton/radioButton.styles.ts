@@ -49,6 +49,7 @@ export const radioButtonStyler = ({
     disabledStyle,
     indicatorSize,
     titleStyle,
+    titleColor,
     direction,
     disabled,
     isError,
@@ -82,7 +83,7 @@ export const radioButtonStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: "body",
+        color: titleColor ? titleColor : "body",
         style: {
             ...titleStyle
         }
