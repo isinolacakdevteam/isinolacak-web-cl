@@ -9,7 +9,7 @@ import {
 } from "../../types";
 import IPaginationProps from "../pagination/pagination.props";
 import {
-    SelectDialogSize 
+    SelectDialogSize
 } from "../selectBox/selectBox.props";
 
 export type SelectDialogStylerParams = {
@@ -26,6 +26,7 @@ export type SelectDialogStylerParams = {
 
 export type SelectDialogStylerResult = {
     clearIcon: IIOCoreIconPropsType;
+    notTitleStyle: CSSProperties;
     primaryButton: CSSProperties;
     container: CSSProperties;
     content: CSSProperties;
@@ -82,7 +83,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     }) => ReactNode;
     onSearch?: (searchText: string) => void;
     selectedItems: Array<SelectedItem>;
-    paginationProps?: IPaginationProps; 
+    paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     childrenStyle?: CSSProperties;
     isLoadingOKButton?: boolean;

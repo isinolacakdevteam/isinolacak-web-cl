@@ -70,14 +70,14 @@ export const useStyles = createUseStyles({
     paginationContainer: {
         justifyContent: "center",
         display: "flex"
-    }, 
+    },
     renderActions: {
         flexDirection: 'row',
         display: 'flex',
     },
     headerContainer: {
         flexDirection: "row",
-        alignItems:"center",
+        alignItems: "center",
         display: "flex",
         width: "100%"
     },
@@ -106,16 +106,16 @@ export const selectDialogStyler = ({
 }: SelectDialogStylerParams): SelectDialogStylerResult => {
     let containerMinWidthValue = '35%';
 
-    if(size === 'small') {
+    if (size === 'small') {
         containerMinWidthValue = "25%";
-    } else if(size === 'medium'){
+    } else if (size === 'medium') {
         containerMinWidthValue = "35%";
-    } else if(size === "large") {
+    } else if (size === "large") {
         containerMinWidthValue = "45%";
-    } else if(size === 'xLarge') {
+    } else if (size === 'xLarge') {
         containerMinWidthValue = "50%";
     } else {
-        if(size?.endsWith('%')) {
+        if (size?.endsWith('%')) {
             containerMinWidthValue = size;
         }
     }
@@ -157,7 +157,12 @@ export const selectDialogStyler = ({
         color: colors.primary,
     };
 
+    let notTitleStyle = {
+        marginBottom: spaces.container * 2
+    };
+
     return {
+        notTitleStyle,
         primaryButton,
         container,
         clearIcon,

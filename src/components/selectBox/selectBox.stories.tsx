@@ -3,15 +3,14 @@ import {
     Story
 } from '@storybook/react';
 import {
-    SelectBox,
-    Text
+    SelectBox
 } from "../index";
 import {
     ISelectBoxProps,
     ISelectBoxRefProps
 } from './selectBox.props';
 import {
-    useRef 
+    useRef
 } from 'react';
 
 export default {
