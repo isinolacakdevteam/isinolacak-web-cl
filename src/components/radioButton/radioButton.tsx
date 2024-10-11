@@ -125,7 +125,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         className={classes.container}
         style={{
             ...container,
-            style
+            ...style
         }}
         onClick={onChange}
     >
