@@ -159,7 +159,7 @@ export const selectDialogStyler = ({
 
     let notTitleStyle = {
         marginBottom: spaces.container * 2
-    }
+    };
 
     return {
         notTitleStyle,
