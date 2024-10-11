@@ -74,6 +74,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
     const {
         content: contentStyle,
+        notTitleStyle,
         container
     } = selectDialogStyler({
         childrenStyleProp,
@@ -243,9 +244,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const renderHeader = () => {
         if (!title) {
             return <div
-                style={{
-                    marginBottom: spaces.container * 2
-                }}
+                style={notTitleStyle}
             />;
         }
         return <div
