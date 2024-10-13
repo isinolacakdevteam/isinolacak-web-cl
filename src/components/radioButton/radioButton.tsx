@@ -23,6 +23,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
     disabled = false,
     infoTextProps,
     titleStyle,
+    titleColor,
     infoText,
     isError,
     title,
@@ -47,6 +48,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         spreadBehaviour,
         indicatorSize,
         titleStyle,
+        titleColor,
         isSelected,
         direction,
         disabled,
@@ -125,7 +127,7 @@ const RadioButton: FC<IRadioButtonProps> = ({
         className={classes.container}
         style={{
             ...container,
-            style
+            ...style
         }}
         onClick={onChange}
     >

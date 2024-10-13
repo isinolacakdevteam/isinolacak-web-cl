@@ -32,6 +32,7 @@ interface ITextInputProps extends HTMLInputElementWithoutBase {
     inputClass?: string;
     disabled?: boolean;
     className?: string;
+    minHeight?: string;
     password?: boolean;
     infoText?: string;
     isError?: boolean;
@@ -52,6 +53,7 @@ export type TextInputStylerParams = {
     iconDirection: string;
     multiline?: boolean;
     isFocused: boolean;
+    minHeight?: string;
     disabled?: boolean;
     infoText?: string;
     isError?: boolean;

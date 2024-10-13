@@ -49,6 +49,7 @@ export const radioButtonStyler = ({
     disabledStyle,
     indicatorSize,
     titleStyle,
+    titleColor,
     direction,
     disabled,
     isError,
@@ -58,8 +59,8 @@ export const radioButtonStyler = ({
     style
 }: RadioButtonStylerParams): RadioButtonStylerResult => {
     let container = {
-        ...style,
-        padding: spaces.container / 2
+        padding: spaces.container / 2,
+        ...style
     };
 
     const contentContainerStyle = {
@@ -82,7 +83,7 @@ export const radioButtonStyler = ({
     };
 
     let titleProps: TitleProps = {
-        color: "body",
+        color: titleColor ? titleColor : "body",
         style: {
             ...titleStyle
         }
