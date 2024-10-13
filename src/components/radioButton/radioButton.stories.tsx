@@ -7,6 +7,7 @@ import RadioButton from './radioButton';
 import {
     IRadioButtonProps
 } from './radioButton.props';
+import lightTheme from "../../core/theme/variants/light";
 
 export default {
     title: 'Components/RadioButton',
@@ -34,6 +35,12 @@ export default {
                     "leftToRight",
                     "rightToLeft"
                 ]
+            }
+        },
+        titleColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
             }
         },
         spreadBehaviour: {
