@@ -30,6 +30,12 @@ export default {
                 options: Object.keys(lightTheme.colors)
             },
         },
+        notSelectedColor: {
+            control: {
+                type: "select",
+                options: Object.keys(lightTheme.colors)
+            },
+        },
         variant: {
             control: {
                 type: "select",
@@ -67,7 +73,8 @@ export default {
             options: [
                 "small",
                 "medium",
-                "large"
+                "large",
+                "xLarge"
             ]
         },
         shape: {
