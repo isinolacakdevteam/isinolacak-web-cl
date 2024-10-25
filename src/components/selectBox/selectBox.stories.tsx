@@ -117,6 +117,7 @@ const Template: Story<ISelectBoxProps<{
 export const Default = Template.bind({
 });
 Default.args = {
+    selectDialogTitle: "DENEME",
     isLoadingOKButton: false,
     isNeedConfirm: true,
     multiSelect: false,

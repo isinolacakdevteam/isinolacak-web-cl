@@ -68,6 +68,7 @@ export interface ISelectBoxProps<T> {
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
+    selectDialogTitle?: string;
     isSearchLoading?: boolean;
     infoIcon?: IOCoreIconType;
     size?: SelectDialogSize;
