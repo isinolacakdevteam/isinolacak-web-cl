@@ -4,6 +4,7 @@ import {
 } from "@storybook/react";
 import AccordionCard from "./accordionCard";
 import IAccordionCard from "./accordionCard.props";
+import Button from "../button/button";
 
 export default {
     title: "Components/AccordionCard",
@@ -30,5 +31,8 @@ export const Default = Template.bind({
 });
 Default.args = {
     title: "Accordion Card",
-    content: "Please enter text"
+    content: () => <Button
+        onClick={() => { }}
+        title="Deneme"
+    />
 };
