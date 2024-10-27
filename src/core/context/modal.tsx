@@ -9,7 +9,6 @@ import {
     ModalContextType,
     ModalDataType
 } from "../../types";
-import Dialog from "../../components/dialog/dialog";
 
 class ModalStateContextInheritance extends IOCoreContext<ModalStateContextType, ConfigType<ModalStateContextType>> {
 };
