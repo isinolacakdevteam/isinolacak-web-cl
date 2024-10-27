@@ -103,13 +103,6 @@ const Template: Story<ISelectBoxProps<{
     const rrr = useRef<ISelectBoxRefProps<typeof MOCK_DATA[0]>>(null);
 
     return <div>
-        <button
-            onClick={() => {
-                rrr.current?.updateSelectedItems({
-                    newSelectedItems: [MOCK_DATA[0]]
-                });
-            }}
-        >Bana Bas</button>
         <SelectBox {...args} ref={rrr} />
     </div>;
 };
