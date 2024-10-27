@@ -4,6 +4,9 @@ import {
 } from "@storybook/react";
 import IDialogProps from "./dialog.props";
 import Dialog from "./dialog";
+import {
+    IOCoreModal
+} from "../../core";
 
 export default {
     title: "Components/Dialog",
@@ -42,7 +45,41 @@ export default {
     }
 } as Meta;
 
-const Template: Story<IDialogProps> = (args) => <Dialog {...args}/>;
+const Template: Story<IDialogProps> = (args) => {
+    return <button
+        onClick={() => {
+            IOCoreModal.open({
+                isVisible: true,
+                key: "x1243",
+                type: "dialog",
+                title: "Test Başlığı",
+                content: "Test Metni",
+                variant: "yes-no",
+                onOverlayPress: () => {
+                    IOCoreModal.close({
+                        key: "x1243"
+                    });
+                },
+                primaryButtonProps: {
+                    onClick: () => {
+                        IOCoreModal.close({
+                            key: "x1243"
+                        });
+                    }
+                },
+                secondaryButtonProps: {
+                    onClick: () => {
+                        IOCoreModal.close({
+                            key: "x1243"
+                        });
+                    }
+                }
+            });
+        }}
+    >
+        Dialog Aç
+    </button>;
+};
 
 export const Default = Template.bind({
 });

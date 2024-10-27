@@ -9,7 +9,6 @@ import {
     ModalContextType,
     ModalDataType
 } from "../../types";
-import Dialog from "../../components/dialog/dialog";
 
 class ModalStateContextInheritance extends IOCoreContext<ModalStateContextType, ConfigType<ModalStateContextType>> {
 };
@@ -76,18 +75,6 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         });
     };
 
-    renderDialogs = () => {
-        if (!this.state || !this.state.data) {
-            return null;
-        }
-
-        return this.state.data.map(modal => {
-            return <Dialog
-                {...modal}
-            />;
-        });
-    };
-
     Render = ({
         children
     }: {
@@ -99,7 +86,6 @@ class ModalContextInheritance extends IOCoreContext<ModalContextType, ConfigType
         return <StateProvider>
             <Provider>
                 {children}
-                {this.renderDialogs()}
             </Provider>
         </StateProvider>;
     };
