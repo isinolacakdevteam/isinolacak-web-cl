@@ -1,6 +1,6 @@
 {
     "name": "isinolacak-web-cl",
-    "version": "1.0.0-pre-alpha.47",
+    "version": "1.0.0-pre-alpha.48",
     "description": "Olacak Bilgi Teknolojileri | IOCore - Web Component Library",
     "main": "lib/index.js",
     "module": "lib/index.js",
