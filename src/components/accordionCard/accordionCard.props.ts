@@ -4,7 +4,7 @@ import {
 } from "react";
 
 interface IAccordionCard {
-    content: string | (() => React.ReactNode);
+    content: string | (() => ReactNode);
     renderTool?: () => ReactNode;
     style?: CSSProperties;
     title: string;
