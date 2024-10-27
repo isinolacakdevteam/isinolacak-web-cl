@@ -1,8 +1,9 @@
 import {
-    ReactNode
+    ReactNode,
+    Fragment
 } from "react";
-import ThemeContextInheritance from "./theme";
 import LocaleContextInheritance from "./locale";
+import ThemeContextInheritance from "./theme";
 import ModalContextInheritance from "./modal";
 import light from "../theme/variants/light";
 import {
@@ -14,6 +15,12 @@ import {
     LanguageType,
     ThemeType
 } from "../../types";
+import {
+    Host
+} from "../../packages/react-portalize/src";
+import {
+    Dialog
+} from "../../components";
 
 class Context {
     ThemeContext: ThemeContextInheritance<ThemeType>;
@@ -56,6 +63,29 @@ class Context {
         );
     }
 
+    ContextAPI = ({
+        children
+    }: {
+        children: ReactNode;
+    }) => {
+        const {
+            data
+        } = this.ModalContext.ModalStateContext.useContext();
+
+        return <Fragment>
+            <Host>
+                {children}
+                {
+                    data && data.length ? data.map(modal => {
+                        return <Dialog
+                            {...modal}
+                        />;
+                    }) : null
+                }
+            </Host>
+        </Fragment>;
+    };
+
     Provider = ({
         children
     }: {
@@ -68,7 +98,9 @@ class Context {
         return <ThemeContext.Provider>
             <LocaleContext.Provider>
                 <ModalContext.Render>
-                    {children}
+                    <this.ContextAPI>
+                        {children}
+                    </this.ContextAPI>
                 </ModalContext.Render>
             </LocaleContext.Provider>
         </ThemeContext.Provider>;

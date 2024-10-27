@@ -1,11 +1,7 @@
 import {
-    ReactNode,
-    FC
+    ReactNode
 } from "react";
 import Context from "./context";
-import {
-    Host 
-} from "../packages/react-portalize/src/Host";
 import useStyles from "./stylesheet";
 import "./stylesheet";
 
@@ -18,15 +14,6 @@ class IOCoreInheritance {
         });
     }
 
-    ContextApi: FC = ({
-        //@ts-ignore
-        children
-    }) => {
-        return <Host>
-            {children}
-        </Host>;
-    };
-
     Provider = ({
         children
     }: {
@@ -35,17 +22,13 @@ class IOCoreInheritance {
         const IOCoreContext = this.IOCoreContext;
 
         const classes = useStyles();
-        
-        //@ts-ignore
+
         return <IOCoreContext.Provider>
-            {/* @ts-ignore */}
-            <this.ContextApi>
-                <header>
-                    <link rel="stylesheet" href="https://cdn.isinolacak.com/assets/fonts/iocore.css"/>
-                </header>
-                <span className={classes.hide}></span>
-                {children}
-            </this.ContextApi>
+            <header>
+                <link rel="stylesheet" href="https://cdn.isinolacak.com/assets/fonts/iocore.css"/>
+            </header>
+            <span className={classes.hide}></span>
+            {children}
         </IOCoreContext.Provider>;
     };
 };
