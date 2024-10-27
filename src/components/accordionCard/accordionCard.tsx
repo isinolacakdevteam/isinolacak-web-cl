@@ -3,7 +3,7 @@ import {
     FC
 } from "react";
 import useStyles, {
-    accordionCardStyler 
+    accordionCardStyler
 } from "./accordionCard.stylesheet";
 import IAccordionCard from "./accordionCard.props";
 import {
@@ -32,7 +32,7 @@ const AccordionCard: FC<IAccordionCard> = ({
     const [isShowing, setIsShowing] = useState(false);
 
     const renderTool = () => {
-        if(renderToolProp) {
+        if (renderToolProp) {
             return renderToolProp();
         }
 
@@ -74,20 +74,21 @@ const AccordionCard: FC<IAccordionCard> = ({
                 style={iconFlipper}
             >
                 {renderTool()}
-                <ChevronUpIcon/>
+                <ChevronUpIcon />
             </div>
         </div>
-        {
-            isShowing ?
+        {isShowing && (
+            typeof content === "string" ? (
                 <Text
                     variant="body3-regular"
                     color="textGrey"
                 >
                     {content}
                 </Text>
-                :
-                null
-        }
-    </div>;
+            ) : (
+                content()
+            )
+        )}
+    </div>
 };
 export default AccordionCard;
