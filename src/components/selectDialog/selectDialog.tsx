@@ -36,6 +36,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         emptyContent: RenderEmptyContent,
         renderItem: RenderItem,
         isLoadingOKButton,
+        selectDialogTitle,
         paginationProps,
         setSelectedItems,
         headerComponent,
@@ -242,7 +243,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderHeader = () => {
-        if (!title) {
+        const headerTitle = selectDialogTitle || title;
+
+        if (!headerTitle) {
             return <div
                 style={notTitleStyle}
             />;
@@ -256,7 +259,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             {headerComponent || <Text
                 variant="header5-regular"
             >
-                {title}
+                {headerTitle}
             </Text>}
         </div>;
     };

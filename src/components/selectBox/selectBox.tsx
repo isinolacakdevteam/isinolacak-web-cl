@@ -38,6 +38,7 @@ const SelectBox = <T extends {}>({
     multiSelect = false,
     isLoadingOKButton,
     data: initialData,
+    selectDialogTitle,
     disabled = false,
     paginationProps,
     isClick = false,
@@ -282,6 +283,7 @@ const SelectBox = <T extends {}>({
 
     const renderDialog = () => {
         return <SelectDialog
+            selectDialogTitle={selectDialogTitle}
             isLoadingOKButton={isLoadingOKButton}
             setSelectedItems={setSelectedItems}
             paginationProps={paginationProps}
