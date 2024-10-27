@@ -32,11 +32,12 @@ export default {
     }
 } as Meta;
 
-const Template: Story<ISelectDialogProps> = (args) => <SelecetDialog {...args}/>;
+const Template: Story<ISelectDialogProps> = (args) => <SelecetDialog {...args} />;
 
 export const Default = Template.bind({
 });
 Default.args = {
+    selectDialogTitle: 'SelectDialog',
     isLoadingOKButton: false,
     isSearchLoading: false,
     title: 'SelectDialog',
