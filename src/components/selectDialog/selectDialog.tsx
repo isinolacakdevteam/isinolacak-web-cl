@@ -46,6 +46,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         selectedItems,
         isSearchable,
         multiSelect,
+        validation,
         inputTitle,
         renderIcon,
         maxChoice,
@@ -176,6 +177,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
+                validation={validation}
                 initialValue={searchText}
                 placeholder={inputTitle}
             />
