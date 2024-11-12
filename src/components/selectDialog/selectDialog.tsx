@@ -402,9 +402,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </div>;
         }
 
-        return <div
-            className={styles.innerContent}
-        >
+        return <div>
             {
                 renderData.map((item, index) => {
                     return renderItem({
