@@ -55,17 +55,12 @@ export const useStyles = createUseStyles({
         maxHeight: "90%",
         display: "flex",
         maxWidth: "95%",
-        // minWidth: "20%",
-        minHeight: "50%",
         zIndex: 99999
     },
     content: {
         userSelect: "none",
         overflowY: "auto",
         flexWrap: "wrap"
-    },
-    innerContent: {
-        minHeight: "200px"
     },
     paginationContainer: {
         justifyContent: "center",
@@ -115,7 +110,7 @@ export const selectDialogStyler = ({
     } else if (size === 'xLarge') {
         containerMinWidthValue = "50%";
     } else {
-        if(size) {
+        if (size) {
             containerMinWidthValue = size;
         }
     }

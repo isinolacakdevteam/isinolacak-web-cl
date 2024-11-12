@@ -46,6 +46,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         selectedItems,
         isSearchable,
         multiSelect,
+        validation,
         inputTitle,
         renderIcon,
         maxChoice,
@@ -176,6 +177,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
+                validation={validation}
                 initialValue={searchText}
                 placeholder={inputTitle}
             />
@@ -400,9 +402,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </div>;
         }
 
-        return <div
-            className={styles.innerContent}
-        >
+        return <div>
             {
                 renderData.map((item, index) => {
                     return renderItem({
@@ -441,13 +441,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 }}
             >
                 {renderHeader()}
+                {renderSearch()}
                 <div
                     className={styles.content}
                     style={{
                         ...contentStyle
                     }}
                 >
-                    {renderSearch()}
                     {renderContent()}
                     {renderPagination()}
                 </div>
