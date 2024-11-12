@@ -52,6 +52,7 @@ export interface ISelectBoxProps<T> {
         index?: number;
     }) => ReactNode;
     onSearch?: (searchText: string) => void;
+    validation?: (text: string) => boolean;
     titleExtractor: (item: T, index: number) => string;
     keyExtractor: (item: T, index: number) => string;
     initialSelectedItems?: Array<T & {
