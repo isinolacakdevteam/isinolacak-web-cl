@@ -443,13 +443,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 }}
             >
                 {renderHeader()}
+                {renderSearch()}
                 <div
                     className={styles.content}
                     style={{
                         ...contentStyle
                     }}
                 >
-                    {renderSearch()}
                     {renderContent()}
                     {renderPagination()}
                 </div>

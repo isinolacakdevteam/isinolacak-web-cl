@@ -62,12 +62,6 @@ export const useStyles = createUseStyles({
         overflowY: "auto",
         flexWrap: "wrap"
     },
-    innerContent: {
-        boxSizing: "border-box",
-        overflowX: "hidden",
-        maxHeight: "25rem",
-        overflow: "auto"
-    },
     paginationContainer: {
         justifyContent: "center",
         display: "flex"
