@@ -55,8 +55,6 @@ export const useStyles = createUseStyles({
         maxHeight: "90%",
         display: "flex",
         maxWidth: "95%",
-        // minWidth: "20%",
-        minHeight: "50%",
         zIndex: 99999
     },
     content: {
@@ -67,9 +65,8 @@ export const useStyles = createUseStyles({
     innerContent: {
         boxSizing: "border-box",
         overflowX: "hidden",
-        minHeight: "200px",
-        overflow: "auto",
-        height: "10rem"
+        maxHeight: "25rem",
+        overflow: "auto"
     },
     paginationContainer: {
         justifyContent: "center",
