@@ -50,6 +50,7 @@ const SelectBox = <T extends {}>({
     isSearchable,
     emptyContent,
     inputTitle,
+    validation,
     renderItem,
     onSearch,
     infoText,
@@ -298,6 +299,7 @@ const SelectBox = <T extends {}>({
             inputTitle={inputTitle}
             renderIcon={renderIcon}
             renderItem={renderItem}
+            validation={validation}
             isVisible={isVisible}
             onSearch={onSearch}
             onChange={onChange}
