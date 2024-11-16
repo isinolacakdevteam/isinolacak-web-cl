@@ -105,6 +105,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     minChoice?: number;
     isVisible: boolean;
     snapPoint?: number;
+    h
     data: Array<K>;
     title?: string;
 };
