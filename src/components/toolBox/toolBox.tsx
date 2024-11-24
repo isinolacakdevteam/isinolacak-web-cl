@@ -20,6 +20,7 @@ import IToolBoxProps from "./toolBox.props";
 const ToolBox: FC<IToolBoxProps> = ({
     children,
     content,
+    hover,
     style
 }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -66,11 +67,11 @@ const ToolBox: FC<IToolBoxProps> = ({
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
-        
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    },[]);
+    }, []);
 
     useEffect(() => {
         window.addEventListener("resize", onResize);
@@ -102,6 +103,31 @@ const ToolBox: FC<IToolBoxProps> = ({
 
     return <div
         className={classes.container}
+        onMouseEnter={() => {
+            if (!hover) {
+                return;
+            }
+
+            setIsVisible(prev => {
+                if (prev) {
+                    setTInfo(c_prev => {
+                        return {
+                            ...c_prev,
+                            x: 0,
+                            y: 0
+                        };
+                    });
+                }
+                return !prev;
+            });
+        }}
+        onMouseLeave={() => {
+            if (!hover) {
+                return;
+            }
+
+            setIsVisible(false);
+        }}
         onClick={() => {
             setIsVisible(prev => {
                 if (prev) {
