@@ -7,7 +7,7 @@ interface IToolBoxProps {
     style?: CSSProperties;
     children: ReactNode;
     content: ReactNode;
-    hover: boolean;
+    hover?: boolean;
 };
 
 export type ToolBoxDirectionProps = "right" | "left" | "top" | "bottom";
