@@ -1,4 +1,4 @@
-<p align="center">
+.<p align="center">
     <img
         width="450"
         height="450"
