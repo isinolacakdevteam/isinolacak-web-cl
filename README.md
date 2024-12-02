@@ -19,6 +19,7 @@ Please visit for docs: [IOCore Web](https://iocore.isinolacak.com/web)
 If you install with yarn these packages will already be installed.
 
 - react-jss
+- limondeneme
 
 ### Base Library
 
