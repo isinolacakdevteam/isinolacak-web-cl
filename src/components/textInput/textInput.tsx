@@ -100,13 +100,18 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     useImperativeHandle(
         ref,
         () => ({
-            cleanText
+            cleanText,
+            updateValue
         }),
         []
     );
 
     const cleanText = () => {
         setValue("");
+    };
+    
+    const updateValue = (text: string) => {
+        setValue(text);
     };
 
     const onFocus = () => {
