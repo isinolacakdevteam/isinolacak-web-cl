@@ -20,7 +20,15 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     constructor(initialState: T, config: ConfigType<LocaleContextType>) {
         super({
-            localize: (translationKey: keyof IOCore.TranslationType) => en.translations[translationKey],
+            localize: (translationKey: keyof IOCore.TranslationType) => {
+                const resp = en.translations[translationKey];
+
+                if(!resp) {
+                    return translationKey;
+                }
+
+                return resp;
+            },
             translations: en.translations,
             activeLocale: en.code,
             isRTL: en.isRTL
@@ -46,15 +54,24 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
             isRTL: selectedLanguageData.isRTL,
             translations: translations,
             localize: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>) => {
-                let resp = translations[translationKey];
+                try {
+                    let resp = translations[translationKey];
 
-                if(parameters && parameters.length) {
-                    parameters.forEach((item, index) => {
-                        resp = resp.replace(`{{${index}}}`, item);
-                    });
+                    if(!resp) {
+                        return translationKey;
+                    }
+
+                    if(parameters && parameters.length) {
+                        parameters.forEach((item, index) => {
+                            resp = resp.replace(`{{${index}}}`, item);
+                        });
+                    }
+
+                    return resp;
+                } catch(e) {
+                    console.log(e);
+                    return translationKey;
                 }
-
-                return resp;
             }
         };
 
@@ -65,7 +82,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     localize = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>) => {
         if(!this.state) {
-            return "";
+            return "localize-context-is-not-ready";
         }
 
         if(parameters && parameters.length) {
