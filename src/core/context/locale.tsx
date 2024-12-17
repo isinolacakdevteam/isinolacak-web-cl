@@ -81,6 +81,29 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
                     console.log(e);
                     return translationKey;
                 }
+            },
+            localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>) => {
+                try {
+                    let resp = translations[translationKey];
+
+                    if(!resp) {
+                        return translationKey;
+                    }
+
+                    if(parameters && parameters.length) {
+                        parameters.forEach((item, index) => {
+                            const splittedString = resp.split(`{{${index}}}`);
+                            resp = splittedString[0];
+                            resp += item;
+                            resp += splittedString[1];
+                        });
+                    }
+
+                    return resp;
+                } catch(e) {
+                    console.log(e);
+                    return translationKey;
+                }
             }
         };
 
