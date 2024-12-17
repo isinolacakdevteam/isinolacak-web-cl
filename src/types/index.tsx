@@ -33,6 +33,7 @@ export type LanguageType = {
 
 export type LocaleContextType = {
     localize: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => string;
+    localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => string;
     translations: Record<keyof IOCore.TranslationType, string>;
     activeLocale: string;
     isRTL: boolean;
