@@ -2,6 +2,7 @@ import {
     FC
 } from "react";
 import IDialogProps from "src/components/dialog/dialog.props";
+import ITextProps from "src/components/text/text.props";
 
 export type ButtonDisplayBehaviourWhileLoading = "none" | "disabled";
 
@@ -33,7 +34,7 @@ export type LanguageType = {
 
 export type LocaleContextType = {
     localize: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => string;
-    localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>) => string;
+    localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters?: Array<any>, props?: Array<ITextProps>) => string;
     translations: Record<keyof IOCore.TranslationType, string>;
     activeLocale: string;
     isRTL: boolean;
