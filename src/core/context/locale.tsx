@@ -9,6 +9,7 @@ import {
     LocaleContextType,
     LanguageType
 } from "../../types";
+import Text from "../../components/text/text";
 
 const languages = [
     en,
@@ -82,7 +83,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
                     return translationKey;
                 }
             },
-            localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>) => {
+            localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>, props: Array<any>) => {
                 try {
                     let resp = translations[translationKey];
 
@@ -91,11 +92,9 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
                     }
 
                     if(parameters && parameters.length) {
-                        parameters.forEach((item, index) => {
-                            const splittedString = resp.split(`{{${index}}}`);
-                            resp = splittedString[0];
-                            resp += item;
-                            resp += splittedString[1];
+                        parameters.forEach((_item, index) => {
+                            // @ts-ignore
+                            resp = resp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
                         });
                     }
 
@@ -138,7 +137,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
         return this.state.translations[localeCode];
     };
 
-    localizeWithObject = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>) => {
+    localizeWithObject = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>, props: Array<any>) => {
         if(!this.state) {
             return "localize-context-is-not-ready";
         }
@@ -151,11 +150,9 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
                     return localeCode;
                 }
 
-                parameters.forEach((item, index) => {
-                    const splittedString = newResp.split(`{{${index}}}`);
-                    newResp = splittedString[0];
-                    newResp += item;
-                    newResp += splittedString[1];
+                parameters.forEach((_item, index) => {
+                    // @ts-ignore
+                    newResp = newResp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
                 });
 
                 return newResp;
