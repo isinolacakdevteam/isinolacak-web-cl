@@ -34,5 +34,6 @@ Default.args = {
     content: () => <Button
         onClick={() => { }}
         title="Deneme"
-    />
+    />,
+    isVisible: true
 };
