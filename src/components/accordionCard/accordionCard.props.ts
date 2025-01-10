@@ -7,6 +7,7 @@ interface IAccordionCard {
     content: string | (() => ReactNode);
     renderTool?: () => ReactNode;
     style?: CSSProperties;
+    isVisible?: boolean; 
     title: string;
 };
 

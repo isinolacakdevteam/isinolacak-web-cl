@@ -6,10 +6,10 @@ import {
 } from "react-jss";
 import {
     DialogStylerParams,
-    DialogStylerResult 
+    DialogStylerResult
 } from "./dialog.props";
 import {
-    IIOCoreIconPropsType 
+    IIOCoreIconPropsType
 } from "src/types";
 
 export const dialogStyler = ({
@@ -42,8 +42,6 @@ export const dialogStyler = ({
     };
 
     let bottom: CSSProperties = {
-        paddingRight: spaces.content / 2,
-        paddingLeft: spaces.content / 2,
         paddingTop: spaces.content,
         ...bottomContainerStyle
     };
@@ -130,6 +128,7 @@ const useStyles = createUseStyles({
         display: "flex"
     }
 }, {
+
     name: "IOCore-Dialog"
 });
 export default useStyles;

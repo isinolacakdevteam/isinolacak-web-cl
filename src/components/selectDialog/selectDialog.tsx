@@ -91,15 +91,21 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
+        const normalizeText = (text: string) =>
+            text.toLocaleLowerCase("tr-TR");
+    
+        const normalizedSearchText = normalizeText(searchText);
+    
         if (searchText && searchText.length) {
-            let newData = JSON.parse(JSON.stringify(data));
-            newData = newData.filter((item: K) => item.__title.match(new RegExp(searchText, "gi")));
+            const newData = data.filter((item: K) =>
+                normalizeText(item.__title).includes(normalizedSearchText)
+            );
             setRenderData(newData);
         } else {
             setRenderData(data);
         }
     }, [searchText, data]);
-
+    
     useEffect(() => {
         if (onSearch) {
             onSearch(searchText);
