@@ -56,43 +56,19 @@ export default {
 const MOCK_DATA = [
     {
         id: "34534w534ste",
-        title: "Item 1"
+        title: "istanbul"
     },
     {
         id: "34534w^356574534ste",
-        title: "Item 2"
+        title: "Istanbul"
     },
     {
         id: "34534568443w534ste",
-        title: "Item 3"
+        title: "İstanbul"
     },
     {
         id: "34534w5547)W(+=987634ste",
-        title: "Item 4"
-    },
-    {
-        id: "34534w35735534ste",
-        title: "Item 5"
-    },
-    {
-        id: "346/)(534w534ste",
-        title: "Item 6"
-    },
-    {
-        id: "34534w9=?534ste",
-        title: "Item 7"
-    },
-    {
-        id: "34534w534s65487te",
-        title: "Item 8"
-    },
-    {
-        id: "3454/534w534ste",
-        title: "Item 9"
-    },
-    {
-        id: "34534w53%&/4ste",
-        title: "Item 10"
+        title: "ıstanbul"
     }
 ];
 
@@ -113,6 +89,7 @@ Default.args = {
     selectDialogTitle: "DENEME",
     isLoadingOKButton: false,
     isNeedConfirm: true,
+    isSearchable: true,
     multiSelect: false,
     isVisible: false,
     disabled: false,

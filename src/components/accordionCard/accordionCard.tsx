@@ -16,6 +16,7 @@ import {
 
 const AccordionCard: FC<IAccordionCard> = ({
     renderTool: renderToolProp,
+    isVisible = false,
     content,
     title,
     style
@@ -29,7 +30,7 @@ const AccordionCard: FC<IAccordionCard> = ({
         colors
     } = IOCoreTheme.useContext();
 
-    const [isShowing, setIsShowing] = useState(false);
+    const [isShowing, setIsShowing] = useState(isVisible);
 
     const renderTool = () => {
         if (renderToolProp) {

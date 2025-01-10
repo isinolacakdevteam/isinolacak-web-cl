@@ -66,43 +66,19 @@ Default.args = {
     data: [
         {
             __key: "1",
-            __title: "Item 1"
+            __title: "İstanbul"
         },
         {
             __key: "2",
-            __title: "Item 2"
+            __title: "istanbul"
         },
         {
             __key: "3",
-            __title: "Item 3"
+            __title: "Istanbul"
         },
         {
             __key: "4",
-            __title: "Item 4"
-        },
-        {
-            __key: "5",
-            __title: "Item 5"
-        },
-        {
-            __key: "6",
-            __title: "Item 6"
-        },
-        {
-            __key: "7",
-            __title: "Item 7"
-        },
-        {
-            __key: "8",
-            __title: "Item 8"
-        },
-        {
-            __key: "9",
-            __title: "Item 9"
-        },
-        {
-            __key: "10",
-            __title: "Item 10"
+            __title: "ıstanbul"
         }
     ]
 };
