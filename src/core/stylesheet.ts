@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
         "::-webkit-scrollbar-thumb": {
             border: "0px none #ffffff",
             background: "#3C32A3",
-            borderRadius: 100
+            borderRadius: 0
         },
         "::-webkit-scrollbar-thumb:hover": {
             background: "#3C32A3"
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
         "::-webkit-scrollbar-track": {
             border: "0px none #ffffff",
             background: "#3c3c3c",
-            borderRadius: 100
+            borderRadius: 0
         },
         "::-webkit-scrollbar-track:hover": {
             background: "#464646"
