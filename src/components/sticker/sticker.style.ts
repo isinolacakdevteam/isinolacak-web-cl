@@ -31,6 +31,7 @@ export const stickerStyler = ({
     colors,
     color,
     style,
+    icon,
     type
 }: StickerStylerParams): StickerStylerResult => {
     let container = {
@@ -78,6 +79,11 @@ export const stickerStyler = ({
     if(titleColor) {
         iconProps.color = colors[titleColor];
         titleProps.color = titleColor;
+    }
+
+    if(icon) {
+        container.paddingRight = spaces.container / 2;
+        container.paddingLeft = spaces.container / 2;
     }
 
     return {
