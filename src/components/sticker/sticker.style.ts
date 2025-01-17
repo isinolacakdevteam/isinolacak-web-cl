@@ -4,7 +4,7 @@ import {
 import {
     StickerStylerParams,
     StickerStylerResult,
-    TitleProps 
+    TitleProps
 } from "./sticker.props";
 import {
     IIOCoreIconPropsType
@@ -17,7 +17,7 @@ export const useStyles = createUseStyles({
         flexDirection: "row",
         borderStyle: "solid",
         alignItems: "center",
-        display: "flex",
+        display: "flex"
     }
 }, {
     name: "IOCore-Sticker"
@@ -42,7 +42,7 @@ export const stickerStyler = ({
         paddingLeft: spaces.container / 2.6,
         paddingBottom: spaces.container / 4,
         paddingTop: spaces.container / 4,
-        borderRadius: radiuses.quarter,
+        borderRadius: radiuses.quarter
     };
 
     let titleProps: TitleProps = {
@@ -50,15 +50,15 @@ export const stickerStyler = ({
         style: {
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
-            overflow: "hidden",
+            overflow: "hidden"
         }
     };
 
     let iconContainerStyle = {
-        marginRight: spaces.inline,
+        marginRight: spaces.inline / 2,
         justifyContent: "center",
-        alignItems: 'center',
-        display: 'flex'
+        alignItems: "center",
+        display: "flex"
     };
 
     let iconProps: IIOCoreIconPropsType = {
