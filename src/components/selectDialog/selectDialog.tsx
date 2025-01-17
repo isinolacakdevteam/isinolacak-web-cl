@@ -36,6 +36,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         emptyContent: RenderEmptyContent,
         renderItem: RenderItem,
         isLoadingOKButton,
+        selectDialogTitle,
         paginationProps,
         setSelectedItems,
         headerComponent,
@@ -45,6 +46,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         selectedItems,
         isSearchable,
         multiSelect,
+        validation,
         inputTitle,
         renderIcon,
         maxChoice,
@@ -89,15 +91,21 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
+        const normalizeText = (text: string) =>
+            text.toLocaleLowerCase("tr-TR");
+    
+        const normalizedSearchText = normalizeText(searchText);
+    
         if (searchText && searchText.length) {
-            let newData = JSON.parse(JSON.stringify(data));
-            newData = newData.filter((item: K) => item.__title.match(new RegExp(searchText, "gi")));
+            const newData = data.filter((item: K) =>
+                normalizeText(item.__title).includes(normalizedSearchText)
+            );
             setRenderData(newData);
         } else {
             setRenderData(data);
         }
     }, [searchText, data]);
-
+    
     useEffect(() => {
         if (onSearch) {
             onSearch(searchText);
@@ -175,6 +183,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         return <div>
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
+                validation={validation}
                 initialValue={searchText}
                 placeholder={inputTitle}
             />
@@ -242,7 +251,9 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
     };
 
     const renderHeader = () => {
-        if (!title) {
+        const headerTitle = selectDialogTitle || title;
+
+        if (!headerTitle) {
             return <div
                 style={notTitleStyle}
             />;
@@ -256,7 +267,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             {headerComponent || <Text
                 variant="header5-regular"
             >
-                {title}
+                {headerTitle}
             </Text>}
         </div>;
     };
@@ -397,9 +408,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             </div>;
         }
 
-        return <div
-            className={styles.innerContent}
-        >
+        return <div>
             {
                 renderData.map((item, index) => {
                     return renderItem({
@@ -438,13 +447,13 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
                 }}
             >
                 {renderHeader()}
+                {renderSearch()}
                 <div
                     className={styles.content}
                     style={{
                         ...contentStyle
                     }}
                 >
-                    {renderSearch()}
                     {renderContent()}
                     {renderPagination()}
                 </div>

@@ -9,6 +9,7 @@ import {
     LocaleContextType,
     LanguageType
 } from "../../types";
+import Text from "../../components/text/text";
 
 const languages = [
     en,
@@ -20,7 +21,24 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     constructor(initialState: T, config: ConfigType<LocaleContextType>) {
         super({
-            localize: (translationKey: keyof IOCore.TranslationType) => en.translations[translationKey],
+            localize: (translationKey: keyof IOCore.TranslationType) => {
+                const resp = en.translations[translationKey];
+
+                if(!resp) {
+                    return translationKey;
+                }
+
+                return resp;
+            },
+            localizeWithObject: (translationKey: keyof IOCore.TranslationType) => {
+                const resp = en.translations[translationKey];
+
+                if(!resp) {
+                    return translationKey;
+                }
+
+                return resp;
+            },
             translations: en.translations,
             activeLocale: en.code,
             isRTL: en.isRTL
@@ -46,15 +64,45 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
             isRTL: selectedLanguageData.isRTL,
             translations: translations,
             localize: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>) => {
-                let resp = translations[translationKey];
+                try {
+                    let resp = translations[translationKey];
 
-                if(parameters && parameters.length) {
-                    parameters.forEach((item, index) => {
-                        resp = resp.replace(`{{${index}}}`, item);
-                    });
+                    if(!resp) {
+                        return translationKey;
+                    }
+
+                    if(parameters && parameters.length) {
+                        parameters.forEach((item, index) => {
+                            resp = resp.replace(`{{${index}}}`, item);
+                        });
+                    }
+
+                    return resp;
+                } catch(e) {
+                    console.log(e);
+                    return translationKey;
                 }
+            },
+            localizeWithObject: (translationKey: keyof IOCore.TranslationType, parameters: Array<any>, props: Array<any>) => {
+                try {
+                    let resp = translations[translationKey];
 
-                return resp;
+                    if(!resp) {
+                        return translationKey;
+                    }
+
+                    if(parameters && parameters.length) {
+                        parameters.forEach((_item, index) => {
+                            // @ts-ignore
+                            resp = resp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
+                        });
+                    }
+
+                    return resp;
+                } catch(e) {
+                    console.log(e);
+                    return translationKey;
+                }
             }
         };
 
@@ -65,7 +113,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
     localize = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>) => {
         if(!this.state) {
-            return "";
+            return "localize-context-is-not-ready";
         }
 
         if(parameters && parameters.length) {
@@ -78,6 +126,33 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
                 parameters.forEach((item, index) => {
                     newResp.replace(`{{${index}}}`, item);
+                });
+
+                return newResp;
+            } catch {
+                return localeCode;
+            }
+        }
+
+        return this.state.translations[localeCode];
+    };
+
+    localizeWithObject = (localeCode: keyof IOCore.TranslationType, parameters: Array<any>, props: Array<any>) => {
+        if(!this.state) {
+            return "localize-context-is-not-ready";
+        }
+
+        if(parameters && parameters.length) {
+            try {
+                let newResp = this.state.translations[localeCode];
+
+                if(!newResp) {
+                    return localeCode;
+                }
+
+                parameters.forEach((_item, index) => {
+                    // @ts-ignore
+                    newResp = newResp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
                 });
 
                 return newResp;
