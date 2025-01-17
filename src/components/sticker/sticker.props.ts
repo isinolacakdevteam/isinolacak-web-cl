@@ -29,6 +29,7 @@ export type StickerStylerParams = {
     color: keyof IOCore.ColorsType;
     colors: IOCore.ColorsType;
     style?: CSSProperties;
+    icon?: IOCoreIconType;
     type: Stickertype;
 };
 

@@ -35,6 +35,7 @@ const Sticker: FC<IStickerProps> = ({
         container,
         iconProps
     } = stickerStyler({
+        icon: IconComponentProp,
         spreadBehaviour,
         titleColor,
         radiuses,
