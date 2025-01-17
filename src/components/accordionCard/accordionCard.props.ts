@@ -4,9 +4,10 @@ import {
 } from "react";
 
 interface IAccordionCard {
+    content: string | (() => ReactNode);
     renderTool?: () => ReactNode;
     style?: CSSProperties;
-    content: string;
+    isVisible?: boolean; 
     title: string;
 };
 

@@ -8,6 +8,7 @@ import {
 
 export type ITextInputRef = {
     cleanText: () => void;
+    updateValue: (text: string) => void;
 };
 
 type HTMLInputElementWithoutBase = Omit<HTMLAttributes<HTMLInputElement>, "disabled" | "placeholder" | "title" | "className" | "id" | "style">;

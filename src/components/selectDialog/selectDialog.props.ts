@@ -82,6 +82,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
         item?: K;
     }) => ReactNode;
     onSearch?: (searchText: string) => void;
+    validation?: (text: string) => boolean;
     selectedItems: Array<SelectedItem>;
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
@@ -89,13 +90,14 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
+    selectDialogTitle?: string;
     isSearchLoading?: boolean;
     isHeaderShown?: boolean;
     isNeedConfirm?: boolean;
     size?: SelectDialogSize;
     isSearchable?: boolean;
-    multiSelect?: boolean;
     initialData?: Array<T>;
+    multiSelect?: boolean;
     fullScreen?: boolean;
     inputTitle?: string;
     onClose: () => void;
