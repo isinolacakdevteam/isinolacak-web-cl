@@ -18,6 +18,7 @@ interface ITextInputProps extends HTMLInputElementWithoutBase {
     validation?: (text: string) => boolean;
     onChangeText?: (value: string) => void;
     iconDirection?: "left" | "right";
+    containerClassName?: string;
     infoIcon?: IOCoreIconType;
     iconOnClick?: () => void;
     secureTextEntry?: boolean;
