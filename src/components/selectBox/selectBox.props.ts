@@ -65,7 +65,7 @@ export interface ISelectBoxProps<T> {
         closeSheet: () => void;
         onSuccess: () => void;
     }) => void;
-    spreadBehaviour?: SelectBoxSpreadBehaviour,
+    spreadBehaviour?: SelectBoxSpreadBehaviour;
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     isLoadingOKButton?: boolean;
@@ -77,7 +77,8 @@ export interface ISelectBoxProps<T> {
     isSearchable?: boolean;
     multiSelect?: boolean;
     style?: CSSProperties;
-    isVisible?: boolean,
+    isVisible?: boolean;
+    className?: string;
     inputTitle: string;
     disabled?: boolean;
     isError?: boolean;

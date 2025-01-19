@@ -180,7 +180,11 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
             return null;
         }
 
-        return <div>
+        return <div
+            style={{
+                marginBottom: spaces.content / 2
+            }}
+        >
             <TextInput
                 onChangeText={(text) => setSearchText(text)}
                 validation={validation}

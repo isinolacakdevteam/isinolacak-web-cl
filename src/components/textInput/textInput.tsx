@@ -32,6 +32,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     iconDirection = "left",
     clearEnabled = false,
     onFocus: onFocusProp,
+    containerClassName,
     onBlur: onBlurProp,
     isRequired = false,
     disabled = false,
@@ -282,6 +283,7 @@ const TextInput: RefForwardingComponent<ITextInputRef, ITextInputProps> = ({
     };
 
     return <div
+        className={containerClassName}
         onClick={() => {
             inputRef.current?.focus();
         }}
