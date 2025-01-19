@@ -52,6 +52,7 @@ const SelectBox = <T extends {}>({
     inputTitle,
     validation,
     renderItem,
+    className,
     onSearch,
     infoText,
     onChange,
@@ -344,7 +345,10 @@ const SelectBox = <T extends {}>({
     };
 
     return <div
-        className={classes.mainContainer}
+        className={[
+            classes.mainContainer,
+            className
+        ].join(" ")}
     >
         <div
             className={classes.container}
