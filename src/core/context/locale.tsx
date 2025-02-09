@@ -10,6 +10,9 @@ import {
     LanguageType
 } from "../../types";
 import Text from "../../components/text/text";
+import {
+    uuid
+} from "src/utils";
 
 const languages = [
     en,
@@ -94,7 +97,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
                     if(parameters && parameters.length) {
                         parameters.forEach((_item, index) => {
                             // @ts-ignore
-                            resp = resp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
+                            resp = resp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text key={uuid()} {...props[index]}>{parameters[index]}</Text> : <Text key={uuid()}>{parameters[index]}</Text>]).slice(0, -1);
                         });
                     }
 
@@ -152,7 +155,7 @@ class LocaleContextInheritance<T extends LanguageType> extends IOCoreContext<Loc
 
                 parameters.forEach((_item, index) => {
                     // @ts-ignore
-                    newResp = newResp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text {...props[index]}>{parameters[index]}</Text> : <Text>{parameters[index]}</Text>]).slice(0, -1);
+                    newResp = newResp.split(`{{${index}}}`).flatMap((item) => [item, props && props[index] ? <Text key={uuid()} {...props[index]}>{parameters[index]}</Text> : <Text key={uuid()}>{parameters[index]}</Text>]).slice(0, -1);
                 });
 
                 return newResp;
