@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
         animationDelay: '-0.10s',
     },
     '@keyframes dots_411': {
-        '0%, 80%, 100%': {
+        '0%': {
             transform: 'scale(0)',
         },
         '5%': {
@@ -35,21 +35,13 @@ const useStyles = createUseStyles({
         '40%': {
             transform: 'scale(0.8)',
         },
-    },
-
-    /*  "@global": {
-        "@keyframes loading": {
-            "from": {
-                transform: "rotateZ(0deg) translateX(1px)"
-            },
-            "to": {
-                transform: "rotateZ(-360deg) translateX(1px)"
-            }
-        }
-    },
-    container: {
-        animation: "loading 1s linear infinite"
-    }*/
+        '80%': {
+            transform: 'scale(0)',
+        },
+        '100%': {
+            transform: 'scale(0)',
+        },
+    }
 }, {
     name: "ICore-Loading"
 });
