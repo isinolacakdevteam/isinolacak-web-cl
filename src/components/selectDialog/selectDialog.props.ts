@@ -87,6 +87,7 @@ interface ISelectDialogProps<T, K extends T & SelectObjectType> {
     paginationProps?: IPaginationProps;
     emptyContent?: () => JSX.Element;
     childrenStyle?: CSSProperties;
+    renderItemKeyPrefix?: string;
     isLoadingOKButton?: boolean;
     onOverlayPress?: () => void;
     headerComponent?: ReactNode;
