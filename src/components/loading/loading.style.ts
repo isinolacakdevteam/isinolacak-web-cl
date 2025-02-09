@@ -49,8 +49,8 @@ const useStyles = createUseStyles({
     },
     container: {
         animation: "loading 1s linear infinite"
-    }
-}, { */
+    }*/
+}, {
     name: "ICore-Loading"
 });
 export default useStyles;
