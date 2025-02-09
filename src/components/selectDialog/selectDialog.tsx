@@ -27,6 +27,9 @@ import {
     Portal
 } from "../../packages/react-portalize/src";
 import Loading from "../loading/loading";
+import {
+    uuid
+} from "src/utils";
 
 const SelecetDialog = <T, K extends T & SelectObjectType>(
     properties: ISelectDialogProps<T, K>,
@@ -35,6 +38,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         childrenStyle: childrenStyleProp,
         emptyContent: RenderEmptyContent,
         renderItem: RenderItem,
+        renderItemKeyPrefix,
         isLoadingOKButton,
         selectDialogTitle,
         paginationProps,
@@ -342,7 +346,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
 
         if (multiSelect) {
             return <CheckBox
-                key={`select-box-item-${index}`}
+                key={`${renderItemKeyPrefix ? renderItemKeyPrefix : uuid()}-select-box-item-${index}`}
                 isSelected={isSelected}
                 title={item.__title}
                 icon={renderIcon ? ({
@@ -368,7 +372,7 @@ const SelecetDialog = <T, K extends T & SelectObjectType>(
         }
 
         return <RadioButton
-            key={`select-box-item-${index}`}
+            key={`${renderItemKeyPrefix ? renderItemKeyPrefix : uuid()}-select-box-item-${index}`}
             isSelected={isSelected}
             title={item.__title}
             icon={renderIcon ? ({
