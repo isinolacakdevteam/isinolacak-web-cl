@@ -29,7 +29,7 @@ import {
 import Loading from "../loading/loading";
 import {
     uuid
-} from "src/utils";
+} from "../../utils";
 
 const SelecetDialog = <T, K extends T & SelectObjectType>(
     properties: ISelectDialogProps<T, K>,
