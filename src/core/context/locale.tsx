@@ -12,7 +12,7 @@ import {
 import Text from "../../components/text/text";
 import {
     uuid
-} from "src/utils";
+} from "../../utils";
 
 const languages = [
     en,
